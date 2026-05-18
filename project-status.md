@@ -1,8 +1,8 @@
 # IMPULSE KEYS - Project Status & Workflow
 # 项目状态与工作流程
 
-> **Last Updated**: 2026-05-15  
-> **Project Phase**: Design & Development Planning  
+> **Last Updated**: 2026-05-18
+> **Project Phase**: Design & Development Planning
 > **Target Launch**: Impulse26 Event (4-5 weeks)
 
 ---
@@ -37,6 +37,7 @@
 
 **Files**:
 - `/Users/I549685/Documents/SAPTI/results.md` (384 lines - SOURCE OF TRUTH)
+- `/Users/I549685/Documents/SAPTI/Design.md` (Complete "Tactile Impulse" design system)
 
 ---
 
@@ -123,7 +124,21 @@
 
 ---
 
-#### 1.7 Project Documentation
+#### 1.7 Design System Specification
+- ✅ "Tactile Impulse" design system完成
+  - 完整颜色系统（Material Design tokens）
+  - Typography规范（Plus Jakarta Sans + Libre Caslon Text）
+  - 8pt spacing rhythm
+  - Keycap-inspired components详细规范
+  - "Digital Tactility" brand narrative
+  - Elevation system（dual-shadow approach）
+
+**Files**:
+- `/Users/I549685/Documents/SAPTI/Design.md`
+
+---
+
+#### 1.8 Project Documentation
 - ✅ Comprehensive roadmap
   - 8-part research plan
   - Question design principles
@@ -245,6 +260,7 @@
 /Users/I549685/Documents/SAPTI/
 ├── README.md                                    ✅ Navigation hub
 ├── project-status.md                            ✅ This file - status tracker
+├── Design.md                                    ✅ Design system specification (NEW)
 ├── results.md                                   ✅ 16 result definitions (SOURCE OF TRUTH)
 ├── questions-v3-complete-bilingual.md           ✅ Final questions (16Q, EN/CN)
 ├── mapping-validation.md                        ✅ Validation report
@@ -400,6 +416,22 @@ Week 7-8         : Promotion + Iteration                  📝
 ---
 
 ## 🔄 **Change Log**
+
+### 2026-05-18
+
+#### Morning (09:00-12:00)
+- ✅ Created complete design system specification (Design.md)
+  - Defined "Tactile Impulse" visual identity
+  - Documented color palette (Material Design tokens, Action Coral primary)
+  - Specified typography system (Plus Jakarta Sans + Libre Caslon Text)
+  - Detailed "Digital Tactility" brand narrative
+  - Defined keycap-inspired component specifications
+  - Documented 8pt spacing rhythm and fluid grid layout
+  - Created dual-shadow elevation system
+- ✅ Updated README.md with Design.md reference
+- ✅ Updated project-status.md with design system progress
+
+---
 
 ### 2026-05-15
 

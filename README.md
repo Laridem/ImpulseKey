@@ -43,8 +43,25 @@
 
 ---
 
-### **2. results.md** ⭐ RESULT TYPE DEFINITIONS (SOURCE OF TRUTH)
-**Path**: `/Users/I549685/Documents/SAPTI/results.md`  
+### **2. Design.md** 🎨 DESIGN SYSTEM SPECIFICATION
+**Path**: `/Users/I549685/Documents/SAPTI/Design.md`
+**Purpose**: Complete design system for "Tactile Impulse" visual identity
+
+**Contains**:
+- Color palette (Material Design tokens, Action Coral primary, Electric Pastels)
+- Typography system (Plus Jakarta Sans + Libre Caslon Text)
+- Layout & spacing (8pt rhythm, fluid grid, mobile-first)
+- Elevation & depth (Keycap shadows, dual-shadow approach)
+- Shape language (rounded corners, keycap components)
+- Component specifications (buttons, cards, chips, sliders, personality keys)
+- "Digital Tactility" brand narrative
+
+**When to read**: For visual design implementation, Figma design work, or frontend styling.
+
+---
+
+### **3. results.md** ⭐ RESULT TYPE DEFINITIONS (SOURCE OF TRUTH)
+**Path**: `/Users/I549685/Documents/SAPTI/results.md`
 **Purpose**: Single source of truth for all 16 result type definitions
 
 **Contains**:
@@ -57,13 +74,13 @@
 
 ---
 
-### **3. game-content.md** 📖 ARCHIVED
+### **4. game-content.md** 📖 ARCHIVED
 **Former Path**: Moved to `/Users/I549685/Documents/SAPTI/archive/game-content-old.md`  
 **Status**: Archived - result definitions superseded by `results.md`
 
 ---
 
-### **4. questions-v3-complete-bilingual.md** ✅ QUESTIONS (SOURCE OF TRUTH)
+### **5. questions-v3-complete-bilingual.md** ✅ QUESTIONS (SOURCE OF TRUTH)
 **Path**: `/Users/I549685/Documents/SAPTI/questions-v3-complete-bilingual.md`  
 **Purpose**: Final question bank (16 questions, 3 options, bilingual, SAP Pudong context)
 
@@ -79,7 +96,7 @@
 
 ---
 
-### **5. mapping-validation.md** ✅ VALIDATION PROOF
+### **6. mapping-validation.md** ✅ VALIDATION PROOF
 **Path**: `/Users/I549685/Documents/SAPTI/mapping-validation.md`  
 **Purpose**: Validation report proving all 16 results are reachable
 
@@ -93,7 +110,7 @@
 
 ---
 
-### **6. research-plan.md** 🗺️ ROADMAP
+### **7. research-plan.md** 🗺️ ROADMAP
 **Path**: `/Users/I549685/Documents/SAPTI/research-plan.md`  
 **Size**: 1,135 lines  
 **Purpose**: Comprehensive design & development roadmap
@@ -110,7 +127,7 @@
 
 ---
 
-### **7. sbti-technical-analysis.md** 🔍 REFERENCE
+### **8. sbti-technical-analysis.md** 🔍 REFERENCE
 **Path**: `/Users/I549685/Documents/SAPTI/sbti-technical-analysis.md`  
 **Purpose**: Technical analysis of SBTI personality test
 
@@ -274,24 +291,28 @@ Each result type teaches awareness of:
 ## 🚀 How to Use This Repository
 
 ### For Design Work
-1. Read **game-content.md** (sections 12.1-12.16) for all result type descriptions
-2. Read **sbti-technical-analysis.md** (Visual Design section) for UI patterns
-3. Reference **sbti-reference.html** for CSS implementation examples
+1. Read **Design.md** for complete design system specification (colors, typography, components)
+2. Read **results.md** for all result type descriptions
+3. Read **sbti-technical-analysis.md** (Visual Design section) for UI patterns
+4. Reference **sbti-reference.html** for CSS implementation examples
 
 ### For Development Work
-1. Read **research-plan.md** (Parts 4-7) for question design, scoring, visual specs, and tech implementation
-2. Reference **sbti-technical-analysis.md** for UX patterns and data structures
-3. Use **game-content.md** (sections 21-22) for data model structure
+1. Read **Design.md** for visual design system (colors, typography, spacing, components)
+2. Read **research-plan.md** (Parts 4-7) for question design, scoring, visual specs, and tech implementation
+3. Reference **sbti-technical-analysis.md** for UX patterns and data structures
+4. Use **results.md** and **questions-v3-complete-bilingual.md** for content data models
 
 ### For Content Writing
-1. Read **game-content.md** (section 16) for sample questions
-2. Read **research-plan.md** (Part 4) for question design principles
-3. Follow the 4-dimension model and ensure 5-6 questions per dimension
+1. Read **questions-v3-complete-bilingual.md** for existing questions (16Q, 3 options, bilingual)
+2. Read **results.md** for all 16 result type definitions
+3. Read **research-plan.md** (Part 4) for question design principles
+4. Follow the 4-dimension model and ensure balance across dimensions
 
 ### For Event Planning
-1. Read **game-content.md** (section 20) for event usage suggestions
-2. Read **research-plan.md** (Part 8) for facilitation discussion prompts
-3. Check MVP scope in **research-plan.md** (Part 9)
+1. Read **results.md** for all 16 result types with bilingual content
+2. Read **questions-v3-complete-bilingual.md** for the full test experience
+3. Read **research-plan.md** (Part 8) for facilitation discussion prompts
+4. Check MVP scope in **research-plan.md** (Part 9)
 
 ---
 
@@ -308,6 +329,15 @@ Each result type teaches awareness of:
   - Organized project structure (archive/, assets/)
   - Created comprehensive roadmap and status tracking
 
+- **2026-05-18**: Design system specification
+  - Created Design.md with complete "Tactile Impulse" design system
+  - Defined color palette (Material Design tokens, Action Coral, Electric Pastels)
+  - Specified typography system (Plus Jakarta Sans + Libre Caslon Text)
+  - Documented "Digital Tactility" brand narrative
+  - Detailed keycap-inspired component specifications
+  - Established 8pt spacing rhythm and fluid grid layout
+  - Updated README.md with Design.md reference
+
 ---
 
 ## 📞 Quick Context Loading
@@ -316,10 +346,11 @@ Each result type teaches awareness of:
 
 1. **README.md** (this file) - 5 min - Get overview & file structure
 2. **project-status.md** - 3 min - Current status & timeline
-3. **results.md** - 5 min - All 16 result type definitions
-4. **questions-v3-complete-bilingual.md** - 5 min - Final question bank
+3. **Design.md** - 5 min - Design system specification ("Tactile Impulse")
+4. **results.md** - 5 min - All 16 result type definitions
+5. **questions-v3-complete-bilingual.md** - 5 min - Final question bank
 
-**Total context loading time**: ~18 minutes
+**Total context loading time**: ~23 minutes
 
 **Optional deep dives**:
 - **research-plan.md** - Complete roadmap
@@ -334,6 +365,7 @@ Each result type teaches awareness of:
 /Users/I549685/Documents/SAPTI/
 ├── README.md                                    # This file - navigation hub
 ├── project-status.md                            # Current status & timeline
+├── Design.md                                    # Design system specification (NEW)
 ├── results.md                                   # 16 result definitions (SOURCE OF TRUTH)
 ├── questions-v3-complete-bilingual.md           # Final questions (16Q, 3 options, EN/CN)
 ├── mapping-validation.md                        # Validation proof
@@ -364,6 +396,7 @@ Each result type teaches awareness of:
 - ✅ Mapping Validation (all results reachable)
 - ✅ Figma Cards (harmonized layout)
 - ✅ Project Organization
+- ✅ Design System Specification ("Tactile Impulse")
 
 **In Progress**:
 - 🔄 Visual design in Google Stitch
@@ -377,6 +410,6 @@ Each result type teaches awareness of:
 
 ---
 
-*Last updated: 2026-05-15*  
-*Project: IMPULSE KEYS / SAPTI*  
+*Last updated: 2026-05-18*
+*Project: IMPULSE KEYS / SAPTI*
 *For: Impulse26 Internal SAP Event*
