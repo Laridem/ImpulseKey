@@ -18,7 +18,7 @@
 
 **A (+2 Signal)**  
 - EN: Schedule a call to dig deeper: In what scenario is it inconvenient? Which specific step is the problem?
-- CN: 约个会深挖：在什么场景下不方便？具体卡在哪个步骤？
+- CN: 约个会议深挖：在什么场景下不方便？具体卡在哪个步骤？
 - *Humor EN: "Tell me more." Then you start reconstructing the crime scene. The customer starts to regret saying this.*
 - *黑色幽默: "Tell me more." 然后你开始做案发现场还原，客户开始后悔说了这句话。*
 

@@ -43,7 +43,7 @@ User research is not just collecting quotes. It is turning messy signals into pr
 Consistency, usability, accessibility, and interaction patterns are product quality.
 
 **你的体验脉冲：**  
-你能在用户测试之前，就提前闻到一个 flow 会让人迷路。
+你能在用户测试之前，就提前闻察觉到n个 confusing flow。
 
 **隐藏风险：**  
 你说"just one small UX comment"，然后会议多了 37 分钟。
@@ -67,7 +67,7 @@ The button works. The user does not.
 UX design techniques are not decoration. Layout, hierarchy, spacing, wording, and visual priority all shape task success.
 
 **你的体验脉冲：**  
-你能看出哪里不对齐、哪里层级混乱、哪里文案让用户误解。
+你能看出哪里不对齐、哪里层级混乱、哪里文案会让用户产生误解。
 
 **隐藏风险：**  
 别人以为你在调 UI，你其实在抢救用户认知负担。
@@ -76,7 +76,7 @@ UX design techniques are not decoration. Layout, hierarchy, spacing, wording, an
 It is only 2px, but so is the beginning of chaos.
 
 **中文弹幕：**  
-你以为我在纠结 2px，我其实在阻止混乱开源。
+你以为我在纠结 2px，我其实在阻止混乱的开始。
 
 ---
 
@@ -91,7 +91,7 @@ It is only 2px, but so is the beginning of chaos.
 Accessibility is not an edge case. It is part of responsible product experience.
 
 **你的体验脉冲：**  
-你会提醒大家：不是所有用户都有同样的视觉、动作能力、语言背景和使用环境。
+你会提醒大家：不是所有用户都有同样的视觉能力、动作能力、语言背景和使用环境。
 
 **隐藏风险：**  
 你可能让一个"已经差不多了"的设计突然多出很多必须面对的问题。
