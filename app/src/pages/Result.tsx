@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toPng } from 'html-to-image';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
 import { getKeycapAsset, getAllKeycaps } from '../utils/assets';
@@ -12,6 +13,8 @@ export const Result = () => {
   const { result, dimensionScores, goToResult, resetTest } = useTest();
   const t = useTranslation();
   const allKeycaps = getAllKeycaps();
+  const resultRef = useRef<HTMLDivElement>(null);
+  const [isCapturing, setIsCapturing] = useState(false);
 
   // Load result if accessed directly via URL
   useEffect(() => {
@@ -23,6 +26,38 @@ export const Result = () => {
   const handleRetake = () => {
     resetTest();
     navigate('/');
+  };
+
+  const handleShare = async () => {
+    if (!resultRef.current || !result) return;
+
+    setIsCapturing(true);
+
+    try {
+      // Wait a bit for state to settle
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Capture the entire result section as PNG
+      const dataUrl = await toPng(resultRef.current, {
+        cacheBust: true,
+        pixelRatio: 2, // Higher quality (2x resolution)
+        backgroundColor: '#f9fafb', // bg-gray-50
+      });
+
+      // Create a download link
+      const link = document.createElement('a');
+      link.download = `impulse-keys-${result.key}-${Date.now()}.png`;
+      link.href = dataUrl;
+      link.click();
+
+      // Show success feedback (optional)
+      console.log('Image saved successfully!');
+    } catch (error) {
+      console.error('Failed to capture image:', error);
+      alert('Failed to save image. Please try again.');
+    } finally {
+      setIsCapturing(false);
+    }
   };
 
   if (!result) {
@@ -39,7 +74,7 @@ export const Result = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
 
-      <main className="flex-1 max-w-7xl mx-auto px-8 py-12 w-full">
+      <main ref={resultRef} className="flex-1 max-w-7xl mx-auto px-8 py-12 w-full">
         {/* Two-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 mb-12">
 
@@ -69,8 +104,22 @@ export const Result = () => {
 
             {/* Action Buttons */}
             <div className="flex flex-col w-full gap-3">
-              <button className="w-full px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium">
-                {t('result.shareButton')}
+              <button
+                onClick={handleShare}
+                disabled={isCapturing}
+                className="w-full px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {isCapturing ? (
+                  <>
+                    <span className="animate-spin">⏳</span>
+                    {t('result.capturingImage') || 'Capturing...'}
+                  </>
+                ) : (
+                  <>
+                    <span>📸</span>
+                    {t('result.shareButton')}
+                  </>
+                )}
               </button>
               <button
                 onClick={handleRetake}

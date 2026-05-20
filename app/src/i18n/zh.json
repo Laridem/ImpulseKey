@@ -125,7 +125,8 @@
     "pulseTitle": "你的 Experience Pulse",
     "risksTitle": "Hidden Risks",
     "libraryTitle": "THE IMPULSE LIBRARY",
-    "shareButton": "分享结果",
+    "shareButton": "保存为图片",
+    "capturingImage": "正在生成...",
     "retakeButton": "重新测试"
   },
   "footer": {

@@ -125,7 +125,8 @@
     "pulseTitle": "Your Experience Pulse",
     "risksTitle": "Hidden Risks",
     "libraryTitle": "THE IMPULSE LIBRARY",
-    "shareButton": "Share Result",
+    "shareButton": "Save as Image",
+    "capturingImage": "Capturing...",
     "retakeButton": "Retake Test"
   },
   "footer": {

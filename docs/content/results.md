@@ -19,7 +19,7 @@
 User research is not just collecting quotes. It is turning messy signals into product decisions.
 
 **你的体验脉冲：**  
-你能从客户一句"这个不太方便"里，拆出角色、场景、任务、痛点和潜在机会点。
+你能从客户一句"这个功能不太方便"里，拆出角色、场景、任务、痛点和潜在机会点。
 
 **隐藏风险：**  
 你问完 "why" 之后，会议可能再也回不到原来的 agenda。
