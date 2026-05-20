@@ -19,9 +19,9 @@ export const Landing = () => {
 
       <main className="flex-1 max-w-7xl mx-auto px-8 py-16 w-full">
         {/* Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 animate-fadeIn">
           {/* Left Column - Text Content */}
-          <div>
+          <div className="space-y-4">
             <h1 className="text-5xl font-bold text-gray-900 mb-3">
               {t('landing.title')}
             </h1>
@@ -40,13 +40,13 @@ export const Landing = () => {
             <div className="flex gap-4">
               <button
                 onClick={handleStartTest}
-                className="px-8 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium"
+                className="px-8 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 hover:shadow-lg hover:scale-105 active:scale-95 transition-all font-medium"
               >
                 {t('landing.startButton')}
               </button>
               <button
                 onClick={() => navigate('/intro')}
-                className="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 transition-colors font-medium"
+                className="px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 hover:shadow-md transition-all font-medium"
               >
                 {t('landing.howToPlayButton')}
               </button>

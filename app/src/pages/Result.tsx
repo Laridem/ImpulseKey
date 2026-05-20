@@ -76,12 +76,12 @@ export const Result = () => {
 
       <main ref={resultRef} className="flex-1 max-w-7xl mx-auto px-8 py-12 w-full">
         {/* Two-Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 mb-12 animate-fadeIn">
 
           {/* Left Column - Keycap & Title */}
-          <div className="flex flex-col items-center lg:items-start">
+          <div className="flex flex-col items-center lg:items-start animate-slideUp">
             {/* Keycap */}
-            <div className="w-56 h-56 mb-6">
+            <div className="w-56 h-56 mb-6 hover:scale-110 transition-transform duration-300">
               <img
                 src={getKeycapAsset(result.key)}
                 alt={result.name.en}
