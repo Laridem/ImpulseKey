@@ -26,7 +26,9 @@
 ```
 SAPTI/
 ├── README.md                    # This file - project navigator
+├── CHANGELOG.md                 # 📋 Centralized development log
 ├── GIT-WORKFLOW.md              # Git commands reference
+├── FILE-NAMING.md               # File naming conventions
 │
 ├── app/                         # 🚀 React application (Vite + TypeScript)
 │   ├── src/                     # Source code
@@ -40,7 +42,6 @@ SAPTI/
 │   │   └── mapping-validation.md   # Scoring validation
 │   │
 │   ├── planning/                # Planning & strategy
-│   │   ├── project-status.md    # Current status & timeline
 │   │   ├── research-plan.md     # Development roadmap
 │   │   └── Design.md            # Design system spec
 │   │
@@ -56,15 +57,16 @@ SAPTI/
 │   └── result-cards/            # Old PNG exports
 │
 └── archive/                     # 🗄️ Old versions
+    └── old-status-docs/         # Archived status documents
 ```
 
 ---
 
 ## 🎯 **Essential Files to Read**
 
-### **1. Project Status** 📊
-**Path**: `docs/planning/project-status.md`  
-**Read first** - Current status, timeline, what's done, what's next
+### **1. Development Changelog** 📋
+**Path**: `CHANGELOG.md`  
+**Read first** - Centralized development log organized by date, what's done, what's next
 
 ### **2. Result Definitions** ⭐
 **Path**: `docs/content/results.md`  
@@ -155,8 +157,8 @@ See `GIT-WORKFLOW.md` for detailed guide.
 
 **Read in this order**:
 
-1. **README.md** (this file) - 5 min - Project overview
-2. **docs/planning/project-status.md** - 3 min - Current status
+1. **README.md** (this file) - 3 min - Project overview
+2. **CHANGELOG.md** - 5 min - Development history and current status
 3. **docs/content/results.md** - 5 min - All 16 results
 4. **docs/content/questions-v3-complete-bilingual.md** - 5 min - All 16 questions
 
