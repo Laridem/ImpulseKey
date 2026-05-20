@@ -6,7 +6,7 @@ import { Question } from './types'
  * 4 dimensions: Signal/Solution, Human/Machine, Explore/Align, Spark/Stabilize
  */
 
-export const questions: Question[] = [
+export const QUESTIONS: Question[] = [
   // DIMENSION A: Signal vs Solution
   {
     id: 'A1',

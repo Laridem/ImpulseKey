@@ -6,7 +6,7 @@ import { getKeycapColor } from '../utils/assets'
  * All 16 result types with full bilingual content
  */
 
-export const results: Record<string, ResultType> = {
+export const RESULTS: Record<string, ResultType> = {
   VOC: {
     key: 'VOC',
     nameEN: 'Voice-of-Customer Detective',
@@ -218,10 +218,10 @@ export const results: Record<string, ResultType> = {
 
 // Helper to get result by key
 export function getResult(key: string): ResultType | undefined {
-  return results[key]
+  return RESULTS[key]
 }
 
 // Get all result keys
 export function getAllResultKeys(): string[] {
-  return Object.keys(results)
+  return Object.keys(RESULTS)
 }

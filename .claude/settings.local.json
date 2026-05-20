@@ -13,7 +13,17 @@
       "mcp__plugin_figma_figma__get_metadata",
       "mcp__plugin_figma_figma__get_design_context",
       "Bash(git push *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(npm list *)",
+      "Bash(npm uninstall *)",
+      "Bash(npx tsc *)",
+      "Bash(node *)",
+      "Bash(open \"/Users/I549685/Documents/SAPTI/assets/keyscreens-web/Landing_Web.svg\")",
+      "Bash(open \"/Users/I549685/Documents/SAPTI/assets/keyscreens-web/Survey Question_Web.svg\")",
+      "Bash(open *)",
+      "Bash(cp /Users/I549685/Documents/SAPTI/assets/keyscreens-web/png/*.png /Users/I549685/Documents/SAPTI/app/public/screens/png/)",
+      "Bash(cp /Users/I549685/Documents/SAPTI/assets/keyscreens-web/svg/*.svg /Users/I549685/Documents/SAPTI/app/public/screens/svg/)",
+      "Bash(npx tsx *)"
     ]
   }
 }
