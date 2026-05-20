@@ -70,11 +70,6 @@ export const TestProvider: React.FC<TestProviderProps> = ({ children }) => {
 
   // Answer a question
   const answerQuestion = (questionId: string, selectedOption: 'A' | 'B' | 'C') => {
-    // Prevent answering if this question is already answered
-    if (answers.some(a => a.questionId === questionId)) {
-      return;
-    }
-
     const question = questions.find(q => q.id === questionId);
     if (!question) return;
 
@@ -89,22 +84,33 @@ export const TestProvider: React.FC<TestProviderProps> = ({ children }) => {
       score: selectedAnswer.score || selectedAnswer.scores
     };
 
-    const newAnswers = [...answers, newAnswer];
+    // Check if this question was already answered
+    const existingAnswerIndex = answers.findIndex(a => a.questionId === questionId);
+
+    let newAnswers: UserAnswer[];
+    if (existingAnswerIndex !== -1) {
+      // Replace existing answer (user changed their mind)
+      newAnswers = [...answers];
+      newAnswers[existingAnswerIndex] = newAnswer;
+    } else {
+      // New answer
+      newAnswers = [...answers, newAnswer];
+    }
+
     setAnswers(newAnswers);
 
-    // Move to next question (don't auto-calculate result)
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }
+    // Auto-advance to next question after a short delay
+    setTimeout(() => {
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+      }
+    }, 300); // 300ms delay for visual feedback
   };
 
   // Go to previous question
   const goToPreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
-      // Remove last answer
-      const newAnswers = answers.slice(0, -1);
-      setAnswers(newAnswers);
-      // Go back one question
+      // Just go back - keep all answers intact so user can change them
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };

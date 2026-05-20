@@ -32,7 +32,10 @@ export const QuestionFlow = () => {
   const currentQuestion = questions[currentQuestionIndex];
   const progress = ((answers.length) / questions.length) * 100;
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
-  const hasAnsweredCurrentQuestion = answers.some(a => a.questionId === currentQuestion.id);
+
+  // Find current question's answer if it exists
+  const currentAnswer = answers.find(a => a.questionId === currentQuestion.id);
+
   const canSubmit = isLastQuestion && answers.length === questions.length;
 
   const handleOptionClick = (optionId: 'A' | 'B' | 'C') => {
@@ -76,20 +79,29 @@ export const QuestionFlow = () => {
 
             {/* Options */}
             <div className="space-y-4">
-              {currentQuestion.options.map((option) => (
-                <button
-                  key={option.id}
-                  onClick={() => handleOptionClick(option.id)}
-                  disabled={hasAnsweredCurrentQuestion}
-                  className="w-full p-6 text-left border-2 border-gray-200 rounded-lg hover:border-orange-500 hover:shadow-md transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:border-gray-200 disabled:hover:shadow-none"
-                >
-                  <p className="text-gray-900">
-                    {language === 'zh'
-                      ? (option.text?.zh || option.textCN)
-                      : (option.text?.en || option.textEN)}
-                  </p>
-                </button>
-              ))}
+              {currentQuestion.options.map((option) => {
+                const isSelected = currentAnswer?.selectedOption === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => handleOptionClick(option.id)}
+                    className={`w-full p-6 text-left border-2 rounded-lg transition-all duration-200
+                      ${isSelected
+                        ? 'border-orange-500 bg-orange-50 shadow-md'
+                        : 'border-gray-200 hover:border-orange-400 hover:bg-orange-25'
+                      }
+                      active:scale-[0.98] active:shadow-inner
+                      hover:shadow-md
+                    `}
+                  >
+                    <p className={`${isSelected ? 'text-gray-900 font-medium' : 'text-gray-900'}`}>
+                      {language === 'zh'
+                        ? (option.text?.zh || option.textCN)
+                        : (option.text?.en || option.textEN)}
+                    </p>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
