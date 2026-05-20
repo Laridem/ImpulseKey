@@ -1,9 +1,10 @@
-import { Answer, DimensionScores, ResultKey, Pole } from '../data/types'
+import { UserAnswer, DimensionScores, ResultKey, Pole } from '../data/types'
+import { getRole } from '../data/roles'
 
 /**
  * Calculate dimension scores from user answers
  */
-export function calculateScores(answers: Answer[]): DimensionScores {
+export function calculateScores(answers: UserAnswer[]): DimensionScores {
   const scores: DimensionScores = {
     Signal: 0,
     Solution: 0,
@@ -17,7 +18,7 @@ export function calculateScores(answers: Answer[]): DimensionScores {
 
   // Sum up all scores from answers
   answers.forEach(answer => {
-    Object.entries(answer.scores).forEach(([pole, value]) => {
+    Object.entries(answer.score).forEach(([pole, value]) => {
       scores[pole as Pole] += value
     })
   })
@@ -26,15 +27,54 @@ export function calculateScores(answers: Answer[]): DimensionScores {
 }
 
 /**
+ * Apply role-based weight adjustments to dimension scores
+ */
+export function applyRoleWeights(scores: DimensionScores, roleId: string): DimensionScores {
+  const role = getRole(roleId)
+  if (!role || !role.weights) {
+    return scores // No adjustments if role not found or no weights
+  }
+
+  const adjustedScores = { ...scores }
+
+  // Apply small weight adjustments (typically +1 to +2 points per dimension)
+  Object.entries(role.weights).forEach(([pole, weight]) => {
+    adjustedScores[pole as Pole] += weight
+  })
+
+  return adjustedScores
+}
+
+/**
  * Map dimension scores to a result type
  * Based on which pole wins in each dimension
+ * If tied, randomly choose to ensure 50/50 distribution
  */
 export function mapToResultKey(scores: DimensionScores): ResultKey {
-  // Determine winner of each dimension
-  const dimA = scores.Signal >= scores.Solution ? 'Signal' : 'Solution'
-  const dimB = scores.Human >= scores.Machine ? 'Human' : 'Machine'
-  const dimC = scores.Explore >= scores.Align ? 'Explore' : 'Align'
-  const dimD = scores.Spark >= scores.Stabilize ? 'Spark' : 'Stabilize'
+  // Determine winner of each dimension (with random tiebreaker)
+  const dimA = scores.Signal > scores.Solution
+    ? 'Signal'
+    : scores.Signal < scores.Solution
+      ? 'Solution'
+      : (Math.random() < 0.5 ? 'Signal' : 'Solution')
+
+  const dimB = scores.Human > scores.Machine
+    ? 'Human'
+    : scores.Human < scores.Machine
+      ? 'Machine'
+      : (Math.random() < 0.5 ? 'Human' : 'Machine')
+
+  const dimC = scores.Explore > scores.Align
+    ? 'Explore'
+    : scores.Explore < scores.Align
+      ? 'Align'
+      : (Math.random() < 0.5 ? 'Explore' : 'Align')
+
+  const dimD = scores.Spark > scores.Stabilize
+    ? 'Spark'
+    : scores.Spark < scores.Stabilize
+      ? 'Stabilize'
+      : (Math.random() < 0.5 ? 'Spark' : 'Stabilize')
 
   // Mapping table: [DimA, DimB, DimC, DimD] → ResultKey
   const mapping: Record<string, ResultKey> = {
@@ -61,6 +101,15 @@ export function mapToResultKey(scores: DimensionScores): ResultKey {
 
   const key = `${dimA}-${dimB}-${dimC}-${dimD}`
   return mapping[key] || 'VOC' // Fallback to VOC if mapping fails
+}
+
+/**
+ * Calculate result key directly from answers
+ * Combines calculateScores and mapToResultKey
+ */
+export function calculateResult(answers: UserAnswer[]): ResultKey {
+  const scores = calculateScores(answers)
+  return mapToResultKey(scores)
 }
 
 /**
