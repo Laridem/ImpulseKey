@@ -1,0 +1,136 @@
+{
+  "common": {
+    "designHub": "DesignHub.CN",
+    "retakeTest": "RETAKE TEST",
+    "switchLanguage": "切换到中文"
+  },
+  "roleSelection": {
+    "title": "What's your role?",
+    "subtitle": "Choose the one that best matches your daily work",
+    "footer": "This won't limit your result, just makes the test more aligned with your work style.",
+    "continueButton": "Continue"
+  },
+  "landing": {
+    "title": "Impulse26.Key",
+    "subtitle": "Which Impulse26 Key do you have?",
+    "description1": "This is an internal test project for Impulse26. Here, a group of engineers are dedicated to designing product experiences for conversational intelligence, service assistants, and team writing scenarios. It's similar to Impulse26, incubated within DesignHub China for distributing new ideas.",
+    "description2": "We aim to build a toolbox that helps teams improve internal execution, similar to a 'functional key library' for user experience teams. Each test module is seen as a special 'key' representing team members' decision-making methods, work philosophy, and common language.",
+    "description3": "Note: This is an Impulse26 internal team project, only for internal testing. We encourage you to reflect on your work patterns and apply the results to real collaboration scenarios. Test results will not be stored or used for any formal evaluation.",
+    "startButton": "Start Test",
+    "howToPlayButton": "How to Play",
+    "aboutTitle": "About the Project",
+    "aboutItems": {
+      "placard": {
+        "title": "Use Our Placard",
+        "desc": "This is a tool made possible by the combination of existing UX design research methodologies, designed by DesignHub China. This framework can help teams understand each other's work styles and preferences."
+      },
+      "library": {
+        "title": "Research Library",
+        "desc": "Based on design thinking, user research methods, and product development frameworks commonly used in UX teams."
+      },
+      "therapist": {
+        "title": "Needs Therapist",
+        "desc": "Identify patterns in how you approach user needs, problem-solving, and team collaboration."
+      },
+      "contribution": {
+        "title": "Contribution Guide",
+        "desc": "This tool is open for internal contributions. Share your insights and help improve the framework."
+      },
+      "feedback": {
+        "title": "Feedback",
+        "desc": "We welcome feedback and suggestions to make this tool more useful for the team."
+      },
+      "internal": {
+        "title": "Internal Use Only",
+        "desc": "This assessment is for Impulse26 team members only and should not be shared externally."
+      }
+    }
+  },
+  "testIntro": {
+    "tag": "SYSTEM ACCESS // IMPULSE26.KEY",
+    "title": "How to Play",
+    "intro1": "You will answer a set of workplace scenario questions. There are no standard answers, only different professional approaches. Each choice will push you toward a hidden Impulse Key.",
+    "intro2": "After completion, you will unlock a result. It won't clear your backlog, but it might explain why you suddenly go silent in certain meetings, or suddenly open Figma / Logs / Confluence.",
+    "tips": [
+      "Don't think too long, choose the one that reflects your true reaction.",
+      "Don't try to guess the result, the system doesn't necessarily know you better than you know yourself.",
+      "Not all Keys will be shown before completion, maintain some sense of exploration.",
+      "Results are for internal entertainment only, please do not share on public social media."
+    ],
+    "footer": "May your Key be clearer than requirement descriptions.",
+    "startButton": "Start Test"
+  },
+  "question": {
+    "surveyModule": "SURVEY MODULE",
+    "previousStep": "PREVIOUS STEP",
+    "submitTest": "Submit Test",
+    "helpText": "Don't think too long, intuitive reactions are most accurate. Please choose what's closest to your real thoughts."
+  },
+  "loading": {
+    "impulse": "IMPULSE",
+    "protocol": "IMPULSE26.KEY PROTOCOL",
+    "title": "Unlocking your Impulse Key......",
+    "steps": [
+      "Analyzing your Jira survival mode......",
+      "Translating customer's 'not very convenient' into three pain points......",
+      "Asking Joule first, then asking humans for confirmation......",
+      "Reading the reversed logs from roadmap......",
+      "Determining if this 'quick sync' is actually quick......",
+      "Detecting if your Key has been contaminated by backlog......"
+    ],
+    "randomSteps": [
+      "Checking if you quietly opened Figma during a meeting......",
+      "Counting how many times you said 'the requirement is unclear' today......",
+      "Analyzing the relationship between your Slack response speed and urgency......",
+      "Scanning your browser tab count......",
+      "Predicting the topic of your next meeting......",
+      "Identifying your most commonly used excuse templates......",
+      "Calculating how many cups of coffee you've had today......",
+      "Detecting your true attitude towards 'quick syncs'......",
+      "Evaluating your calendar fragmentation level......",
+      "Analyzing your code commenting style......",
+      "Scanning your 'read later' list......",
+      "Counting how many times you said 'this is simple'......",
+      "Checking your Git commit time distribution......",
+      "Identifying your work rhythm patterns......",
+      "Predicting your next side project......",
+      "Analyzing your keyboard typing rhythm......",
+      "Evaluating your meeting invitation acceptance rate......",
+      "Detecting your multitasking tendencies......",
+      "Scanning your most frequently accessed documentation pages......",
+      "Counting your 'I think' usage frequency......"
+    ],
+    "status": {
+      "encryption": "ENCRYPTION",
+      "encryptionValue": "Unknown",
+      "status": "STATUS",
+      "statusValue": "DECRYPTING",
+      "version": "VERSION",
+      "versionValue": "v2026.9.3"
+    }
+  },
+  "result": {
+    "dimensions": "Core Dimensions",
+    "dimensionLabels": {
+      "signal": "SIGNAL",
+      "solution": "SOLUTION",
+      "human": "HUMAN",
+      "machine": "MACHINE",
+      "explore": "EXPLORE",
+      "align": "ALIGN",
+      "spark": "SPARK",
+      "stabilize": "STABILIZE"
+    },
+    "signalTitle": "Your Impulse26 Signal",
+    "pulseTitle": "Your Experience Pulse",
+    "risksTitle": "Hidden Risks",
+    "libraryTitle": "THE IMPULSE LIBRARY",
+    "shareButton": "Share Result",
+    "retakeButton": "Retake Test"
+  },
+  "footer": {
+    "copyright": "© 2026 IMPULSE EVENT",
+    "internalOnly": "Internal Only",
+    "designHub": "Design Hub China"
+  }
+}

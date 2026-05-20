@@ -1,0 +1,136 @@
+{
+  "common": {
+    "designHub": "DesignHub.CN",
+    "retakeTest": "重新测试",
+    "switchLanguage": "Switch to English"
+  },
+  "roleSelection": {
+    "title": "你的职能角色是什么？",
+    "subtitle": "选择最接近你日常工作的类型",
+    "footer": "这不会限制你的结果，只是让测试更贴合你的工作方式。",
+    "continueButton": "继续"
+  },
+  "landing": {
+    "title": "Impulse26.Key",
+    "subtitle": "你有什么 Impulse26 Key？",
+    "description1": "这是 Impulse26 的内部测试项目。在这里，一组工程师致力于为会话智能、服务助手和团队写作场景设计产品体验。它类似于 Impulse26，孵化于 DesignHub China 内部，用于分发新思路。",
+    "description2": "我们希望打造一个让团队提升内部执行力的工具盒，类似用户体验团队内部的\"职能钥匙库\"。每一个测试模块都被视为一把特殊的\"钥匙\"，它代表了团队成员的决策方式、工作哲学、以及共同的语言。",
+    "description3": "注意：这是 Impulse26 内部团队项目，仅供内部人员测试使用。我们鼓励你反思自己的工作模式，并将结果应用到实际的协作场景中。测试结果不会被存储或用作任何正式的评估。",
+    "startButton": "开始测试",
+    "howToPlayButton": "怎么玩",
+    "aboutTitle": "About the Project",
+    "aboutItems": {
+      "placard": {
+        "title": "使用我们的 Placard",
+        "desc": "这是一个结合了现有用户体验设计研究方法的工具，由 DesignHub China 设计。这个框架可以帮助团队理解彼此的工作风格和偏好。"
+      },
+      "library": {
+        "title": "Research Library",
+        "desc": "基于用户体验团队常用的设计思维、用户研究方法和产品开发框架。"
+      },
+      "therapist": {
+        "title": "Needs Therapist",
+        "desc": "识别你在处理用户需求、解决问题和团队协作方面的模式。"
+      },
+      "contribution": {
+        "title": "Contribution Guide",
+        "desc": "这个工具开放内部贡献。分享你的见解，帮助改进这个框架。"
+      },
+      "feedback": {
+        "title": "Feedback",
+        "desc": "我们欢迎反馈和建议，让这个工具对团队更有用。"
+      },
+      "internal": {
+        "title": "Internal Use Only",
+        "desc": "这个评估仅供 Impulse26 团队成员使用，不应对外分享。"
+      }
+    }
+  },
+  "testIntro": {
+    "tag": "SYSTEM ACCESS // IMPULSE26.KEY",
+    "title": "测试怎么玩",
+    "intro1": "你将回答一组职场场景题。没有标准答案，只有不同的专业应对方式。每个选择都会把你推向某种隐藏的 Impulse Key。",
+    "intro2": "完成后，你会解锁一个结果。它不会帮你清空 backlog，但也许能解释你为什么会在某些会议里突然沉默，或者突然打开 Figma / Logs / Confluence。",
+    "tips": [
+      "不需要想太久，选最符合你真实反应的那个。",
+      "不要试图猜结果，系统也不一定比你更懂你。",
+      "完成前不会展示全部 Key，保持一点探索感。",
+      "结果仅供内部娱乐，请勿在公开社交媒体传播。"
+    ],
+    "footer": "愿你的 Key 比需求描述更清晰。",
+    "startButton": "开始测试"
+  },
+  "question": {
+    "surveyModule": "SURVEY MODULE",
+    "previousStep": "上一题",
+    "submitTest": "提交测试",
+    "helpText": "不要想太久，直观反应最准。请选择最接近你的真实想法。"
+  },
+  "loading": {
+    "impulse": "IMPULSE",
+    "protocol": "IMPULSE26.KEY PROTOCOL",
+    "title": "正在解锁你的 Impulse Key......",
+    "steps": [
+      "正在分析你的 Jira 生存模式......",
+      "正在把客户一句\"不太方便\"翻译成三个 pain point......",
+      "正在先问 Joule，再问人类确认......",
+      "正在读取 roadmap 反记的日志......",
+      "正在判断这个 \"quick sync\" 是否真的 quick 属性......",
+      "正在检测你的 Key 是否已经被 backlog 污染......"
+    ],
+    "randomSteps": [
+      "正在检查你是否在会议中默默打开了 Figma......",
+      "正在统计你今天第几次说 \"这个需求不清晰\"......",
+      "正在分析你的 Slack 回复速度和紧急程度的关系......",
+      "正在扫描你的浏览器标签页数量......",
+      "正在预测你下一个要开的会议主题......",
+      "正在识别你最常用的借口模板......",
+      "正在计算你今天喝了几杯咖啡......",
+      "正在检测你对 \"快速同步\" 的真实态度......",
+      "正在评估你的日历碎片化程度......",
+      "正在分析你的代码注释风格......",
+      "正在扫描你的 \"稍后阅读\" 列表......",
+      "正在统计你说 \"这个简单\" 的次数......",
+      "正在检查你的 Git commit 时间分布......",
+      "正在识别你的工作节奏模式......",
+      "正在预测你的下一个 side project......",
+      "正在分析你的键盘敲击节奏......",
+      "正在评估你对会议邀请的接受率......",
+      "正在检测你的多任务处理倾向......",
+      "正在扫描你最常访问的文档页面......",
+      "正在统计你的 \"我觉得\" 使用频率......"
+    ],
+    "status": {
+      "encryption": "ENCRYPTION",
+      "encryptionValue": "Unknown",
+      "status": "STATUS",
+      "statusValue": "DECRYPTING",
+      "version": "VERSION",
+      "versionValue": "v2026.9.3"
+    }
+  },
+  "result": {
+    "dimensions": "核心维度",
+    "dimensionLabels": {
+      "signal": "SIGNAL",
+      "solution": "SOLUTION",
+      "human": "HUMAN",
+      "machine": "MACHINE",
+      "explore": "EXPLORE",
+      "align": "ALIGN",
+      "spark": "SPARK",
+      "stabilize": "STABILIZE"
+    },
+    "signalTitle": "你的 Impulse26 Signal",
+    "pulseTitle": "你的 Experience Pulse",
+    "risksTitle": "Hidden Risks",
+    "libraryTitle": "THE IMPULSE LIBRARY",
+    "shareButton": "分享结果",
+    "retakeButton": "重新测试"
+  },
+  "footer": {
+    "copyright": "© 2026 IMPULSE EVENT",
+    "internalOnly": "仅限内部",
+    "designHub": "Design Hub China"
+  }
+}
