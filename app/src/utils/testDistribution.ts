@@ -13,7 +13,7 @@ function simulateRandomTest(): string {
   // 4 questions per dimension (A, B, C, D)
   const dimensions: Dimension[] = ['A', 'B', 'C', 'D'];
 
-  dimensions.forEach((dimension, dimIndex) => {
+  dimensions.forEach((dimension) => {
     for (let i = 0; i < 4; i++) {
       const questionId = `${dimension}${i + 1}`;
       const selectedOption = ['A', 'B', 'C'][Math.floor(Math.random() * 3)] as 'A' | 'B' | 'C';

@@ -7,7 +7,7 @@
 
 import { QUESTIONS } from '../data/questions';
 import { calculateResult } from './scoring';
-import { UserAnswer, DimensionScores } from '../data/types';
+import { UserAnswer } from '../data/types';
 
 interface ProbabilityResult {
   key: string;
