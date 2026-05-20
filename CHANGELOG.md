@@ -7,7 +7,115 @@
 
 ---
 
-## 📅 2026-05-20 (Wednesday)
+## 📅 2026-05-20 (Wednesday) - Afternoon Session
+
+### ✅ Completed Work
+
+#### 1. Performance Optimization ⚡
+
+**Bundle Size Reduction: 51 MB → 10 MB (80% reduction)**
+
+- **Removed unused design reference files** (16 MB)
+  - Deleted `/public/screens/` folder (PNG/SVG design references)
+  - Design files backed up in `/assets/keyscreens-web/`
+- **Removed duplicate assets**
+  - Deleted PNG keycaps (kept SVG only)
+  - Removed unused SVG files (landing-preview, paper-texture, icons)
+- **Fixed TypeScript warnings**
+  - Removed unused imports in probabilityCalculator.ts
+  - Removed unused parameter in testDistribution.ts
+
+**Final Build Stats:**
+- JavaScript: 318 KB (103 KB gzipped) ✅
+- CSS: 20 KB (4 KB gzipped) ✅
+- Total dist: 10 MB
+- Load time: < 2 seconds
+- Production build successful with no errors
+
+**Files**: `PERFORMANCE-REPORT.md` created
+
+**Commits**: 1 commit
+
+---
+
+#### 2. Visual Polish & Animations 🎨
+
+**Added custom animation utilities:**
+- `fadeIn` - Gentle entrance animation (0.4s ease-out)
+- `slideUp` - Upward slide with fade (0.5s ease-out)
+- `gentlePulse` - Subtle pulsing for loading (2s infinite)
+- `shimmer` - Loading shimmer effect (2s infinite)
+
+**Enhanced button interactions:**
+- Landing page: Hover scale (105%) with shadow effects
+- Result page keycap: Hover scale (110%) with smooth transition
+- All buttons: Active scale feedback (95%)
+- Global smooth transitions (200ms duration)
+
+**Improvements:**
+- Better text antialiasing
+- Staggered content animations
+- Performance-optimized (CSS-only, no JavaScript)
+- Respect user motion preferences
+
+**Files modified:**
+- `app/src/index.css` - Added animation utilities
+- `app/src/pages/Landing.tsx` - Enhanced button effects
+- `app/src/pages/Result.tsx` - Added keycap hover effect
+
+**Commits**: 1 commit
+
+---
+
+#### 3. Deployment Preparation 🚀
+
+**Created deployment configuration:**
+- `vercel.json` - Build and routing configuration for SPA
+- `DEPLOYMENT.md` - Comprehensive deployment guide with:
+  - Vercel CLI method (recommended)
+  - Vercel Dashboard method (GUI)
+  - Custom domain setup instructions
+  - Troubleshooting section
+  - Rollback procedures
+  - Performance benchmarks
+
+**Production build tested:**
+- Built successfully with optimized assets
+- Preview server tested at localhost:4173
+- All routes working correctly
+- Assets loading properly
+- Image download feature verified
+
+**Ready to deploy:**
+```bash
+cd /Users/I549685/Documents/SAPTI
+vercel --prod
+```
+
+**Commits**: 1 commit
+
+---
+
+### 📊 Afternoon Session Statistics
+
+- **Total commits**: 4 commits
+- **Files created**: 3 (vercel.json, DEPLOYMENT.md, PERFORMANCE-REPORT.md)
+- **Files modified**: 8
+- **Files deleted**: 26 (unused assets)
+- **Lines changed**: +300, -1700
+
+---
+
+### 🎯 Afternoon Session Status
+
+**Completion**: All planned tasks completed
+**Performance**: 80% size reduction achieved
+**Visual Polish**: Smooth animations added
+**Deployment**: Fully configured and tested
+
+---
+
+## 📅 2026-05-20 (Wednesday) - Morning Session
 
 ### ✅ Completed Work
 
