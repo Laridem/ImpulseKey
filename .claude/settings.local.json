@@ -23,7 +23,9 @@
       "Bash(open *)",
       "Bash(cp /Users/I549685/Documents/SAPTI/assets/keyscreens-web/png/*.png /Users/I549685/Documents/SAPTI/app/public/screens/png/)",
       "Bash(cp /Users/I549685/Documents/SAPTI/assets/keyscreens-web/svg/*.svg /Users/I549685/Documents/SAPTI/app/public/screens/svg/)",
-      "Bash(npx tsx *)"
+      "Bash(npx tsx *)",
+      "Bash(chmod +x *)",
+      "Bash(./.claude/housekeeping-impl.sh *)"
     ]
   }
 }

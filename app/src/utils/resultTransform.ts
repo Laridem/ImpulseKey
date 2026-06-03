@@ -11,20 +11,20 @@ export function transformResult(resultType: ResultType): Result {
       zh: resultType.nameCN
     },
     motto: {
-      en: resultType.motto,
-      zh: resultType.motto // TODO: Add Chinese motto when available
+      en: resultType.mottoEN,
+      zh: resultType.mottoCN
     },
     signal: {
-      en: resultType.signal,
-      zh: resultType.signal // TODO: Add Chinese translation
+      en: resultType.signalEN,
+      zh: resultType.signalCN
     },
     pulse: {
-      en: resultType.pulse,
-      zh: resultType.pulse
+      en: resultType.pulseEN,
+      zh: resultType.pulseCN
     },
     risk: {
-      en: resultType.risk,
-      zh: resultType.risk
+      en: resultType.riskEN,
+      zh: resultType.riskCN
     },
     punchline: {
       en: resultType.punchlineEN,

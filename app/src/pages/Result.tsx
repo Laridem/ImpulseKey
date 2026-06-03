@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toPng } from 'html-to-image';
+import { useControls, Leva } from 'leva';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
+import { useLanguage } from '../i18n/LanguageContext';
 import { getKeycapAsset, getAllKeycaps } from '../utils/assets';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -12,9 +14,29 @@ export const Result = () => {
   const navigate = useNavigate();
   const { result, dimensionScores, goToResult, resetTest } = useTest();
   const t = useTranslation();
+  const { language } = useLanguage();
   const allKeycaps = getAllKeycaps();
   const resultRef = useRef<HTMLDivElement>(null);
   const [isCapturing, setIsCapturing] = useState(false);
+
+  // 🎛️ Leva Controls - Real-time visual adjustments
+  const {
+    keycapScale,
+    keycapRotate,
+    animationSpeed,
+    primaryColor,
+    showDebugPanel,
+    glowIntensity,
+    cardShadow
+  } = useControls('🎨 Visual Controls', {
+    keycapScale: { value: 1, min: 0.5, max: 2, step: 0.1, label: '键帽大小' },
+    keycapRotate: { value: 0, min: -30, max: 30, step: 1, label: '键帽旋转°' },
+    animationSpeed: { value: 300, min: 100, max: 1000, step: 50, label: '动画速度ms' },
+    primaryColor: { value: '#f97316', label: '主题色' },
+    glowIntensity: { value: 0, min: 0, max: 30, step: 1, label: '发光强度' },
+    cardShadow: { value: 'sm', options: ['none', 'sm', 'md', 'lg', 'xl', '2xl'], label: '卡片阴影' },
+    showDebugPanel: { value: true, label: '显示控制面板' },
+  });
 
   // Load result if accessed directly via URL
   useEffect(() => {
@@ -72,6 +94,9 @@ export const Result = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Leva Control Panel */}
+      <Leva collapsed={false} hidden={!showDebugPanel} />
+
       <Header />
 
       <main ref={resultRef} className="flex-1 max-w-7xl mx-auto px-8 py-12 w-full">
@@ -80,26 +105,33 @@ export const Result = () => {
 
           {/* Left Column - Keycap & Title */}
           <div className="flex flex-col items-center lg:items-start animate-slideUp">
-            {/* Keycap */}
-            <div className="w-56 h-56 mb-6 hover:scale-110 transition-transform duration-300">
+            {/* Keycap with Leva controls */}
+            <div
+              className="w-56 h-56 mb-6 transition-all cursor-pointer"
+              style={{
+                transform: `scale(${keycapScale}) rotate(${keycapRotate}deg)`,
+                transitionDuration: `${animationSpeed}ms`,
+                filter: glowIntensity > 0 ? `drop-shadow(0 0 ${glowIntensity}px ${primaryColor})` : 'none',
+              }}
+            >
               <img
                 src={getKeycapAsset(result.key)}
                 alt={result.name.en}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain hover:scale-110 transition-transform"
               />
             </div>
 
             {/* Title */}
             <h1 className="text-3xl font-bold text-gray-900 text-center lg:text-left mb-2">
-              {result.name.en}
+              {result.name[language]}
             </h1>
             <h2 className="text-2xl text-orange-500 text-center lg:text-left mb-6">
-              {result.name.zh}
+              {language === 'zh' ? result.name.en : result.name.zh}
             </h2>
 
             {/* Motto */}
             <p className="text-gray-600 italic text-center lg:text-left mb-8">
-              "{result.motto.en}"
+              "{result.motto[language]}"
             </p>
 
             {/* Action Buttons */}
@@ -107,7 +139,8 @@ export const Result = () => {
               <button
                 onClick={handleShare}
                 disabled={isCapturing}
-                className="w-full px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full px-6 py-3 text-white rounded-lg transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                style={{ backgroundColor: primaryColor }}
               >
                 {isCapturing ? (
                   <>
@@ -231,27 +264,30 @@ export const Result = () => {
               </div>
             )}
 
-            {/* Punchline */}
-            <div className="bg-orange-500 rounded-lg p-6 text-white">
-              <p className="text-lg font-medium mb-2">{result.punchline.en}</p>
-              <p className="text-white/90">{result.punchline.zh}</p>
+            {/* Punchline with dynamic color */}
+            <div
+              className="rounded-lg p-6 text-white"
+              style={{ backgroundColor: primaryColor }}
+            >
+              <p className="text-lg font-medium mb-2">{result.punchline[language]}</p>
+              <p className="text-white/90">"{language === 'zh' ? result.punchline.en : result.punchline.zh}"</p>
             </div>
 
-            {/* Signal Section */}
-            <div className="bg-white paper-texture rounded-lg p-6 shadow-sm">
+            {/* Signal Section with dynamic shadow */}
+            <div className={`bg-white paper-texture rounded-lg p-6 shadow-${cardShadow}`}>
               <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <span>📡</span> {t('result.signalTitle')}
               </h3>
-              <p className="text-gray-700 leading-relaxed">{result.signal.en}</p>
+              <p className="text-gray-700 leading-relaxed">{result.signal[language]}</p>
             </div>
 
-            {/* Pulse Section */}
-            <div className="bg-white paper-texture rounded-lg p-6 shadow-sm">
+            {/* Pulse Section with dynamic shadow */}
+            <div className={`bg-white paper-texture rounded-lg p-6 shadow-${cardShadow}`}>
               <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <span>💓</span> {t('result.pulseTitle')}
               </h3>
-              <p className="text-gray-700 leading-relaxed mb-3">{result.pulse.en}</p>
-              <p className="text-gray-600 italic">"{result.pulse.zh}"</p>
+              <p className="text-gray-700 leading-relaxed mb-3">{result.pulse[language]}</p>
+              <p className="text-gray-600 italic">"{language === 'zh' ? result.pulse.en : result.pulse.zh}"</p>
             </div>
 
             {/* Hidden Risks Section */}
@@ -259,7 +295,7 @@ export const Result = () => {
               <h3 className="text-lg font-bold text-red-800 mb-3 flex items-center gap-2">
                 <span>⚠️</span> {t('result.risksTitle')}
               </h3>
-              <p className="text-gray-700 leading-relaxed">{result.risk.en}</p>
+              <p className="text-gray-700 leading-relaxed">{result.risk[language]}</p>
             </div>
           </div>
         </div>
@@ -273,11 +309,13 @@ export const Result = () => {
             {allKeycaps.map((keycapKey) => (
               <div
                 key={keycapKey}
-                className={`aspect-square p-3 rounded-lg flex items-center justify-center ${
-                  keycapKey === result.key
-                    ? 'bg-orange-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700'
-                }`}
+                className="aspect-square p-3 rounded-lg flex items-center justify-center transition-all cursor-pointer hover:scale-110"
+                style={{
+                  backgroundColor: keycapKey === result.key ? primaryColor : '#f3f4f6',
+                  color: keycapKey === result.key ? 'white' : '#374151',
+                  boxShadow: keycapKey === result.key ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none',
+                }}
+                onClick={() => navigate(`/result/${keycapKey}`)}
               >
                 <span className="text-xs font-medium">{keycapKey}</span>
               </div>

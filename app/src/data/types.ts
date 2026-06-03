@@ -52,10 +52,14 @@ export interface ResultType {
   key: ResultKey
   nameEN: string
   nameCN: string
-  motto: string
-  signal: string
-  pulse: string
-  risk: string
+  mottoEN: string
+  mottoCN: string
+  signalEN: string
+  signalCN: string
+  pulseEN: string
+  pulseCN: string
+  riskEN: string
+  riskCN: string
   punchlineEN: string
   punchlineCN: string
   color: string

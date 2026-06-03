@@ -540,5 +540,145 @@ export const QUESTIONS: Question[] = [
         scores: { Stabilize: 2 }
       }
     ]
+  },
+
+  // NEW QUESTION A5 - Signal vs Solution (1-0-1 TIEBREAKER)
+  // Scoring: A=[1,0], B=[0,0], C=[0,1] for perfect 50/50 distribution
+  {
+    id: 'A5',
+    dimension: 'A',
+    textEN: 'During a sprint demo, a stakeholder says: "Can we add a feature to export this data to Excel?"',
+    textCN: '在 Sprint Demo 时，stakeholder 说："能不能加个导出到 Excel 的功能？"',
+    options: [
+      {
+        id: 'A',
+        textEN: 'Ask: What decisions do users need to make with this data? How will they use the export? What happens after export?',
+        textCN: '问：用户需要用这个数据做什么决策？导出后怎么用？导出后的流程是什么？',
+        humorEN: 'You\'re not saying no. You\'re doing requirement archaeology before someone builds a temple.',
+        humorCN: '你不是在说不。你在做需求考古，避免建一座没人拜的庙。',
+        scores: { Signal: 1 }
+      },
+      {
+        id: 'B',
+        textEN: 'Explore the use case while checking if existing export formats (CSV, PDF) or APIs can already solve this.',
+        textCN: '探索使用场景，同时检查现有导出格式（CSV、PDF）或 API 能否已经解决。',
+        humorEN: 'User needs meet existing features. Usually someone forgot we already have it.',
+        humorCN: '用户需求遇见现有功能。通常是有人忘了我们已经有了。',
+        scores: {}
+      },
+      {
+        id: 'C',
+        textEN: 'Check if the UI5 Spreadsheet Export library supports the current table format and estimate implementation effort.',
+        textCN: '检查 UI5 Spreadsheet Export 库是否支持当前表格格式，评估实现工作量。',
+        humorEN: 'The answer is always "yes, but it\'ll break on tables with more than 10,000 rows."',
+        humorCN: '答案永远是"可以，但是超过 10,000 行就会炸。"',
+        scores: { Solution: 1 }
+      }
+    ]
+  },
+
+  // NEW QUESTION B5 - Human vs Machine (1-0-1 TIEBREAKER)
+  // Scoring: A=[1,0], B=[0,0], C=[0,1] for perfect 50/50 distribution
+  {
+    id: 'B5',
+    dimension: 'B',
+    textEN: 'A developer asks: "Should this confirmation message say \'Operation completed successfully\' or show the transaction ID?"',
+    textCN: '开发问："确认消息应该显示\'操作成功\'还是显示 transaction ID？"',
+    options: [
+      {
+        id: 'A',
+        textEN: 'Show a message the user understands: "Your request was submitted. You\'ll receive an email when it\'s processed."',
+        textCN: '显示用户能理解的消息："你的请求已提交。处理完成后会收到邮件通知。"',
+        humorEN: 'Transaction IDs are for logs, not for humans trying to finish their work.',
+        humorCN: 'Transaction ID 是给日志看的，不是给赶着干活的人看的。',
+        scores: { Human: 1 }
+      },
+      {
+        id: 'B',
+        textEN: 'Show user-friendly confirmation with transaction ID available via "Show details" for power users and support debugging.',
+        textCN: '显示友好确认消息，同时提供"显示详情"让高级用户和技术支持查看 transaction ID。',
+        humorEN: 'Best of both worlds: normal people see "success", paranoid people see proof.',
+        humorCN: '两全其美：普通人看到"成功"，焦虑的人看到证据。',
+        scores: {}
+      },
+      {
+        id: 'C',
+        textEN: 'Return standardized response with transaction ID, timestamp, and status code for downstream system integration.',
+        textCN: '返回标准化响应，包含 transaction ID、时间戳和状态码，用于下游系统对接。',
+        humorEN: 'If the API returns HTTP 200, why do humans need to know it succeeded?',
+        humorCN: '如果 API 返回 200，人类为什么需要知道它成功了？',
+        scores: { Machine: 1 }
+      }
+    ]
+  },
+
+  // NEW QUESTION C5 - Explore vs Align (1-0-1 TIEBREAKER)
+  // Scoring: A=[1,0], B=[0,0], C=[0,1] for perfect 50/50 distribution
+  {
+    id: 'C5',
+    dimension: 'C',
+    textEN: 'Your team prototyped a drag-and-drop workflow builder, but Fiori guidelines recommend a form-based approach.',
+    textCN: '你的团队做了一个拖拽式流程构建器的 prototype，但 Fiori 指南推荐表单式的方式。',
+    options: [
+      {
+        id: 'A',
+        textEN: 'User test both approaches. If drag-and-drop significantly improves task completion, document the case and propose a pattern.',
+        textCN: '用户测试两种方式。如果拖拽明显提升任务完成率，记录案例并提出新模式。',
+        humorEN: 'Guidelines are great until users vote with their cursor.',
+        humorCN: '指南很棒，直到用户用鼠标投票。',
+        scores: { Explore: 1 }
+      },
+      {
+        id: 'B',
+        textEN: 'Prototype both to see which works better, but ensure drag-and-drop uses Fiori interaction patterns if we choose it.',
+        textCN: '两种都 prototype 看哪个更好，但如果选拖拽，确保使用 Fiori 交互模式。',
+        humorEN: 'Innovation within constraints is still innovation. Just more paperwork.',
+        humorCN: '约束内的创新也是创新。只是文档多点。',
+        scores: {}
+      },
+      {
+        id: 'C',
+        textEN: 'Follow Fiori guidelines and use the form-based pattern. Guidelines exist because someone tested this already.',
+        textCN: '遵循 Fiori 指南，使用表单式模式。指南的存在是因为已经有人测过了。',
+        humorEN: 'Design systems exist so we don\'t reinvent the wheel 47 times per quarter.',
+        humorCN: 'Design system 的存在是为了让我们不用每季度重复造 47 次轮子。',
+        scores: { Align: 1 }
+      }
+    ]
+  },
+
+  // NEW QUESTION D5 - Spark vs Stabilize (1-0-1 TIEBREAKER)
+  // Scoring: A=[1,0], B=[0,0], C=[0,1] for perfect 50/50 distribution
+  {
+    id: 'D5',
+    dimension: 'D',
+    textEN: 'Your feature is ready for release, but there\'s no time to write end-to-end tests. The PM says "ship now, test later."',
+    textCN: '你的功能可以发布了，但没时间写端到端测试。PM 说"先上线，后面再测。"',
+    options: [
+      {
+        id: 'A',
+        textEN: 'Ship with manual smoke testing. Real users will find issues faster than writing tests.',
+        textCN: '手动冒烟测试后上线。真实用户会比写测试更快发现问题。',
+        humorEN: 'Production is the best test environment. Users are unpaid QA.',
+        humorCN: '生产环境是最好的测试环境。用户是不拿工资的 QA。',
+        scores: { Spark: 1 }
+      },
+      {
+        id: 'B',
+        textEN: 'Ship the feature behind a feature flag, monitor closely, and write tests for the next sprint.',
+        textCN: '用 feature flag 上线，密切监控，下个 sprint 补测试。',
+        humorEN: 'Feature flags: because "we\'ll fix it later" needs a safety net.',
+        humorCN: 'Feature flag：因为"之后再修"需要一张安全网。',
+        scores: {}
+      },
+      {
+        id: 'C',
+        textEN: 'Delay release until critical path tests are written. Bugs in production cost more than delayed features.',
+        textCN: '延期发布直到关键路径测试完成。生产环境的 bug 比延期的成本更高。',
+        humorEN: 'You can ship fast or ship broken. Pick one and own it.',
+        humorCN: '你可以快速上线，也可以上线烂代码。选一个，然后承担后果。',
+        scores: { Stabilize: 1 }
+      }
+    ]
   }
 ]

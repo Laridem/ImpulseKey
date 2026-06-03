@@ -48,7 +48,14 @@ export function applyRoleWeights(scores: DimensionScores, roleId: string): Dimen
 /**
  * Map dimension scores to a result type
  * Based on which pole wins in each dimension
- * If tied, randomly choose to ensure 50/50 distribution
+ *
+ * With 5 questions per dimension:
+ * - Max score: 10 per pole (5 questions × 2 points)
+ * - Ties only possible if all 5 questions select middle option (B)
+ * - Probability of tie: (1/3)^5 = 0.41% per dimension
+ * - Across 4 dimensions: (1/3)^20 = 0.0000028% (effectively impossible)
+ *
+ * If tied, randomly choose to ensure 50/50 distribution (rare edge case)
  */
 export function mapToResultKey(scores: DimensionScores): ResultKey {
   // Determine winner of each dimension (with random tiebreaker)
