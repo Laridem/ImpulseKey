@@ -1,5 +1,6 @@
 import { ResultType } from './types'
 import { getKeycapColor } from '../utils/assets'
+import { RESULT_COLOR_MAPPING } from './colorGroups'
 
 /**
  * IMPULSE KEYS - Result Type Definitions
@@ -21,7 +22,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你问完 "why" 之后，会议可能再也回不到原来的 agenda。',
     punchlineEN: 'The customer said one thing, you opened a murder mystery.',
     punchlineCN: '客户说"不太方便"，你已经开始做案发现场还原了。',
-    color: getKeycapColor('VOC')
+    meetingBehaviorEN: 'Arrives with three questions.\n\nLeaves with twelve more.',
+    meetingBehaviorCN: '带着三个问题来。\n\n带着十二个问题走。',
+    mostLikelyToSayEN: '"But why?"',
+    mostLikelyToSayCN: '"但是为什么？"',
+    color: getKeycapColor('VOC'),
+    colorGroup: RESULT_COLOR_MAPPING.VOC,
+    // Long-form content
+    mottoLongCN: '用户很少直接给你答案。\n\n他们只是留下线索。',
+    signalLongEN: 'You rarely accept feedback at face value. While others hear a complaint, you hear an unfinished story.\n\nOne sentence like "It\'s a little inconvenient" is enough to send your brain searching for the missing context. Who was the user? What were they trying to do? What happened right before this? What did they expect instead?\n\nTo you, customer interviews aren\'t about collecting quotes. They\'re about uncovering patterns, connecting clues, and finding the real problem hiding underneath the obvious one.\n\nPeople think you\'re listening to users.\n\nYou\'re actually investigating them—with love.',
+    signalLongCN: '你几乎不会照单全收任何用户反馈。\n\n别人听到的是一句抱怨，你听到的是一个还没讲完的故事。\n\n一句"这里有点不方便"，就足够让你开始寻找缺失的信息：是谁说的？当时想完成什么？前面发生了什么？真正让他困扰的到底是什么？\n\n对你来说，用户访谈从来不是收集金句，而是寻找规律、拼接线索，把真正的问题从表象下面挖出来。\n\n别人觉得你在听用户说话。\n\n其实你已经开始查案了。',
+    pulseLongEN: 'Your brain has an automatic habit.\n\nEvery piece of feedback immediately becomes another list of questions.\n\n"Why?"\n\n"What changed?"\n\n"Has this always happened?"\n\n"Who else experiences this?"\n\n"Is this really the problem—or just the symptom?"\n\nSometimes you accidentally interview your own teammates the same way you interview customers.\n\nCuriosity isn\'t something you switch on.\n\nIt\'s running in the background all the time.',
+    pulseLongCN: '你的脑子里有一个永远不会关闭的程序。\n\n每一句用户反馈，都会自动展开成更多问题。\n\n为什么？\n\n什么时候开始的？\n\n以前也这样吗？\n\n还有谁遇到过？\n\n他说的是问题，还是问题造成的结果？\n\n有时候，你甚至会不自觉把同事也聊成了用户访谈。\n\n对你来说，好奇心不是一种工作方法。\n\n而是一种默认设置。',
+    riskLongEN: 'You only wanted to ask one more "why."\n\nForty minutes later, the roadmap has been questioned, three assumptions have disappeared, and someone quietly asks whether the remaining agenda can move to next week.\n\nYou don\'t enjoy slowing people down.\n\nYou just hate watching a team build the perfect solution to the wrong problem.',
+    riskLongCN: '你只是想再问一个 Why。\n\n四十分钟后，Roadmap 被重新讨论，三个假设被推翻，还有人默默问了一句：\n\n"剩下的议程……是不是可以下周继续？"\n\n你不是故意把会议开长。\n\n你只是无法接受团队花三个月，把错误的问题做得特别漂亮。',
+    punchlineLongEN: 'Customer:\n\n"It\'s a little inconvenient."\n\nYou:\n\n"Interesting... let\'s reconstruct the crime scene."',
+    punchlineLongCN: '客户：\n\n"这里有点不方便。"\n\n你：\n\n"有意思。来，我们还原一下案发现场。"'
   },
 
   FIORI: {
@@ -38,7 +54,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你说"just one small UX comment"，然后会议多了 37 分钟。',
     punchlineEN: 'The button works. The user does not.',
     punchlineCN: '按钮能点，不代表人类知道为什么要点。',
-    color: getKeycapColor('FIORI')
+    meetingBehaviorEN: 'Says:\n\n"I only have one small UX comment..."\n\nNobody relaxes.',
+    meetingBehaviorCN: '说：\n\n"我只有一个很小的 UX 建议……"\n\n全场紧张。',
+    mostLikelyToSayEN: '"Users won\'t understand this."',
+    mostLikelyToSayCN: '"用户看不懂这个。"',
+    color: getKeycapColor('FIORI'),
+    colorGroup: RESULT_COLOR_MAPPING.FIORI,
+    // Long-form content
+    mottoLongCN: '技术上能用，\n\n不代表人真的会用。',
+    signalLongEN: 'You believe good user experience isn\'t decoration—it\'s product quality.\n\nYou notice inconsistent interactions, confusing navigation, awkward wording, missing feedback, and accessibility gaps long before users ever report them.\n\nTo everyone else, they\'re tiny details.\n\nTo you, they\'re tiny moments that slowly erode trust.\n\nYou don\'t polish interfaces because they look nicer.\n\nYou polish them because every unnecessary hesitation costs users attention.',
+    signalLongCN: '你相信，好的体验从来不是锦上添花，而是产品质量本身。\n\n交互是否一致、导航是否自然、文案是否清楚、反馈是否及时、无障碍是否完善……\n\n很多问题，在用户还没发现之前，你已经开始皱眉了。\n\n别人看到的是几个小细节。\n\n你看到的是一点一点流失的用户信任。\n\n你修改体验，不是为了好看。\n\n而是为了让用户不用停下来思考。',
+    pulseLongEN: 'You constantly imagine using the product for the very first time.\n\n"Would I know what happens next?"\n\n"Would I hesitate here?"\n\n"Why is this button different from every other page?"\n\n"What happens if someone makes a mistake?"\n\nYou mentally run usability tests before anyone schedules one.\n\nSometimes your head is already on version three while everyone else is celebrating version one.',
+    pulseLongCN: '你的脑子里一直有一个第一次使用产品的新用户。\n\n他不知道业务背景。\n\n也不知道团队讨论了什么。\n\n他只会问：\n\n"下一步该做什么？"\n\n"为什么这里长得不一样？"\n\n"如果点错了怎么办？"\n\n所以很多时候，\n\n别人还在庆祝 Version 1，\n\n你的脑子已经开始优化 Version 3 了。',
+    riskLongEN: 'You begin every design review with,\n\n"I only have one small UX comment..."\n\nNobody believes that sentence anymore.\n\nTwenty-five screenshots, three interaction flows, two design guidelines, and thirty-seven minutes later, the "small comment" somehow became the meeting.',
+    riskLongCN: '你经常这样开始 Design Review：\n\n"我只有一个很小的 UX 建议。"\n\n团队已经没人相信这句话了。\n\n二十五张截图。\n\n三个交互流程。\n\n两份设计规范。\n\n三十七分钟之后，\n\n那个"很小的建议"，已经变成了今天会议的全部内容。',
+    punchlineLongEN: 'The button works.\n\nThe user doesn\'t.',
+    punchlineLongCN: '按钮当然能点。\n\n问题是，人不知道为什么要点。'
   },
 
   PIXEL: {
@@ -55,7 +86,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '别人以为你在调 UI，你其实在抢救用户认知负担。',
     punchlineEN: 'It is only 2px, but so is the beginning of chaos.',
     punchlineCN: '你以为我在纠结 2px，我其实在阻止混乱的开始。',
-    color: getKeycapColor('PIXEL')
+    meetingBehaviorEN: 'Zooms in.\n\nAgain.\n\nAnd again.\n\n"Is that aligned?"',
+    meetingBehaviorCN: '放大。\n\n再放大。\n\n再放大一次。\n\n"这个对齐了吗？"',
+    mostLikelyToSayEN: '"Is that aligned?"',
+    mostLikelyToSayCN: '"这个对齐了吗？"',
+    color: getKeycapColor('PIXEL'),
+    colorGroup: RESULT_COLOR_MAPPING.PIXEL,
+    // Long-form content
+    mottoLongCN: '每一个像素，\n\n都在悄悄教用户如何理解产品。',
+    signalLongEN: 'Some people see interfaces.\n\nYou see alignment, hierarchy, rhythm, spacing, contrast, visual weight, and dozens of tiny decisions nobody else consciously notices.\n\nTo others, moving a button by two pixels feels obsessive.\n\nTo you, those two pixels determine whether the interface feels intentional—or accidental.\n\nGood design isn\'t about making things prettier.\n\nIt\'s about making thinking easier.',
+    signalLongCN: '别人看到的是一个页面。\n\n你看到的是间距、层级、节奏、留白、视觉重心，以及几十个几乎没人注意的小决定。\n\n别人觉得：\n\n"就差两像素而已。"\n\n你知道，\n\n真正让产品显得专业、可信、顺手的，\n\n往往就是这两像素。\n\n设计不是为了好看。\n\n而是为了让用户少思考一秒。',
+    pulseLongEN: 'You don\'t stare at interfaces.\n\nYou scan them.\n\nMisaligned icons.\n\nUneven spacing.\n\nInconsistent corner radius.\n\nOne button that\'s 4px taller than every other button.\n\nYour eyes find visual bugs before your brain has time to explain them.\n\nSometimes you wish you could turn this ability off.\n\nYou can\'t.',
+    pulseLongCN: '你的眼睛有自己的工作流程。\n\n不用刻意寻找，\n\n它们自己就会开始报警。\n\n这里没对齐。\n\n那里间距不一致。\n\n这个圆角怎么不是 8？\n\n为什么这个按钮比别人大四个像素？\n\n很多时候，\n\n你的眼睛发现问题，\n\n甚至比你的脑子还快。\n\n可惜，\n\n这个能力没有关闭按钮。',
+    riskLongEN: 'You\'ve probably spent fifteen minutes discussing something users will never consciously notice.\n\nAnd you\'re completely okay with that.\n\nBecause users don\'t need to notice good design.\n\nThey only notice when it\'s missing.',
+    riskLongCN: '你很可能花了十五分钟，\n\n讨论一个用户永远不会主动发现的问题。\n\n你一点都不觉得浪费时间。\n\n因为真正优秀的设计，\n\n从来不是让用户说：\n\n"设计真棒。"\n\n而是让他们什么都不用想。',
+    punchlineLongEN: 'It\'s only two pixels.\n\nUntil it isn\'t.',
+    punchlineLongCN: '你以为我在纠结两像素。\n\n其实我是在阻止混乱发生。'
   },
 
   A11Y: {
@@ -72,7 +118,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你可能让一个"已经差不多了"的设计突然多出很多必须面对的问题。',
     punchlineEN: 'Accessibility is invisible until someone is excluded.',
     punchlineCN: '无障碍设计是隐形的，直到有人被排除在外。',
-    color: getKeycapColor('A11Y')
+    meetingBehaviorEN: '"We\'re almost done... except..."\n\nEveryone knows what\'s coming.',
+    meetingBehaviorCN: '"整体已经很好了，不过……"\n\n大家都知道后面还有很多"不过"。',
+    mostLikelyToSayEN: '"Who are we leaving behind?"',
+    mostLikelyToSayCN: '"我们是不是把谁落下了？"',
+    color: getKeycapColor('A11Y'),
+    colorGroup: RESULT_COLOR_MAPPING.A11Y,
+    // Long-form content
+    mottoLongCN: '只要还有人无法使用，\n\n它就还没有真正完成。',
+    signalLongEN: 'You have a habit of asking a question that almost nobody else asks:\n\n"Who are we unintentionally leaving behind?"\n\nWhile the team celebrates a polished design, you\'re checking keyboard navigation, screen reader support, color contrast, focus order, and whether the language is clear for someone seeing the product for the very first time.\n\nTo you, accessibility isn\'t about passing a checklist.\n\nIt\'s about making sure every user feels invited, not accommodated.\n\nYou don\'t design for the average user.\n\nYou design for real people, who are wonderfully different.',
+    signalLongCN: '你总会问一个别人很少问的问题：\n\n"我们是不是把谁落下了？"\n\n当团队还在欣赏设计稿时，你已经开始检查键盘操作、屏幕阅读器、颜色对比、焦点顺序，以及第一次接触产品的人能不能顺利完成任务。\n\n对你来说，无障碍不是为了完成检查清单。\n\n而是确保每个人都觉得：\n\n"这个产品也考虑到了我。"\n\n你不是在为少数人设计。\n\n你是在提醒大家，世界本来就没有所谓的"标准用户"。',
+    pulseLongEN: 'Every interface quietly triggers a different mental checklist.\n\nCan someone use this without a mouse?\n\nCan they understand it without perfect vision?\n\nWithout perfect hearing?\n\nWithout technical knowledge?\n\nWithout speaking English fluently?\n\nYou instinctively imagine people with different abilities, different backgrounds, and different contexts.\n\nThe rest of the team sees one user.\n\nYou see millions.',
+    pulseLongCN: '每看到一个页面，你的脑子都会自动开始检查。\n\n不用鼠标还能操作吗？\n\n颜色对比够吗？\n\n字体够清楚吗？\n\n如果第一次使用怎么办？\n\n如果视力不好呢？\n\n如果语言不是母语呢？\n\n如果现在正站在工厂、机场，或者阳光特别强的地方呢？\n\n别人看到的是一个用户。\n\n你看到的是无数种不同的人。',
+    riskLongEN: 'You\'ve probably said,\n\n"We\'re almost done... except..."\n\n...more times than anyone can count.\n\nJust when everyone thinks the feature is ready to ship, you uncover five scenarios nobody considered.\n\nSome teammates secretly hope you won\'t join the final review.\n\nDeep down, they also know they\'re relieved when you do.',
+    riskLongCN: '团队最怕听见你说的一句话就是：\n\n"整体已经很好了，不过……"\n\n因为大家都知道，\n\n后面通常不会只有一个"不过"。\n\n就在所有人准备上线的时候，\n\n你又找出了几个没人考虑过的场景。\n\n有人会开玩笑说：\n\n"千万别让 A11Y 最后 Review。"\n\n但真正上线的时候，\n\n大家又都会庆幸：\n\n"还好他看过一遍。"',
+    punchlineLongEN: 'Accessibility is invisible—\n\nuntil someone is excluded.',
+    punchlineLongCN: '无障碍设计最大的成功，\n\n就是没人意识到它存在。\n\n直到有一天，\n\n有人因为没有它而被挡在门外。'
   },
 
   JOULE: {
@@ -89,7 +150,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你描述的 AI 未来太美好，可能让大家忘记现在还需要写 API。',
     punchlineEN: 'You see Joule as a co-pilot. Others see it as a chatbot.',
     punchlineCN: '你看到的是 copilot，别人看到的是聊天机器人。',
-    color: getKeycapColor('JOULE')
+    meetingBehaviorEN: 'Every sentence starts with:\n\n"What if AI could..."',
+    meetingBehaviorCN: '每句话都以这个开头：\n\n"如果 AI 能……"',
+    mostLikelyToSayEN: '"What if AI could..."',
+    mostLikelyToSayCN: '"如果 AI 能……"',
+    color: getKeycapColor('JOULE'),
+    colorGroup: RESULT_COLOR_MAPPING.JOULE,
+    // Long-form content
+    mottoLongCN: 'AI 不只是提高效率。\n\n它应该重新定义工作的方式。',
+    signalLongEN: 'Whenever someone demonstrates a new AI capability, your first reaction is rarely,\n\n"Cool."\n\nIt\'s usually,\n\n"What does this make obsolete?"\n\nYou don\'t think about adding AI into existing workflows.\n\nYou imagine workflows that wouldn\'t exist without AI.\n\nOthers automate steps.\n\nYou redesign the journey.',
+    signalLongCN: '每当有人展示新的 AI 能力，\n\n你的第一反应通常不是：\n\n"这个真酷。"\n\n而是：\n\n"既然 AI 能做到这个，我们为什么还要这样工作？"\n\n你不会把 AI 当成功能。\n\n你会把它当成重新设计整个流程的机会。\n\n别人想着自动化一个步骤。\n\n你已经开始重画整个工作流。',
+    pulseLongEN: 'Your brain is constantly playing a game called:\n\n"What if AI could..."\n\n...understand intent?\n\n...remember context?\n\n...collaborate across applications?\n\n...prepare everything before users even ask?\n\nHalf your conversations begin with,\n\n"Imagine if..."\n\nThe other half begin with,\n\n"What if we didn\'t need this screen anymore?"',
+    pulseLongCN: '你的脑子里一直在玩一个游戏。\n\n如果 AI 能理解上下文呢？\n\n如果 AI 能提前准备好所有东西呢？\n\n如果 AI 能自己跨系统协作呢？\n\n如果这个页面根本不用存在呢？\n\n你的很多想法，\n\n都以一句话开始：\n\n"有没有一种可能……"',
+    riskLongEN: 'You occasionally describe an AI-powered future so exciting that everyone forgets one small detail.\n\nSomebody still has to build it.\n\nEngineers love your vision.\n\nRight after they finish laughing.',
+    riskLongCN: '你描绘未来的能力，\n\n有时候会让整个会议室都兴奋起来。\n\n直到有人弱弱问一句：\n\n"这个……现在有人能做吗？"\n\n工程师通常很喜欢你的想法。\n\n只是他们一边鼓掌，\n\n一边默默打开 Jira。',
+    punchlineLongEN: 'You see a co-pilot.\n\nOthers still see a chatbot.',
+    punchlineLongCN: '你看到的是未来同事。\n\n别人还觉得它只是聊天机器人。'
   },
 
   CTRL: {
@@ -106,7 +182,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你可能成为 AI 团队眼中的"进度杀手"。',
     punchlineEN: 'AI confidence without human oversight is just expensive randomness.',
     punchlineCN: '没有人类监督的 AI，是昂贵的随机数生成器。',
-    color: getKeycapColor('CTRL')
+    meetingBehaviorEN: 'Every AI demo triggers the same question:\n\n"What happens when it\'s wrong?"',
+    meetingBehaviorCN: '每次 AI Demo 都会问同一个问题：\n\n"判断错了怎么办？"',
+    mostLikelyToSayEN: '"Can users override this?"',
+    mostLikelyToSayCN: '"用户能不能接管？"',
+    color: getKeycapColor('CTRL'),
+    colorGroup: RESULT_COLOR_MAPPING.CTRL,
+    // Long-form content
+    mottoLongCN: '好的 AI，\n\n不是替人做决定。\n\n而是让人做出更好的决定。',
+    signalLongEN: 'Everyone gets excited about automation.\n\nYou get curious about responsibility.\n\nWhenever an AI feature is proposed, you ask questions that slow the room down—in the best possible way.\n\nWho is accountable?\n\nCan users understand what happened?\n\nCan they override it?\n\nCan they recover if it\'s wrong?\n\nYou aren\'t trying to make AI smaller.\n\nYou\'re trying to make trust bigger.',
+    signalLongCN: '每当团队讨论 AI 自动化时，\n\n别人想到的是效率，\n\n你想到的是责任。\n\nAI 为什么这么判断？\n\n用户知道发生了什么吗？\n\n如果 AI 判断错了怎么办？\n\n用户还能接管吗？\n\n还能撤销吗？\n\n还能纠正吗？\n\n你不是反对 AI。\n\n你只是希望，\n\n人在关键时刻永远握着方向盘。',
+    pulseLongEN: 'You don\'t see AI as magic.\n\nYou see it as a teammate.\n\nAnd every teammate needs good communication, clear expectations, and someone to double-check important decisions.\n\nWhenever somebody says,\n\n"Let\'s make AI decide."\n\nYour brain immediately replies,\n\n"...under what conditions?"',
+    pulseLongCN: '你从来不会把 AI 当成魔法。\n\n你更愿意把它当成一个新同事。\n\n新同事需要解释。\n\n需要反馈。\n\n需要知道什么时候该自己决定，\n\n什么时候该把问题交还给人。\n\n所以每次有人说：\n\n"让 AI 自动处理吧。"\n\n你的脑子都会自动补上一句：\n\n"可以，那什么情况下需要人工介入？"',
+    riskLongEN: 'You\'ve probably delayed an AI launch with questions like,\n\n"What happens when it\'s wrong?"\n\n"Can users appeal?"\n\n"Should this decision require confirmation?"\n\nThe AI team jokes that you\'re allergic to automation.\n\nYou\'d argue you\'re simply allergic to preventable disasters.',
+    riskLongCN: '你很可能因为几个问题，\n\n把 AI 功能的发布时间往后推了一周。\n\n"判断错了怎么办？"\n\n"用户能不能申诉？"\n\n"这里是不是应该确认一下？"\n\nAI 团队有时候会笑你：\n\n"你是不是不相信 AI？"\n\n你会笑着回答：\n\n"我相信 AI。"\n\n"我只是不相信任何东西可以一直不犯错。"',
+    punchlineLongEN: 'Human in the loop.\n\nNot human after the lawsuit.',
+    punchlineLongCN: '人在回路里。\n\n总比人在事故后，\n\n强得多。'
   },
 
   AGENT: {
@@ -123,7 +214,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你描述的 agent 架构让工程师怀疑你是不是看了太多科幻片。',
     punchlineEN: 'You design for agents. Others still design forms.',
     punchlineCN: '你在设计 agent workflow，别人还在设计表单。',
-    color: getKeycapColor('AGENT')
+    meetingBehaviorEN: 'Someone asks for a feature.\n\nThirty minutes later:\n\n"...and that\'s the multi-agent orchestration layer."',
+    meetingBehaviorCN: '别人提了一个需求。\n\n半小时后：\n\n"……这就是多智能体编排层。"',
+    mostLikelyToSayEN: '"What should the agent know?"',
+    mostLikelyToSayCN: '"Agent 需要知道什么？"',
+    color: getKeycapColor('AGENT'),
+    colorGroup: RESULT_COLOR_MAPPING.AGENT,
+    // Long-form content
+    mottoLongCN: '未来的工作，\n\n不是点击得更快。\n\n而是让正确的智能，\n\n在正确的时间做正确的事。',
+    signalLongEN: 'Whenever someone presents a new feature, you\'re already imagining what happens when the user isn\'t the primary operator anymore.\n\nInstead of asking,\n\n"What should users click?"\n\nyou naturally ask,\n\n"What should the agent know?"\n\n"What should it decide?"\n\n"When should it ask for help?"\n\nTo you, interfaces are no longer the product.\n\nThey\'re conversations between humans and intelligent systems.\n\nOthers design screens.\n\nYou design collaboration.',
+    signalLongCN: '每当团队讨论一个新功能，\n\n你的脑子已经跳到下一步：\n\n如果以后操作这个功能的不再是用户，而是 Agent，会怎么样？\n\n别人问：\n\n"这个按钮放哪？"\n\n你问：\n\n"Agent 需要知道什么？"\n\n"哪些事情可以自己决定？"\n\n"什么时候应该请人接管？"\n\n在你眼里，\n\n未来的产品不只是页面。\n\n而是人与智能体之间持续协作的过程。\n\n别人设计界面。\n\n你设计协作关系。',
+    pulseLongEN: 'Your imagination naturally skips today\'s constraints.\n\nWhat if an agent could coordinate five systems?\n\nNegotiate with another agent?\n\nLearn a user\'s preferences over time?\n\nComplete an entire workflow while the user drinks coffee?\n\nPeople sometimes think you\'re talking about science fiction.\n\nYou think you\'re talking about next year\'s roadmap.',
+    pulseLongCN: '你的思维很容易越过今天的限制。\n\n如果 Agent 能跨五个系统协同呢？\n\n如果两个 Agent 能互相合作呢？\n\n如果它能越来越了解用户呢？\n\n如果整个流程都不用用户亲自完成呢？\n\n别人觉得你像在聊科幻电影。\n\n你觉得，\n\n自己只是提前一年开会。',
+    riskLongEN: 'Every discussion eventually becomes an architecture discussion.\n\nSomeone asks for a new feature.\n\nThirty minutes later you\'re explaining multi-agent orchestration, planning loops, memory, tool calling, and governance.\n\nThe PM wanted a checkbox.\n\nYou designed an ecosystem.',
+    riskLongCN: '很多需求讨论，\n\n最后都会被你聊成架构讨论。\n\nPM 本来只是想加一个功能。\n\n半小时后，\n\n你已经画出了 Agent、Memory、Planning、Tool Calling 和 Governance。\n\n别人想要一个勾选框。\n\n你已经开始设计生态系统。',
+    punchlineLongEN: 'Others build products.\n\nYou hire imaginary employees.',
+    punchlineLongCN: '别人招用户。\n\n你已经开始招 AI 同事。'
   },
 
   SAFE: {
@@ -140,7 +246,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你提出的"可解释性"要求可能让 AI 团队觉得你在为难他们。',
     punchlineEN: 'A black-box AI that works is still a black box.',
     punchlineCN: '能用的黑盒 AI，也还是黑盒。',
-    color: getKeycapColor('SAFE')
+    meetingBehaviorEN: 'AI demo turns into\n\nethics workshop.\n\n"Why did it decide that?"',
+    meetingBehaviorCN: 'AI Demo 变成了\n\n伦理讨论会。\n\n"它为什么这么判断？"',
+    mostLikelyToSayEN: '"Can users trust this answer?"',
+    mostLikelyToSayCN: '"用户会相信这个答案吗？"',
+    color: getKeycapColor('SAFE'),
+    colorGroup: RESULT_COLOR_MAPPING.SAFE,
+    // Long-form content
+    mottoLongCN: '信任，\n\n不是上线以后补上的。\n\n而是第一天就应该设计进去。',
+    signalLongEN: 'When everyone celebrates what AI can do, you\'re thinking about what happens when it shouldn\'t.\n\nCan users understand this answer?\n\nCan they verify it?\n\nCan they challenge it?\n\nCan they recover from a mistake?\n\nTo you, trust isn\'t a compliance requirement.\n\nIt\'s a product feature.',
+    signalLongCN: '大家讨论 AI 能做什么的时候，\n\n你会讨论：\n\n什么时候它不应该这么做。\n\n用户能理解吗？\n\n能验证吗？\n\n能质疑吗？\n\n能纠正吗？\n\n在你眼里，\n\n可信，\n\n本身就是产品体验的一部分。',
+    pulseLongEN: 'You instinctively imagine yourself sitting on the other side of the screen.\n\nWould you trust this answer?\n\nWould you bet your own work on it?\n\nWould you know when it\'s hallucinating?\n\nGood AI doesn\'t just produce confidence.\n\nIt deserves it.',
+    pulseLongCN: '每次看到 AI 给出的答案，\n\n你都会忍不住想：\n\n如果我是用户，\n\n我敢相信吗？\n\n我知道它为什么这么说吗？\n\n如果它错了，\n\n我能发现吗？\n\n你相信 AI 可以很聪明。\n\n但你更希望，\n\n它值得被相信。',
+    riskLongEN: 'You ask so many trust-related questions that AI demos occasionally become ethics workshops.\n\nNobody complains after the first real incident.',
+    riskLongCN: '你总是在 Demo 上追问：\n\n为什么？\n\n依据是什么？\n\n用户知道吗？\n\n能不能撤销？\n\n有时候，\n\n整个 AI Demo 都快变成伦理讨论会了。\n\n直到第一次线上事故发生以后，\n\n大家都会回来找你。',
+    punchlineLongEN: 'Accuracy earns applause.\n\nTrust earns loyalty.',
+    punchlineLongCN: '准确，\n\n赢得掌声。\n\n可信，\n\n赢得长期使用。'
   },
 
   OData: {
@@ -157,7 +278,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '别人觉得你在画 UML 图，你其实在定义产品的骨架。',
     punchlineEN: 'You see workflows as state machines. Others see them as "just a form."',
     punchlineCN: '你看到的是状态机，别人看到的是"就一个表单"。',
-    color: getKeycapColor('OData')
+    meetingBehaviorEN: 'Whiteboard fills with:\n\nEntities. Relations. States.\n\n"Wait, let me map this out."',
+    meetingBehaviorCN: '白板上全是：\n\nEntity。关系。状态。\n\n"等等，让我先画个图。"',
+    mostLikelyToSayEN: '"What\'s the entity model here?"',
+    mostLikelyToSayCN: '"这背后的数据模型是什么？"',
+    color: getKeycapColor('OData'),
+    colorGroup: RESULT_COLOR_MAPPING.OData,
+    // Long-form content
+    mottoLongCN: '好的产品，\n\n都建立在清晰的约定之上。',
+    signalLongEN: 'Before discussing buttons or screens, you want to understand the structure underneath.\n\nWhat are the entities?\n\nHow do they relate?\n\nWhich state can transition into another?\n\nWhere does the data come from?\n\nWhere does it go?\n\nOthers see a feature.\n\nYou see the invisible architecture holding everything together.\n\nTo you, data models aren\'t backend details.\n\nThey\'re the grammar of the product.',
+    signalLongCN: '讨论页面之前，\n\n你更想先讨论结构。\n\n有哪些对象？\n\n它们之间是什么关系？\n\n状态如何流转？\n\n数据从哪里来？\n\n又会流向哪里？\n\n别人看到的是一个功能。\n\n你看到的是支撑整个产品的骨架。\n\n在你眼里，\n\n数据模型不是后端细节。\n\n而是产品真正的语言。',
+    pulseLongEN: 'Whenever someone sketches a workflow, your brain quietly starts drawing boxes and arrows.\n\n"This should probably be another entity."\n\n"That\'s actually a state transition."\n\n"This relationship feels wrong."\n\nMost people hear conversations.\n\nYou hear database schemas.',
+    pulseLongCN: '别人画流程。\n\n你的脑子已经开始画 ER 图。\n\n这个应该独立成 Entity。\n\n这里其实是状态切换。\n\n这个关系是不是一对多？\n\n很多时候，\n\n会议还没结束，\n\n你的脑子已经建好数据库了。',
+    riskLongEN: 'People occasionally ask for a "small workflow."\n\nYou respond with a whiteboard full of entities, events, permissions, and lifecycle diagrams.\n\nTechnically, you answered the question.\n\nJust... at 300% zoom.',
+    riskLongCN: '别人说：\n\n"流程其实挺简单的。"\n\n你点点头，\n\n然后画满了一整块白板。\n\nEntity。\n\nState。\n\nPermission。\n\nLifecycle。\n\n别人想要一个流程图。\n\n你交付了一套世界观。',
+    punchlineLongEN: 'Others see forms.\n\nYou see finite state machines.',
+    punchlineLongCN: '别人看到的是表单。\n\n你看到的是状态机。'
   },
 
   BTP: {
@@ -174,7 +310,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你做的 prototype 可能被误认为"快要上线的版本"。',
     punchlineEN: 'You prototype to learn. Others prototype to show stakeholders.',
     punchlineCN: '你做 prototype 是为了学习，别人做是为了给 stakeholder 看。',
-    color: getKeycapColor('BTP')
+    meetingBehaviorEN: 'Before meeting notes are finished:\n\n"I can mock that up."',
+    meetingBehaviorCN: '会议纪要还没发：\n\n"我可以搭个 Demo。"',
+    mostLikelyToSayEN: '"Let me prototype that real quick."',
+    mostLikelyToSayCN: '"我快速做个 Demo。"',
+    color: getKeycapColor('BTP'),
+    colorGroup: RESULT_COLOR_MAPPING.BTP,
+    // Long-form content
+    mottoLongCN: '最快的学习方式，\n\n就是先做出来。',
+    signalLongEN: 'You don\'t fall in love with prototypes.\n\nYou use them to answer questions.\n\nCan users understand it?\n\nWill this workflow actually work?\n\nIs this idea worth another month of engineering?\n\nIf the answer is "no," you\'re perfectly happy throwing everything away and starting again.\n\nTo you, deleting a prototype isn\'t failure.\n\nIt\'s progress.',
+    signalLongCN: '你从来不会舍不得自己的 Prototype。\n\n因为它存在的目的，\n\n就是回答问题。\n\n用户能理解吗？\n\n流程真的成立吗？\n\n这个方向值得继续投入吗？\n\n如果答案是否定的，\n\n你会毫不犹豫全部推倒重来。\n\n对你来说，\n\n删掉 Prototype，\n\n不是失败。\n\n而是最快的一次学习。',
+    pulseLongEN: 'You hear an idea and immediately think,\n\n"I can mock that up."\n\nBefore the meeting notes are finished,\n\nthere\'s already a Figma file,\n\na clickable demo,\n\nor something held together with three APIs and unreasonable optimism.\n\nYou believe conversations become dramatically better when everyone can point at the same thing.',
+    pulseLongCN: '别人刚说完一个想法，\n\n你脑子里已经开始搭 Demo。\n\n会议纪要还没发出来，\n\nFigma 已经建好了。\n\n或者，\n\n一个靠三份 API、两段 Prompt 和一点点信仰撑起来的 Demo 已经跑起来了。\n\n你相信，\n\n讨论一个想法最好的方式，\n\n就是先让它活过来。',
+    riskLongEN: 'Your prototypes are occasionally... too convincing.\n\nSomeone inevitably asks,\n\n"So when are we launching?"\n\nYou smile politely,\n\nwhile quietly hiding the shortcuts, fake data, and twenty-seven things held together with hope.',
+    riskLongCN: '你的 Prototype，\n\n经常做得有点太真了。\n\n于是总会有人认真问：\n\n"什么时候上线？"\n\n你只能一边微笑，\n\n一边默默祈祷：\n\n千万别点那个按钮。\n\n里面全是假数据。',
+    punchlineLongEN: '"It\'s just a prototype."\n\n— the most dangerous sentence in product development.',
+    punchlineLongCN: '"这只是个 Demo。"\n\n——产品团队最容易被误解的一句话。'
   },
 
   CORE: {
@@ -191,7 +342,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你可能成为"不让我改 standard code"的守门人。',
     punchlineEN: 'Clean Core today saves firefighting tomorrow.',
     punchlineCN: '今天的 Clean Core，省掉明天的救火。',
-    color: getKeycapColor('CORE')
+    meetingBehaviorEN: 'Politely declines shortcuts.\n\nSix months later:\n\n"Yeah... you were right."',
+    meetingBehaviorCN: '礼貌地拒绝捷径。\n\n半年后：\n\n"还好当时没那么做。"',
+    mostLikelyToSayEN: '"Can we still upgrade after this?"',
+    mostLikelyToSayCN: '"这样改了还能升级吗？"',
+    color: getKeycapColor('CORE'),
+    colorGroup: RESULT_COLOR_MAPPING.CORE,
+    // Long-form content
+    mottoLongCN: '今天省下的一分钟，\n\n往往会变成明天的一周。',
+    signalLongEN: 'You have an almost supernatural ability to spot technical debt before it\'s created.\n\nWhenever someone proposes "just one quick customization," you\'re already thinking about the next upgrade, the next migration, and the poor soul maintaining it three years from now.\n\nPeople think you\'re saying no.\n\nYou\'re actually protecting tomorrow\'s engineering team from today\'s convenience.\n\nClean Core isn\'t a rulebook to you.\n\nIt\'s an investment strategy.',
+    signalLongCN: '你总能在技术债出现之前，就闻到它的味道。\n\n每当有人说：\n\n"先改一下标准代码吧。"\n\n你的脑子已经开始想到下一次升级、下一次迁移，以及三年后接手这个项目的人。\n\n别人觉得你总是在说"不行"。\n\n其实你只是希望，\n\n未来的团队不用替今天的决定买单。\n\n在你眼里，\n\nClean Core 不是限制。\n\n而是一种长期主义。',
+    pulseLongEN: 'Every design decision quietly triggers another question.\n\nWill this survive the next release?\n\nCan someone else understand it?\n\nCan we remove it later?\n\nShould this even exist?\n\nYou\'re constantly trading a little extra effort today for much less pain tomorrow.\n\nFuture-you appreciates the favour.',
+    pulseLongCN: '每做一个决定，\n\n你的脑子都会自动多问一句。\n\n以后还能升级吗？\n\n别人接手能看懂吗？\n\n以后删得掉吗？\n\n这东西真的有存在的必要吗？\n\n你总是在今天多花一点时间，\n\n换未来少熬很多夜。\n\n未来的自己，\n\n会感谢现在的自己。',
+    riskLongEN: 'You\'ve politely rejected solutions that would\'ve worked perfectly...\n\n...for about six weeks.\n\nThe rest of the room sometimes thinks you\'re overthinking.\n\nSix months later they quietly admit,\n\n"Yeah... you were right."',
+    riskLongCN: '你拒绝过很多方案。\n\n不是因为它们不能用。\n\n而是因为它们只能用一阵子。\n\n开会的时候，\n\n大家会觉得你是不是想太多了。\n\n半年以后，\n\n通常都会有人默默说一句：\n\n"还好当时没那么做。"',
+    punchlineLongEN: 'You don\'t hate shortcuts.\n\nYou just know where they end.',
+    punchlineLongCN: '你不是讨厌捷径。\n\n你只是知道，\n\n捷径最后通向哪里。'
   },
 
   API: {
@@ -208,7 +374,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你提出的 DX 改进可能被视为"不重要的细节"。',
     punchlineEN: 'You design APIs for humans. Others design them for machines.',
     punchlineCN: '你设计给人用的 API，别人设计给机器用的 API。',
-    color: getKeycapColor('API')
+    meetingBehaviorEN: 'Rewrites endpoint\n\nbecause one parameter name\n\n"feels wrong."',
+    meetingBehaviorCN: '重新设计接口\n\n因为一个参数名\n\n"感觉不对"。',
+    mostLikelyToSayEN: '"Would you guess what this returns?"',
+    mostLikelyToSayCN: '"不看文档能猜出来吗？"',
+    color: getKeycapColor('API'),
+    colorGroup: RESULT_COLOR_MAPPING.API,
+    // Long-form content
+    mottoLongCN: '最好的 API，\n\n好用到让人忘记它的存在。',
+    signalLongEN: 'You believe APIs are products.\n\nTheir users just happen to write code.\n\nYou care about naming, consistency, discoverability, error messages, documentation, examples, pagination, authentication, and all the tiny details that separate delight from frustration.\n\nGreat APIs don\'t make developers read documentation.\n\nThey make documentation feel optional.',
+    signalLongCN: '你相信，\n\nAPI 本身就是产品。\n\n只是它的用户恰好是开发者。\n\n命名是否统一？\n\n错误信息够不够清楚？\n\n默认值合理吗？\n\n文档有没有例子？\n\n分页是不是一致？\n\n认证方式是不是直觉？\n\n这些在别人眼里的"小细节"，\n\n决定了开发者今天加班，\n\n还是早点下班。',
+    pulseLongEN: 'Every endpoint triggers the same internal questions.\n\nWould I understand this without documentation?\n\nWould the response surprise me?\n\nWhat happens if something fails?\n\nCan I predict the next endpoint?\n\nGood APIs should feel less like memorising commands...\n\n...and more like having a conversation.',
+    pulseLongCN: '每看到一个 API，\n\n你的脑子都会自动问：\n\n不用文档能猜出来吗？\n\n返回值符合直觉吗？\n\n报错的时候怎么办？\n\n下一个接口是不是也遵循同样规则？\n\n好的 API，\n\n应该像聊天一样自然。\n\n而不是像考试一样靠背。',
+    riskLongEN: 'You\'ve probably rewritten an endpoint because one parameter name "felt wrong."\n\nNobody noticed.\n\nUntil six months later,\n\nwhen nobody needed to ask how it worked either.',
+    riskLongCN: '你很可能为了改一个参数名，\n\n重新设计过整个接口。\n\n当时没人理解。\n\n半年以后，\n\n大家也没人再问：\n\n"这个接口到底怎么用？"',
+    punchlineLongEN: 'Developers don\'t read documentation.\n\nThey read error messages.',
+    punchlineLongCN: '程序员真正认真看的，\n\n从来不是文档。\n\n而是报错。'
   },
 
   QAQ: {
@@ -225,7 +406,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你发现的"体验问题"可能被归类为"不是 bug"。',
     punchlineEN: 'You test what breaks users, not what breaks code.',
     punchlineCN: '你测的是用户会不会崩溃，不是代码会不会崩溃。',
-    color: getKeycapColor('QAQ')
+    meetingBehaviorEN: 'Clicks the one button\n\nnobody else touched.\n\nFinds three edge cases.',
+    meetingBehaviorCN: '点了那个\n\n没人点过的按钮。\n\n找到三个边界情况。',
+    mostLikelyToSayEN: '"What if users do this wrong?"',
+    mostLikelyToSayCN: '"如果用户点错了呢？"',
+    color: getKeycapColor('QAQ'),
+    colorGroup: RESULT_COLOR_MAPPING.QAQ,
+    // Long-form content
+    mottoLongCN: '真正修好的，\n\n不是 Bug。\n\n而是用户的挫败感。',
+    signalLongEN: 'You don\'t stop testing after the happy path succeeds.\n\nYou\'re far more interested in what happens when people click the wrong button, lose their connection, misunderstand the wording, or simply have a bad day.\n\nTo you, quality isn\'t measured by how often software works.\n\nIt\'s measured by how gracefully it fails.',
+    signalLongCN: '你最感兴趣的，\n\n从来不是 Happy Path。\n\n而是：\n\n点错怎么办？\n\n断网怎么办？\n\n没看懂怎么办？\n\n输错怎么办？\n\n用户今天心情不好怎么办？\n\n对你来说，\n\n真正的质量，\n\n不是系统永远不出错。\n\n而是出错的时候，\n\n依然不会让用户崩溃。',
+    pulseLongEN: 'You naturally role-play users.\n\nThe impatient one.\n\nThe distracted one.\n\nThe new hire.\n\nThe customer using a five-year-old laptop.\n\nThe person who skipped every onboarding screen.\n\nYou don\'t test software.\n\nYou test reality.',
+    pulseLongCN: '你的脑子里，\n\n住着很多不同的用户。\n\n第一次使用的人。\n\n赶时间的人。\n\n边打电话边操作的人。\n\n从来不看提示的人。\n\n还有那个一定会按错按钮的人。\n\n你不是在测试软件。\n\n你是在测试现实。',
+    riskLongEN: 'You\'ve reported issues that technically weren\'t bugs.\n\nThe code behaved exactly as expected.\n\nHumans didn\'t.\n\nDevelopers sigh.\n\nUsers silently thank you.',
+    riskLongCN: '你提过很多 Issue。\n\n严格来说，\n\n代码一点问题都没有。\n\n只是人会困惑。\n\n工程师偶尔会叹口气。\n\n用户通常不会知道。\n\n但他们以后，\n\n会少骂一句产品。',
+    punchlineLongEN: 'You don\'t break software.\n\nYou prevent software from breaking people.',
+    punchlineLongCN: '你不是在折腾系统。\n\n你是在保护用户。'
   },
 
   LOGS: {
@@ -242,7 +438,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你指出的"数据真相"可能打脸产品假设。',
     punchlineEN: 'Your Grafana dashboard tells stories that design docs never will.',
     punchlineCN: '你的 Grafana dashboard 讲的故事，设计文档永远讲不出来。',
-    color: getKeycapColor('LOGS')
+    meetingBehaviorEN: 'Opens Grafana\n\nbefore PowerPoint.\n\nEnds debate with one chart.',
+    meetingBehaviorCN: '先打开 Grafana\n\n再打开 PPT。\n\n用一张图结束争论。',
+    mostLikelyToSayEN: '"Let me check the logs."',
+    mostLikelyToSayCN: '"我看看线上数据。"',
+    color: getKeycapColor('LOGS'),
+    colorGroup: RESULT_COLOR_MAPPING.LOGS,
+    // Long-form content
+    mottoLongCN: '生产环境，\n\n永远比 PPT 更诚实。',
+    signalLongEN: 'You trust production data more than confident opinions.\n\nDashboards, traces, logs, latency, retries, usage patterns, error rates...\n\nTo most people, they\'re numbers.\n\nTo you, they\'re stories.\n\nYou don\'t ask,\n\n"What do we think users are doing?"\n\nYou ask,\n\n"What are they actually doing?"',
+    signalLongCN: '你更相信线上数据，\n\n而不是会议里的自信发言。\n\n日志。\n\nTrace。\n\nLatency。\n\nError Rate。\n\nDashboard。\n\n别人看到的是指标。\n\n你看到的是用户今天经历了什么。\n\n你的第一句话通常不是：\n\n"大家觉得呢？"\n\n而是：\n\n"线上数据怎么说？"',
+    pulseLongEN: 'Someone reports,\n\n"The system feels slow."\n\nYour brain immediately starts opening dashboards.\n\nLatency.\n\nMemory.\n\nDatabase.\n\nRetries.\n\nRecent deployments.\n\nYou don\'t panic.\n\nYou investigate.\n\nProduction has already left clues.\n\nYou just need to read them.',
+    pulseLongCN: '有人说：\n\n"今天系统有点慢。"\n\n别人开始猜原因。\n\n你已经打开 Grafana。\n\n看看延迟。\n\n看看数据库。\n\n看看最近发布。\n\n看看错误率。\n\n你很少靠直觉。\n\n因为线上环境，\n\n每天都会留下证据。',
+    riskLongEN: 'You\'ve accidentally ended arguments by sharing one chart.\n\nIt\'s difficult to debate opinions...\n\n...when the graph politely disagrees.',
+    riskLongCN: '你经常结束争论的方法，\n\n只有一张图。\n\n会议讨论了半小时。\n\n你打开 Dashboard。\n\n空气突然安静了。\n\n数据不会赢得所有讨论。\n\n但它通常会结束讨论。',
+    punchlineLongEN: 'In Grafana we trust.\n\nEveryone else brings slides.',
+    punchlineLongCN: '别人带 PPT。\n\n你带 Dashboard。'
   },
 
   TRIO: {
@@ -259,7 +470,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你召唤的对齐会议可能让大家觉得"又要开会了"。',
     punchlineEN: 'You see silos before they become crises.',
     punchlineCN: '你能在问题变成危机之前看到部门墙。',
-    color: getKeycapColor('TRIO')
+    meetingBehaviorEN: 'Spends first ten minutes:\n\n"Let\'s make sure we all mean the same thing."',
+    meetingBehaviorCN: '开场十分钟：\n\n"我们先确认一下，说的是不是同一件事。"',
+    mostLikelyToSayEN: '"Are we talking about the same thing?"',
+    mostLikelyToSayCN: '"我们说的是同一件事吗？"',
+    color: getKeycapColor('TRIO'),
+    colorGroup: RESULT_COLOR_MAPPING.TRIO,
+    // Long-form content
+    mottoLongCN: '真正的对齐，\n\n不是一场会议。\n\n而是一种工作方式。',
+    signalLongEN: 'You notice misalignment long before it becomes conflict.\n\nUX thinks one thing.\n\nPM assumes another.\n\nEngineering optimises something else.\n\nCustomers expect something entirely different.\n\nMost people see four teams.\n\nYou see four versions of reality.\n\nYour talent isn\'t making everyone agree.\n\nIt\'s helping everyone understand each other first.',
+    signalLongCN: '你总能比别人更早发现：\n\n大家说的是同一个词，\n\n但脑子里想的却不是同一件事。\n\nUX 理解的是体验。\n\nPM 理解的是需求。\n\n工程师理解的是实现。\n\n客户理解的是结果。\n\n别人看到的是四个团队。\n\n你看到的是四种现实。\n\n你的能力，\n\n不是让所有人意见一致。\n\n而是让所有人终于开始说同一种语言。',
+    pulseLongEN: 'You instinctively translate.\n\nBusiness into engineering.\n\nEngineering into design.\n\nDesign into customer language.\n\nCustomer feedback into product priorities.\n\nSometimes you feel less like a product person...\n\n...and more like a simultaneous interpreter.',
+    pulseLongCN: '你每天都在做一件事情。\n\n翻译。\n\n把业务翻译给工程师。\n\n把技术翻译给设计师。\n\n把设计翻译给客户。\n\n再把客户翻译回产品。\n\n很多时候，\n\n你觉得自己不像 PM。\n\n更像一名同声传译。',
+    riskLongEN: 'Your calendar has an impressive collection of meetings.\n\nIronically,\n\nmany of them exist to reduce future meetings.\n\nIt\'s a trade most teams eventually appreciate.',
+    riskLongCN: '你的日历，\n\n几乎没有空白。\n\n最有意思的是，\n\n很多会议的目的，\n\n都是为了以后少开会。\n\n虽然大家嘴上都会说：\n\n"怎么又开会。"\n\n但真正合作顺畅的时候，\n\n没人会怀念那些误解。',
+    punchlineLongEN: 'You don\'t build bridges.\n\nYou prevent islands.',
+    punchlineLongCN: '你不是在搭桥。\n\n你是在阻止大家，\n\n变成一座座孤岛。'
   },
 
   FIRE: {
@@ -276,7 +502,22 @@ export const RESULTS: Record<string, ResultType> = {
     riskCN: '你的"救火优先"策略可能让团队觉得 process 不重要。',
     punchlineEN: 'You put out fires while others schedule root cause analysis meetings.',
     punchlineCN: '你在救火，别人在约 root cause analysis 会议。',
-    color: getKeycapColor('FIRE')
+    meetingBehaviorEN: 'Incident happens.\n\nBecomingly remarkably calm.\n\n"Who\'s affected? What\'s the fix?"',
+    meetingBehaviorCN: '事故发生。\n\n反而特别冷静。\n\n"谁受影响？怎么恢复？"',
+    mostLikelyToSayEN: '"Recover first. Root cause later."',
+    mostLikelyToSayCN: '"先恢复。原因晚点查。"',
+    color: getKeycapColor('FIRE'),
+    colorGroup: RESULT_COLOR_MAPPING.FIRE,
+    // Long-form content
+    mottoLongCN: '客户未必记得是谁点着了火。\n\n但一定记得，\n\n是谁第一时间赶到了现场。',
+    signalLongEN: 'When an escalation happens, you become remarkably calm.\n\nWhile everyone else debates ownership, process, or root cause, you\'re already asking,\n\n"Who\'s affected?"\n\n"What\'s the fastest safe mitigation?"\n\n"What do we tell the customer?"\n\nYou know there will be time for postmortems.\n\nRight now, people need help.',
+    signalLongCN: '每当线上出现升级事故，\n\n你反而会变得特别冷静。\n\n别人还在讨论：\n\n谁的问题？\n\n哪个团队负责？\n\n为什么会这样？\n\n你已经开始安排：\n\n先止血。\n\n先恢复。\n\n先通知客户。\n\nRoot Cause 可以晚一点。\n\n客户不能。',
+    pulseLongEN: 'You naturally separate every incident into two timelines.\n\nTimeline one:\n\nStop the bleeding.\n\nTimeline two:\n\nMake sure it never happens again.\n\nYou know confusing the two usually means achieving neither.',
+    pulseLongCN: '你的脑子里，\n\n每次事故都会自动分成两条时间线。\n\n第一条：\n\n先恢复服务。\n\n第二条：\n\n再彻底解决。\n\n你知道，\n\n如果两件事情同时做，\n\n最后往往两件都做不好。',
+    riskLongEN: 'You occasionally become so focused on helping customers that someone has to remind you to eat, sleep, or finally close your laptop.\n\nHeroes burn out too.\n\nEven reliable people need recovery time.',
+    riskLongCN: '客户恢复以后，\n\n大家都下班了。\n\n你还在整理 Timeline。\n\n复盘。\n\n补监控。\n\n补文档。\n\n补流程。\n\n团队有时候会提醒你：\n\n"先回家吧。"\n\n因为救火队长，\n\n也需要休息。',
+    punchlineLongEN: 'You stop the fire.\n\nThen you ask why there was gasoline.',
+    punchlineLongCN: '你先灭火。\n\n再查，\n\n是谁把汽油放在那里的。'
   }
 }
 

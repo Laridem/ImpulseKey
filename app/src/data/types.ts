@@ -63,6 +63,22 @@ export interface ResultType {
   punchlineEN: string
   punchlineCN: string
   color: string
+  colorGroup: ColorGroup
+  // Long-form content for detail pages
+  mottoLongCN?: string
+  signalLongEN?: string
+  signalLongCN?: string
+  pulseLongEN?: string
+  pulseLongCN?: string
+  riskLongEN?: string
+  riskLongCN?: string
+  punchlineLongEN?: string
+  punchlineLongCN?: string
+  // V2 Framework - New fields
+  meetingBehaviorEN?: string
+  meetingBehaviorCN?: string
+  mostLikelyToSayEN?: string
+  mostLikelyToSayCN?: string
 }
 
 // User's answer
@@ -95,4 +111,17 @@ export interface DimensionScores {
   Align: number
   Spark: number
   Stabilize: number
+}
+
+// Color groups for 4-color personality system
+export type ColorGroup = 'magenta' | 'yellow' | 'cyan' | 'purple'
+
+export interface ColorGroupInfo {
+  key: ColorGroup
+  nameEN: string
+  nameCN: string
+  color: string
+  descriptionEN: string
+  descriptionCN: string
+  dimensionTraits: string
 }
