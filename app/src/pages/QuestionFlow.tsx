@@ -51,26 +51,28 @@ export const QuestionFlow = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
-      <main className="flex-1 py-12 px-4">
-        <div className="max-w-4xl mx-auto">
+      <main className="flex-1 py-8 sm:py-16 md:py-24 px-4 sm:px-8 md:px-16">
+        <div className="max-w-[1280px] mx-auto">
           {/* Survey Module Badge */}
-          <div className="mb-8 flex justify-between items-center">
-            <span className="inline-block px-4 py-2 bg-orange-500 text-white text-sm font-medium rounded">
-              {t('question.surveyModule')}
-            </span>
-            <span className="text-sm text-gray-600">
-              ║ {currentQuestionIndex + 1} / {questions.length} ║
+          <div className="mb-12 flex justify-between items-center">
+            <div className="inline-block px-3 py-1 bg-[#f7e3ef] border border-[#a800aa] rounded-sm">
+              <span className="font-jetbrains-mono font-medium text-[12px] leading-[18px] text-[#a800aa] uppercase">
+                {t('question.surveyModule')}
+              </span>
+            </div>
+            <span className="font-jetbrains-mono font-medium text-[12px] leading-[18px] text-[#a800aa] uppercase tracking-normal">
+              {currentQuestionIndex + 1} / {questions.length}
             </span>
           </div>
 
           {/* Question Card */}
-          <div className="bg-white paper-texture rounded-lg shadow-sm p-8 mb-8">
+          <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded-lg p-10 mb-10 shadow-soft">
             {/* Question Text */}
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <div className="mb-10 border-l-4 border-[#a800aa] pl-8">
+              <h2 className="font-space-grotesk font-bold text-[32px] leading-[40px] tracking-tight text-[#231821]">
                 {language === 'zh'
                   ? (currentQuestion.text?.zh || currentQuestion.textCN)
                   : (currentQuestion.text?.en || currentQuestion.textEN)}
@@ -87,14 +89,12 @@ export const QuestionFlow = () => {
                     onClick={() => handleOptionClick(option.id)}
                     className={`w-full p-6 text-left border-2 rounded-lg transition-all duration-200
                       ${isSelected
-                        ? 'border-orange-500 bg-orange-50 shadow-md'
-                        : 'border-gray-200 hover:border-orange-400 hover:bg-orange-25'
+                        ? 'border-[#a800aa] bg-[#a800aa] text-white shadow-soft'
+                        : 'border-[#d8bfd1] hover:border-[#a800aa] bg-white'
                       }
-                      active:scale-[0.98] active:shadow-inner
-                      hover:shadow-md
                     `}
                   >
-                    <p className={`${isSelected ? 'text-gray-900 font-medium' : 'text-gray-900'}`}>
+                    <p className={`font-72-brand text-body-lg leading-[29.25px] ${isSelected ? 'font-bold' : 'font-normal'} ${isSelected ? 'text-white' : 'text-[#534150]'}`}>
                       {language === 'zh'
                         ? (option.text?.zh || option.textCN)
                         : (option.text?.en || option.textEN)}
@@ -106,11 +106,11 @@ export const QuestionFlow = () => {
           </div>
 
           {/* Navigation Buttons */}
-          <div className="flex gap-4">
+          <div className="flex gap-4 mb-8">
             <button
               onClick={handlePrevious}
               disabled={currentQuestionIndex === 0}
-              className="flex-1 px-6 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="flex-1 px-10 py-5 bg-[#f7e3ef] text-[#231821] font-72-brand text-body-lg border border-[#867181] rounded-lg hover:border-[#a800aa] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               <span>←</span>
               {t('question.previousStep')}
@@ -119,7 +119,7 @@ export const QuestionFlow = () => {
             {canSubmit && (
               <button
                 onClick={handleSubmit}
-                className="flex-1 px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium flex items-center justify-center gap-2"
+                className="flex-1 px-10 py-5 bg-[#a800aa] text-white font-72-brand text-body-lg rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all flex items-center justify-center gap-2"
               >
                 {t('question.submitTest')}
                 <span>✓</span>
@@ -128,21 +128,21 @@ export const QuestionFlow = () => {
           </div>
 
           {/* Help Text */}
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
-              <span>ℹ️</span>
-              {t('question.helpText')}
-            </p>
+          <div className="mb-8 text-center">
+            <div className="inline-flex items-center gap-2 bg-[#f7e3ef] border border-[#d8bfd1] rounded-lg px-6 py-3">
+              <span className="text-[#5d38e3]">ℹ️</span>
+              <p className="font-72-brand text-body-sm text-[#534150]">
+                {t('question.helpText')}
+              </p>
+            </div>
           </div>
 
           {/* Progress Bar at Bottom */}
-          <div className="mt-8">
-            <div className="w-full bg-gray-200 rounded-full h-1">
-              <div
-                className="bg-orange-500 h-1 rounded-full transition-all duration-300"
-                style={{ width: `${progress}%` }}
-              ></div>
-            </div>
+          <div className="w-full bg-[#d8bfd1] h-2 rounded-full overflow-hidden">
+            <div
+              className="bg-gradient-to-r from-[#a800aa] to-[#f65af2] h-full transition-all duration-300 rounded-full"
+              style={{ width: `${progress}%` }}
+            ></div>
           </div>
         </div>
       </main>

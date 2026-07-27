@@ -2,38 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Subtle paper texture for white backgrounds */
+/* Custom text shadow utility */
 @layer utilities {
-  .paper-texture {
-    background-color: #ffffff;
-    background-image:
-      radial-gradient(circle at 20% 50%, rgba(0,0,0,0.015) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(0,0,0,0.015) 0%, transparent 50%),
-      radial-gradient(circle at 40% 20%, rgba(0,0,0,0.01) 0%, transparent 50%);
-    background-size: 600px 600px, 800px 800px, 500px 500px;
-    background-position: 0 0, 40px 60px, 130px 270px;
+  .text-shadow-kinetic {
+    text-shadow: 5px 5px 0px #00f5e1, 0px 4px 4px #f65af2;
+  }
+
+  .text-shadow-kinetic-sm {
+    text-shadow: 2px 2px 0px #00f5e1, 0px 2px 2px #f65af2;
+  }
+
+  /* Responsive text shadow - hide on mobile for better readability */
+  @media (max-width: 640px) {
+    .text-shadow-kinetic {
+      text-shadow: 1px 1px 0px #00f5e1, 0px 1px 1px #f65af2;
+    }
   }
 }
 
-/* Global smooth transitions */
+/* Soft shadows for Figma design */
+@layer utilities {
+  .shadow-soft {
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px -4px rgba(0,0,0,0.1);
+  }
+
+  .shadow-soft-lg {
+    box-shadow: 0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1);
+  }
+}
+
+/* Global rounded corners and refined aesthetic */
 @layer base {
   * {
     @apply transition-colors duration-200;
   }
 
-  /* Page transitions */
   body {
     @apply antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background-color: #fff7f9;
+    color: #231821;
   }
 }
 
-/* Custom animations */
+/* Custom animations - updated for soft aesthetic */
 @layer utilities {
-  /* Fade in animation */
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(8px);
     }
     to {
       opacity: 1;
@@ -42,28 +59,26 @@
   }
 
   .animate-fadeIn {
-    animation: fadeIn 0.4s ease-out forwards;
+    animation: fadeIn 0.3s ease-out forwards;
   }
 
-  /* Pulse animation for loading */
-  @keyframes gentlePulse {
+  @keyframes softPulse {
     0%, 100% {
       opacity: 1;
     }
     50% {
-      opacity: 0.7;
+      opacity: 0.8;
     }
   }
 
-  .animate-gentlePulse {
-    animation: gentlePulse 2s ease-in-out infinite;
+  .animate-softPulse {
+    animation: softPulse 2s ease-in-out infinite;
   }
 
-  /* Slide up animation */
   @keyframes slideUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(12px);
     }
     to {
       opacity: 1;
@@ -72,27 +87,6 @@
   }
 
   .animate-slideUp {
-    animation: slideUp 0.5s ease-out forwards;
-  }
-
-  /* Shimmer effect for loading states */
-  @keyframes shimmer {
-    0% {
-      background-position: -1000px 0;
-    }
-    100% {
-      background-position: 1000px 0;
-    }
-  }
-
-  .animate-shimmer {
-    animation: shimmer 2s infinite;
-    background: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(255, 255, 255, 0.3) 50%,
-      transparent 100%
-    );
-    background-size: 1000px 100%;
+    animation: slideUp 0.4s ease-out forwards;
   }
 }

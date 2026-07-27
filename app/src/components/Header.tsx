@@ -14,20 +14,26 @@ export const Header = () => {
   };
 
   return (
-    <header className="bg-white paper-texture border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
+    <header className="bg-white border-b border-[#d8bfd1]">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-2xl font-bold cursor-pointer" onClick={() => navigate('/')}>
-          <span className="text-orange-500">{t('common.designHub').split('.')[0]}</span>
-          <span className="text-gray-800">.{t('common.designHub').split('.')[1]}</span>
+        <div className="flex items-center gap-2 sm:gap-4 cursor-pointer" onClick={() => navigate('/')}>
+          <span className="font-space-grotesk font-bold text-[18px] sm:text-headline-md text-[#a800aa] tracking-tight">
+            IMPULSE KEYS
+          </span>
+          <img
+            src="/assets/anvils.png"
+            alt="Anvils"
+            className="w-[40px] sm:w-[59.2px] h-[22px] sm:h-8 object-contain"
+          />
         </div>
 
         {/* Right side: Language Switcher + Retake Test */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <LanguageSwitcher />
           <button
             onClick={handleRetake}
-            className="px-6 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium"
+            className="px-3 sm:px-6 py-2 bg-[#a800aa] text-white font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] uppercase rounded-full hover:bg-[#800082] transition-colors"
           >
             {t('common.retakeTest')}
           </button>

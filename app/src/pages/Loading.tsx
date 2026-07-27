@@ -38,7 +38,7 @@ const resultSpecificSteps: Record<string, { zh: string[]; en: string[] }> = {
 
 export const Loading = () => {
   const navigate = useNavigate();
-  const { resultKey } = useTest();
+  const { resultKey, resetTest } = useTest();
   const t = useTranslation();
   const { language } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
@@ -124,86 +124,131 @@ export const Loading = () => {
   }, [resultKey, navigate]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex flex-col items-center justify-center px-4 relative overflow-hidden">
-      {/* Top Left Corner Text */}
-      <div className="absolute top-8 left-8 text-orange-500 text-sm font-medium tracking-wider">
-        {t('loading.impulse')}
-      </div>
+    <div className="min-h-screen bg-[#231821] flex flex-col relative overflow-hidden">
+      {/* Header with Shell Bar - matching other pages */}
+      <header className="bg-[#231821] border-b border-[#534150]">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center gap-4">
+            <span className="font-space-grotesk font-bold text-headline-md text-[#a800aa] tracking-tight">
+              IMPULSE KEYS
+            </span>
+            <img
+              src="/assets/anvils.png"
+              alt="Anvils"
+              className="w-[59.2px] h-8 object-contain"
+            />
+          </div>
 
-      {/* Main Content */}
-      <div className="max-w-2xl w-full">
+          {/* Right side: Retake Test Button */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => {
+                resetTest();
+                navigate('/');
+              }}
+              className="px-6 py-2 bg-[#a800aa] text-white font-jetbrains-mono font-medium text-[12px] leading-[18px] uppercase rounded-full hover:bg-[#800082] transition-colors"
+            >
+              {t('common.retakeTest')}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content - centered with proper spacing */}
+      <div className="flex-1 flex items-center justify-center px-4 py-16">
+        <div className="max-w-2xl w-full">
         {/* Center Frame with Key */}
-        <div className="relative mb-12">
-          {/* Corner Brackets */}
-          <div className="relative w-80 h-80 mx-auto">
-            {/* Top Left Corner */}
-            <div className="absolute top-0 left-0 w-12 h-12">
-              <div className="absolute top-0 left-0 w-full h-0.5 bg-orange-500"></div>
-              <div className="absolute top-0 left-0 w-0.5 h-full bg-orange-500"></div>
+        <div className="relative mb-16">
+          {/* Corner Brackets with Kinetic Colors */}
+          <div className="relative w-96 h-96 mx-auto">
+            {/* Top Left Corner - Teal */}
+            <div className="absolute -top-4 -left-4 w-16 h-16">
+              <div className="absolute top-0 left-0 w-full h-1 bg-[#00b098]"></div>
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#00b098]"></div>
             </div>
-            {/* Top Right Corner */}
-            <div className="absolute top-0 right-0 w-12 h-12">
-              <div className="absolute top-0 right-0 w-full h-0.5 bg-orange-500"></div>
-              <div className="absolute top-0 right-0 w-0.5 h-full bg-orange-500"></div>
+            {/* Top Right Corner - Magenta */}
+            <div className="absolute -top-4 -right-4 w-16 h-16">
+              <div className="absolute top-0 right-0 w-full h-1 bg-[#f65af2]"></div>
+              <div className="absolute top-0 right-0 w-1 h-full bg-[#f65af2]"></div>
             </div>
-            {/* Bottom Left Corner */}
-            <div className="absolute bottom-0 left-0 w-12 h-12">
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-500"></div>
-              <div className="absolute bottom-0 left-0 w-0.5 h-full bg-orange-500"></div>
+            {/* Bottom Left Corner - Teal */}
+            <div className="absolute -bottom-4 -left-4 w-16 h-16">
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00b098]"></div>
+              <div className="absolute bottom-0 left-0 w-1 h-full bg-[#00b098]"></div>
             </div>
-            {/* Bottom Right Corner */}
-            <div className="absolute bottom-0 right-0 w-12 h-12">
-              <div className="absolute bottom-0 right-0 w-full h-0.5 bg-orange-500"></div>
-              <div className="absolute bottom-0 right-0 w-0.5 h-full bg-orange-500"></div>
+            {/* Bottom Right Corner - Magenta */}
+            <div className="absolute -bottom-4 -right-4 w-16 h-16">
+              <div className="absolute bottom-0 right-0 w-full h-1 bg-[#f65af2]"></div>
+              <div className="absolute bottom-0 right-0 w-1 h-full bg-[#f65af2]"></div>
             </div>
 
-            {/* Center Key with Glow */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* Main Frame Container */}
+            <div className="absolute inset-0 bg-[#2d2028] border-2 border-[#a800aa] rounded-lg shadow-soft-lg flex items-center justify-center">
+              {/* Center Key with Glow */}
               <div className="relative">
-                {/* Glow Effect */}
-                <div className="absolute inset-0 blur-3xl bg-orange-500 opacity-30 animate-pulse"></div>
+                {/* Cyan + Magenta Glow Effect */}
+                <div className="absolute inset-0 blur-3xl bg-gradient-to-br from-[#00f5e1] to-[#f65af2] opacity-40 animate-pulse"></div>
 
-                {/* Key Icon - Using Impulse Key Visual */}
-                <div className="relative z-10 w-32 h-32 animate-pulse">
+                {/* Key Icon */}
+                <div className="relative z-10 w-40 h-40">
                   <img
-                    src="/impulse-key-visual.svg"
+                    src="/assets/impulse-key-visual.png"
                     alt="Key"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain animate-pulse"
                   />
                 </div>
-
-                {/* Horizontal Line through Key */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-y-1/2 w-64 h-0.5 bg-orange-500 -translate-x-1/2"></div>
               </div>
-            </div>
 
-            {/* Progress Bar at Bottom of Frame */}
-            <div className="absolute bottom-12 left-12 right-12">
-              <div className="w-full h-1 bg-gray-700 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-orange-500 transition-all duration-300 ease-linear"
-                  style={{ width: `${progress}%` }}
-                ></div>
+              {/* System Analysis Label */}
+              <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2">
+                <p className="font-jetbrains-mono font-medium text-[12px] leading-[18px] text-[#00f5e1] uppercase text-center">
+                  SYSTEM ANALYSIS IN PROGRESS
+                </p>
+              </div>
+
+              {/* Analyzing Text with Progress */}
+              <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center">
+                <p className="font-space-grotesk font-bold text-[18px] text-white">
+                  ANALYZING... {Math.round(progress)}%
+                </p>
+              </div>
+
+              {/* Progress Bar at Bottom of Frame */}
+              <div className="absolute bottom-8 left-8 right-8">
+                <div className="w-full h-2 bg-[#534150] rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-[#a800aa] to-[#f65af2] transition-all duration-300 ease-linear rounded-full"
+                    style={{ width: `${progress}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* Impulse 26 Logo Badge */}
+              <div className="absolute bottom-4 right-6">
+                <p className="font-jetbrains-mono font-medium text-[10px] text-[#00f5e1] uppercase">
+                  IMPULSE 26
+                </p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Protocol Label */}
-        <div className="text-center mb-4">
-          <span className="text-orange-500 text-sm font-medium tracking-wider">
+        <div className="text-center mb-6">
+          <span className="font-jetbrains-mono font-medium text-[12px] leading-[18px] text-[#00f5e1] uppercase tracking-normal">
             {t('loading.protocol')}
           </span>
         </div>
 
         {/* Main Title */}
-        <h1 className="text-3xl font-bold text-white text-center mb-8">
+        <h1 className="font-space-grotesk font-bold text-[32px] leading-[40px] tracking-tight text-white text-center mb-12">
           {t('loading.title')}
         </h1>
 
         {/* Loading Steps Box */}
-        <div className="bg-gray-800 bg-opacity-50 rounded-lg p-6 backdrop-blur-sm border border-gray-700 mb-8">
-          <div className="space-y-3">
+        <div className="bg-[#2d2028] bg-opacity-80 rounded-lg p-8 backdrop-blur-sm border border-[#534150] mb-12">
+          <div className="space-y-4">
             {loadingSteps.map((step, index) => (
               <div
                 key={index}
@@ -212,13 +257,13 @@ export const Loading = () => {
                 }`}
               >
                 {index < currentStep ? (
-                  <span className="text-orange-500 text-sm flex-shrink-0 mt-0.5">✓</span>
+                  <span className="text-[#00b098] text-sm flex-shrink-0 mt-0.5 font-bold">✓</span>
                 ) : index === currentStep ? (
-                  <div className="w-4 h-4 border-2 border-orange-500 border-t-transparent rounded-full animate-spin flex-shrink-0 mt-0.5"></div>
+                  <div className="w-4 h-4 border-2 border-[#f65af2] border-t-transparent rounded-full animate-spin flex-shrink-0 mt-0.5"></div>
                 ) : (
-                  <span className="text-gray-600 text-sm flex-shrink-0 mt-0.5">○</span>
+                  <span className="text-[#534150] text-sm flex-shrink-0 mt-0.5">○</span>
                 )}
-                <span className={`text-sm ${index <= currentStep ? 'text-gray-300' : 'text-gray-600'}`}>
+                <span className={`font-72-brand text-body-sm ${index <= currentStep ? 'text-white' : 'text-[#534150]'}`}>
                   {step}
                 </span>
               </div>
@@ -227,19 +272,32 @@ export const Loading = () => {
         </div>
 
         {/* Bottom Status Bar */}
-        <div className="grid grid-cols-3 gap-4 text-center">
+        <div className="grid grid-cols-3 gap-6 text-center">
           <div>
-            <div className="text-xs text-gray-500 mb-1">{t('loading.status.encryption')}</div>
-            <div className="text-white font-medium">{t('loading.status.encryptionValue')}</div>
+            <div className="font-jetbrains-mono text-[10px] text-[#867181] mb-2 uppercase tracking-normal">
+              {t('loading.status.encryption')}
+            </div>
+            <div className="font-72-brand text-body-sm text-white font-medium">
+              {t('loading.status.encryptionValue')}
+            </div>
           </div>
           <div>
-            <div className="text-xs text-gray-500 mb-1">{t('loading.status.status')}</div>
-            <div className="text-orange-500 font-medium">{t('loading.status.statusValue')}</div>
+            <div className="font-jetbrains-mono text-[10px] text-[#867181] mb-2 uppercase tracking-normal">
+              {t('loading.status.status')}
+            </div>
+            <div className="font-72-brand text-body-sm text-[#f65af2] font-bold">
+              {t('loading.status.statusValue')}
+            </div>
           </div>
           <div>
-            <div className="text-xs text-gray-500 mb-1">{t('loading.status.version')}</div>
-            <div className="text-white font-medium">{t('loading.status.versionValue')}</div>
+            <div className="font-jetbrains-mono text-[10px] text-[#867181] mb-2 uppercase tracking-normal">
+              {t('loading.status.version')}
+            </div>
+            <div className="font-72-brand text-body-sm text-white font-medium">
+              {t('loading.status.versionValue')}
+            </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
