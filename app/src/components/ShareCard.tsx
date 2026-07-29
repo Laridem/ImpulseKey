@@ -25,10 +25,27 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
     const colorGroup = getColorGroupForResult(result.key);
     const impulseColor = colorGroup.color;
 
+    // Get glitch shadow colors (other 3 Impulse colors)
+    const getGlitchColors = (currentColor: string) => {
+      const impulseColors = ['#A100C2', '#FFC933', '#64EDD2', '#7858FF'];
+      return impulseColors.filter(c => c !== currentColor);
+    };
+
+    const glitchColors = getGlitchColors(impulseColor);
+
     return (
       <div
         ref={ref}
         className="relative w-[1080px] h-[1920px] bg-white overflow-hidden flex flex-col"
+        style={{
+          boxShadow: `
+            0px 0px 40px 0px ${glitchColors[0]}60,
+            0px 0px 80px 0px ${glitchColors[1]}40,
+            0px 0px 120px 0px ${glitchColors[2]}30,
+            -20px -20px 60px 0px ${impulseColor}40,
+            20px 20px 60px 0px ${impulseColor}40
+          `
+        }}
       >
         {/* Top: Key Abbreviation */}
         <div className="pt-24 pb-16 flex justify-center">
@@ -80,18 +97,18 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         </div>
 
         {/* Bottom: Motto */}
-        <div className="flex-1 px-24 pb-12 flex items-start justify-center">
+        <div className="flex-1 px-24 pb-8 flex items-start justify-center">
           <p className="font-72-brand text-[40px] leading-[56px] text-[#534150] text-center">
             {motto}
           </p>
         </div>
 
-        {/* Logo at Bottom */}
-        <div className="pb-16 flex justify-center">
+        {/* Logo at Bottom - 2x size, 16px from bottom */}
+        <div className="pb-4 flex justify-center" style={{ paddingBottom: '16px' }}>
           <img
             src="/assets/anvils.png"
             alt="Anvils"
-            className="h-12 w-auto opacity-60"
+            className="h-24 w-auto opacity-60"
           />
         </div>
       </div>
