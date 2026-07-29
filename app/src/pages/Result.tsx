@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toPng } from 'html-to-image';
+import confetti from 'canvas-confetti';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -257,11 +258,52 @@ export const Result = () => {
               </div>
             </div>
 
-            {/* Congratulations Card - Enhanced with animations */}
+            {/* Congratulations Card - Enhanced with animations and confetti */}
             <div
               className="bg-gradient-to-br from-white via-[#fef5fb] to-white border-2 border-[#a800aa] rounded drop-shadow-[0px_4px_12px_rgba(168,0,170,0.2)] p-[33px] flex flex-col gap-6 transition-all duration-300 hover:drop-shadow-[0px_8px_20px_rgba(168,0,170,0.4)] hover:scale-[1.02] animate-pulse-subtle"
               style={{
                 animation: 'pulse-glow 3s ease-in-out infinite'
+              }}
+              onMouseEnter={() => {
+                // Trigger confetti effect
+                const duration = 2000;
+                const animationEnd = Date.now() + duration;
+
+                const randomInRange = (min: number, max: number) => {
+                  return Math.random() * (max - min) + min;
+                };
+
+                const interval = setInterval(() => {
+                  const timeLeft = animationEnd - Date.now();
+
+                  if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                  }
+
+                  const particleCount = 3;
+
+                  confetti({
+                    particleCount,
+                    startVelocity: 30,
+                    spread: 360,
+                    origin: {
+                      x: randomInRange(0.1, 0.3),
+                      y: Math.random() - 0.2
+                    },
+                    colors: ['#A100C2', '#FFC933', '#64EDD2', '#7858FF', '#f65af2']
+                  });
+
+                  confetti({
+                    particleCount,
+                    startVelocity: 30,
+                    spread: 360,
+                    origin: {
+                      x: randomInRange(0.7, 0.9),
+                      y: Math.random() - 0.2
+                    },
+                    colors: ['#A100C2', '#FFC933', '#64EDD2', '#7858FF', '#f65af2']
+                  });
+                }, 250);
               }}
             >
               {/* Title */}

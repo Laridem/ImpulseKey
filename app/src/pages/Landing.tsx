@@ -33,33 +33,33 @@ export const Landing = () => {
             </div>
 
             {/* Main Title with Text Shadow */}
-            <h1 className="font-space-grotesk font-bold text-[40px] sm:text-[56px] md:text-[80px] leading-[1.1] sm:leading-[1.1] md:leading-[80px] tracking-[-1.6px] sm:tracking-[-2.4px] md:tracking-[-3.2px] text-[#231821] text-shadow-kinetic">
+            <h1 className="font-space-grotesk font-bold text-[32px] sm:text-[56px] md:text-[80px] leading-[1.1] tracking-[-1.6px] sm:tracking-[-2.4px] md:tracking-[-3.2px] text-[#231821] text-shadow-kinetic">
               Impulse26.Key
             </h1>
 
             {/* Subtitle */}
-            <h2 className="font-72-brand text-[24px] sm:text-[32px] md:text-display-lg text-[#5d38e3] leading-[1.2]">
+            <h2 className="font-72-brand text-[18px] sm:text-[32px] md:text-display-lg text-[#5d38e3] leading-[1.3]">
               {t('landing.subtitle')}
             </h2>
 
             {/* Description */}
             <div className="max-w-full lg:max-w-[576px]">
-              <p className="font-72-brand text-[16px] sm:text-body-lg text-[#534150] leading-[1.6] sm:leading-[29.25px]">
+              <p className="font-72-brand text-[14px] sm:text-body-lg text-[#534150] leading-[1.6]">
                 {t('landing.description1')}
               </p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 pt-2 sm:pt-4">
               <button
                 onClick={handleStartTest}
-                className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-[#a800aa] text-white font-72-brand text-[16px] sm:text-body-lg rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all"
+                className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 bg-[#a800aa] text-white font-72-brand text-[14px] sm:text-body-lg rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all"
               >
                 {t('landing.startButton')}
               </button>
               <button
                 onClick={() => navigate('/intro')}
-                className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-[#f7e3ef] text-[#231821] font-72-brand text-[16px] sm:text-body-lg border border-[#867181] rounded-lg hover:border-[#a800aa] transition-all"
+                className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 bg-[#f7e3ef] text-[#231821] font-72-brand text-[14px] sm:text-body-lg border border-[#867181] rounded-lg hover:border-[#a800aa] transition-all"
               >
                 {t('landing.howToPlayButton')}
               </button>
