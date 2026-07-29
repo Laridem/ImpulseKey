@@ -257,29 +257,34 @@ export const Result = () => {
               </div>
             </div>
 
-            {/* Congratulations Card */}
-            <div className="bg-white border border-[#d8bfd1] rounded drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)] p-[33px] flex flex-col gap-6">
+            {/* Congratulations Card - Enhanced with animations */}
+            <div
+              className="bg-gradient-to-br from-white via-[#fef5fb] to-white border-2 border-[#a800aa] rounded drop-shadow-[0px_4px_12px_rgba(168,0,170,0.2)] p-[33px] flex flex-col gap-6 transition-all duration-300 hover:drop-shadow-[0px_8px_20px_rgba(168,0,170,0.4)] hover:scale-[1.02] animate-pulse-subtle"
+              style={{
+                animation: 'pulse-glow 3s ease-in-out infinite'
+              }}
+            >
               {/* Title */}
               <div className="flex flex-col items-center gap-3">
                 <h2 className="font-space-grotesk font-normal text-[30px] leading-[36px] tracking-[-0.75px] text-center">
-                  <span className="font-space-grotesk font-normal">🎁 </span>
-                  <span className="text-[#a800aa]">Congratulations!</span>
+                  <span className="font-space-grotesk font-normal text-[36px]">🎁 </span>
+                  <span className="text-[#a800aa] font-bold">Congratulations!</span>
                 </h2>
                 <p className="font-space-grotesk font-normal text-[18px] leading-[28px] text-[#534150] text-center pt-4">
                   You win a reward from Impulse26!<br />
-                  <span className="font-bold">Claim Reward</span> at Impulse26 Networking Party
+                  <span className="font-bold text-[#a800aa]">Claim Reward</span> at Impulse26 Networking Party
                 </p>
               </div>
 
               {/* Information Box */}
               <div className="pt-2">
-                <div className="bg-[#fbe3f4] border border-[rgba(216,191,209,0.3)] rounded p-[9px] flex flex-col gap-4">
+                <div className="bg-gradient-to-br from-[#fbe3f4] to-[#f8d5f0] border-2 border-[#d8bfd1] rounded p-[9px] flex flex-col gap-4 shadow-inner">
                   {/* Where */}
                   <div className="flex flex-col gap-2.5">
                     <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
                       Where?
                     </p>
-                    <p className="font-jetbrains-mono font-medium text-[14px] leading-[20px] text-[#a800aa]">
+                    <p className="font-jetbrains-mono font-bold text-[14px] leading-[20px] text-[#a800aa]">
                       Pvg03 C1.1, Digital School
                     </p>
                   </div>
@@ -289,7 +294,7 @@ export const Result = () => {
                     <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
                       When
                     </p>
-                    <p className="font-jetbrains-mono font-medium text-[14px] leading-[20px] text-[#a800aa]">
+                    <p className="font-jetbrains-mono font-bold text-[14px] leading-[20px] text-[#a800aa]">
                       15:05, September 3rd, 2026
                     </p>
                   </div>
@@ -299,7 +304,7 @@ export const Result = () => {
                     <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
                       How
                     </p>
-                    <p className="font-jetbrains-mono font-medium text-[14px] leading-[20px] text-[#a800aa]">
+                    <p className="font-jetbrains-mono font-bold text-[14px] leading-[20px] text-[#a800aa]">
                       Show your screenshot of this result to Staffs
                     </p>
                   </div>
@@ -312,8 +317,24 @@ export const Result = () => {
           <div className="col-span-8 flex flex-col gap-12">
             {/* Dimensions Section */}
             <div
-              className="rounded drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)] p-[33px] flex flex-col gap-8"
-              style={{ backgroundColor: cardBg, borderColor: cardBorder, borderWidth: '1px', borderStyle: 'solid' }}
+              className="rounded drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)] p-[33px] flex flex-col gap-8 transition-all duration-300 hover:drop-shadow-[0px_4px_8px_rgba(0,0,0,0.1)]"
+              style={{
+                backgroundColor: cardBg,
+                borderColor: cardBorder,
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                transition: 'box-shadow 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `
+                  0px 0px 20px 0px ${glitchColors[0]}40,
+                  0px 0px 40px 0px ${glitchColors[1]}30,
+                  0px 0px 60px 0px ${glitchColors[2]}20
+                `;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '';
+              }}
             >
               <div className="flex gap-2 items-center">
                 <img src="/assets/icons/Dimension.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
@@ -333,9 +354,9 @@ export const Result = () => {
                       SOLUTION
                     </span>
                   </div>
-                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative">
+                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#f65af2]"
+                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#f65af2] rounded-sm transition-all duration-300 group-hover:shadow-[0px_0px_12px_#f65af2]"
                       style={{ width: `${Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100) * 0.9825}%` }}
                     />
                   </div>
@@ -351,9 +372,9 @@ export const Result = () => {
                       MACHINE
                     </span>
                   </div>
-                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative">
+                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#00b5bd]"
+                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#00b5bd] rounded-sm transition-all duration-300 group-hover:shadow-[0px_0px_12px_#00b5bd]"
                       style={{ width: `${Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100) * 0.9825}%` }}
                     />
                   </div>
@@ -369,9 +390,9 @@ export const Result = () => {
                       ALIGN
                     </span>
                   </div>
-                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative">
+                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#8e5aff]"
+                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#8e5aff] rounded-sm transition-all duration-300 group-hover:shadow-[0px_0px_12px_#8e5aff]"
                       style={{ width: `${Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100) * 0.9825}%` }}
                     />
                   </div>
@@ -387,9 +408,9 @@ export const Result = () => {
                       STABILIZE
                     </span>
                   </div>
-                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative">
+                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#f4bf28]"
+                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#f4bf28] rounded-sm transition-all duration-300 group-hover:shadow-[0px_0px_12px_#f4bf28]"
                       style={{ width: `${Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100) * 0.9825}%` }}
                     />
                   </div>
@@ -399,8 +420,20 @@ export const Result = () => {
 
             {/* Signal Section */}
             <div
-              className="rounded p-[33px] flex flex-col gap-6"
-              style={{ backgroundColor: cardBg, borderColor: cardBorder, borderWidth: '1px', borderStyle: 'solid' }}
+              className="rounded p-[33px] flex flex-col gap-6 transition-all duration-300"
+              style={{
+                backgroundColor: cardBg,
+                borderColor: cardBorder,
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                transition: 'box-shadow 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `0px 0px 20px ${impulseColor}30, 0px 0px 40px ${impulseColor}20`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '';
+              }}
             >
               <div className="flex gap-3 items-center mb-4">
                 <img src="/assets/icons/Signal.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
@@ -417,8 +450,20 @@ export const Result = () => {
 
             {/* Pulse Section */}
             <div
-              className="rounded p-[33px] flex flex-col gap-6"
-              style={{ backgroundColor: cardBg, borderColor: cardBorder, borderWidth: '1px', borderStyle: 'solid' }}
+              className="rounded p-[33px] flex flex-col gap-6 transition-all duration-300"
+              style={{
+                backgroundColor: cardBg,
+                borderColor: cardBorder,
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                transition: 'box-shadow 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `0px 0px 20px ${impulseColor}30, 0px 0px 40px ${impulseColor}20`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '';
+              }}
             >
               <div className="flex gap-3 items-center mb-4">
                 <img src="/assets/icons/Impulse.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
@@ -451,7 +496,16 @@ export const Result = () => {
             </div>
 
             {/* Risks Section */}
-            <div className="bg-[rgba(255,218,214,0.1)] border border-[#ba1a1a] rounded p-[33px] flex flex-col gap-6">
+            <div
+              className="bg-[rgba(255,218,214,0.1)] border border-[#ba1a1a] rounded p-[33px] flex flex-col gap-6 transition-all duration-300"
+              style={{ transition: 'box-shadow 0.3s ease' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0px 0px 20px rgba(186, 26, 26, 0.3), 0px 0px 40px rgba(186, 26, 26, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '';
+              }}
+            >
               <div className="flex gap-3 items-center mb-4">
                 <img src="/assets/icons/Risk.svg" alt="" className="w-5 h-5" />
                 <h4 className="font-space-grotesk font-bold text-[24px] leading-[32px] tracking-[-0.6px] text-[#ba1a1a] uppercase">
@@ -467,9 +521,21 @@ export const Result = () => {
 
             {/* Punchline Section - Gradient Card with dynamic color */}
             <div
-              className="relative rounded shadow-[6px_6px_12px_0px_rgba(255,201,51,0.4),5px_8px_10px_0px_rgba(100,237,210,0.3)] p-12"
+              className="relative rounded shadow-[6px_6px_12px_0px_rgba(255,201,51,0.4),5px_8px_10px_0px_rgba(100,237,210,0.3)] p-12 transition-all duration-300 hover:scale-[1.02]"
               style={{
-                background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%), ${impulseColor}`
+                background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%), ${impulseColor}`,
+                transition: 'box-shadow 0.3s ease, transform 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `
+                  0px 0px 30px ${impulseColor}60,
+                  0px 0px 60px ${impulseColor}40,
+                  6px 6px 12px rgba(255,201,51,0.4),
+                  5px 8px 10px rgba(100,237,210,0.3)
+                `;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '6px 6px 12px rgba(255,201,51,0.4), 5px 8px 10px rgba(100,237,210,0.3)';
               }}
             >
               <div className="relative">
@@ -494,8 +560,20 @@ export const Result = () => {
             {/* Meeting Behavior Section */}
             {(language === 'zh' ? result.meetingBehaviorCN : result.meetingBehaviorEN) && (
               <div
-                className="rounded p-[33px] flex flex-col gap-6"
-                style={{ backgroundColor: cardBg, borderColor: cardBorder, borderWidth: '1px', borderStyle: 'solid' }}
+                className="rounded p-[33px] flex flex-col gap-6 transition-all duration-300"
+                style={{
+                  backgroundColor: cardBg,
+                  borderColor: cardBorder,
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                  transition: 'box-shadow 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `0px 0px 20px ${impulseColor}30, 0px 0px 40px ${impulseColor}20`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '';
+                }}
               >
                 <div className="flex gap-3 items-center mb-4">
                   <img src="/assets/icons/Picto_Team.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
