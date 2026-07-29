@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toPng } from 'html-to-image';
-import { useControls, Leva } from 'leva';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -104,12 +103,41 @@ export const Result = () => {
     return `rgb(${darkenedR}, ${darkenedG}, ${darkenedB})`;
   };
 
+  // Helper function to determine if we need dark text on light background
+  const getQuoteTextColor = (bgColor: string): string => {
+    // Convert hex to RGB
+    const r = parseInt(bgColor.slice(1, 3), 16);
+    const g = parseInt(bgColor.slice(3, 5), 16);
+    const b = parseInt(bgColor.slice(5, 7), 16);
+
+    // Calculate relative luminance (WCAG formula)
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+    // For quote background at 25% opacity, we need to consider the blended color
+    // If the base color is dark (luminance < 0.55), use white text
+    // Otherwise use darkened version of the color
+    if (luminance < 0.55) {
+      return '#ffffff'; // White text for dark colors
+    } else {
+      return darkenColor(bgColor, 0.3); // Darkened text for light colors
+    }
+  };
+
   // Dynamic colors based on impulse color
   const impulseColor = colorGroup.color;
   const cardBg = hexToRgba(impulseColor, 0.08);
   const cardBorder = hexToRgba(impulseColor, 0.20);
   const quoteBg = hexToRgba(impulseColor, 0.25); // Increased from 0.15 to 0.25
-  const quoteTextColor = darkenColor(impulseColor, 0.3); // Darkened text for better contrast
+  const quoteTextColor = getQuoteTextColor(impulseColor); // Smart text color based on luminance
+
+  // Get contrasting Impulse colors for neon glitch effect
+  const getGlitchColors = (currentColor: string) => {
+    const impulseColors = ['#A100C2', '#FFC933', '#64EDD2', '#7858FF'];
+    // Filter out the current color and return the other three
+    return impulseColors.filter(c => c !== currentColor);
+  };
+
+  const glitchColors = getGlitchColors(colorGroup.color);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -125,16 +153,43 @@ export const Result = () => {
               {/* Keycap with color background */}
               <div className="flex justify-center">
                 <div
-                  className="w-64 h-64 rounded border-2 shadow-[0px_4px_0px_0px_#d8bfd1,0px_8px_15px_0px_rgba(0,0,0,0.1)] p-1 flex items-center justify-center"
+                  className="w-64 h-64 rounded border-2 p-2 flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer group relative"
                   style={{
                     backgroundColor: colorGroup.color,
-                    borderColor: '#f65af2'
+                    borderColor: '#f65af2',
+                    boxShadow: `
+                      0px 4px 0px 0px #d8bfd1,
+                      0px 8px 15px 0px rgba(0,0,0,0.1),
+                      -2px -2px 8px 0px ${glitchColors[0]}40,
+                      2px 2px 8px 0px ${glitchColors[1]}40,
+                      0px 0px 12px 0px ${glitchColors[2]}30
+                    `
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `
+                      0px 6px 0px 0px #d8bfd1,
+                      0px 12px 20px 0px rgba(0,0,0,0.15),
+                      -4px -4px 12px 0px ${glitchColors[0]}60,
+                      4px 4px 12px 0px ${glitchColors[1]}60,
+                      0px 0px 20px 0px ${glitchColors[2]}50,
+                      -6px 0px 15px 0px ${glitchColors[0]}40,
+                      6px 0px 15px 0px ${glitchColors[1]}40
+                    `;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = `
+                      0px 4px 0px 0px #d8bfd1,
+                      0px 8px 15px 0px rgba(0,0,0,0.1),
+                      -2px -2px 8px 0px ${glitchColors[0]}40,
+                      2px 2px 8px 0px ${glitchColors[1]}40,
+                      0px 0px 12px 0px ${glitchColors[2]}30
+                    `;
                   }}
                 >
                   <img
                     src={getKeycapAsset(result.key)}
                     alt={result.name.en}
-                    className="w-48 h-48 object-contain"
+                    className="w-48 h-48 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
               </div>
@@ -147,14 +202,21 @@ export const Result = () => {
                 <h3 className="font-72-brand font-medium text-[20px] leading-[28px] text-[#a800aa] text-center">
                   {result.name.zh}
                 </h3>
+                {/* Dynamic Most Likely to Say or fallback to motto */}
                 <p className="font-space-grotesk font-normal text-[18px] leading-[28px] text-[#534150] text-center pt-4">
-                  "{result.motto.en}"
+                  {(language === 'zh' ? result.mostLikelyToSayCN : result.mostLikelyToSayEN) || `"${result.motto.en}"`}
                 </p>
               </div>
 
               {/* Color Badge */}
               <div className="pt-2">
-                <div className="bg-[#ffeff8] border border-[rgba(216,191,209,0.3)] rounded p-[9px] flex gap-4 items-center">
+                <div
+                  className="border rounded p-[9px] flex gap-4 items-center"
+                  style={{
+                    backgroundColor: hexToRgba(impulseColor, 0.08),
+                    borderColor: hexToRgba(impulseColor, 0.3)
+                  }}
+                >
                   <div
                     className="w-10 h-10 rounded-sm shadow-[inset_0px_2px_4px_0px_rgba(0,0,0,0.05)]"
                     style={{ backgroundColor: colorGroup.color }}
@@ -163,7 +225,10 @@ export const Result = () => {
                     <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
                       YOUR IMPULSE COLOR
                     </p>
-                    <p className="font-jetbrains-mono font-medium text-[14px] leading-[20px] text-[#a800aa]">
+                    <p
+                      className="font-jetbrains-mono font-medium text-[14px] leading-[20px]"
+                      style={{ color: impulseColor }}
+                    >
                       {colorGroup.color.toUpperCase()}
                     </p>
                   </div>
@@ -197,8 +262,8 @@ export const Result = () => {
                   <span className="text-[#a800aa]">Congratulations!</span>
                 </h2>
                 <p className="font-space-grotesk font-normal text-[18px] leading-[28px] text-[#534150] text-center pt-4">
-                  You win a gift from Impulse26!<br />
-                  <span className="font-bold">Claim</span> Your Gift at Networking Party
+                  You win a reward from Impulse26!<br />
+                  <span className="font-bold">Claim Reward</span> at Impulse26 Networking Party
                 </p>
               </div>
 
@@ -393,22 +458,51 @@ export const Result = () => {
               </div>
             </div>
 
-            {/* Punchline Section - Gradient Card */}
+            {/* Punchline Section - Gradient Card with dynamic color */}
             <div
               className="relative rounded shadow-[6px_6px_12px_0px_rgba(255,201,51,0.4),5px_8px_10px_0px_rgba(100,237,210,0.3)] p-12"
               style={{
-                background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%), #f65af2`
+                background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%), ${impulseColor}`
               }}
             >
               <div className="relative">
-                <p className="font-space-grotesk font-bold text-[24px] leading-[30px] tracking-[-0.6px] text-[#610062] text-center uppercase">
+                <p
+                  className="font-space-grotesk font-bold text-[24px] leading-[30px] tracking-[-0.6px] text-center uppercase mb-4"
+                  style={{ color: darkenColor(impulseColor, 0.6) }}
+                >
                   {result.punchline[language]}
                 </p>
-                <p className="font-72-brand font-medium text-[24px] leading-[30px] text-[rgba(97,0,98,0.8)] text-center">
+                <p
+                  className="font-72-brand font-medium text-[24px] leading-[30px] text-center"
+                  style={{ color: darkenColor(impulseColor, 0.5) }}
+                >
                   "{language === 'zh' ? result.punchline.en : result.punchline.zh}"
                 </p>
               </div>
             </div>
+
+            {/* Meeting Behavior Section */}
+            {(language === 'zh' ? result.meetingBehaviorCN : result.meetingBehaviorEN) && (
+              <div
+                className="rounded p-[33px] flex flex-col gap-6"
+                style={{ backgroundColor: cardBg, borderColor: cardBorder, borderWidth: '1px', borderStyle: 'solid' }}
+              >
+                <div className="flex gap-3 items-center mb-4">
+                  <img src="/assets/icons/Picto_Team.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
+                  <h4
+                    className="font-space-grotesk font-bold text-[24px] leading-[32px] tracking-[-0.6px] uppercase"
+                    style={{ color: impulseColor }}
+                  >
+                    {language === 'zh' ? '会议表现' : 'MEETING BEHAVIOR'}
+                  </h4>
+                </div>
+                <div className="flex flex-col gap-4">
+                  <p className="font-72-brand font-medium text-[18px] leading-[28px] text-[#231821] whitespace-pre-line">
+                    {language === 'zh' ? result.meetingBehaviorCN : result.meetingBehaviorEN}
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Library Grid */}
             <div className="flex flex-col gap-8">

@@ -4,6 +4,7 @@ import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
 import { useLanguage } from '../i18n';
 import { Header } from '../components/Header';
+import { GlossaryPanel } from '../components/GlossaryPanel';
 
 export const QuestionFlow = () => {
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ export const QuestionFlow = () => {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
+      <GlossaryPanel />
 
       <main className="flex-1 py-8 sm:py-16 md:py-24 px-4 sm:px-8 md:px-16">
         <div className="max-w-[1280px] mx-auto">

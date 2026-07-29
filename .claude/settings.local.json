@@ -25,7 +25,21 @@
       "Bash(cp /Users/I549685/Documents/SAPTI/assets/keyscreens-web/svg/*.svg /Users/I549685/Documents/SAPTI/app/public/screens/svg/)",
       "Bash(npx tsx *)",
       "Bash(chmod +x *)",
-      "Bash(./.claude/housekeeping-impl.sh *)"
+      "Bash(./.claude/housekeeping-impl.sh *)",
+      "Bash(awk '{print $5, $9}')",
+      "Bash(cat)",
+      "Bash(/tmp/update_results.sh)",
+      "Bash(npx eslint *)",
+      "Bash(lsof -ti:5173)",
+      "Bash(xargs kill -9)",
+      "Bash(npx jsonlint *)",
+      "Bash(screencapture -x /tmp/admin-preview-screenshot.png)",
+      "Bash(npx playwright *)",
+      "Bash(python3 -m json.tool)",
+      "Bash(python3 -m json.tool zh.json)",
+      "Bash(osascript -e 'tell application \"Safari\" to set URL of current tab of front window to \"http://localhost:5173/admin/preview\"')",
+      "Bash(osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1')",
+      "Bash(git remote *)"
     ]
   }
 }

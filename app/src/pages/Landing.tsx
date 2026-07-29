@@ -13,13 +13,16 @@ export const Landing = () => {
     navigate('/role');
   };
 
+  // Impulse colors for neon glitch effect
+  const impulseColors = ['#A100C2', '#FFC933', '#64EDD2', '#7858FF'];
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
       <main className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 w-full">
         {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start">
           {/* Left Column - Text Content */}
           <div className="flex-1 space-y-4 sm:space-y-6 md:space-y-8">
             {/* Tag Badge */}
@@ -77,37 +80,108 @@ export const Landing = () => {
                   PRIVACY / 隐私提示
                 </p>
                 <p className="font-72-brand text-[14px] sm:text-body-sm text-[#534150]">
-                  请勿分享到公开社交媒体。这个测试只适合在内部快乐传播，外面的互联网已经够乱了。
+                  {t('landing.privacy')}
                 </p>
               </div>
             </div>
           </div>
 
           {/* Right Column - Hero Visual */}
-          <div className="flex-shrink-0 flex items-start justify-center w-full lg:w-[452px] relative mt-8 lg:mt-0">
+          <div className="flex-shrink-0 flex flex-col items-start justify-start w-full lg:w-[452px] relative mt-8 lg:mt-0">
             {/* Key Visual Container */}
             <div className="relative w-full max-w-[376px] aspect-[376/361] lg:w-[376px] lg:h-[361px]">
               {/* Main Container with Decorative Borders */}
-              <div className="absolute inset-0 bg-white border-2 border-[#a800aa] rounded-lg shadow-soft-lg p-7">
+              <div
+                className="absolute inset-0 bg-white border-2 border-[#a800aa] rounded-lg p-7 transition-all duration-500 hover:scale-105 cursor-pointer group overflow-hidden"
+                style={{
+                  boxShadow: `
+                    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                    -3px -3px 10px 0px ${impulseColors[0]}40,
+                    3px 3px 10px 0px ${impulseColors[1]}40,
+                    0px 0px 15px 0px ${impulseColors[2]}30,
+                    0px -4px 12px 0px ${impulseColors[3]}25
+                  `
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+                    -5px -5px 15px 0px ${impulseColors[0]}60,
+                    5px 5px 15px 0px ${impulseColors[1]}60,
+                    0px 0px 25px 0px ${impulseColors[2]}50,
+                    0px -6px 18px 0px ${impulseColors[3]}45,
+                    -8px 0px 20px 0px ${impulseColors[0]}35,
+                    8px 0px 20px 0px ${impulseColors[1]}35
+                  `;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                    -3px -3px 10px 0px ${impulseColors[0]}40,
+                    3px 3px 10px 0px ${impulseColors[1]}40,
+                    0px 0px 15px 0px ${impulseColors[2]}30,
+                    0px -4px 12px 0px ${impulseColors[3]}25
+                  `;
+                }}
+              >
+                {/* Rainbow gradient background - hidden by default, shown on hover */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"
+                  style={{
+                    background: `linear-gradient(135deg,
+                      ${impulseColors[0]} 0%,
+                      ${impulseColors[1]} 33%,
+                      ${impulseColors[2]} 66%,
+                      ${impulseColors[3]} 100%)`
+                  }}
+                />
+
+                {/* Animated shimmer overlay on hover */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-50 transition-opacity duration-500 z-0"
+                  style={{
+                    background: `linear-gradient(45deg,
+                      transparent 0%,
+                      rgba(255,255,255,0.2) 25%,
+                      transparent 50%,
+                      rgba(255,255,255,0.2) 75%,
+                      transparent 100%)`,
+                    backgroundSize: '400% 400%',
+                    animation: 'gradient 15s ease infinite'
+                  }}
+                />
+
                 {/* Corner Decorations */}
-                <div className="absolute -left-4 -top-4 w-12 h-12 border-l-4 border-t-4 border-[#00b098]" />
-                <div className="absolute -right-4 -bottom-4 w-12 h-12 border-r-4 border-b-4 border-[#a800aa]" />
+                <div className="absolute -left-4 -top-4 w-12 h-12 border-l-4 border-t-4 border-[#00b098] transition-all duration-300 group-hover:border-[#64EDD2] group-hover:w-16 group-hover:h-16 z-20" />
+                <div className="absolute -right-4 -bottom-4 w-12 h-12 border-r-4 border-b-4 border-[#a800aa] transition-all duration-300 group-hover:border-[#f65af2] group-hover:w-16 group-hover:h-16 z-20" />
 
                 {/* Decorative Background Elements */}
-                <div className="absolute top-4 right-6 w-28 h-4 bg-white" />
-                <div className="absolute bottom-4 left-6 w-36 h-4 bg-white" />
+                <div className="absolute top-4 right-6 w-28 h-4 bg-white group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <div className="absolute bottom-4 left-6 w-36 h-4 bg-white group-hover:bg-transparent transition-colors duration-500 z-10" />
 
                 {/* Inner Frame */}
-                <div className="relative w-full h-full border border-[#d8bfd1] rounded flex items-center justify-center p-4">
+                <div className="relative w-full h-full border border-[#d8bfd1] rounded flex items-center justify-center p-4 transition-all duration-300 group-hover:border-[#f65af2] z-10">
+                  {/* Key Visual Image */}
                   <img
                     src="/assets/impulse-key-visual.png"
                     alt="Impulse Key Visual"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain transition-all duration-500 group-hover:scale-90 group-hover:opacity-0 relative z-10"
                   />
+
+                  {/* Motto SVG - hidden by default, shown on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20">
+                    <img
+                      src="/assets/Impulse26_motto.svg"
+                      alt="The tool to follow your hands."
+                      className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] scale-90 group-hover:scale-100 transition-transform duration-500"
+                    />
+                  </div>
                 </div>
 
                 {/* Gradient Overlay (decorative) */}
-                <div className="absolute inset-0 rounded-lg pointer-events-none opacity-20"
+                <div className="absolute inset-0 rounded-lg pointer-events-none opacity-20 group-hover:opacity-0 transition-opacity duration-500 z-10"
                      style={{
                        background: 'radial-gradient(circle at 50% 50%, rgba(246,90,242,1) 0%, rgba(246,90,242,0) 5%)'
                      }}
@@ -143,43 +217,13 @@ export const Landing = () => {
               </div>
             </div>
 
-            {/* Right: Info Cards Grid */}
-            <div className="lg:col-span-7 grid grid-cols-2 gap-6">
-              <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded-lg p-6 space-y-2">
-                <h4 className="font-hanken-grotesk font-bold text-headline-sm text-[#231821]">
-                  {t('landing.aboutItems.distribution.title')}
-                </h4>
-                <p className="font-72-brand text-body-sm text-[#534150]">
-                  {t('landing.aboutItems.distribution.desc')}
-                </p>
-              </div>
-
-              <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded-lg p-6 space-y-2">
-                <h4 className="font-hanken-grotesk font-bold text-headline-sm text-[#231821]">
-                  {t('landing.aboutItems.engagement.title')}
-                </h4>
-                <p className="font-72-brand text-body-sm text-[#534150]">
-                  {t('landing.aboutItems.engagement.desc')}
-                </p>
-              </div>
-
-              <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded-lg p-6 space-y-2">
-                <h4 className="font-hanken-grotesk font-bold text-headline-sm text-[#231821]">
-                  {t('landing.aboutItems.agenda.title')}
-                </h4>
-                <p className="font-72-brand text-body-sm text-[#534150]">
-                  {t('landing.aboutItems.agenda.desc')}
-                </p>
-              </div>
-
-              <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded-lg p-6 space-y-2">
-                <h4 className="font-hanken-grotesk font-bold text-headline-sm text-[#231821]">
-                  {t('landing.aboutItems.contribution.title')}
-                </h4>
-                <p className="font-72-brand text-body-sm text-[#534150]">
-                  {t('landing.aboutItems.contribution.desc')}
-                </p>
-              </div>
+            {/* Right: Banner Image */}
+            <div className="lg:col-span-7">
+              <img
+                src="/assets/banner.png"
+                alt="Impulse Keys Banner"
+                className="w-full h-auto rounded-lg"
+              />
             </div>
           </div>
         </div>

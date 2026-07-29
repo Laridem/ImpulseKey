@@ -21,11 +21,21 @@ export function randomizeQuestions(questions: Question[]): Question[] {
 
 /**
  * Randomize options within each question
+ * IMPORTANT: After shuffling, reassign IDs as A, B, C in order
+ * to maintain consistency between option position and ID
  */
 export function randomizeOptions(question: Question): Question {
+  const shuffledOptions = shuffleArray(question.options)
+
+  // Reassign IDs to A, B, C based on new order
+  const reorderedOptions = shuffledOptions.map((option, index) => ({
+    ...option,
+    id: ['A', 'B', 'C'][index] as 'A' | 'B' | 'C'
+  }))
+
   return {
     ...question,
-    options: shuffleArray(question.options)
+    options: reorderedOptions
   }
 }
 

@@ -99,6 +99,11 @@ export interface Result {
   risk: BilingualText
   punchline: BilingualText
   color: string
+  // V2 fields
+  meetingBehaviorEN?: string
+  meetingBehaviorCN?: string
+  mostLikelyToSayEN?: string
+  mostLikelyToSayCN?: string
 }
 
 // Dimension scores

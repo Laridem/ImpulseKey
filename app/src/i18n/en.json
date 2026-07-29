@@ -6,65 +6,58 @@
   },
   "roleSelection": {
     "title": "What's your role?",
-    "subtitle": "Choose the one that best matches your daily work",
-    "footer": "This won't limit your result, just makes the test more aligned with your work style.",
+    "subtitle": "Choose the role that best matches your primary day-to-day work and professional identity. If you wear multiple hats, pick the one you spend the most time in or identify with most strongly.",
+    "footer": "Don't worry — this selection won't artificially limit or bias your final result. It simply helps us tailor the scenario questions to be more relevant and realistic for your work context, making the test experience more meaningful and relatable.",
     "continueButton": "Continue"
   },
   "landing": {
     "title": "Impulse26.Key",
     "subtitle": "Which Impulse26 Key do you have?",
-    "description1": "This is an internal test project for Impulse26. Here, a group of engineers are dedicated to designing product experiences for conversational intelligence, service assistants, and team writing scenarios. It's similar to Impulse26, incubated within DesignHub China for distributing new ideas.",
-    "description2": "We aim to build a toolbox that helps teams improve internal execution, similar to a 'functional key library' for user experience teams. Each test module is seen as a special 'key' representing team members' decision-making methods, work philosophy, and common language.",
-    "description3": "Note: This is an Impulse26 internal team project, only for internal testing. We encourage you to reflect on your work patterns and apply the results to real collaboration scenarios. Test results will not be stored or used for any formal evaluation.",
+    "description1": "Welcome to the Impulse26 Internal Fun Assessment. Through a series of product-work scenarios, you'll uncover your hidden Impulse Key. It might be tied to UX Research, AI Agents, API Experience, Quality Engineering, Customer Issues, or even the mysterious world of HPOM collaboration. This is not a personality test, and it is definitely not an HR tool. It's simply our attempt to use a little dark humor to explain how we take customer experience very, very seriously.",
+    "description2": "Our goal is to build a comprehensive toolbox that helps cross-functional teams improve their internal execution and collaboration efficiency. Think of it as a 'functional key library' for modern product teams. Each test module represents a special 'key' — a unique combination of decision-making methods, work philosophies, professional instincts, and shared language that defines how you operate in complex product environments. These keys help you understand not just what you do, but why you approach problems the way you do.",
+    "description3": "Important: For internal entertainment purposes only. Not approved for performance evaluations, promotions, staffing decisions, bonus discussions, finger-pointing exercises, or investigations into who started the last two-hour alignment meeting.",
+    "privacy": "Please don't post this on public social media. This experiment is meant to spread joy internally. The outside world already has plenty of confusion without our help.",
     "startButton": "Start Test",
     "howToPlayButton": "How to Play",
     "aboutTitle": "About the Project",
     "aboutItems": {
-      "placard": {
-        "title": "Use Our Placard",
-        "desc": "This is a tool made possible by the combination of existing UX design research methodologies, designed by DesignHub China. This framework can help teams understand each other's work styles and preferences."
+      "distribution": {
+        "title": "Join Our Distribution List",
+        "desc": "Connect with a vibrant community of designers, product managers, engineers, and AI practitioners. Get early access to new tools, experiments, and insights about building better product experiences. Share your perspectives and learn from others tackling similar challenges in conversational AI, design systems, and modern UX workflows."
       },
-      "library": {
-        "title": "Research Library",
-        "desc": "Based on design thinking, user research methods, and product development frameworks commonly used in UX teams."
+      "engagement": {
+        "title": "Thinking About More Engagement?",
+        "desc": "Join our hands-on workshops every Friday at the Design Hub office in Shanghai. These sessions cover everything from rapid prototyping and user research techniques to AI-assisted design workflows and cross-functional collaboration strategies. Whether you're exploring new tools or refining your craft, there's always something to learn and someone to learn it with."
       },
-      "therapist": {
-        "title": "Needs Therapist",
-        "desc": "Identify patterns in how you approach user needs, problem-solving, and team collaboration."
+      "agenda": {
+        "title": "Check Agenda in Impulse26 CN",
+        "desc": "Discover our upcoming events, inspiring talks from industry practitioners, deep-dive workshops on emerging technologies, and unique networking opportunities. The Impulse26 CN community regularly hosts sessions on AI product design, design system architecture, user research methodologies, and the evolving landscape of human-AI interaction. Find your next source of inspiration."
       },
       "contribution": {
         "title": "Contribution Guide",
-        "desc": "This tool is open for internal contributions. Share your insights and help improve the framework."
-      },
-      "feedback": {
-        "title": "Feedback",
-        "desc": "We welcome feedback and suggestions to make this tool more useful for the team."
-      },
-      "internal": {
-        "title": "Internal Use Only",
-        "desc": "This assessment is for Impulse26 team members only and should not be shared externally."
+        "desc": "Want to help shape the future of Impulse26? We're always looking for passionate contributors — whether you want to prototype experimental features, share research insights, facilitate workshops, or help improve our internal tools and processes. Check out our open projects, contribute to discussions, or propose new initiatives that align with our mission of building better product experiences."
       }
     }
   },
   "testIntro": {
     "tag": "SYSTEM ACCESS // IMPULSE26.KEY",
     "title": "How to Play",
-    "intro1": "You will answer a set of workplace scenario questions. There are no standard answers, only different professional approaches. Each choice will push you toward a hidden Impulse Key.",
-    "intro2": "After completion, you will unlock a result. It won't clear your backlog, but it might explain why you suddenly go silent in certain meetings, or suddenly open Figma / Logs / Confluence.",
+    "intro1": "Answer workplace scenario questions designed to reveal your professional instincts and collaboration style. There are no right or wrong answers — only different approaches that reflect how you navigate complexity in real product work.",
+    "intro2": "After completing the test, you'll unlock your personalized result. It might finally explain why you suddenly go silent in certain meetings, or why you instinctively reach for specific tools when others are still debating.",
     "tips": [
-      "Don't think too long, choose the one that reflects your true reaction.",
-      "Don't try to guess the result, the system doesn't necessarily know you better than you know yourself.",
-      "Not all Keys will be shown before completion, maintain some sense of exploration.",
-      "Results are for internal entertainment only, please do not share on public social media."
+      "Choose the option that authentically reflects your instinctive reaction. Your first impulse is usually the most revealing.",
+      "Don't try to game the system. Be honest with yourself — it might show you things you haven't fully articulated yet.",
+      "Not all Impulse Keys will be revealed before you complete the test. Embrace the element of discovery.",
+      "Results are for internal reflection and team conversations only. Please do not share on public social media."
     ],
-    "footer": "May your Key be clearer than requirement descriptions.",
+    "footer": "May your Impulse Key be clearer than most requirement descriptions.",
     "startButton": "Start Test"
   },
   "question": {
     "surveyModule": "SURVEY MODULE",
     "previousStep": "PREVIOUS STEP",
     "submitTest": "Submit Test",
-    "helpText": "Don't think too long, intuitive reactions are most accurate. Please choose what's closest to your real thoughts."
+    "helpText": "Trust your instincts — don't overthink it. Your immediate, intuitive reactions are usually the most revealing and authentic. Choose the option that genuinely resonates with how you would respond in the real scenario, not how you think you should respond."
   },
   "loading": {
     "impulse": "IMPULSE",
@@ -110,6 +103,7 @@
     }
   },
   "result": {
+    "colorGroup": "Color Group",
     "dimensions": "Core Dimensions",
     "dimensionLabels": {
       "signal": "SIGNAL",

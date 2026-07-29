@@ -1,163 +1,217 @@
 ---
-name: Tactile Impulse
+name: Kinetic Pulse Light
 colors:
-  surface: '#f9f9f9'
-  surface-dim: '#dadada'
-  surface-bright: '#f9f9f9'
+  surface: '#fff7f9'
+  surface-dim: '#e8d5e1'
+  surface-bright: '#fff7f9'
   surface-container-lowest: '#ffffff'
-  surface-container-low: '#f3f3f3'
-  surface-container: '#eeeeee'
-  surface-container-high: '#e8e8e8'
-  surface-container-highest: '#e2e2e2'
-  on-surface: '#1a1c1c'
-  on-surface-variant: '#59413c'
-  inverse-surface: '#2f3131'
-  inverse-on-surface: '#f1f1f1'
-  outline: '#8d716a'
-  outline-variant: '#e1bfb8'
-  surface-tint: '#ae3115'
-  primary: '#ae3115'
+  surface-container-low: '#ffeff8'
+  surface-container: '#fce8f5'
+  surface-container-high: '#f7e3ef'
+  surface-container-highest: '#f1ddea'
+  on-surface: '#231821'
+  on-surface-variant: '#534150'
+  inverse-surface: '#392d36'
+  inverse-on-surface: '#ffebf8'
+  outline: '#867181'
+  outline-variant: '#d8bfd1'
+  surface-tint: '#a800aa'
+  primary: '#a800aa'
   on-primary: '#ffffff'
-  primary-container: '#ff6b4a'
-  on-primary-container: '#661000'
-  inverse-primary: '#ffb4a3'
-  secondary: '#00677f'
+  primary-container: '#f65af2'
+  on-primary-container: '#610062'
+  primary-dark: '#800082'
+  inverse-primary: '#ffaaf5'
+  secondary: '#5d38e3'
   on-secondary: '#ffffff'
-  secondary-container: '#8ee0fe'
-  on-secondary-container: '#00647c'
-  tertiary: '#755087'
+  secondary-container: '#7656fd'
+  on-secondary-container: '#fffbff'
+  tertiary: '#006b5b'
   on-tertiary: '#ffffff'
-  tertiary-container: '#b58bc7'
-  on-tertiary-container: '#462358'
+  tertiary-container: '#00b098'
+  on-tertiary-container: '#003b32'
+  accent-cyan: '#00f5e1'
   error: '#ba1a1a'
   on-error: '#ffffff'
   error-container: '#ffdad6'
   on-error-container: '#93000a'
-  primary-fixed: '#ffdad2'
-  primary-fixed-dim: '#ffb4a3'
-  on-primary-fixed: '#3d0600'
-  on-primary-fixed-variant: '#8c1900'
-  secondary-fixed: '#b7eaff'
-  secondary-fixed-dim: '#80d2ef'
-  on-secondary-fixed: '#001f28'
-  on-secondary-fixed-variant: '#004e61'
-  tertiary-fixed: '#f6d9ff'
-  tertiary-fixed-dim: '#e3b6f6'
-  on-tertiary-fixed: '#2d093f'
-  on-tertiary-fixed-variant: '#5c386e'
-  background: '#f9f9f9'
-  on-background: '#1a1c1c'
-  surface-variant: '#e2e2e2'
-  vibrant-pink: '#E14E97'
-  soft-purple: '#A389D4'
-  surface-stroke: '#EAEAEA'
-  keycap-shadow: '#D1D5DB'
 typography:
+  display-xl:
+    fontFamily: Space Grotesk
+    fontSize: 80px
+    fontWeight: '700'
+    lineHeight: '80px'
+    letterSpacing: -3.2px
   display-lg:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: 72 Brand
     fontSize: 48px
-    fontWeight: '800'
-    lineHeight: 56px
-    letterSpacing: -0.02em
-  headline-lg:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 32px
+    fontWeight: '500'
+    lineHeight: '57.6px'
+    letterSpacing: -0.96px
+  headline-md:
+    fontFamily: Space Grotesk
+    fontSize: 24px
     fontWeight: '700'
-    lineHeight: 40px
-  headline-lg-mobile:
-    fontFamily: Plus Jakarta Sans
-    fontSize: 28px
+    lineHeight: '32px'
+    letterSpacing: -0.6px
+  headline-sm:
+    fontFamily: Hanken Grotesk
+    fontSize: 16px
     fontWeight: '700'
-    lineHeight: 36px
-  motto-accent:
-    fontFamily: Libre Caslon Text
-    fontSize: 20px
-    fontWeight: '400'
-    lineHeight: 28px
+    lineHeight: '24px'
   body-lg:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: 72 Brand / Hanken Grotesk
     fontSize: 18px
-    fontWeight: '400'
-    lineHeight: 28px
+    fontWeight: '500'
+    lineHeight: '29.25px'
   body-md:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: 72 Brand
     fontSize: 16px
     fontWeight: '400'
-    lineHeight: 24px
+    lineHeight: '1.5'
+  body-sm:
+    fontFamily: 72 Brand
+    fontSize: 14px
+    fontWeight: '500'
+    lineHeight: '22.75px'
   label-caps:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: JetBrains Mono
     fontSize: 12px
-    fontWeight: '700'
-    lineHeight: 16px
-    letterSpacing: 0.1em
+    fontWeight: '500'
+    lineHeight: '18px'
+    letterSpacing: normal
+    textTransform: uppercase
 rounded:
-  sm: 0.25rem
-  DEFAULT: 0.5rem
-  md: 0.75rem
-  lg: 1rem
-  xl: 1.5rem
+  sm: 4px
+  DEFAULT: 8px
+  md: 8px
+  lg: 12px
   full: 9999px
 spacing:
-  base-unit: 4px
-  container-padding-mobile: 20px
-  container-padding-desktop: 40px
-  gutter: 16px
-  stack-sm: 8px
-  stack-md: 16px
-  stack-lg: 32px
+  unit: 4px
+  gutter: 24px
+  margin-mobile: 16px
+  margin-desktop: 64px
+  container-max: 1280px
+shadows:
+  soft: 0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px -4px rgba(0,0,0,0.1)
+  soft-lg: 0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1)
+  text-kinetic: 5px 5px 0px #00f5e1, 0px 4px 4px #f65af2
 ---
 
 ## Brand & Style
+This design system is a refined, high-energy light-mode aesthetic that balances technical precision with approachable softness. It targets developers, innovators, and creative technologists who require a professional workspace with personality.
 
-The design system is centered on a "Digital Tactility" narrative, merging the physical satisfaction of high-end mechanical keyboard culture with a soft, modern software aesthetic. The target audience is expressive, self-reflective, and digitally native.
-
-The visual style is a sophisticated blend of **Modern Minimalism** and **Soft Neomorphism**, specifically utilizing "Keycap-inspired" components. This involves subtle 3D depth, soft-touch surfaces, and vibrant atmospheric gradients that suggest energy and internal "impulses." The emotional response should be one of playful discovery, comfort, and high-quality craftsmanship.
+The style is **Technical Elegance**: it combines the clarity of pristine white surfaces with vibrant neon accents, soft rounded corners, and subtle shadows. The emotional response is one of precision, energy, and modern sophistication. The UI feels both professional and playful, technical yet approachable.
 
 ## Colors
+The palette centers on a clean white (`#FFFFFF`) canvas with soft pastels for containers. Readability is prioritized through high-contrast text colors.
 
-The palette is anchored by "Action Coral" (#FF6B4A), used for primary calls to action and vocal points of the interface. This is supported by a spectrum of "Electric Pastels"—blues, purples, and pinks—that are primarily applied through linear gradients (45-degree angles) to create a sense of depth and movement.
+### Primary Palette
+- **Primary Magenta (#A800AA):** Brand color, used for headers, key UI elements, and branding
+- **Primary Container (#F65AF2):** Vibrant pink for primary actions and focus states
+- **Primary Dark (#800082):** Deeper shade for hover states and bottom borders
+- **Secondary Indigo (#5D38E3):** Used for secondary emphasis and structural highlights
+- **Tertiary Teal (#00B098):** Accent for decorative elements
+- **Accent Cyan (#00F5E1):** Special effect color for text shadows and visual pop
 
-The background is a clean, off-white neutral to allow the vibrant gradients to pop without causing visual fatigue. Secondary and tertiary colors are used for categorizing different personality traits or "keys," ensuring a high degree of color-coding clarity across the mobile-first experience.
+### Surface Colors
+- **Container Low (#FFEFF8):** Soft pink-white for card backgrounds
+- **Container High (#F7E3EF):** Slightly deeper for tags and badges
+- **Outline Variant (#D8BFD1):** Subtle borders for cards and dividers
+
+### Usage Guidelines
+- Use soft pastels (#FFEFF8, #F7E3EF) for card backgrounds, not pure white
+- Borders should be subtle (#D8BFD1) at 1px for containers
+- Accent borders at 4px for emphasis (primary button bottom, decorative corners)
+- Text colors: #231821 (primary), #534150 (secondary)
 
 ## Typography
+This system uses a **multi-font hierarchy** to create visual variety and semantic meaning:
 
-This design system utilizes **Plus Jakarta Sans** as the primary driver for all functional UI elements. Its geometric but soft curves echo the roundedness of keycaps. To add a layer of sophistication and "editorial soul," **Libre Caslon Text** is used sparingly for mottos, quotes, and reflective personality insights.
+### Font Families
+1. **Space Grotesk** - Display headings and brand elements (bold, geometric, technical)
+2. **72 Brand (SAP)** - Body text, subtitles, UI labels (clean, professional)
+3. **Hanken Grotesk** - About/content sections (readable, friendly)
+4. **JetBrains Mono** - Technical labels, tags, code-like elements (monospace)
 
-Hierarchy is established through significant weight variance in headlines (Bold/ExtraBold) versus body text (Regular). On mobile devices, headline sizes scale down slightly to maintain a high information density while preserving the playful, bold impact of the display type.
+### Hierarchy
+- **Display XL (80px):** Main hero titles only, with text-shadow effect
+- **Display LG (48px):** Section headings, page titles
+- **Headline MD (24px):** Logo, navigation elements
+- **Headline SM (16px):** Card titles, subsection headers
+- **Body LG/MD/SM (18/16/14px):** Content text, descriptions
+- **Label Caps (12px):** Technical tags, uppercase labels
+
+### Special Effects
+- Main title uses **text-shadow-kinetic**: dual shadow (cyan hard + pink blur) for dramatic visual impact
+- Labels are uppercase with JetBrains Mono for technical aesthetic
 
 ## Layout & Spacing
+The layout follows a **12-column grid** on desktop with generous spacing.
 
-The layout follows a **fluid grid** philosophy optimized for vertical scrolling on mobile devices. A standard 12-column grid is used for desktop, but the mobile experience centers on a single-column stack with 20px safe-area margins.
-
-Spacing follows an 8pt rhythm to ensure mathematical consistency between elements. Components like cards and "keys" use generous internal padding (typically 24px) to emphasize the soft, breathable nature of the design. Elements are grouped using "Stacking" logic, where related items have tighter spacing (8px) than distinct sections (32px).
+- **Container Max:** 1280px centered
+- **Desktop Margins:** 64px horizontal padding
+- **Mobile Margins:** 16px horizontal padding
+- **Vertical Rhythm:** 24px base gutter, scales in 4px increments
+- **Section Spacing:** 96px vertical for major sections
+- **Component Gaps:** 16px, 24px, 32px depending on relationship
 
 ## Elevation & Depth
+Depth is achieved through **soft shadows** and **layered borders**.
 
-Depth is the defining characteristic of this design system. We use **Tonal Layering** combined with **Keycap Shadows**. Instead of traditional, diffused global shadows, components utilize a dual-shadow approach:
-1.  **The Base:** A soft, blurred ambient shadow to lift the card from the background.
-2.  **The "Plinth":** A sharp, 2px to 4px solid or semi-transparent offset at the bottom of a component (mimicking the side profile of a mechanical keycap).
+### Shadows
+- **Soft:** `0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px -4px rgba(0,0,0,0.1)`
+- **Soft LG:** `0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1)`
+- Use for buttons, cards, and floating elements
+- Shadows are subtle blur-based, not hard geometric
 
-Interactive elements should feel "pressable." When active or hovered, the vertical offset should decrease, simulating a physical key-press. This creates a highly satisfying tactile loop for the user during the personality test.
+### Border Emphasis
+- Standard: 1px solid for containers and dividers
+- Accent: 4px solid for bottom borders (buttons) and decorative corners
+- Corner decorations: 4px borders on 2 sides only for geometric interest
 
 ## Shapes
+The shape language uses **soft rounded corners** for approachability.
 
-The shape language is consistently **Rounded**. All container elements, buttons, and input fields utilize a 0.5rem (8px) base radius. For larger cards or keycap-style components, the radius scales to 1rem (16px) or 1.5rem (24px) to emphasize the soft, approachable aesthetic.
+### Border Radius
+- **Small (4px):** Tags, badges, small UI elements
+- **Medium (8px):** Buttons, standard cards
+- **Large (12px):** Large containers, hero sections
+- **Full (9999px):** Pills (header button)
 
-The "Keycap" component is a unique shape: a square or slightly rectangular container with a high corner radius, a subtle inner glow on the top edge, and the aforementioned "plinth" shadow at the bottom.
+Rounded corners soften the technical aesthetic while maintaining a modern feel.
 
 ## Components
 
-### Buttons & Keycaps
-Buttons are styled as high-profile keycaps. The primary button uses the Action Coral gradient with a 4px bottom "lip" in a darker shade of the same hue. Labels are centered in Semi-Bold Plus Jakarta Sans.
+### Buttons
+- **Primary:** Purple background (#A800AA), white text, 8px rounded, 4px bottom border (#800082), soft shadow
+- **Secondary:** Light background (#F7E3EF), dark text, 1px border (#867181), 8px rounded, hover changes border to primary
+- **Pill:** Full rounded for header actions
 
 ### Cards
-Cards are clean, white, or very light gray surfaces with a subtle 1px stroke (#EAEAEA). They use `rounded-lg` corners and an ambient shadow. Personality result cards feature a vibrant gradient header that bleeds into the white body.
+- Background: #FFEFF8 (soft pink-white)
+- Border: 1px #D8BFD1
+- Rounded: 12px
+- Padding: 24-25px
+- No top-border color coding (cleaner look)
 
-### Chips & Inputs
-Progress indicators and chips use "pill" shapes (full rounding) to contrast against the more structured keycap elements. Input fields are recessed (inner shadow) to indicate they are "slots" waiting to be filled.
+### Tags & Badges
+- Background: #F7E3EF
+- Border: 1px #A800AA
+- Text: #A800AA, JetBrains Mono, uppercase
+- Rounded: 4px
+- Padding: tight (8-13px horizontal)
 
-### The "Impulse" Slider
-A custom component for the test: a horizontal track with a large, circular, gradient-filled thumb. The track itself should have a subtle inner-shadow "groove" look, reinforcing the mechanical theme.
+### Hero Visual Frame
+- White container with 2px primary border
+- Decorative 4px corner borders (teal top-left, magenta bottom-right)
+- Inner frame with 1px subtle border
+- Soft shadow for elevation
+- White decorative blocks overlay for visual interest
 
-### Personality Keys
-Small, square components representing different traits. These look like individual 1u keycaps, featuring a central icon or character and a subtle 3D lift.
+### Technical Elements
+- Use JetBrains Mono for labels
+- Uppercase transformation
+- Primary magenta color for technical text
+- Tight letter spacing (normal, not expanded)

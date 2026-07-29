@@ -1,0 +1,4 @@
+/* Custom text shadow utility */
+.text-shadow-kinetic {
+  text-shadow: 5px 5px 0px #00f5e1, 0px 4px 4px #f65af2;
+}

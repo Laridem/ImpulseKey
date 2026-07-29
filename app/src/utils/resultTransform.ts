@@ -30,7 +30,12 @@ export function transformResult(resultType: ResultType): Result {
       en: resultType.punchlineEN,
       zh: resultType.punchlineCN
     },
-    color: resultType.color
+    color: resultType.color,
+    // V2 fields
+    meetingBehaviorEN: resultType.meetingBehaviorEN,
+    meetingBehaviorCN: resultType.meetingBehaviorCN,
+    mostLikelyToSayEN: resultType.mostLikelyToSayEN,
+    mostLikelyToSayCN: resultType.mostLikelyToSayCN
   }
 }
 

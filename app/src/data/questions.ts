@@ -33,9 +33,9 @@ export const QUESTIONS: Question[] = [
       {
         id: 'C',
         textEN: 'Open Fiori Design Guidelines and check if the current design meets standards.',
-        textCN: '打开 Fiori Design Guidelines，检查当前设计是否符合标准。',
+        textCN: '打开 Fiori Design Guidelines（SAP设计规范），检查当前设计是否符合标准。',
         humorEN: 'You discover this isn\'t a bug, it\'s "ancestral design" sitting in backlog for three years.',
-        humorCN: '你发现这不是 bug，这是"祖传设计"。已经在 jira backlog 里躺了三年。',
+        humorCN: '你发现这不是 Bug，这是"祖传设计"。已经在 Jira Backlog（待办列表）里躺了三年。',
         scores: { Solution: 2 }
       }
     ]
@@ -44,8 +44,8 @@ export const QUESTIONS: Question[] = [
   {
     id: 'A2',
     dimension: 'A',
-    textEN: 'Before Sprint Planning, the PM pulls 10 user stories from AHA, but nobody knows how to prioritize them.',
-    textCN: 'Sprint Planning 前，PM 从 AHA 里拖出来 10 个用户故事，但没人知道优先级怎么定。',
+    textEN: 'Before Sprint Planning, the PM pulls 10 user stories from Aha!, but nobody knows how to prioritize them.',
+    textCN: 'Sprint Planning 前，PM 从 Aha! 里拖出来 10 个用户故事，但没人知道优先级怎么定。',
     options: [
       {
         id: 'A',
@@ -78,14 +78,14 @@ export const QUESTIONS: Question[] = [
     id: 'A3',
     dimension: 'A',
     textEN: 'Testing discovers an edge case: When a username exceeds 50 characters, the UI breaks.',
-    textCN: '测试发现一个 edge case：当用户名字超过 50 个字符时，UI 会错位。',
+    textCN: '测试发现一个 Edge Case（边缘场景）：当用户名字超过 50 个字符时，UI 会错位。',
     options: [
       {
         id: 'A',
         textEN: 'First ask the PM: How many users have names over 50 characters? How many are affected?',
         textCN: '先问 PM：现实中有多少用户名字会超过 50 字符？影响多少人？',
         humorEN: 'Edge cases are often a euphemism for "ignored users."',
-        humorCN: 'Edge case 往往是"被忽略的用户"的委婉说法。',
+        humorCN: 'Edge Case（边缘场景）往往是"被忽略的用户"的委婉说法。',
         scores: { Signal: 2 }
       },
       {
@@ -93,13 +93,13 @@ export const QUESTIONS: Question[] = [
         textEN: 'Check user data + production logs to assess impact scope and crash risk.',
         textCN: '看用户数据 + 查生产日志，评估影响面和崩溃风险。',
         humorEN: 'Some edge cases affect few users, but once triggered, it\'s a P1 incident.',
-        humorCN: '有些 edge case 用户很少，但一旦触发就是 P1 incident。',
+        humorCN: '有些 Edge Case 用户很少，但一旦触发就是 P1 Incident（严重故障）。',
         scores: { Signal: 1, Solution: 1 }
       },
       {
         id: 'C',
         textEN: 'Check HANA logs to see if this case will cause system errors or data corruption.',
-        textCN: '查 HANA 日志，看这个 case 是否会导致 system error 或 data corruption。',
+        textCN: '查 HANA（数据库）日志，看这个 Case 是否会导致 System Error 或 Data Corruption（数据损坏）。',
         humorEN: 'Small bugs grow fast in production. Especially ones found Friday afternoon.',
         humorCN: '小 bug 在生产环境长得很快。特别是周五下午发现的那种。',
         scores: { Solution: 2 }
@@ -132,9 +132,9 @@ export const QUESTIONS: Question[] = [
       {
         id: 'C',
         textEN: 'Reply: "Which KPIs and filters do we need? Let me check if the OData API supports them."',
-        textCN: '回复："需要加哪些 KPI、filter 功能？我看看 OData API 支持不支持。"',
+        textCN: '回复："需要加哪些 KPI、Filter 功能？我看看 OData API（数据接口）支持不支持。"',
         humorEN: 'A dashboard without decision goals is just corporate wallpaper.',
-        humorCN: '没有决策目标的 dashboard 就是公司墙纸，好看但没用。',
+        humorCN: '没有决策目标的 Dashboard 就是公司墙纸——好看但没用。',
         scores: { Solution: 2 }
       }
     ]
@@ -145,7 +145,7 @@ export const QUESTIONS: Question[] = [
     id: 'B1',
     dimension: 'B',
     textEN: 'API error message: "Error Code 400_INVALID_REQUEST". A developer asks: What does this mean?',
-    textCN: 'API 返回："Error Code 400_INVALID_REQUEST"。Developer 在 Teams 里问：这到底啥意思？',
+    textCN: 'API 返回："Error Code 400_INVALID_REQUEST"。开发在 Teams 里问：这到底啥意思？',
     options: [
       {
         id: 'A',
@@ -181,7 +181,7 @@ export const QUESTIONS: Question[] = [
     id: 'B2',
     dimension: 'B',
     textEN: 'Joule generates a workflow, but a PM says: "This doesn\'t match our actual approval process."',
-    textCN: 'Joule 生成了一个 workflow，但 PM 说："这跟我们实际的审批流程不符合。"',
+    textCN: 'Joule（AI助手）生成了一个 Workflow，但 PM 说："这跟我们实际的审批流程不符合。"',
     options: [
       {
         id: 'A',
@@ -194,7 +194,7 @@ export const QUESTIONS: Question[] = [
       {
         id: 'B',
         textEN: 'Improve prompts and check if Joule can connect to internal workflow systems.',
-        textCN: '改进 prompt，同时检查 Joule 能否接入内部流程系统。',
+        textCN: '改进 Prompt，同时检查 Joule（AI助手）能否接入内部流程系统。',
         humorEN: 'Generative AI + API = actual automation.',
         humorCN: '生成式 AI + API 对接 = 真正的自动化。',
         scores: { Human: 1, Machine: 1 }
@@ -202,7 +202,7 @@ export const QUESTIONS: Question[] = [
       {
         id: 'C',
         textEN: 'Check if workflow data model and API schema support Joule integration.',
-        textCN: '检查 workflow 数据模型和 API schema 是否支持 Joule 对接。',
+        textCN: '检查 Workflow 数据模型和 API Schema 是否支持 Joule（AI助手）对接。',
         humorEN: 'Without structured data, AI is just chatting with you.',
         humorCN: '没有结构化数据，AI 只是在跟你聊天。',
         scores: { Machine: 2 }
@@ -214,12 +214,12 @@ export const QUESTIONS: Question[] = [
     id: 'B3',
     dimension: 'B',
     textEN: 'A user completes a form, but the system returns: "Validation failed."',
-    textCN: '用户填完表单，系统返回："Validation failed。"',
+    textCN: '用户填完表单，系统返回："Validation Failed（数据校验失败）。"',
     options: [
       {
         id: 'A',
         textEN: 'Show exactly which field failed and why: "Email format invalid, please use xxx@domain.com"',
-        textCN: '精确显示哪个字段错了，为什么："邮箱格式不正确，请使用 xxx@domain.com 格式"',
+        textCN: '精确显示哪个字段错了，为什么错："邮箱格式不正确，请使用 xxx@domain.com 格式"',
         humorEN: '"Validation failed" is not a message, it\'s a relationship status.',
         humorCN: '"Validation failed" 不是提示，是一种关系状态。',
         scores: { Human: 2 }
@@ -235,7 +235,7 @@ export const QUESTIONS: Question[] = [
       {
         id: 'C',
         textEN: 'Check validation rule definitions and ensure frontend/backend schemas match.',
-        textCN: '检查 validation rule 定义，确保前后端 schema 一致。',
+        textCN: '检查 Validation Rule（校验规则）定义，确保前后端 Schema 一致。',
         humorEN: 'Frontend validation without backend validation is theater security.',
         humorCN: '只有前端校验没有后端校验的系统，是安全剧场。',
         scores: { Machine: 2 }
@@ -302,7 +302,7 @@ export const QUESTIONS: Question[] = [
       {
         id: 'C',
         textEN: 'Check if the new pattern is consistent with Fiori design principles.',
-        textCN: '先检查新模式是否符合 Fiori 设计原则。',
+        textCN: '先检查新模式是否符合 Fiori（SAP设计规范）设计原则。',
         humorEN: 'Design systems exist so we don\'t reinvent the wheel 47 times.',
         humorCN: 'Design system 的存在是为了让我们不用重复造 47 次轮子。',
         scores: { Align: 2 }
@@ -337,7 +337,7 @@ export const QUESTIONS: Question[] = [
         textEN: 'Keep the existing flow to maintain consistency and avoid user complaints.',
         textCN: '保持现有流程，维护一致性，避免用户抱怨。',
         humorEN: '"If it ain\'t broke, don\'t fix it" - until it becomes legacy debt.',
-        humorCN: '"能用就别动" - 直到它变成技术债。',
+        humorCN: '"能用就别动"——直到它变成技术债。',
         scores: { Align: 2 }
       }
     ]
@@ -368,7 +368,7 @@ export const QUESTIONS: Question[] = [
       {
         id: 'C',
         textEN: 'Explain why it doesn\'t fit the roadmap and suggest workarounds.',
-        textCN: '解释为什么不符合 roadmap，建议 workaround 方案。',
+        textCN: '解释为什么不符合 Roadmap，建议替代方案。',
         humorEN: 'Roadmaps exist to say yes to the right things by saying no to everything else.',
         humorCN: 'Roadmap 的存在是为了对正确的事说 yes，对其他所有事说 no。',
         scores: { Align: 2 }
@@ -419,15 +419,15 @@ export const QUESTIONS: Question[] = [
       {
         id: 'A',
         textEN: 'Hotfix immediately and deploy. Speed is critical.',
-        textCN: '立即 hotfix 并部署。速度最重要。',
+        textCN: '立即 Hotfix 并部署。速度最重要。',
         humorEN: 'When production burns, sprint planning can wait.',
-        humorCN: '生产环境在燃烧的时候，sprint planning 可以等。',
+        humorCN: '生产环境在燃烧的时候，Sprint Planning 可以等。',
         scores: { Spark: 2 }
       },
       {
         id: 'B',
         textEN: 'Hotfix quickly, but ensure proper testing and code review first.',
-        textCN: '快速 hotfix，但要先确保测试和 code review。',
+        textCN: '快速 Hotfix，但要先确保测试和 Code Review。',
         humorEN: 'Fast and broken helps no one.',
         humorCN: '又快又烂的修复帮不了任何人。',
         scores: { Spark: 1, Stabilize: 1 }
@@ -435,7 +435,7 @@ export const QUESTIONS: Question[] = [
       {
         id: 'C',
         textEN: 'Follow the proper change management process even for hotfixes.',
-        textCN: '即使是 hotfix 也要走正常的变更管理流程。',
+        textCN: '即使是 Hotfix 也要走正常的变更管理流程。',
         humorEN: 'Process exists because someone got burned before.',
         humorCN: '流程的存在是因为有人之前被烧过。',
         scores: { Stabilize: 2 }
@@ -452,15 +452,15 @@ export const QUESTIONS: Question[] = [
       {
         id: 'A',
         textEN: 'Build a quick prototype for demo and refine later.',
-        textCN: '快速做个 prototype 用于 demo，之后再完善。',
+        textCN: '快速做个 Prototype 用于 Demo，之后再完善。',
         humorEN: 'Demo-driven development: it\'s a thing.',
-        humorCN: 'Demo 驱动开发：这是真的存在的。',
+        humorCN: 'Demo 驱动开发——这是真实存在的。',
         scores: { Spark: 2 }
       },
       {
         id: 'B',
         textEN: 'Negotiate scope: deliver core functionality for demo, polish later.',
-        textCN: '协商范围：demo 交付核心功能，后续再打磨。',
+        textCN: '协商范围：Demo 交付核心功能，后续再打磨。',
         humorEN: 'MVPs exist for a reason.',
         humorCN: 'MVP 的存在是有原因的。',
         scores: { Spark: 1, Stabilize: 1 }
@@ -470,7 +470,7 @@ export const QUESTIONS: Question[] = [
         textEN: 'Explain why rushing will create technical debt and stick to 3 weeks.',
         textCN: '解释为什么赶工会制造技术债，坚持 3 周时间。',
         humorEN: 'You can have it fast, good, or cheap. Pick two.',
-        humorCN: '快、好、省 - 三选二。',
+        humorCN: '快、好、省——三选二。',
         scores: { Stabilize: 2 }
       }
     ]
@@ -536,7 +536,7 @@ export const QUESTIONS: Question[] = [
         textEN: 'Extend the deadline to deliver all planned features with quality.',
         textCN: '延长时间，确保所有计划功能都能高质量交付。',
         humorEN: 'Rushing leads to bugs. Bugs lead to firefighting. Firefighting leads to burnout.',
-        humorCN: '赶工导致 bug。Bug 导致救火。救火导致 burnout。',
+        humorCN: '赶工导致 Bug。Bug 导致救火。救火导致 Burnout。',
         scores: { Stabilize: 2 }
       }
     ]
@@ -639,7 +639,7 @@ export const QUESTIONS: Question[] = [
       {
         id: 'C',
         textEN: 'Follow Fiori guidelines and use the form-based pattern. Guidelines exist because someone tested this already.',
-        textCN: '遵循 Fiori 指南，使用表单式模式。指南的存在是因为已经有人测过了。',
+        textCN: '遵循 Fiori（SAP设计规范）指南，使用表单式模式。指南的存在是因为已经有人测过了。',
         humorEN: 'Design systems exist so we don\'t reinvent the wheel 47 times per quarter.',
         humorCN: 'Design system 的存在是为了让我们不用每季度重复造 47 次轮子。',
         scores: { Align: 1 }
@@ -656,7 +656,7 @@ export const QUESTIONS: Question[] = [
     textCN: '你的功能可以发布了，但没时间写端到端测试。PM 说"先上线，后面再测。"',
     options: [
       {
-        id: 'A',
+        id: 'C',
         textEN: 'Ship with manual smoke testing. Real users will find issues faster than writing tests.',
         textCN: '手动冒烟测试后上线。真实用户会比写测试更快发现问题。',
         humorEN: 'Production is the best test environment. Users are unpaid QA.',
@@ -666,15 +666,15 @@ export const QUESTIONS: Question[] = [
       {
         id: 'B',
         textEN: 'Ship the feature behind a feature flag, monitor closely, and write tests for the next sprint.',
-        textCN: '用 feature flag 上线，密切监控，下个 sprint 补测试。',
+        textCN: '用 Feature Flag 上线，密切监控，下个 Sprint 补测试。',
         humorEN: 'Feature flags: because "we\'ll fix it later" needs a safety net.',
-        humorCN: 'Feature flag：因为"之后再修"需要一张安全网。',
+        humorCN: 'Feature Flag：因为"之后再修"需要一张安全网。',
         scores: {}
       },
       {
         id: 'C',
         textEN: 'Delay release until critical path tests are written. Bugs in production cost more than delayed features.',
-        textCN: '延期发布直到关键路径测试完成。生产环境的 bug 比延期的成本更高。',
+        textCN: '延期发布直到关键路径测试完成。生产环境的 Bug 比延期的成本更高。',
         humorEN: 'You can ship fast or ship broken. Pick one and own it.',
         humorCN: '你可以快速上线，也可以上线烂代码。选一个，然后承担后果。',
         scores: { Stabilize: 1 }
