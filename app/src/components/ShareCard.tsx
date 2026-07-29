@@ -68,10 +68,10 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           </div>
         </div>
 
-        {/* Quote: Most Likely to Say - Gray, Italic */}
+        {/* Quote: Most Likely to Say - Gray, Italic, No Quotes */}
         <div className="px-20 pb-16 flex justify-center">
           <div className="font-72-brand font-medium italic text-[44px] leading-[56px] text-center text-[#949494]">
-            {isEnglish ? `"${mostLikelyToSay}"` : `「${mostLikelyToSay}」`}
+            {mostLikelyToSay}
           </div>
         </div>
 
