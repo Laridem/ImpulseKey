@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { Result } from '../data/types';
 import { getKeycapAsset } from '../utils/assets';
+import { getColorGroupForResult } from '../data/colorGroups';
 
 interface ShareCardProps {
   result: Result;
@@ -20,6 +21,10 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
     const motto = isEnglish ? result.motto.en : result.motto.zh;
     const mostLikelyToSay = (isEnglish ? result.mostLikelyToSayEN : result.mostLikelyToSayCN) || motto;
 
+    // Get the Impulse color (magenta/yellow/cyan/purple) from color group
+    const colorGroup = getColorGroupForResult(result.key);
+    const impulseColor = colorGroup.color;
+
     return (
       <div
         ref={ref}
@@ -36,7 +41,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         <div className="flex justify-center px-16 pb-16">
           <div
             className="rounded-[40px] p-16 flex items-center justify-center"
-            style={{ backgroundColor: result.color }}
+            style={{ backgroundColor: impulseColor }}
           >
             <img
               src={getKeycapAsset(result.key)}
@@ -50,7 +55,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         <div className="px-20 pb-16 flex justify-center">
           <div
             className="font-space-grotesk font-bold text-[44px] leading-[56px] text-center"
-            style={{ color: result.color }}
+            style={{ color: impulseColor }}
           >
             "{mostLikelyToSay}"
           </div>
@@ -63,7 +68,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           </h1>
           <h2
             className="font-72-brand font-medium text-[52px] leading-[64px] text-center"
-            style={{ color: result.color }}
+            style={{ color: impulseColor }}
           >
             {nameCN}
           </h2>
