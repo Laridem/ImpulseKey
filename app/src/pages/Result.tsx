@@ -10,6 +10,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { ShareCard } from '../components/ShareCard';
 import { getAccessibleTextColor } from '../utils/contrast';
+import { getAllResultKeys } from '../data/results';
 
 export const Result = () => {
   const { key } = useParams<{ key: string }>();
@@ -20,6 +21,7 @@ export const Result = () => {
   const resultRef = useRef<HTMLDivElement>(null);
   const shareCardRef = useRef<HTMLDivElement>(null);
   const [isCapturing, setIsCapturing] = useState(false);
+  const [hoveredLockedKey, setHoveredLockedKey] = useState<string | null>(null);
 
   // Load result if accessed directly via URL
   useEffect(() => {
@@ -517,28 +519,63 @@ export const Result = () => {
 
               <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded p-[33px] shadow-[inset_0px_2px_4px_0px_rgba(0,0,0,0.05)]">
                 <div className="grid grid-cols-8 gap-4">
-                  {/* Active key */}
-                  <button
-                    className="aspect-square bg-[#a800aa] border border-[rgba(255,255,255,0.1)] rounded-sm shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)] flex items-center justify-center"
-                  >
-                    <span className="font-jetbrains-mono font-medium text-[14px] leading-[20px] text-white">
-                      {result.key}
-                    </span>
-                  </button>
+                  {getAllResultKeys().map(key => {
+                    const isUnlocked = key === result.key;
 
-                  {/* Other keys - simplified for now */}
-                  {['FIORI', 'PIXEL', 'A11Y', 'HEUR', 'COPY', 'DARK', 'EMO',
-                    'FLOW', 'GRID', 'HICK', 'ICON', 'JOIN', 'KERN', 'LOGS', 'MODE'].map(key => (
-                    <button
-                      key={key}
-                      onClick={() => navigate(`/result/${key}`)}
-                      className="aspect-square bg-white border border-[rgba(216,191,209,0.5)] rounded-sm drop-shadow-[0px_2px_0px_#d8bfd1] flex items-center justify-center hover:border-[#a800aa] transition-colors"
-                    >
-                      <span className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150]">
-                        {key}
-                      </span>
-                    </button>
-                  ))}
+                    return (
+                      <div key={key} className="relative">
+                        <button
+                          onClick={() => isUnlocked && navigate(`/result/${key}`)}
+                          onMouseEnter={() => !isUnlocked && setHoveredLockedKey(key)}
+                          onMouseLeave={() => setHoveredLockedKey(null)}
+                          disabled={!isUnlocked}
+                          className={`
+                            aspect-square w-full rounded-sm flex items-center justify-center transition-all relative
+                            ${isUnlocked
+                              ? 'bg-[#a800aa] border border-[rgba(255,255,255,0.1)] shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0px_6px_8px_-1px_rgba(0,0,0,0.15)]'
+                              : 'bg-white border border-[rgba(216,191,209,0.5)] drop-shadow-[0px_2px_0px_#d8bfd1] hover:border-[#d8bfd1] cursor-not-allowed'
+                            }
+                          `}
+                        >
+                          {isUnlocked ? (
+                            <span className="font-jetbrains-mono font-medium text-[14px] leading-[20px] text-white">
+                              {key}
+                            </span>
+                          ) : (
+                            <>
+                              <span className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] opacity-40">
+                                {key}
+                              </span>
+                              {hoveredLockedKey === key && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-white/90 rounded-sm">
+                                  <img
+                                    src="/assets/icons/Locked.png"
+                                    alt="Locked"
+                                    className="w-8 h-8 object-contain"
+                                  />
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </button>
+
+                        {/* Popover for locked items */}
+                        {!isUnlocked && hoveredLockedKey === key && (
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-10 pointer-events-none">
+                            <div className="bg-[#231821] text-white px-4 py-2 rounded shadow-lg whitespace-nowrap">
+                              <p className="font-jetbrains-mono text-[10px] leading-[15px]">
+                                Ask others for their results!
+                              </p>
+                              {/* Arrow */}
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px">
+                                <div className="w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-[#231821]" />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
