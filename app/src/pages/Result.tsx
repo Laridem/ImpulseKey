@@ -521,21 +521,31 @@ export const Result = () => {
                 <div className="grid grid-cols-8 gap-4">
                   {getAllResultKeys().map(key => {
                     const isUnlocked = key === result.key;
+                    const isHovered = hoveredLockedKey === key;
 
                     return (
                       <div key={key} className="relative">
                         <button
                           onClick={() => isUnlocked && navigate(`/result/${key}`)}
-                          onMouseEnter={() => !isUnlocked && setHoveredLockedKey(key)}
-                          onMouseLeave={() => setHoveredLockedKey(null)}
+                          onMouseEnter={() => {
+                            if (!isUnlocked) {
+                              console.log('Hovering locked key:', key);
+                              setHoveredLockedKey(key);
+                            }
+                          }}
+                          onMouseLeave={() => {
+                            console.log('Leave key:', key);
+                            setHoveredLockedKey(null);
+                          }}
                           disabled={!isUnlocked}
                           className={`
                             aspect-square w-full rounded-sm flex items-center justify-center transition-all relative
                             ${isUnlocked
                               ? 'bg-[#a800aa] border border-[rgba(255,255,255,0.1)] shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0px_6px_8px_-1px_rgba(0,0,0,0.15)]'
-                              : 'bg-white border border-[rgba(216,191,209,0.5)] drop-shadow-[0px_2px_0px_#d8bfd1] hover:border-[#d8bfd1] cursor-not-allowed'
+                              : 'bg-white border border-[rgba(216,191,209,0.5)] drop-shadow-[0px_2px_0px_#d8bfd1] hover:border-[#d8bfd1]'
                             }
                           `}
+                          style={{ cursor: isUnlocked ? 'pointer' : 'not-allowed' }}
                         >
                           {isUnlocked ? (
                             <span className="font-jetbrains-mono font-medium text-[14px] leading-[20px] text-white">
@@ -546,12 +556,12 @@ export const Result = () => {
                               <span className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] opacity-40">
                                 {key}
                               </span>
-                              {hoveredLockedKey === key && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-white/90 rounded-sm">
+                              {isHovered && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-white/95 rounded-sm z-20">
                                   <img
                                     src="/assets/icons/Locked.png"
                                     alt="Locked"
-                                    className="w-8 h-8 object-contain"
+                                    className="w-10 h-10 object-contain"
                                   />
                                 </div>
                               )}
@@ -560,15 +570,15 @@ export const Result = () => {
                         </button>
 
                         {/* Popover for locked items */}
-                        {!isUnlocked && hoveredLockedKey === key && (
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-10 pointer-events-none">
-                            <div className="bg-[#231821] text-white px-4 py-2 rounded shadow-lg whitespace-nowrap">
-                              <p className="font-jetbrains-mono text-[10px] leading-[15px]">
+                        {!isUnlocked && isHovered && (
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-30">
+                            <div className="bg-[#231821] text-white px-4 py-3 rounded shadow-xl whitespace-nowrap">
+                              <p className="font-jetbrains-mono text-[11px] leading-[16px]">
                                 Ask others for their results!
                               </p>
                               {/* Arrow */}
-                              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px">
-                                <div className="w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-[#231821]" />
+                              <div className="absolute top-full left-1/2 -translate-x-1/2">
+                                <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-[#231821]" />
                               </div>
                             </div>
                           </div>
