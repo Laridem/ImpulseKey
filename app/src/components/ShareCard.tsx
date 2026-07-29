@@ -57,7 +57,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
             className="font-space-grotesk font-bold text-[44px] leading-[56px] text-center"
             style={{ color: impulseColor }}
           >
-            "{mostLikelyToSay}"
+            {isEnglish ? `"${mostLikelyToSay}"` : `「${mostLikelyToSay}」`}
           </div>
         </div>
 

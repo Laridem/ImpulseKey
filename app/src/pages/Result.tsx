@@ -441,7 +441,10 @@ export const Result = () => {
                     className="font-72-brand font-medium italic text-[16px] leading-[26px]"
                     style={{ color: quoteTextColor }}
                   >
-                    "{language === 'zh' ? result.pulse.en : result.pulse.zh}"
+                    {language === 'zh'
+                      ? `"${result.pulse.en}"`
+                      : `「${result.pulse.zh}」`
+                    }
                   </p>
                 </div>
               </div>
@@ -480,7 +483,10 @@ export const Result = () => {
                   className="font-72-brand font-medium text-[24px] leading-[30px] text-center"
                   style={{ color: punchlineTextColor }}
                 >
-                  "{language === 'zh' ? result.punchline.en : result.punchline.zh}"
+                  {language === 'zh'
+                    ? `"${result.punchline.en}"`
+                    : `「${result.punchline.zh}」`
+                  }
                 </p>
               </div>
             </div>
