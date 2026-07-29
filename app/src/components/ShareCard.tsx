@@ -18,8 +18,8 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
     const isEnglish = language === 'en';
     const nameEN = result.name.en;
     const nameCN = result.name.zh;
-    const motto = isEnglish ? result.motto.en : result.motto.zh;
-    const mostLikelyToSay = (isEnglish ? result.mostLikelyToSayEN : result.mostLikelyToSayCN) || motto;
+    const pulse = isEnglish ? result.pulse.en : result.pulse.zh; // Use pulse instead of motto
+    const mostLikelyToSay = (isEnglish ? result.mostLikelyToSayEN : result.mostLikelyToSayCN) || pulse;
 
     // Get the Impulse color (magenta/yellow/cyan/purple) from color group
     const colorGroup = getColorGroupForResult(result.key);
@@ -68,12 +68,9 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           </div>
         </div>
 
-        {/* Quote: Most Likely to Say */}
+        {/* Quote: Most Likely to Say - Gray, Italic */}
         <div className="px-20 pb-16 flex justify-center">
-          <div
-            className="font-space-grotesk font-bold text-[44px] leading-[56px] text-center"
-            style={{ color: impulseColor }}
-          >
+          <div className="font-72-brand font-medium italic text-[44px] leading-[56px] text-center text-[#949494]">
             {isEnglish ? `"${mostLikelyToSay}"` : `「${mostLikelyToSay}」`}
           </div>
         </div>
@@ -96,19 +93,19 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           <div className="h-[2px] bg-[#d8bfd1]" />
         </div>
 
-        {/* Bottom: Motto */}
-        <div className="flex-1 px-24 pb-8 flex items-start justify-center">
+        {/* Bottom: Experience Pulse (longer text) */}
+        <div className="flex-1 px-24 pb-20 flex items-start justify-center">
           <p className="font-72-brand text-[40px] leading-[56px] text-[#534150] text-center">
-            {motto}
+            {pulse}
           </p>
         </div>
 
-        {/* Logo at Bottom - 2x size, 16px from bottom */}
-        <div className="pb-4 flex justify-center" style={{ paddingBottom: '16px' }}>
+        {/* Logo at Bottom - Large size, proper spacing */}
+        <div className="pb-16 flex justify-center">
           <img
             src="/assets/anvils.png"
             alt="Anvils"
-            className="h-24 w-auto opacity-60"
+            className="h-32 w-auto opacity-60"
           />
         </div>
       </div>
