@@ -43,10 +43,10 @@ export const Result = () => {
 
       const dataUrl = await toPng(shareCardRef.current, {
         cacheBust: true,
-        pixelRatio: 1, // 1080px already high-res
-        backgroundColor: result.color,
+        pixelRatio: 1, // 1080x1920 already high-res
+        backgroundColor: '#ffffff',
         width: 1080,
-        height: 1080,
+        height: 1920,
       });
 
       const link = document.createElement('a');

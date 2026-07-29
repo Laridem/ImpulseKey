@@ -9,111 +9,81 @@ interface ShareCardProps {
 
 /**
  * ShareCard Component
- * Fixed 1080x1080px card for social media sharing
+ * Fixed 1080x1920px card for mobile sharing (9:16 ratio)
+ * Layout based on design reference
  */
 export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
   ({ result, language }, ref) => {
     const isEnglish = language === 'en';
-    const name = isEnglish ? result.name.en : result.name.zh;
+    const nameEN = result.name.en;
+    const nameCN = result.name.zh;
     const motto = isEnglish ? result.motto.en : result.motto.zh;
-
-    // Get glitch shadow colors (other 3 Impulse colors)
-    const getGlitchColors = (currentColor: string) => {
-      const impulseColors = ['#A100C2', '#FFC933', '#64EDD2', '#7858FF'];
-      return impulseColors.filter(c => c !== currentColor);
-    };
-
-    const glitchColors = getGlitchColors(result.color);
+    const mostLikelyToSay = (isEnglish ? result.mostLikelyToSayEN : result.mostLikelyToSayCN) || motto;
 
     return (
       <div
         ref={ref}
-        className="relative w-[1080px] h-[1080px] overflow-hidden"
-        style={{ backgroundColor: result.color }}
+        className="relative w-[1080px] h-[1920px] bg-white overflow-hidden flex flex-col"
       >
-        {/* Anvils Logo - Top Left */}
-        <div className="absolute top-12 left-12 z-10">
-          <img
-            src="/assets/anvils.png"
-            alt="Anvils"
-            className="h-16 w-auto"
-          />
+        {/* Top: Key Abbreviation */}
+        <div className="pt-24 pb-16 flex justify-center">
+          <div className="font-jetbrains-mono font-medium text-[48px] leading-[60px] tracking-[0.2em] text-[#534150] uppercase">
+            YOUR IMPULSE KEY: {result.key}
+          </div>
         </div>
 
-        {/* Main Content Container */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-20">
-          {/* Keycap Image */}
+        {/* Middle: Keycap Image with Color Background */}
+        <div className="flex justify-center px-16 pb-16">
           <div
-            className="mb-12"
-            style={{
-              filter: `drop-shadow(-4px -4px 12px ${glitchColors[0]}80)
-                       drop-shadow(4px 4px 16px ${glitchColors[1]}60)
-                       drop-shadow(0px 0px 24px ${glitchColors[2]}40)`
-            }}
+            className="rounded-[40px] p-16 flex items-center justify-center"
+            style={{ backgroundColor: result.color }}
           >
             <img
               src={getKeycapAsset(result.key)}
-              alt={name}
-              className="w-[420px] h-[420px] object-contain"
+              alt={nameEN}
+              className="w-[640px] h-[640px] object-contain"
             />
           </div>
+        </div>
 
-          {/* Result Name */}
-          <h1
-            className="font-space-grotesk font-bold text-[56px] leading-tight text-center mb-6"
-            style={{
-              color: '#231821',
-              textShadow: `
-                2px 2px 0px ${glitchColors[0]}40,
-                -2px -2px 0px ${glitchColors[1]}40,
-                0px 4px 8px ${glitchColors[2]}20
-              `
-            }}
+        {/* Quote: Most Likely to Say */}
+        <div className="px-20 pb-16 flex justify-center">
+          <div
+            className="font-space-grotesk font-bold text-[44px] leading-[56px] text-center"
+            style={{ color: result.color }}
           >
-            {name}
+            "{mostLikelyToSay}"
+          </div>
+        </div>
+
+        {/* Result Name: English + Chinese */}
+        <div className="px-20 pb-12 flex flex-col items-center gap-4">
+          <h1 className="font-space-grotesk font-bold text-[72px] leading-[80px] text-[#231821] text-center">
+            {nameEN}
           </h1>
-
-          {/* Motto */}
-          <p
-            className="font-72-brand text-[32px] leading-relaxed text-center max-w-[800px]"
-            style={{
-              color: '#231821',
-              textShadow: `1px 1px 2px ${glitchColors[0]}30`
-            }}
+          <h2
+            className="font-72-brand font-medium text-[52px] leading-[64px] text-center"
+            style={{ color: result.color }}
           >
+            {nameCN}
+          </h2>
+        </div>
+
+        {/* Divider */}
+        <div className="px-20 pb-12">
+          <div className="h-[2px] bg-[#d8bfd1]" />
+        </div>
+
+        {/* Bottom: Motto */}
+        <div className="flex-1 px-24 pb-24 flex items-start justify-center">
+          <p className="font-72-brand text-[40px] leading-[56px] text-[#534150] text-center">
             {motto}
           </p>
         </div>
-
-        {/* Bottom Branding */}
-        <div className="absolute bottom-16 left-0 right-0 flex justify-center">
-          <div
-            className="font-jetbrains-mono text-[24px] font-bold tracking-wider"
-            style={{
-              color: '#231821',
-              textShadow: `1px 1px 2px ${glitchColors[0]}40`
-            }}
-          >
-            IMPULSE26.KEYS
-          </div>
-        </div>
-
-        {/* Decorative Corner Elements */}
-        <div
-          className="absolute top-0 right-0 w-48 h-48 opacity-10"
-          style={{
-            background: `linear-gradient(135deg, transparent 50%, ${glitchColors[0]} 50%)`
-          }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-48 h-48 opacity-10"
-          style={{
-            background: `linear-gradient(315deg, transparent 50%, ${glitchColors[1]} 50%)`
-          }}
-        />
       </div>
     );
   }
 );
 
 ShareCard.displayName = 'ShareCard';
+
