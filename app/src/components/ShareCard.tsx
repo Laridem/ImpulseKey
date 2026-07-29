@@ -94,19 +94,34 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         </div>
 
         {/* Bottom: Experience Pulse (longer text) */}
-        <div className="flex-1 px-24 pb-20 flex items-start justify-center">
+        <div className="flex-1 px-24 pb-12 flex items-start justify-center">
           <p className="font-72-brand text-[40px] leading-[56px] text-[#534150] text-center">
             {pulse}
           </p>
         </div>
 
-        {/* Logo at Bottom - Large size, proper spacing */}
-        <div className="pb-16 flex justify-center">
-          <img
-            src="/assets/anvils.png"
-            alt="Anvils"
-            className="h-32 w-auto opacity-60"
-          />
+        {/* Bottom Row: Logo (left) + QR Code (right) */}
+        <div className="pb-16 px-16 flex justify-between items-end">
+          {/* Anvils Logo - Bottom Left */}
+          <div className="flex items-center">
+            <img
+              src="/assets/anvils.png"
+              alt="Anvils"
+              className="h-20 w-auto opacity-60"
+            />
+          </div>
+
+          {/* QR Code - Bottom Right */}
+          <div className="flex flex-col items-center gap-2">
+            <img
+              src="/assets/qr-code.png"
+              alt="Scan QR Code"
+              className="w-40 h-40 object-contain"
+            />
+            <p className="font-jetbrains-mono text-[18px] leading-[24px] text-[#949494] uppercase tracking-wider">
+              Scan me
+            </p>
+          </div>
         </div>
       </div>
     );
