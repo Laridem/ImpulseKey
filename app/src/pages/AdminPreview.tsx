@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { RESULTS, getAllResultKeys } from '../data/results';
 import { getColorGroupForResult } from '../data/colorGroups';
 import { useLanguage } from '../i18n/LanguageContext';
-import { getKeycapAsset } from '../utils/assets';
+import { getKeycapAsset, type KeycapType } from '../utils/assets';
+import type { ResultKey } from '../data/types';
 
 export const AdminPreview = () => {
   const allKeys = getAllResultKeys();
   const [selectedKey, setSelectedKey] = useState(allKeys[0]);
-  const { language, toggleLanguage, t } = useLanguage();
+  const { language } = useLanguage();
 
   if (!allKeys || allKeys.length === 0) {
     return <div className="p-8">{language === 'zh' ? '未找到结果' : 'No results found'}</div>;
@@ -18,7 +19,7 @@ export const AdminPreview = () => {
     return <div className="p-8">{language === 'zh' ? `未找到结果: ${selectedKey}` : `Result not found: ${selectedKey}`}</div>;
   }
 
-  const colorGroup = getColorGroupForResult(selectedKey);
+  const colorGroup = getColorGroupForResult(selectedKey as ResultKey);
 
   // Helper function to convert hex to rgba
   const hexToRgba = (hex: string, alpha: number): string => {
@@ -68,17 +69,14 @@ export const AdminPreview = () => {
           <p className="font-72-brand text-[12px] text-[#534150] mb-4">
             {language === 'zh' ? '检查所有 Result 的配色和文案' : 'Review all Result colors and content'}
           </p>
-          <button
-            onClick={toggleLanguage}
-            className="w-full px-4 py-2 bg-[#a800aa] text-white font-jetbrains-mono text-[10px] uppercase rounded hover:bg-[#8a0088] transition-colors"
-          >
-            {language === 'en' ? '切换到中文' : 'Switch to English'}
-          </button>
+          <div className="text-center text-[#534150] font-jetbrains-mono text-[10px]">
+            {language === 'zh' ? '当前语言：中文' : 'Current Language: English'}
+          </div>
         </div>
 
         <div className="p-4 space-y-2">
           {allKeys.map((key) => {
-            const cg = getColorGroupForResult(key);
+            const cg = getColorGroupForResult(key as ResultKey);
             const isSelected = key === selectedKey;
 
             return (
@@ -151,7 +149,7 @@ export const AdminPreview = () => {
                   }}
                 >
                   <img
-                    src={getKeycapAsset(selectedKey)}
+                    src={getKeycapAsset(selectedKey as KeycapType)}
                     alt={result.nameEN}
                     className="w-36 h-36 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
