@@ -8,6 +8,7 @@ import { getKeycapAsset } from '../utils/assets';
 import { getColorGroupForResult } from '../data/colorGroups';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { ShareCard } from '../components/ShareCard';
 
 export const Result = () => {
   const { key } = useParams<{ key: string }>();
@@ -16,6 +17,7 @@ export const Result = () => {
   const t = useTranslation();
   const { language } = useLanguage();
   const resultRef = useRef<HTMLDivElement>(null);
+  const shareCardRef = useRef<HTMLDivElement>(null);
   const [isCapturing, setIsCapturing] = useState(false);
 
   // Load result if accessed directly via URL
@@ -31,21 +33,23 @@ export const Result = () => {
   };
 
   const handleShare = async () => {
-    if (!resultRef.current || !result) return;
+    if (!shareCardRef.current || !result) return;
 
     setIsCapturing(true);
 
     try {
       await new Promise(resolve => setTimeout(resolve, 100));
 
-      const dataUrl = await toPng(resultRef.current, {
+      const dataUrl = await toPng(shareCardRef.current, {
         cacheBust: true,
-        pixelRatio: 2,
-        backgroundColor: '#ffffff',
+        pixelRatio: 1, // 1080px already high-res
+        backgroundColor: result.color,
+        width: 1080,
+        height: 1080,
       });
 
       const link = document.createElement('a');
-      link.download = `impulse-keys-${result.key}-${Date.now()}.png`;
+      link.download = `IMPULSE-${result.key}.png`;
       link.href = dataUrl;
       link.click();
 
@@ -545,6 +549,17 @@ export const Result = () => {
       </main>
 
       <Footer />
+
+      {/* Hidden Share Card - for image generation only */}
+      <div className="fixed -left-[9999px] -top-[9999px] pointer-events-none">
+        {result && (
+          <ShareCard
+            ref={shareCardRef}
+            result={result}
+            language={language}
+          />
+        )}
+      </div>
     </div>
   );
 };
