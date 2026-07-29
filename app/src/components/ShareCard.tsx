@@ -80,10 +80,19 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         </div>
 
         {/* Bottom: Motto */}
-        <div className="flex-1 px-24 pb-24 flex items-start justify-center">
+        <div className="flex-1 px-24 pb-12 flex items-start justify-center">
           <p className="font-72-brand text-[40px] leading-[56px] text-[#534150] text-center">
             {motto}
           </p>
+        </div>
+
+        {/* Logo at Bottom */}
+        <div className="pb-16 flex justify-center">
+          <img
+            src="/assets/anvils.png"
+            alt="Anvils"
+            className="h-12 w-auto opacity-60"
+          />
         </div>
       </div>
     );
