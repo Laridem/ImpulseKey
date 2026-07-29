@@ -9,6 +9,7 @@ import { getColorGroupForResult } from '../data/colorGroups';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { ShareCard } from '../components/ShareCard';
+import { getAccessibleTextColor } from '../utils/contrast';
 
 export const Result = () => {
   const { key } = useParams<{ key: string }>();
@@ -94,37 +95,16 @@ export const Result = () => {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   };
 
-  // Helper function to darken color for better contrast on light backgrounds
-  const darkenColor = (hex: string, amount: number = 0.3): string => {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-
-    const darkenedR = Math.round(r * (1 - amount));
-    const darkenedG = Math.round(g * (1 - amount));
-    const darkenedB = Math.round(b * (1 - amount));
-
-    return `rgb(${darkenedR}, ${darkenedG}, ${darkenedB})`;
+  // Helper function to get text color with proper WCAG contrast on colored background
+  const getPunchlineTextColor = (bgColor: string): string => {
+    // For solid color background, use WCAG-compliant text color
+    return getAccessibleTextColor(bgColor);
   };
 
-  // Helper function to determine if we need dark text on light background
+  // Helper function to determine text color for quote blocks (on semi-transparent bg)
   const getQuoteTextColor = (bgColor: string): string => {
-    // Convert hex to RGB
-    const r = parseInt(bgColor.slice(1, 3), 16);
-    const g = parseInt(bgColor.slice(3, 5), 16);
-    const b = parseInt(bgColor.slice(5, 7), 16);
-
-    // Calculate relative luminance (WCAG formula)
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-
-    // For quote background at 25% opacity, we need to consider the blended color
-    // If the base color is dark (luminance < 0.55), use white text
-    // Otherwise use darkened version of the color
-    if (luminance < 0.55) {
-      return '#ffffff'; // White text for dark colors
-    } else {
-      return darkenColor(bgColor, 0.3); // Darkened text for light colors
-    }
+    // For semi-transparent backgrounds over white, use WCAG-compliant color
+    return getAccessibleTextColor(bgColor);
   };
 
   // Dynamic colors based on impulse color
@@ -133,6 +113,7 @@ export const Result = () => {
   const cardBorder = hexToRgba(impulseColor, 0.20);
   const quoteBg = hexToRgba(impulseColor, 0.25); // Increased from 0.15 to 0.25
   const quoteTextColor = getQuoteTextColor(impulseColor); // Smart text color based on luminance
+  const punchlineTextColor = getPunchlineTextColor(impulseColor); // WCAG-compliant text for punchline
 
   // Get contrasting Impulse colors for neon glitch effect
   const getGlitchColors = (currentColor: string) => {
@@ -195,6 +176,23 @@ export const Result = () => {
                     alt={result.name.en}
                     className="w-48 h-48 object-contain transition-transform duration-300 group-hover:scale-110"
                   />
+                </div>
+              </div>
+
+              {/* Key Abbreviation Display */}
+              <div className="flex justify-center -mt-2">
+                <div
+                  className="font-jetbrains-mono font-bold text-[32px] leading-[40px] tracking-widest uppercase"
+                  style={{
+                    color: impulseColor,
+                    textShadow: `
+                      2px 2px 0px ${glitchColors[0]}40,
+                      -2px -2px 0px ${glitchColors[1]}40,
+                      0px 3px 6px ${glitchColors[2]}30
+                    `
+                  }}
+                >
+                  {result.key}
                 </div>
               </div>
 
@@ -472,13 +470,13 @@ export const Result = () => {
               <div className="relative">
                 <p
                   className="font-space-grotesk font-bold text-[24px] leading-[30px] tracking-[-0.6px] text-center uppercase mb-4"
-                  style={{ color: darkenColor(impulseColor, 0.6) }}
+                  style={{ color: punchlineTextColor }}
                 >
                   {result.punchline[language]}
                 </p>
                 <p
                   className="font-72-brand font-medium text-[24px] leading-[30px] text-center"
-                  style={{ color: darkenColor(impulseColor, 0.5) }}
+                  style={{ color: punchlineTextColor }}
                 >
                   "{language === 'zh' ? result.punchline.en : result.punchline.zh}"
                 </p>
