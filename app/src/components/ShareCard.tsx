@@ -100,9 +100,9 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           </p>
         </div>
 
-        {/* Bottom Row: Logo (left) + QR Code (right) */}
-        <div className="pb-16 px-16 flex justify-between items-end">
-          {/* Anvils Logo - Bottom Left */}
+        {/* Bottom Row: Logo + QR Code (centered) */}
+        <div className="pb-16 px-16 flex justify-center items-end gap-8">
+          {/* Anvils Logo */}
           <div className="flex items-center">
             <img
               src="/assets/anvils.png"
@@ -111,7 +111,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
             />
           </div>
 
-          {/* QR Code - Bottom Right */}
+          {/* QR Code */}
           <div className="flex flex-col items-center gap-2">
             <img
               src="/assets/qr-code.png"
