@@ -49,7 +49,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
       >
         {/* Top: Key Abbreviation */}
         <div className="pt-24 pb-16 flex justify-center">
-          <div className="font-jetbrains-mono font-medium text-[48px] leading-[60px] tracking-[0.2em] text-[#534150] uppercase">
+          <div className="font-jetbrains-mono font-medium text-[32px] leading-[40px] tracking-[0.1em] text-[#534150] uppercase whitespace-nowrap">
             YOUR IMPULSE KEY: {result.key}
           </div>
         </div>
@@ -101,13 +101,13 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         </div>
 
         {/* Bottom Row: Logo + QR Code (centered) */}
-        <div className="pb-16 px-16 flex justify-center items-end gap-8">
+        <div className="pb-16 px-16 flex justify-center items-center gap-12">
           {/* Anvils Logo */}
           <div className="flex items-center">
             <img
               src="/assets/anvils.png"
               alt="Anvils"
-              className="h-20 w-auto opacity-60"
+              className="h-24 w-auto opacity-60"
             />
           </div>
 
