@@ -91,6 +91,13 @@ git push origin main
 git push origin main --force
 ```
 
+### IMPORTANT: Push Policy
+**DO NOT push to GitHub automatically after every commit.**
+- Only push when explicitly requested by the user (e.g., "push to GitHub", "deploy", "push")
+- Local commits are fine, but pushing triggers Cloudflare Pages builds
+- This saves build quota and allows batching multiple changes before deployment
+- Always commit changes locally, but wait for user approval before pushing
+
 ---
 
 ## Deployment History & Lessons Learned
