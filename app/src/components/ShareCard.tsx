@@ -48,9 +48,12 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         }}
       >
         {/* Top: Key Abbreviation */}
-        <div className="pt-24 pb-16 flex justify-center">
-          <div className="font-jetbrains-mono font-medium text-[32px] leading-[40px] tracking-[0.1em] text-[#534150] uppercase whitespace-nowrap">
-            YOUR IMPULSE KEY: {result.key}
+        <div className="pt-24 pb-16 flex flex-col items-center">
+          <div className="font-jetbrains-mono font-medium text-[28px] leading-[36px] tracking-[0.1em] text-[#949494] uppercase">
+            YOUR IMPULSE KEY:
+          </div>
+          <div className="font-jetbrains-mono font-bold text-[40px] leading-[48px] tracking-[0.15em] text-[#231821] uppercase">
+            {result.key}
           </div>
         </div>
 
@@ -100,25 +103,25 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           </p>
         </div>
 
-        {/* Bottom Row: Logo + QR Code (centered) */}
-        <div className="pb-16 px-16 flex justify-center items-center gap-12">
-          {/* Anvils Logo */}
+        {/* Bottom Row: Logo (left) + QR Code (right) */}
+        <div className="pb-20 px-20 flex justify-between items-end">
+          {/* Anvils Logo - Bottom Left */}
           <div className="flex items-center">
             <img
               src="/assets/anvils.png"
               alt="Anvils"
-              className="h-24 w-auto opacity-60"
+              className="h-20 w-auto opacity-60"
             />
           </div>
 
-          {/* QR Code */}
+          {/* QR Code - Bottom Right */}
           <div className="flex flex-col items-center gap-2">
             <img
               src="/assets/qr-code.png"
               alt="Scan QR Code"
-              className="w-40 h-40 object-contain"
+              className="w-32 h-32 object-contain"
             />
-            <p className="font-jetbrains-mono text-[18px] leading-[24px] text-[#949494] uppercase tracking-wider">
+            <p className="font-jetbrains-mono text-[16px] leading-[20px] text-[#949494] uppercase tracking-wider">
               Scan me
             </p>
           </div>
