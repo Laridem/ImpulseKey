@@ -53,15 +53,64 @@ export const Landing = () => {
             <div className="hidden sm:flex flex-col sm:flex-row gap-3 pt-2 sm:pt-4">
               <button
                 onClick={handleStartTest}
-                className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 bg-[#a800aa] text-white font-72-brand text-[14px] sm:text-body-lg rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all"
+                className="relative w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 text-white font-72-brand text-[14px] sm:text-body-lg rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] group"
+                style={{
+                  background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+                  boxShadow: `
+                    0 1px 0 0 rgba(255,255,255,0.3) inset,
+                    0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                    0 6px 0 0 #800082,
+                    0 10px 20px -4px rgba(168,0,170,0.4),
+                    0 0 40px -10px rgba(246,90,242,0.5)
+                  `
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    0 1px 0 0 rgba(255,255,255,0.4) inset,
+                    0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                    0 8px 0 0 #800082,
+                    0 14px 28px -4px rgba(168,0,170,0.5),
+                    0 0 60px -5px rgba(246,90,242,0.7)
+                  `;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    0 1px 0 0 rgba(255,255,255,0.3) inset,
+                    0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                    0 6px 0 0 #800082,
+                    0 10px 20px -4px rgba(168,0,170,0.4),
+                    0 0 40px -10px rgba(246,90,242,0.5)
+                  `;
+                }}
               >
-                {t('landing.startButton')}
+                <div
+                  className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+                  }}
+                />
+                <span className="relative z-10">{t('landing.startButton')}</span>
               </button>
               <button
                 onClick={() => navigate('/intro')}
-                className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 bg-[#f7e3ef] text-[#231821] font-72-brand text-[14px] sm:text-body-lg border border-[#867181] rounded-lg hover:border-[#a800aa] transition-all"
+                className="relative w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 text-[#534150] font-72-brand text-[14px] sm:text-body-lg rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] active:translate-y-[0px] overflow-hidden group"
+                style={{
+                  borderWidth: '3px',
+                  borderColor: '#d8bfd1',
+                  background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+                  boxShadow: `
+                    0 1px 0 0 rgba(255,255,255,0.8) inset,
+                    0 2px 8px -2px rgba(168,0,170,0.15)
+                  `
+                }}
               >
-                {t('landing.howToPlayButton')}
+                <div
+                  className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+                  }}
+                />
+                <span className="relative z-10">{t('landing.howToPlayButton')}</span>
               </button>
             </div>
 
@@ -234,15 +283,41 @@ export const Landing = () => {
         <div className="flex flex-col gap-3 max-w-[1280px] mx-auto">
           <button
             onClick={handleStartTest}
-            className="w-full px-6 py-3 bg-[#a800aa] text-white font-72-brand text-[14px] rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all"
+            className="relative w-full px-6 py-3 text-white font-72-brand text-[14px] rounded-full overflow-hidden"
+            style={{
+              background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+              boxShadow: `
+                0 1px 0 0 rgba(255,255,255,0.3) inset,
+                0 4px 0 0 #800082,
+                0 8px 16px -4px rgba(168,0,170,0.4)
+              `
+            }}
           >
-            {t('landing.startButton')}
+            <div
+              className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+              }}
+            />
+            <span className="relative z-10">{t('landing.startButton')}</span>
           </button>
           <button
             onClick={() => navigate('/intro')}
-            className="w-full px-6 py-3 bg-[#f7e3ef] text-[#231821] font-72-brand text-[14px] border border-[#867181] rounded-lg hover:border-[#a800aa] transition-all"
+            className="relative w-full px-6 py-3 text-[#534150] font-72-brand text-[14px] rounded-full overflow-hidden"
+            style={{
+              borderWidth: '3px',
+              borderColor: '#d8bfd1',
+              background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+              boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
+            }}
           >
-            {t('landing.howToPlayButton')}
+            <div
+              className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+              }}
+            />
+            <span className="relative z-10">{t('landing.howToPlayButton')}</span>
           </button>
         </div>
       </div>

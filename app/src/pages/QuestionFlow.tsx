@@ -131,19 +131,65 @@ export const QuestionFlow = () => {
             <button
               onClick={handlePrevious}
               disabled={currentQuestionIndex === 0}
-              className="flex-1 px-4 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-[#f7e3ef] text-[#231821] font-72-brand text-[13px] sm:text-[15px] md:text-body-lg border border-[#867181] rounded-lg hover:border-[#a800aa] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="relative flex-1 px-4 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-[#534150] font-72-brand text-[13px] sm:text-[15px] md:text-body-lg rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 flex items-center justify-center gap-2 overflow-hidden"
+              style={{
+                borderWidth: '3px',
+                borderColor: '#d8bfd1',
+                background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+                boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset, 0 2px 8px -2px rgba(168,0,170,0.15)'
+              }}
             >
-              <span>←</span>
-              {t('question.previousStep')}
+              <div
+                className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+                }}
+              />
+              <span className="relative z-10">←</span>
+              <span className="relative z-10">{t('question.previousStep')}</span>
             </button>
 
             {canSubmit && (
               <button
                 onClick={handleSubmit}
-                className="flex-1 px-4 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-[#a800aa] text-white font-72-brand text-[13px] sm:text-[15px] md:text-body-lg rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all flex items-center justify-center gap-2"
+                className="relative flex-1 px-4 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-white font-72-brand text-[13px] sm:text-[15px] md:text-body-lg rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] flex items-center justify-center gap-2 group"
+                style={{
+                  background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+                  boxShadow: `
+                    0 1px 0 0 rgba(255,255,255,0.3) inset,
+                    0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                    0 6px 0 0 #800082,
+                    0 10px 20px -4px rgba(168,0,170,0.4),
+                    0 0 40px -10px rgba(246,90,242,0.5)
+                  `
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    0 1px 0 0 rgba(255,255,255,0.4) inset,
+                    0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                    0 8px 0 0 #800082,
+                    0 14px 28px -4px rgba(168,0,170,0.5),
+                    0 0 60px -5px rgba(246,90,242,0.7)
+                  `;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    0 1px 0 0 rgba(255,255,255,0.3) inset,
+                    0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                    0 6px 0 0 #800082,
+                    0 10px 20px -4px rgba(168,0,170,0.4),
+                    0 0 40px -10px rgba(246,90,242,0.5)
+                  `;
+                }}
               >
-                {t('question.submitTest')}
-                <span>✓</span>
+                <div
+                  className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+                  }}
+                />
+                <span className="relative z-10">{t('question.submitTest')}</span>
+                <span className="relative z-10">✓</span>
               </button>
             )}
           </div>
@@ -174,10 +220,22 @@ export const QuestionFlow = () => {
           <button
             onClick={handlePrevious}
             disabled={currentQuestionIndex === 0}
-            className="flex-1 px-3 py-2.5 bg-white text-[#231821] font-space-grotesk font-bold text-[13px] border-2 border-[#a800aa] rounded-lg hover:bg-[#f7e3ef] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 uppercase"
+            className="relative flex-1 px-3 py-2.5 text-[#231821] font-space-grotesk font-bold text-[13px] rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 uppercase overflow-hidden"
+            style={{
+              borderWidth: '2px',
+              borderColor: '#a800aa',
+              background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+              boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
+            }}
           >
-            <span>←</span>
-            PREVIOUS
+            <div
+              className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+              }}
+            />
+            <span className="relative z-10">←</span>
+            <span className="relative z-10">PREVIOUS</span>
           </button>
 
           <button

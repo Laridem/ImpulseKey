@@ -97,10 +97,45 @@ export const RoleSelection = () => {
             <button
               onClick={handleContinue}
               disabled={!selectedRoleId}
-              className="w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-4 bg-[#d946ef] text-white font-72-brand text-[14px] sm:text-body-lg rounded-lg hover:bg-[#c026d3] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-soft"
+              className="relative w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-4 text-white font-72-brand text-[14px] sm:text-body-lg rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 flex items-center justify-center gap-3 group"
+              style={{
+                background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+                boxShadow: `
+                  0 1px 0 0 rgba(255,255,255,0.3) inset,
+                  0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                  0 6px 0 0 #800082,
+                  0 10px 20px -4px rgba(168,0,170,0.4),
+                  0 0 40px -10px rgba(246,90,242,0.5)
+                `
+              }}
+              onMouseEnter={(e) => {
+                if (!selectedRoleId) return;
+                e.currentTarget.style.boxShadow = `
+                  0 1px 0 0 rgba(255,255,255,0.4) inset,
+                  0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                  0 8px 0 0 #800082,
+                  0 14px 28px -4px rgba(168,0,170,0.5),
+                  0 0 60px -5px rgba(246,90,242,0.7)
+                `;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = `
+                  0 1px 0 0 rgba(255,255,255,0.3) inset,
+                  0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                  0 6px 0 0 #800082,
+                  0 10px 20px -4px rgba(168,0,170,0.4),
+                  0 0 40px -10px rgba(246,90,242,0.5)
+                `;
+              }}
             >
-              {t('roleSelection.continueButton')}
-              <span>→</span>
+              <div
+                className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+                }}
+              />
+              <span className="relative z-10">{t('roleSelection.continueButton')}</span>
+              <span className="relative z-10">→</span>
             </button>
           </div>
         </div>
@@ -111,10 +146,24 @@ export const RoleSelection = () => {
         <button
           onClick={handleContinue}
           disabled={!selectedRoleId}
-          className="w-full px-8 py-3 bg-[#d946ef] text-white font-72-brand text-[14px] rounded-lg hover:bg-[#c026d3] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-soft"
+          className="relative w-full px-8 py-3 text-white font-72-brand text-[14px] rounded-full overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+          style={{
+            background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+            boxShadow: `
+              0 1px 0 0 rgba(255,255,255,0.3) inset,
+              0 4px 0 0 #800082,
+              0 8px 16px -4px rgba(168,0,170,0.4)
+            `
+          }}
         >
-          {t('roleSelection.continueButton')}
-          <span>→</span>
+          <div
+            className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+            style={{
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+            }}
+          />
+          <span className="relative z-10">{t('roleSelection.continueButton')}</span>
+          <span className="relative z-10">→</span>
         </button>
       </div>
     </div>

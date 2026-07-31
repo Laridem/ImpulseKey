@@ -863,17 +863,43 @@ export const Result = () => {
           <button
             onClick={handleShare}
             disabled={isCapturing}
-            className="flex-1 bg-[#a800aa] text-white font-space-grotesk font-semibold text-[16px] leading-[31.2px] uppercase py-2 rounded flex items-center justify-center gap-2 disabled:opacity-50"
+            className="relative flex-1 text-white font-space-grotesk font-semibold text-[16px] leading-[31.2px] uppercase py-2 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 overflow-hidden"
+            style={{
+              background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+              boxShadow: `
+                0 1px 0 0 rgba(255,255,255,0.3) inset,
+                0 4px 0 0 #800082,
+                0 8px 16px -4px rgba(168,0,170,0.4)
+              `
+            }}
           >
-            <span className="text-[18px]">↗</span>
-            {isCapturing ? 'Capturing...' : 'SHARE RESULT'}
+            <div
+              className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+              }}
+            />
+            <span className="relative z-10 text-[18px]">↗</span>
+            <span className="relative z-10">{isCapturing ? 'Capturing...' : 'SHARE RESULT'}</span>
           </button>
           <button
             onClick={handleRetake}
-            className="flex-1 bg-white border-2 border-[#a800aa] text-[#a800aa] font-space-grotesk font-semibold text-[16px] leading-[31.2px] uppercase py-2 px-0.5 rounded flex items-center justify-center gap-2"
+            className="relative flex-1 text-[#a800aa] font-space-grotesk font-semibold text-[16px] leading-[31.2px] uppercase py-2 px-0.5 rounded-full flex items-center justify-center gap-2 overflow-hidden"
+            style={{
+              borderWidth: '2px',
+              borderColor: '#a800aa',
+              background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+              boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
+            }}
           >
-            <span className="text-[16px]">⟲</span>
-            RETAKE TEST
+            <div
+              className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+              }}
+            />
+            <span className="relative z-10 text-[16px]">⟲</span>
+            <span className="relative z-10">RETAKE TEST</span>
           </button>
         </div>
       </div>

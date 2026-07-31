@@ -99,10 +99,44 @@ export const TestIntro = () => {
           <div className="hidden sm:flex justify-center">
             <button
               onClick={handleStartTest}
-              className="w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-5 bg-[#a800aa] text-white font-72-brand text-[14px] sm:text-body-lg rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all flex items-center justify-center gap-2"
+              className="relative w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-5 text-white font-72-brand text-[14px] sm:text-body-lg rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] flex items-center justify-center gap-2 group"
+              style={{
+                background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+                boxShadow: `
+                  0 1px 0 0 rgba(255,255,255,0.3) inset,
+                  0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                  0 6px 0 0 #800082,
+                  0 10px 20px -4px rgba(168,0,170,0.4),
+                  0 0 40px -10px rgba(246,90,242,0.5)
+                `
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `
+                  0 1px 0 0 rgba(255,255,255,0.4) inset,
+                  0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                  0 8px 0 0 #800082,
+                  0 14px 28px -4px rgba(168,0,170,0.5),
+                  0 0 60px -5px rgba(246,90,242,0.7)
+                `;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = `
+                  0 1px 0 0 rgba(255,255,255,0.3) inset,
+                  0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                  0 6px 0 0 #800082,
+                  0 10px 20px -4px rgba(168,0,170,0.4),
+                  0 0 40px -10px rgba(246,90,242,0.5)
+                `;
+              }}
             >
-              {t('testIntro.startButton')}
-              <span>→</span>
+              <div
+                className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+                }}
+              />
+              <span className="relative z-10">{t('testIntro.startButton')}</span>
+              <span className="relative z-10">→</span>
             </button>
           </div>
         </div>
@@ -112,10 +146,24 @@ export const TestIntro = () => {
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#a800aa] px-4 py-4 z-50 shadow-[0px_-4px_8px_rgba(168,0,170,0.1)]">
         <button
           onClick={handleStartTest}
-          className="w-full px-8 py-3 bg-[#a800aa] text-white font-72-brand text-[14px] rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all flex items-center justify-center gap-2"
+          className="relative w-full px-8 py-3 text-white font-72-brand text-[14px] rounded-full overflow-hidden flex items-center justify-center gap-2"
+          style={{
+            background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+            boxShadow: `
+              0 1px 0 0 rgba(255,255,255,0.3) inset,
+              0 4px 0 0 #800082,
+              0 8px 16px -4px rgba(168,0,170,0.4)
+            `
+          }}
         >
-          {t('testIntro.startButton')}
-          <span>→</span>
+          <div
+            className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+            style={{
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+            }}
+          />
+          <span className="relative z-10">{t('testIntro.startButton')}</span>
+          <span className="relative z-10">→</span>
         </button>
       </div>
     </div>
