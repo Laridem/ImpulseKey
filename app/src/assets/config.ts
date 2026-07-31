@@ -48,10 +48,10 @@ export const ASSET_PATHS = {
 /**
  * Get keycap asset path
  * @param type - Keycap type (e.g., 'VOC', 'FIORI')
- * @returns Relative path to keycap SVG
+ * @returns Relative path to keycap image (PNG)
  */
 export function getKeycapAsset(type: KeycapType): string {
-  return `${ASSET_PATHS.keycaps}/Type=${type}.svg`
+  return `/assets/result-cards/${type}.png`
 }
 
 /**
