@@ -104,7 +104,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         </div>
 
         {/* Bottom Row: Logo (left) + QR Code (right) */}
-        <div className="pb-20 px-20 flex justify-between items-end">
+        <div className="pb-20 px-20 flex justify-between items-center">
           {/* Anvils Logo - Bottom Left */}
           <div className="flex items-center">
             <img
@@ -119,7 +119,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
             <img
               src="/assets/qr-code.png"
               alt="Scan QR Code"
-              className="w-32 h-32 object-contain"
+              className="w-[154px] h-[154px] object-contain"
             />
             <p className="font-jetbrains-mono text-[16px] leading-[20px] text-[#949494] uppercase tracking-wider">
               Scan me
