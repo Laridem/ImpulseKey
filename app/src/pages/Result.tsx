@@ -131,7 +131,7 @@ export const Result = () => {
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
-      <main ref={resultRef} className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-6 sm:py-8 md:py-12 w-full">
+      <main ref={resultRef} className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-6 sm:py-8 md:py-12 pb-24 lg:pb-12 w-full">
         {/* Responsive Layout: Single column on mobile, 12-column grid on desktop */}
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12">
           {/* Left Sidebar: Full width on mobile, 4 columns on desktop */}
@@ -240,8 +240,8 @@ export const Result = () => {
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-4 pt-6">
+              {/* Action Buttons - Hidden on mobile, visible on desktop */}
+              <div className="hidden lg:flex flex-col gap-4 pt-6">
                 <button
                   onClick={handleShare}
                   disabled={isCapturing}
@@ -719,6 +719,27 @@ export const Result = () => {
           </div>
         </div>
       </main>
+
+      {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#fff7f9] border-t-2 border-[#a800aa] px-4 py-4 z-50 drop-shadow-[0px_-4px_2px_#f1ddea]">
+        <div className="flex gap-4 max-w-[1280px] mx-auto">
+          <button
+            onClick={handleShare}
+            disabled={isCapturing}
+            className="flex-1 bg-[#a800aa] text-white font-space-grotesk font-semibold text-[16px] leading-[31.2px] uppercase py-2 rounded flex items-center justify-center gap-2 disabled:opacity-50"
+          >
+            <span className="text-[18px]">↗</span>
+            {isCapturing ? 'Capturing...' : 'SHARE RESULT'}
+          </button>
+          <button
+            onClick={handleRetake}
+            className="flex-1 bg-white border-2 border-[#a800aa] text-[#a800aa] font-space-grotesk font-semibold text-[16px] leading-[31.2px] uppercase py-2 px-0.5 rounded flex items-center justify-center gap-2"
+          >
+            <span className="text-[16px]">⟲</span>
+            RETAKE TEST
+          </button>
+        </div>
+      </div>
 
       <Footer />
 
