@@ -66,7 +66,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
             <img
               src={getKeycapAsset(result.key)}
               alt={nameEN}
-              className="w-[640px] h-[640px] object-contain"
+              className="w-[768px] h-[768px] object-contain"
             />
           </div>
         </div>
