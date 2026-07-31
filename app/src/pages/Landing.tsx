@@ -20,7 +20,7 @@ export const Landing = () => {
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
-      <main className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 w-full">
+      <main className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-32 sm:pb-24 w-full">
         {/* Hero Section */}
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start">
           {/* Left Column - Text Content */}
@@ -49,8 +49,8 @@ export const Landing = () => {
               </p>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-2 sm:pt-4">
+            {/* CTA Buttons - Hidden on mobile, visible on desktop */}
+            <div className="hidden sm:flex flex-col sm:flex-row gap-3 pt-2 sm:pt-4">
               <button
                 onClick={handleStartTest}
                 className="w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 bg-[#a800aa] text-white font-72-brand text-[14px] sm:text-body-lg rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all"
@@ -228,6 +228,24 @@ export const Landing = () => {
           </div>
         </div>
       </main>
+
+      {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#a800aa] px-4 py-4 z-50 shadow-[0px_-4px_8px_rgba(168,0,170,0.1)]">
+        <div className="flex flex-col gap-3 max-w-[1280px] mx-auto">
+          <button
+            onClick={handleStartTest}
+            className="w-full px-6 py-3 bg-[#a800aa] text-white font-72-brand text-[14px] rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all"
+          >
+            {t('landing.startButton')}
+          </button>
+          <button
+            onClick={() => navigate('/intro')}
+            className="w-full px-6 py-3 bg-[#f7e3ef] text-[#231821] font-72-brand text-[14px] border border-[#867181] rounded-lg hover:border-[#a800aa] transition-all"
+          >
+            {t('landing.howToPlayButton')}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
