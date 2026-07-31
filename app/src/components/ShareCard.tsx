@@ -36,8 +36,9 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
     return (
       <div
         ref={ref}
-        className="relative w-[1080px] h-[1920px] bg-white overflow-hidden flex flex-col"
+        className="relative w-[1080px] h-[1920px] overflow-hidden flex flex-col"
         style={{
+          background: 'linear-gradient(135deg, #fef5fb 0%, #f8e9f5 50%, #fef5fb 100%)',
           boxShadow: `
             0px 0px 40px 0px ${glitchColors[0]}60,
             0px 0px 80px 0px ${glitchColors[1]}40,
@@ -58,28 +59,28 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         </div>
 
         {/* Middle: Keycap Image with Color Background */}
-        <div className="flex justify-center px-16 pb-16">
+        <div className="flex justify-center px-16 pb-12">
           <div
-            className="rounded-[40px] p-16 flex items-center justify-center"
+            className="rounded-[40px] p-12 flex items-center justify-center"
             style={{ backgroundColor: impulseColor }}
           >
             <img
               src={getKeycapAsset(result.key)}
               alt={nameEN}
-              className="w-[832px] h-[832px] object-contain"
+              className="w-[640px] h-[640px] object-contain"
             />
           </div>
         </div>
 
         {/* Quote: Most Likely to Say - Gray, Italic, No Quotes */}
-        <div className="px-20 pb-16 flex justify-center">
+        <div className="px-20 pb-12 flex justify-center">
           <div className="font-72-brand font-medium italic text-[44px] leading-[56px] text-center text-[#949494] max-w-[900px]">
             {mostLikelyToSay}
           </div>
         </div>
 
         {/* Result Name: English + Chinese */}
-        <div className="px-20 pb-12 flex flex-col items-center gap-4">
+        <div className="px-20 pb-10 flex flex-col items-center gap-4">
           <h1 className="font-space-grotesk font-bold text-[72px] leading-[80px] text-[#231821] text-center">
             {nameEN}
           </h1>
@@ -92,19 +93,19 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         </div>
 
         {/* Divider */}
-        <div className="px-20 pb-12">
+        <div className="px-20 pb-10">
           <div className="h-[2px] bg-[#d8bfd1]" />
         </div>
 
         {/* Bottom: Experience Pulse (longer text) */}
-        <div className="flex-1 px-24 pb-12 flex items-start justify-center">
-          <p className="font-72-brand text-[40px] leading-[56px] text-[#534150] text-center max-w-[900px]">
+        <div className="flex-1 px-24 pb-10 flex items-start justify-center">
+          <p className="font-72-brand text-[38px] leading-[52px] text-[#534150] text-center max-w-[900px]">
             {pulse}
           </p>
         </div>
 
         {/* Bottom Row: Logo (left) + QR Code (right) */}
-        <div className="pb-20 px-20 flex justify-between items-center">
+        <div className="pb-24 px-20 flex justify-between items-center">
           {/* Anvils Logo - Bottom Left */}
           <div className="flex items-center">
             <img
