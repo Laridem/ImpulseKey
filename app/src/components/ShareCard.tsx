@@ -73,7 +73,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
 
         {/* Quote: Most Likely to Say - Gray, Italic, No Quotes */}
         <div className="px-20 pb-16 flex justify-center">
-          <div className="font-72-brand font-medium italic text-[44px] leading-[56px] text-center text-[#949494]">
+          <div className="font-72-brand font-medium italic text-[44px] leading-[56px] text-center text-[#949494] max-w-[900px]">
             {mostLikelyToSay}
           </div>
         </div>
@@ -98,7 +98,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
 
         {/* Bottom: Experience Pulse (longer text) */}
         <div className="flex-1 px-24 pb-12 flex items-start justify-center">
-          <p className="font-72-brand text-[40px] leading-[56px] text-[#534150] text-center">
+          <p className="font-72-brand text-[40px] leading-[56px] text-[#534150] text-center max-w-[900px]">
             {pulse}
           </p>
         </div>

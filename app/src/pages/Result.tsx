@@ -60,6 +60,11 @@ export const Result = () => {
         backgroundColor: '#ffffff',
         width: 1080,
         height: 1920,
+        skipFonts: true, // Skip font embedding to avoid issues
+        fetchRequestInit: {
+          mode: 'cors',
+          cache: 'no-cache'
+        }
       });
 
       console.log('Creating download link...');
