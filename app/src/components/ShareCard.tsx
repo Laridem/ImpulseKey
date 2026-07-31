@@ -109,7 +109,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           {/* Anvils Logo - Bottom Left */}
           <div className="flex items-center">
             <img
-              src="/assets/anvils.png"
+              src="/assets/Anvils-1.png"
               alt="Anvils"
               className="h-20 w-auto opacity-60"
             />

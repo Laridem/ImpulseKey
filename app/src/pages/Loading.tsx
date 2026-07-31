@@ -134,7 +134,7 @@ export const Loading = () => {
               Impulse26 Key
             </span>
             <img
-              src="/assets/anvils.png"
+              src="/assets/Anvils-1.png"
               alt="Anvils"
               className="w-[59.2px] h-8 object-contain"
             />
