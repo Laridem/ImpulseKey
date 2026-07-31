@@ -56,7 +56,7 @@ export const QuestionFlow = () => {
       <Header />
       <GlossaryPanel />
 
-      <main className="flex-1 py-8 sm:py-12 md:py-24 px-4 sm:px-6 md:px-16">
+      <main className="flex-1 py-8 sm:py-12 md:py-24 pb-24 sm:pb-24 px-4 sm:px-6 md:px-16">
         <div className="max-w-[1280px] mx-auto">
           {/* Survey Module Badge */}
           <div className="mb-6 sm:mb-8 md:mb-12 flex justify-between items-center">
@@ -107,8 +107,8 @@ export const QuestionFlow = () => {
             </div>
           </div>
 
-          {/* Navigation Buttons */}
-          <div className="flex gap-3 sm:gap-4 mb-6 sm:mb-8">
+          {/* Navigation Buttons - Hidden on mobile, visible on desktop */}
+          <div className="hidden sm:flex gap-3 sm:gap-4 mb-6 sm:mb-8">
             <button
               onClick={handlePrevious}
               disabled={currentQuestionIndex === 0}
@@ -148,6 +148,30 @@ export const QuestionFlow = () => {
           </div>
         </div>
       </main>
+
+      {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#a800aa] px-4 py-4 z-50 shadow-[0px_-4px_8px_rgba(168,0,170,0.1)]">
+        <div className="flex gap-3">
+          <button
+            onClick={handlePrevious}
+            disabled={currentQuestionIndex === 0}
+            className="flex-1 px-4 py-3 bg-[#f7e3ef] text-[#231821] font-72-brand text-[13px] border border-[#867181] rounded-lg hover:border-[#a800aa] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            <span>←</span>
+            {t('question.previousStep')}
+          </button>
+
+          {canSubmit && (
+            <button
+              onClick={handleSubmit}
+              className="flex-1 px-4 py-3 bg-[#a800aa] text-white font-72-brand text-[13px] rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all flex items-center justify-center gap-2"
+            >
+              {t('question.submitTest')}
+              <span>✓</span>
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

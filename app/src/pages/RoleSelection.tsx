@@ -30,7 +30,7 @@ export const RoleSelection = () => {
     <div className="min-h-screen bg-[#faf8fb] flex flex-col">
       <Header />
 
-      <main className="flex-1 py-8 sm:py-16 md:py-24 px-4 sm:px-8 md:px-16">
+      <main className="flex-1 py-8 sm:py-16 md:py-24 pb-24 sm:pb-24 px-4 sm:px-8 md:px-16">
         <div className="max-w-[1280px] mx-auto">
           {/* Title */}
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
@@ -92,8 +92,8 @@ export const RoleSelection = () => {
             </div>
           </div>
 
-          {/* Continue Button */}
-          <div className="flex justify-center">
+          {/* Continue Button - Hidden on mobile, visible on desktop */}
+          <div className="hidden sm:flex justify-center">
             <button
               onClick={handleContinue}
               disabled={!selectedRoleId}
@@ -105,6 +105,18 @@ export const RoleSelection = () => {
           </div>
         </div>
       </main>
+
+      {/* Mobile Sticky Bottom Button - Only visible on mobile */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-[#faf8fb] border-t-2 border-[#d946ef] px-4 py-4 z-50 shadow-[0px_-4px_8px_rgba(217,70,239,0.1)]">
+        <button
+          onClick={handleContinue}
+          disabled={!selectedRoleId}
+          className="w-full px-8 py-3 bg-[#d946ef] text-white font-72-brand text-[14px] rounded-lg hover:bg-[#c026d3] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 shadow-soft"
+        >
+          {t('roleSelection.continueButton')}
+          <span>→</span>
+        </button>
+      </div>
     </div>
   );
 };
