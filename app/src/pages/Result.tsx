@@ -217,19 +217,19 @@ export const Result = () => {
                     `;
                   }}
                 >
-                  {/* Volumetric light overlay */}
+                  {/* Volumetric light overlay - reduced opacity */}
                   <div
-                    className="absolute inset-0 rounded-2xl pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity duration-500"
+                    className="absolute inset-0 rounded-2xl pointer-events-none opacity-20 group-hover:opacity-30 transition-opacity duration-500"
                     style={{
                       background: `
-                        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 70%, ${hexToRgba(colorGroup.color, 0.4)} 0%, transparent 60%)
+                        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, ${hexToRgba(colorGroup.color, 0.3)} 0%, transparent 60%)
                       `
                     }}
                   />
-                  {/* Grain texture overlay */}
+                  {/* Grain texture overlay - very subtle */}
                   <div
-                    className="absolute inset-0 rounded-2xl pointer-events-none opacity-[0.15] mix-blend-overlay"
+                    className="absolute inset-0 rounded-2xl pointer-events-none opacity-[0.06] mix-blend-overlay"
                     style={{
                       backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
                       backgroundSize: '100px 100px'
