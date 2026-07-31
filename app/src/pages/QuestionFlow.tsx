@@ -181,14 +181,18 @@ export const QuestionFlow = () => {
 
           <button
             onClick={() => {
-              const glossaryButton = document.querySelector('button[aria-label*="Glossary"], button[aria-label*="术语"]') as HTMLButtonElement;
+              // Try to click desktop glossary button if visible
+              const glossaryButton = document.querySelector('button[data-glossary-trigger="true"]') as HTMLButtonElement;
               if (glossaryButton) {
                 glossaryButton.click();
+              } else {
+                // If desktop button not found (mobile), dispatch custom event
+                window.dispatchEvent(new Event('openGlossary'));
               }
             }}
             className="px-3 py-2.5 text-[#5d38e3] font-space-grotesk font-medium text-[12px] flex items-center gap-1 whitespace-nowrap"
           >
-            <span className="text-[16px]">?</span> View Terms
+            <span className="text-[16px]">?</span> {language === 'zh' ? '术语帮助' : 'View Terms'}
           </button>
         </div>
       </div>

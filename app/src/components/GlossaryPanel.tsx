@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../i18n';
 
 interface GlossaryTerm {
@@ -121,16 +121,25 @@ export const GlossaryPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language } = useLanguage();
 
+  // Listen for custom event to open glossary from mobile button
+  useEffect(() => {
+    const handleOpenGlossary = () => setIsOpen(true);
+    window.addEventListener('openGlossary', handleOpenGlossary);
+    return () => window.removeEventListener('openGlossary', handleOpenGlossary);
+  }, []);
+
   return (
     <>
-      {/* Glossary Button */}
+      {/* Glossary Button - Hidden on mobile, visible on desktop */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-24 right-4 z-40 px-4 py-2 bg-[#f7e3ef] border border-[#a800aa] rounded-lg shadow-soft hover:shadow-soft-lg transition-all flex items-center gap-2 font-72-brand text-body-sm text-[#a800aa]"
-        aria-label={language === 'zh' ? '术语帮助' : 'Glossary'}
+        className="hidden sm:flex fixed top-24 right-4 z-40 px-4 py-2 bg-[#f7e3ef] border border-[#a800aa] rounded-lg shadow-soft hover:shadow-soft-lg transition-all items-center gap-2 font-72-brand text-body-sm text-[#a800aa]"
+        aria-label={language === 'zh' ? '术语帮助' : 'View Terms'}
+        data-glossary-trigger="true"
       >
         <span>💡</span>
-        <span>{language === 'zh' ? '术语帮助' : 'Glossary'}</span>
+        <span>{language === 'zh' ? '术语帮助' : 'View Terms'}
+        </span>
       </button>
 
       {/* Glossary Panel */}
