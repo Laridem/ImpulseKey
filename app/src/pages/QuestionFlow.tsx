@@ -216,42 +216,84 @@ export const QuestionFlow = () => {
 
       {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#a800aa] px-4 py-3 z-50 shadow-[0px_-4px_8px_rgba(168,0,170,0.1)]">
-        <div className="flex gap-2 items-center justify-between mb-0">
-          <button
-            onClick={handlePrevious}
-            disabled={currentQuestionIndex === 0}
-            className="relative flex-1 px-3 py-2.5 text-[#231821] font-space-grotesk font-bold text-[13px] rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 uppercase overflow-hidden"
-            style={{
-              borderWidth: '2px',
-              borderColor: '#a800aa',
-              background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
-              boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
-            }}
-          >
-            <div
-              className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+        {canSubmit ? (
+          /* Last question: Show Submit button + View Terms */
+          <div className="flex gap-2 items-center justify-between mb-0">
+            <button
+              onClick={handleSubmit}
+              className="relative flex-1 px-4 py-3 text-white font-poppins font-semibold text-[14px] rounded-full overflow-hidden flex items-center justify-center gap-2"
               style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+                background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+                boxShadow: `
+                  0 1px 0 0 rgba(255,255,255,0.3) inset,
+                  0 4px 0 0 #800082,
+                  0 8px 16px -4px rgba(168,0,170,0.4)
+                `
               }}
-            />
-            <span className="relative z-10">←</span>
-            <span className="relative z-10">PREVIOUS</span>
-          </button>
+            >
+              <div
+                className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+                }}
+              />
+              <span className="relative z-10">{t('question.submitTest')}</span>
+              <span className="relative z-10">✓</span>
+            </button>
 
-          <button
-            onClick={() => {
-              // Try to click desktop glossary button if visible
-              const glossaryButton = document.querySelector('button[data-glossary-trigger="true"]') as HTMLButtonElement;
-              if (glossaryButton) {
-                glossaryButton.click();
-              } else {
-                // If desktop button not found (mobile), dispatch custom event
-                window.dispatchEvent(new Event('openGlossary'));
-              }
-            }}
-            className="px-3 py-2.5 text-[#5d38e3] font-space-grotesk font-medium text-[12px] flex items-center gap-1 whitespace-nowrap"
-          >
-            <span className="text-[16px]">?</span> {language === 'zh' ? '术语帮助' : 'View Terms'}
+            <button
+              onClick={() => {
+                const glossaryButton = document.querySelector('button[data-glossary-trigger="true"]') as HTMLButtonElement;
+                if (glossaryButton) {
+                  glossaryButton.click();
+                } else {
+                  window.dispatchEvent(new Event('openGlossary'));
+                }
+              }}
+              className="px-3 py-2.5 text-[#5d38e3] font-poppins font-medium text-[12px] flex items-center gap-1 whitespace-nowrap"
+            >
+              <span className="text-[16px]">?</span> {language === 'zh' ? '术语帮助' : 'View Terms'}
+            </button>
+          </div>
+        ) : (
+          /* Regular questions: Show Previous + View Terms */
+          <div className="flex gap-2 items-center justify-between mb-0">
+            <button
+              onClick={handlePrevious}
+              disabled={currentQuestionIndex === 0}
+              className="relative flex-1 px-3 py-2.5 text-[#231821] font-poppins font-bold text-[13px] rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 uppercase overflow-hidden"
+              style={{
+                borderWidth: '2px',
+                borderColor: '#a800aa',
+                background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+                boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
+              }}
+            >
+              <div
+                className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+                }}
+              />
+              <span className="relative z-10">←</span>
+              <span className="relative z-10">PREVIOUS</span>
+            </button>
+
+            <button
+              onClick={() => {
+                const glossaryButton = document.querySelector('button[data-glossary-trigger="true"]') as HTMLButtonElement;
+                if (glossaryButton) {
+                  glossaryButton.click();
+                } else {
+                  window.dispatchEvent(new Event('openGlossary'));
+                }
+              }}
+              className="px-3 py-2.5 text-[#5d38e3] font-poppins font-medium text-[12px] flex items-center gap-1 whitespace-nowrap"
+            >
+              <span className="text-[16px]">?</span> {language === 'zh' ? '术语帮助' : 'View Terms'}
+            </button>
+          </div>
+        )}
           </button>
         </div>
       </div>
