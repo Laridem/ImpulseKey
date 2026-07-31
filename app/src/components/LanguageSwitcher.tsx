@@ -10,8 +10,8 @@ export const LanguageSwitcher = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="px-3 sm:px-4 py-2 text-[10px] sm:text-[12px] font-jetbrains-mono font-medium text-[#534150] border-2 border-[#867181] hover:border-[#a800aa] hover:text-[#a800aa] transition-colors flex items-center gap-2 uppercase tracking-wider rounded-full"
-      aria-label="Switch Language"
+      className="min-h-[44px] min-w-[44px] px-3 sm:px-4 py-2 text-[10px] sm:text-[12px] font-jetbrains-mono font-medium text-[#534150] border-2 border-[#867181] hover:border-[#a800aa] hover:text-[#a800aa] transition-colors flex items-center gap-2 uppercase tracking-wider rounded-full"
+      aria-label={language === 'zh' ? 'Switch to English' : '切换到中文'}
     >
       <svg
         className="w-3 h-3 sm:w-4 sm:h-4"

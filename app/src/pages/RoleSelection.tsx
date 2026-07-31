@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
@@ -15,8 +15,32 @@ export const RoleSelection = () => {
 
   const roleIds = getAllRoleIds();
 
+  // Update page title for accessibility
+  useEffect(() => {
+    document.title = `${t('roleSelection.title')} - Impulse26 Key`;
+  }, [t]);
+
   const handleRoleClick = (roleId: string) => {
     setSelectedRoleId(roleId);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent, roleId: string) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleRoleClick(roleId);
+    } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      const currentIndex = roleIds.indexOf(roleId);
+      const nextIndex = (currentIndex + 1) % roleIds.length;
+      const nextElement = document.querySelector(`[data-role-id="${roleIds[nextIndex]}"]`) as HTMLElement;
+      nextElement?.focus();
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const currentIndex = roleIds.indexOf(roleId);
+      const prevIndex = (currentIndex - 1 + roleIds.length) % roleIds.length;
+      const prevElement = document.querySelector(`[data-role-id="${roleIds[prevIndex]}"]`) as HTMLElement;
+      prevElement?.focus();
+    }
   };
 
   const handleContinue = () => {
@@ -30,7 +54,7 @@ export const RoleSelection = () => {
     <div className="min-h-screen bg-[#faf8fb] flex flex-col">
       <Header />
 
-      <main className="flex-1 py-8 sm:py-16 md:py-24 pb-24 sm:pb-24 px-4 sm:px-8 md:px-16">
+      <main className="flex-1 py-8 sm:py-16 md:py-24 pb-24 sm:pb-24 px-4 sm:px-8 md:px-16" id="main-content">
         <div className="max-w-[1280px] mx-auto">
           {/* Title */}
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
@@ -46,7 +70,11 @@ export const RoleSelection = () => {
           </div>
 
           {/* Role Cards Grid - 2x2 grid for 4 items */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-[900px] mx-auto mb-8 sm:mb-12">
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-[900px] mx-auto mb-8 sm:mb-12"
+            role="radiogroup"
+            aria-label={t('roleSelection.title')}
+          >
             {roleIds.map((roleId) => {
               const role = getRole(roleId);
               if (!role) return null;
@@ -56,10 +84,15 @@ export const RoleSelection = () => {
               const desc = language === 'zh' ? role.descZH : role.descEN;
 
               return (
-                <button
+                <div
                   key={roleId}
+                  role="radio"
+                  aria-checked={isSelected}
+                  tabIndex={isSelected ? 0 : -1}
+                  data-role-id={roleId}
                   onClick={() => handleRoleClick(roleId)}
-                  className={`bg-white p-5 sm:p-8 text-left border-2 rounded-lg transition-all hover:shadow-soft ${
+                  onKeyDown={(e) => handleKeyDown(e, roleId)}
+                  className={`bg-white p-5 sm:p-8 text-left border-2 rounded-lg transition-all hover:shadow-soft cursor-pointer ${
                     isSelected
                       ? 'border-[#a800aa] shadow-soft'
                       : 'border-[#e5e2e8]'
@@ -78,7 +111,7 @@ export const RoleSelection = () => {
                   <p className="font-72-brand text-[13px] sm:text-[16px] text-[#534150] leading-[1.5] sm:leading-[24px]">
                     {desc}
                   </p>
-                </button>
+                </div>
               );
             })}
           </div>

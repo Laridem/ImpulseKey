@@ -1,12 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
+import { useLanguage } from '../i18n';
 import { Header } from '../components/Header';
+import { useEffect } from 'react';
 
 export const TestIntro = () => {
   const navigate = useNavigate();
   const { startTest } = useTest();
   const t = useTranslation();
+  const { language } = useLanguage();
+
+  // Update page title for accessibility
+  useEffect(() => {
+    document.title = `${t('testIntro.title')} - Impulse26 Key`;
+  }, [t]);
 
   const handleStartTest = () => {
     startTest();
@@ -17,7 +25,7 @@ export const TestIntro = () => {
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
-      <main className="flex-1 flex items-center justify-center py-8 sm:py-16 md:py-24 pb-24 sm:pb-24 px-4 sm:px-8 md:px-16">
+      <main className="flex-1 flex items-center justify-center py-8 sm:py-16 md:py-24 pb-24 sm:pb-24 px-4 sm:px-8 md:px-16" id="main-content">
         <div className="max-w-3xl w-full bg-[#ffeff8] border border-[#d8bfd1] rounded-lg p-6 sm:p-8 md:p-12 shadow-soft-lg">
           {/* Tag */}
           <div className="mb-6 sm:mb-10">
@@ -47,7 +55,13 @@ export const TestIntro = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-12">
             <div className="bg-white border border-[#d8bfd1] rounded-lg p-4 sm:p-6">
               <div className="flex items-start gap-3">
-                <span className="text-xl sm:text-2xl bg-[#f7e3ef] border-2 border-[#5d38e3] rounded p-2">⚡</span>
+                <span
+                  className="text-xl sm:text-2xl bg-[#f7e3ef] border-2 border-[#5d38e3] rounded p-2"
+                  role="img"
+                  aria-label={language === 'zh' ? '闪电 - 快速直觉反应' : 'Lightning bolt - Quick instinctive response'}
+                >
+                  ⚡
+                </span>
                 <div>
                   <h3 className="font-72-brand text-[13px] sm:text-body-md font-medium text-[#231821]">
                     {t('testIntro.tips.0')}
@@ -58,7 +72,13 @@ export const TestIntro = () => {
 
             <div className="bg-white border border-[#d8bfd1] rounded-lg p-4 sm:p-6">
               <div className="flex items-start gap-3">
-                <span className="text-xl sm:text-2xl bg-[#f7e3ef] border-2 border-[#00b098] rounded p-2">🚫</span>
+                <span
+                  className="text-xl sm:text-2xl bg-[#f7e3ef] border-2 border-[#00b098] rounded p-2"
+                  role="img"
+                  aria-label={language === 'zh' ? '禁止标志 - 不要过度思考' : 'No symbol - Don\'t overthink'}
+                >
+                  🚫
+                </span>
                 <div>
                   <h3 className="font-72-brand text-[13px] sm:text-body-md font-medium text-[#231821]">
                     {t('testIntro.tips.1')}
@@ -69,7 +89,13 @@ export const TestIntro = () => {
 
             <div className="bg-white border border-[#d8bfd1] rounded-lg p-4 sm:p-6">
               <div className="flex items-start gap-3">
-                <span className="text-xl sm:text-2xl bg-[#f7e3ef] border-2 border-[#a800aa] rounded p-2">🔍</span>
+                <span
+                  className="text-xl sm:text-2xl bg-[#f7e3ef] border-2 border-[#a800aa] rounded p-2"
+                  role="img"
+                  aria-label={language === 'zh' ? '放大镜 - 探索发现' : 'Magnifying glass - Explore and discover'}
+                >
+                  🔍
+                </span>
                 <div>
                   <h3 className="font-72-brand text-[13px] sm:text-body-md font-medium text-[#231821]">
                     {t('testIntro.tips.2')}
@@ -80,7 +106,13 @@ export const TestIntro = () => {
 
             <div className="bg-white border border-[#d8bfd1] rounded-lg p-4 sm:p-6">
               <div className="flex items-start gap-3">
-                <span className="text-xl sm:text-2xl bg-[#f7e3ef] border-2 border-[#5d38e3] rounded p-2">🔒</span>
+                <span
+                  className="text-xl sm:text-2xl bg-[#f7e3ef] border-2 border-[#5d38e3] rounded p-2"
+                  role="img"
+                  aria-label={language === 'zh' ? '锁 - 隐私保护' : 'Lock - Privacy protected'}
+                >
+                  🔒
+                </span>
                 <div>
                   <h3 className="font-72-brand text-[13px] sm:text-body-md font-medium text-[#231821]">
                     {t('testIntro.tips.3')}

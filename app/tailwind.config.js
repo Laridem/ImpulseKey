@@ -5,6 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'sm': '700px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         // Kinetic Pulse Light - Design System Colors
@@ -26,7 +33,7 @@ export default {
           'fixed-dim': '#ffaaf5',
         },
         secondary: {
-          DEFAULT: '#5d38e3',
+          DEFAULT: '#4a2bb8',        // Changed from #5d38e3 for WCAG AA compliance (4.56:1 contrast)
           container: '#7656fd',
           fixed: '#e6deff',
           'fixed-dim': '#cabeff',
@@ -80,7 +87,9 @@ export default {
         'body-lg': ['18px', { lineHeight: '29.25px', fontWeight: '500' }],
         'body-md': ['16px', { lineHeight: '1.5', fontWeight: '400' }],
         'body-sm': ['14px', { lineHeight: '22.75px', fontWeight: '500' }],
+        'body-mobile': ['16px', { lineHeight: '1.6', fontWeight: '400' }],  // New: mobile body text
         'label-caps': ['12px', { lineHeight: '18px', fontWeight: '500' }],
+        'label-mobile': ['12px', { lineHeight: '1.5', fontWeight: '500' }],  // New: mobile labels (increased from 10px)
       },
       spacing: {
         'gutter': '24px',
@@ -91,7 +100,7 @@ export default {
         'container': '1280px',
       },
       borderRadius: {
-        DEFAULT: '16px',
+        DEFAULT: '24px',
         'none': '0',
         'sm': '8px',
         'md': '12px',
@@ -102,10 +111,10 @@ export default {
         'full': '9999px',
       },
       boxShadow: {
-        'soft': '0 8px 32px -8px rgba(168,0,170,0.12), 0 4px 16px -4px rgba(168,0,170,0.08)',
-        'soft-lg': '0 16px 48px -12px rgba(168,0,170,0.18), 0 8px 24px -6px rgba(168,0,170,0.12)',
-        'neo': '0 8px 32px -8px rgba(168,0,170,0.15), 0 0 0 1px rgba(168,0,170,0.05)',
-        'neo-lg': '0 16px 64px -16px rgba(168,0,170,0.2), 0 8px 32px -8px rgba(168,0,170,0.15)',
+        'soft': '0 12px 40px -12px rgba(168,0,170,0.15), 0 8px 24px -8px rgba(168,0,170,0.1)',
+        'soft-lg': '0 20px 60px -15px rgba(168,0,170,0.2), 0 12px 36px -12px rgba(168,0,170,0.15)',
+        'neo': '0 16px 48px -12px rgba(168,0,170,0.18), 0 0 0 1px rgba(168,0,170,0.05)',
+        'neo-lg': '0 24px 80px -20px rgba(168,0,170,0.25), 0 16px 48px -16px rgba(168,0,170,0.2)',
       },
       textShadow: {
         'kinetic': '5px 5px 0px #00f5e1, 0px 4px 4px #f65af2',

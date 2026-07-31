@@ -1,12 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
+import { useLanguage } from '../i18n';
 import { Header } from '../components/Header';
+import { useEffect } from 'react';
 
 export const Landing = () => {
   const navigate = useNavigate();
   const { startTest } = useTest();
   const t = useTranslation();
+  const { language } = useLanguage();
+
+  // Update page title for accessibility
+  useEffect(() => {
+    document.title = 'Impulse26 Key - Impulse26 Design Festival';
+  }, []);
 
   const handleStartTest = () => {
     startTest();
@@ -20,7 +28,7 @@ export const Landing = () => {
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
-      <main className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-32 sm:pb-24 w-full">
+      <main className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-32 sm:pb-24 w-full" id="main-content">
         {/* Hero Section */}
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start">
           {/* Left Column - Text Content */}

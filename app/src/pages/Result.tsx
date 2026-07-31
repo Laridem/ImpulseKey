@@ -861,9 +861,28 @@ export const Result = () => {
       <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#fff7f9] border-t-2 border-[#a800aa] px-4 py-4 z-50 drop-shadow-[0px_-4px_2px_#f1ddea]">
         <div className="flex gap-4 max-w-[1280px] mx-auto">
           <button
+            onClick={handleRetake}
+            className="relative flex-1 text-[#a800aa] font-poppins font-semibold text-[16px] leading-[31.2px] uppercase py-2 px-0.5 rounded-full flex items-center justify-center gap-2 overflow-hidden"
+            style={{
+              borderWidth: '2px',
+              borderColor: '#a800aa',
+              background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+              boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
+            }}
+          >
+            <div
+              className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+              }}
+            />
+            <span className="relative z-10 text-[16px]">⟲</span>
+            <span className="relative z-10">RETAKE TEST</span>
+          </button>
+          <button
             onClick={handleShare}
             disabled={isCapturing}
-            className="relative flex-1 text-white font-space-grotesk font-semibold text-[16px] leading-[31.2px] uppercase py-2 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 overflow-hidden"
+            className="relative flex-1 text-white font-poppins font-semibold text-[16px] leading-[31.2px] uppercase py-2 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 overflow-hidden"
             style={{
               background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
               boxShadow: `
@@ -881,25 +900,6 @@ export const Result = () => {
             />
             <span className="relative z-10 text-[18px]">↗</span>
             <span className="relative z-10">{isCapturing ? 'Capturing...' : 'SHARE RESULT'}</span>
-          </button>
-          <button
-            onClick={handleRetake}
-            className="relative flex-1 text-[#a800aa] font-space-grotesk font-semibold text-[16px] leading-[31.2px] uppercase py-2 px-0.5 rounded-full flex items-center justify-center gap-2 overflow-hidden"
-            style={{
-              borderWidth: '2px',
-              borderColor: '#a800aa',
-              background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
-              boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
-            }}
-          >
-            <div
-              className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
-              }}
-            />
-            <span className="relative z-10 text-[16px]">⟲</span>
-            <span className="relative z-10">RETAKE TEST</span>
           </button>
         </div>
       </div>

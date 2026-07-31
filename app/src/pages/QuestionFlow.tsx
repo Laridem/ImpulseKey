@@ -12,6 +12,11 @@ export const QuestionFlow = () => {
   const t = useTranslation();
   const { language } = useLanguage();
 
+  // Update page title for accessibility
+  useEffect(() => {
+    document.title = `${t('question.surveyModule')} - Step ${currentQuestionIndex + 1}/${questions.length} - Impulse26 Key`;
+  }, [currentQuestionIndex, questions.length, t]);
+
   // Redirect to loading page when test is submitted
   useEffect(() => {
     if (resultKey) {
@@ -74,7 +79,7 @@ export const QuestionFlow = () => {
         </div>
       </div>
 
-      <main className="flex-1 py-8 sm:py-12 md:py-24 pb-24 sm:pb-24 px-4 sm:px-6 md:px-16">
+      <main className="flex-1 py-8 sm:py-12 md:py-24 pb-24 sm:pb-24 px-4 sm:px-6 md:px-16" id="main-content">
         <div className="max-w-[1280px] mx-auto">
           {/* Survey Module Badge */}
           <div className="mb-6 sm:mb-8 md:mb-12 flex justify-between items-center">
@@ -197,7 +202,7 @@ export const QuestionFlow = () => {
           {/* Help Text */}
           <div className="mb-6 sm:mb-8 text-center">
             <div className="inline-flex items-center gap-2 bg-[#f7e3ef] border border-[#d8bfd1] rounded-lg px-4 sm:px-6 py-2 sm:py-3">
-              <span className="text-[#5d38e3]">ℹ️</span>
+              <span className="text-[#5d38e3]" role="img" aria-label={language === 'zh' ? '信息提示' : 'Information'}>ℹ️</span>
               <p className="font-72-brand text-[12px] sm:text-body-sm text-[#534150]">
                 {t('question.helpText')}
               </p>
@@ -217,29 +222,51 @@ export const QuestionFlow = () => {
       {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#a800aa] px-4 py-3 z-50 shadow-[0px_-4px_8px_rgba(168,0,170,0.1)]">
         {canSubmit ? (
-          /* Last question: Show Submit button + View Terms */
-          <div className="flex gap-2 items-center justify-between mb-0">
-            <button
-              onClick={handleSubmit}
-              className="relative flex-1 px-4 py-3 text-white font-poppins font-semibold text-[14px] rounded-full overflow-hidden flex items-center justify-center gap-2"
-              style={{
-                background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
-                boxShadow: `
-                  0 1px 0 0 rgba(255,255,255,0.3) inset,
-                  0 4px 0 0 #800082,
-                  0 8px 16px -4px rgba(168,0,170,0.4)
-                `
-              }}
-            >
-              <div
-                className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+          /* Last question: Show Previous + Submit + View Terms */
+          <div className="flex flex-col gap-2 mb-0">
+            <div className="flex gap-2">
+              <button
+                onClick={handlePrevious}
+                className="relative flex-1 px-3 py-2.5 text-[#231821] font-poppins font-bold text-[13px] rounded-full transition-all flex items-center justify-center gap-1.5 uppercase overflow-hidden"
                 style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+                  borderWidth: '2px',
+                  borderColor: '#a800aa',
+                  background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+                  boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
                 }}
-              />
-              <span className="relative z-10">{t('question.submitTest')}</span>
-              <span className="relative z-10">✓</span>
-            </button>
+              >
+                <div
+                  className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+                  }}
+                />
+                <span className="relative z-10">←</span>
+                <span className="relative z-10">PREVIOUS</span>
+              </button>
+
+              <button
+                onClick={handleSubmit}
+                className="relative flex-1 px-4 py-2.5 text-white font-poppins font-semibold text-[14px] rounded-full overflow-hidden flex items-center justify-center gap-2"
+                style={{
+                  background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+                  boxShadow: `
+                    0 1px 0 0 rgba(255,255,255,0.3) inset,
+                    0 4px 0 0 #800082,
+                    0 8px 16px -4px rgba(168,0,170,0.4)
+                  `
+                }}
+              >
+                <div
+                  className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+                  }}
+                />
+                <span className="relative z-10">{t('question.submitTest')}</span>
+                <span className="relative z-10">✓</span>
+              </button>
+            </div>
 
             <button
               onClick={() => {
@@ -250,9 +277,11 @@ export const QuestionFlow = () => {
                   window.dispatchEvent(new Event('openGlossary'));
                 }
               }}
-              className="px-3 py-2.5 text-[#5d38e3] font-poppins font-medium text-[12px] flex items-center gap-1 whitespace-nowrap"
+              className="w-full min-h-[44px] px-4 py-3 text-[#5d38e3] font-poppins font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[#f7e3ef] rounded-lg transition-colors"
+              aria-label={language === 'zh' ? '查看术语帮助' : 'View glossary terms'}
             >
-              <span className="text-[16px]">?</span> {language === 'zh' ? '术语帮助' : 'View Terms'}
+              <span className="text-[18px]">?</span>
+              <span>{language === 'zh' ? '术语帮助' : 'View Terms'}</span>
             </button>
           </div>
         ) : (
@@ -288,14 +317,14 @@ export const QuestionFlow = () => {
                   window.dispatchEvent(new Event('openGlossary'));
                 }
               }}
-              className="px-3 py-2.5 text-[#5d38e3] font-poppins font-medium text-[12px] flex items-center gap-1 whitespace-nowrap"
+              className="min-h-[44px] min-w-[44px] px-4 py-3 text-[#5d38e3] font-poppins font-medium text-[14px] flex items-center gap-2 whitespace-nowrap hover:bg-[#f7e3ef] rounded-lg transition-colors"
+              aria-label={language === 'zh' ? '查看术语帮助' : 'View glossary terms'}
             >
-              <span className="text-[16px]">?</span> {language === 'zh' ? '术语帮助' : 'View Terms'}
+              <span className="text-[18px]">?</span>
+              <span>{language === 'zh' ? '术语帮助' : 'View Terms'}</span>
             </button>
           </div>
         )}
-          </button>
-        </div>
       </div>
     </div>
   );
