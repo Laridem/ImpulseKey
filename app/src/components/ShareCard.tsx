@@ -47,18 +47,16 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         ref={ref}
         className="relative w-[1080px] h-[1920px] overflow-hidden flex flex-col"
         style={{
-          background: `
-            linear-gradient(145deg, #f5f5f7 0%, #e8e8ea 50%, #f5f5f7 100%)
-          `,
+          background: '#ffffff',
           boxShadow: `
             0 1px 0 0 rgba(255,255,255,0.8) inset,
-            0 -1px 0 0 rgba(0,0,0,0.08) inset,
+            0 -1px 0 0 rgba(168,0,170,0.08) inset,
             0px 0px 40px 0px ${glitchColors[0]}60,
             0px 0px 80px 0px ${glitchColors[1]}40,
             0px 0px 120px 0px ${glitchColors[2]}30,
-            -20px -20px 60px 0px ${impulseColor}40,
-            20px 20px 60px 0px ${impulseColor}40,
-            0 20px 60px -10px rgba(0,0,0,0.15)
+            -20px -20px 60px 0px rgba(168,0,170,0.15),
+            20px 20px 60px 0px rgba(168,0,170,0.15),
+            0 20px 60px -10px rgba(168,0,170,0.2)
           `
         }}
       >
@@ -108,7 +106,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
             {nameEN}
           </h1>
           <h2
-            className="font-72-brand font-medium text-[52px] leading-[64px] text-center"
+            className="font-72-brand font-medium text-[52px] leading-[64px] text-center whitespace-nowrap"
             style={{ color: textColor }}
           >
             {nameCN}
