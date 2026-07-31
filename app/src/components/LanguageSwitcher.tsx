@@ -1,7 +1,7 @@
 import { useLanguage } from '../i18n';
 
 export const LanguageSwitcher = () => {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
   const toggleLanguage = () => {
     setLanguage(language === 'zh' ? 'en' : 'zh');
@@ -27,7 +27,7 @@ export const LanguageSwitcher = () => {
           d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
         />
       </svg>
-      <span>{t('common.switchLanguage')}</span>
+      <span>{language === 'zh' ? 'English' : '中文'}</span>
     </button>
   );
 };

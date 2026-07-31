@@ -5,13 +5,6 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 
 export const Header = () => {
   const navigate = useNavigate();
-  const { resetTest } = useTest();
-  const t = useTranslation();
-
-  const handleRetake = () => {
-    resetTest();
-    navigate('/');
-  };
 
   return (
     <header className="bg-white border-b border-[#d8bfd1]">
@@ -28,15 +21,9 @@ export const Header = () => {
           />
         </div>
 
-        {/* Right side: Language Switcher + Retake Test */}
-        <div className="flex items-center gap-2 sm:gap-4">
+        {/* Right side: Language Switcher only */}
+        <div className="flex items-center">
           <LanguageSwitcher />
-          <button
-            onClick={handleRetake}
-            className="px-3 sm:px-6 py-2 bg-[#a800aa] text-white font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] uppercase rounded-full hover:bg-[#800082] transition-colors"
-          >
-            {t('common.retakeTest')}
-          </button>
         </div>
       </div>
     </header>
