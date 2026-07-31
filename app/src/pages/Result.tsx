@@ -396,7 +396,7 @@ export const Result = () => {
                     }}
                   />
                   <span className="relative z-10">
-                    {isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '分享结果' : 'SHARE RESULT')}
+                    {isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')}
                   </span>
                 </button>
                 <button
@@ -933,7 +933,7 @@ export const Result = () => {
               }}
             />
             <span className="relative z-10 text-[18px]">↗</span>
-            <span className="relative z-10">{isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '分享结果' : 'SHARE RESULT')}</span>
+            <span className="relative z-10">{isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')}</span>
           </button>
         </div>
       </div>
