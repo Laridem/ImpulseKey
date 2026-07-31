@@ -554,7 +554,7 @@ export const Result = () => {
                 </h4>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-12 gap-y-8">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-x-12 lg:gap-y-8">
                 {/* Signal vs Solution */}
                 <div className="flex flex-col gap-3">
                   <div className="flex justify-between items-center">
@@ -562,7 +562,7 @@ export const Result = () => {
                       SIGNAL ({Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100)}%)
                     </span>
                     <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#534150]">
-                      SOLUTION
+                      SOLUTION ({Math.round((displayScores.Solution / (displayScores.Signal + displayScores.Solution)) * 100)}%)
                     </span>
                   </div>
                   <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
@@ -580,7 +580,7 @@ export const Result = () => {
                       HUMAN ({Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100)}%)
                     </span>
                     <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#534150]">
-                      MACHINE
+                      MACHINE ({Math.round((displayScores.Machine / (displayScores.Human + displayScores.Machine)) * 100)}%)
                     </span>
                   </div>
                   <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
@@ -598,7 +598,7 @@ export const Result = () => {
                       EXPLORE ({Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100)}%)
                     </span>
                     <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#534150]">
-                      ALIGN
+                      ALIGN ({Math.round((displayScores.Align / (displayScores.Explore + displayScores.Align)) * 100)}%)
                     </span>
                   </div>
                   <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
@@ -616,7 +616,7 @@ export const Result = () => {
                       SPARK ({Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100)}%)
                     </span>
                     <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#534150]">
-                      STABILIZE
+                      STABILIZE ({Math.round((displayScores.Stabilize / (displayScores.Spark + displayScores.Stabilize)) * 100)}%)
                     </span>
                   </div>
                   <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
