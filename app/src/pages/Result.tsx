@@ -381,7 +381,7 @@ export const Result = () => {
               <div className="flex gap-2 items-center">
                 <img src="/assets/icons/Dimension.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
                 <h4 className="font-space-grotesk font-bold text-[18px] leading-[26px] tracking-[-0.45px] uppercase" style={{ color: impulseColor }}>
-                  CORE DIMENSIONS / 核心维度
+                  {t('result.dimensions')}
                 </h4>
               </div>
 
