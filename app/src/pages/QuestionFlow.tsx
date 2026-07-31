@@ -83,9 +83,6 @@ export const QuestionFlow = () => {
                 {t('question.surveyModule')}
               </span>
             </div>
-            <span className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase tracking-normal">
-              {currentQuestionIndex + 1} / {questions.length}
-            </span>
           </div>
 
           {/* Question Card */}
@@ -155,14 +152,6 @@ export const QuestionFlow = () => {
                 {t('question.helpText')}
               </p>
             </div>
-          </div>
-
-          {/* Progress Bar at Bottom */}
-          <div className="w-full bg-[#d8bfd1] h-2 rounded-full overflow-hidden">
-            <div
-              className="bg-gradient-to-r from-[#a800aa] to-[#f65af2] h-full transition-all duration-300 rounded-full"
-              style={{ width: `${progress}%` }}
-            ></div>
           </div>
         </div>
       </main>
