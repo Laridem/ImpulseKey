@@ -37,30 +37,43 @@ export const Result = () => {
   };
 
   const handleShare = async () => {
-    if (!shareCardRef.current || !result) return;
+    console.log('handleShare called');
+    console.log('shareCardRef.current:', shareCardRef.current);
+    console.log('result:', result);
+
+    if (!shareCardRef.current || !result) {
+      console.error('Missing ref or result:', { ref: shareCardRef.current, result });
+      alert('Unable to capture image. Please refresh and try again.');
+      return;
+    }
 
     setIsCapturing(true);
 
     try {
+      console.log('Starting image capture...');
       await new Promise(resolve => setTimeout(resolve, 100));
 
+      console.log('Converting to PNG...');
       const dataUrl = await toPng(shareCardRef.current, {
         cacheBust: true,
-        pixelRatio: 1, // 1080x1920 already high-res
+        pixelRatio: 2, // Increased for better quality
         backgroundColor: '#ffffff',
         width: 1080,
         height: 1920,
       });
 
+      console.log('Creating download link...');
       const link = document.createElement('a');
       link.download = `IMPULSE-${result.key}.png`;
       link.href = dataUrl;
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
 
       console.log('Image saved successfully!');
     } catch (error) {
       console.error('Failed to capture image:', error);
-      alert('Failed to save image. Please try again.');
+      alert(`Failed to save image: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`);
     } finally {
       setIsCapturing(false);
     }
@@ -98,6 +111,18 @@ export const Result = () => {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   };
 
+  // Helper function to darken light colors for better readability
+  const getDarkerImpulseColor = (hex: string): string => {
+    // Yellow #FFC933 and Cyan #64EDD2 need darkening for readability on white
+    const colorMap: { [key: string]: string } = {
+      '#FFC933': '#CC9900', // Darker yellow with better contrast
+      '#64EDD2': '#00A896', // Darker cyan/teal with better contrast
+      '#A100C2': '#A100C2', // Purple is fine
+      '#7858FF': '#7858FF', // Purple/blue is fine
+    };
+    return colorMap[hex.toUpperCase()] || hex;
+  };
+
   // Helper function to get text color with proper WCAG contrast on colored background
   const getPunchlineTextColor = (bgColor: string): string => {
     // For solid color background, use WCAG-compliant text color
@@ -112,6 +137,7 @@ export const Result = () => {
 
   // Dynamic colors based on impulse color
   const impulseColor = colorGroup.color;
+  const impulseColorText = getDarkerImpulseColor(impulseColor); // Darker version for text on white
   const cardBg = hexToRgba(impulseColor, 0.08);
   const cardBorder = hexToRgba(impulseColor, 0.20);
   const quoteBg = hexToRgba(impulseColor, 0.25); // Increased from 0.15 to 0.25
@@ -248,7 +274,7 @@ export const Result = () => {
                 <div
                   className="font-jetbrains-mono font-bold text-[32px] leading-[40px] tracking-widest uppercase"
                   style={{
-                    color: impulseColor,
+                    color: impulseColorText,
                     textShadow: `
                       2px 2px 0px ${glitchColors[0]}40,
                       -2px -2px 0px ${glitchColors[1]}40,
@@ -314,7 +340,7 @@ export const Result = () => {
                     </p>
                     <p
                       className="font-jetbrains-mono font-medium text-[14px] leading-[20px]"
-                      style={{ color: impulseColor }}
+                      style={{ color: impulseColorText }}
                     >
                       {colorGroup.color.toUpperCase()}
                     </p>
@@ -367,7 +393,7 @@ export const Result = () => {
                     }}
                   />
                   <span className="relative z-10">
-                    {isCapturing ? 'Capturing...' : 'SHARE RESULT / 分享结果'}
+                    {isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '分享结果' : 'SHARE RESULT')}
                   </span>
                 </button>
                 <button
@@ -497,28 +523,28 @@ export const Result = () => {
           <div className="lg:col-span-8 flex flex-col gap-6 lg:gap-12">
             {/* Dimensions Section */}
             <div
-              className="rounded drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)] p-4 lg:p-\[33px\] flex flex-col gap-8 transition-all duration-300 hover:drop-shadow-[0px_4px_8px_rgba(0,0,0,0.1)]"
+              className="rounded-3xl p-6 lg:p-8 flex flex-col gap-8 transition-all duration-300"
               style={{
                 backgroundColor: cardBg,
                 borderColor: cardBorder,
                 borderWidth: '1px',
                 borderStyle: 'solid',
+                boxShadow: '0 12px 40px -12px rgba(168,0,170,0.15), 0 8px 24px -8px rgba(168,0,170,0.1)',
                 transition: 'box-shadow 0.3s ease'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = `
-                  0px 0px 20px 0px ${glitchColors[0]}40,
-                  0px 0px 40px 0px ${glitchColors[1]}30,
-                  0px 0px 60px 0px ${glitchColors[2]}20
+                  0 20px 60px -15px rgba(168,0,170,0.2),
+                  0 12px 36px -12px rgba(168,0,170,0.15)
                 `;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '';
+                e.currentTarget.style.boxShadow = '0 12px 40px -12px rgba(168,0,170,0.15), 0 8px 24px -8px rgba(168,0,170,0.1)';
               }}
             >
               <div className="flex gap-2 items-center">
                 <img src="/assets/icons/Dimension.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
-                <h4 className="font-space-grotesk font-bold text-[16px] lg:text-[18px] leading-[20px] lg:leading-[26px] tracking-[-0.4px] lg:tracking-[-0.45px] uppercase" style={{ color: impulseColor }}>
+                <h4 className="font-poppins font-bold text-[20px] lg:text-[22px] leading-tight tracking-tight uppercase" style={{ color: impulseColorText }}>
                   {t('result.dimensions')}
                 </h4>
               </div>
@@ -534,10 +560,10 @@ export const Result = () => {
                       SOLUTION
                     </span>
                   </div>
-                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative group cursor-pointer">
+                  <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#f65af2] rounded-sm transition-all duration-300 group-hover:shadow-[0px_0px_12px_#f65af2]"
-                      style={{ width: `${Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100) * 0.9825}%` }}
+                      className="absolute top-1 bottom-1 left-1 bg-[#f65af2] rounded-md transition-all duration-300 group-hover:shadow-[0px_0px_12px_#f65af2]"
+                      style={{ width: `calc(${Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100)}% - 8px)` }}
                     />
                   </div>
                 </div>
@@ -552,10 +578,10 @@ export const Result = () => {
                       MACHINE
                     </span>
                   </div>
-                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative group cursor-pointer">
+                  <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#00b5bd] rounded-sm transition-all duration-300 group-hover:shadow-[0px_0px_12px_#00b5bd]"
-                      style={{ width: `${Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100) * 0.9825}%` }}
+                      className="absolute top-1 bottom-1 left-1 bg-[#00b5bd] rounded-md transition-all duration-300 group-hover:shadow-[0px_0px_12px_#00b5bd]"
+                      style={{ width: `calc(${Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100)}% - 8px)` }}
                     />
                   </div>
                 </div>
@@ -570,10 +596,10 @@ export const Result = () => {
                       ALIGN
                     </span>
                   </div>
-                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative group cursor-pointer">
+                  <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#8e5aff] rounded-sm transition-all duration-300 group-hover:shadow-[0px_0px_12px_#8e5aff]"
-                      style={{ width: `${Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100) * 0.9825}%` }}
+                      className="absolute top-1 bottom-1 left-1 bg-[#8e5aff] rounded-md transition-all duration-300 group-hover:shadow-[0px_0px_12px_#8e5aff]"
+                      style={{ width: `calc(${Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100)}% - 8px)` }}
                     />
                   </div>
                 </div>
@@ -588,10 +614,10 @@ export const Result = () => {
                       STABILIZE
                     </span>
                   </div>
-                  <div className="h-5 bg-white border border-[rgba(0,0,0,0.08)] rounded-sm relative group cursor-pointer">
+                  <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-[1.25%] bg-[#f4bf28] rounded-sm transition-all duration-300 group-hover:shadow-[0px_0px_12px_#f4bf28]"
-                      style={{ width: `${Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100) * 0.9825}%` }}
+                      className="absolute top-1 bottom-1 left-1 bg-[#f4bf28] rounded-md transition-all duration-300 group-hover:shadow-[0px_0px_12px_#f4bf28]"
+                      style={{ width: `calc(${Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100)}% - 8px)` }}
                     />
                   </div>
                 </div>
@@ -600,24 +626,25 @@ export const Result = () => {
 
             {/* Signal Section */}
             <div
-              className="rounded p-4 lg:p-\[33px\] flex flex-col gap-6 transition-all duration-300"
+              className="rounded-3xl p-6 lg:p-8 flex flex-col gap-6 transition-all duration-300"
               style={{
                 backgroundColor: cardBg,
                 borderColor: cardBorder,
                 borderWidth: '1px',
                 borderStyle: 'solid',
+                boxShadow: '0 12px 40px -12px rgba(168,0,170,0.15), 0 8px 24px -8px rgba(168,0,170,0.1)',
                 transition: 'box-shadow 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = `0px 0px 20px ${impulseColor}30, 0px 0px 40px ${impulseColor}20`;
+                e.currentTarget.style.boxShadow = '0 20px 60px -15px rgba(168,0,170,0.2), 0 12px 36px -12px rgba(168,0,170,0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '';
+                e.currentTarget.style.boxShadow = '0 12px 40px -12px rgba(168,0,170,0.15), 0 8px 24px -8px rgba(168,0,170,0.1)';
               }}
             >
-              <div className="flex gap-3 items-center mb-4">
+              <div className="flex gap-3 items-center">
                 <img src="/assets/icons/Signal.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
-                <h4 className="font-space-grotesk font-bold text-[16px] lg:text-[18px] leading-[20px] lg:leading-[26px] tracking-[-0.4px] lg:tracking-[-0.45px] text-[#231821] uppercase">
+                <h4 className="font-poppins font-bold text-[20px] lg:text-[22px] leading-tight tracking-tight text-[#231821] uppercase">
                   {t('result.signalTitle')}
                 </h4>
               </div>
@@ -630,24 +657,25 @@ export const Result = () => {
 
             {/* Pulse Section */}
             <div
-              className="rounded p-4 lg:p-\[33px\] flex flex-col gap-6 transition-all duration-300"
+              className="rounded-3xl p-6 lg:p-8 flex flex-col gap-6 transition-all duration-300"
               style={{
                 backgroundColor: cardBg,
                 borderColor: cardBorder,
                 borderWidth: '1px',
                 borderStyle: 'solid',
+                boxShadow: '0 12px 40px -12px rgba(168,0,170,0.15), 0 8px 24px -8px rgba(168,0,170,0.1)',
                 transition: 'box-shadow 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = `0px 0px 20px ${impulseColor}30, 0px 0px 40px ${impulseColor}20`;
+                e.currentTarget.style.boxShadow = '0 20px 60px -15px rgba(168,0,170,0.2), 0 12px 36px -12px rgba(168,0,170,0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '';
+                e.currentTarget.style.boxShadow = '0 12px 40px -12px rgba(168,0,170,0.15), 0 8px 24px -8px rgba(168,0,170,0.1)';
               }}
             >
-              <div className="flex gap-3 items-center mb-4">
+              <div className="flex gap-3 items-center">
                 <img src="/assets/icons/Impulse.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
-                <h4 className="font-space-grotesk font-bold text-[16px] lg:text-[18px] leading-[20px] lg:leading-[26px] tracking-[-0.4px] lg:tracking-[-0.45px] text-[#231821] uppercase">
+                <h4 className="font-poppins font-bold text-[20px] lg:text-[22px] leading-tight tracking-tight text-[#231821] uppercase">
                   {t('result.pulseTitle')}
                 </h4>
               </div>
@@ -677,18 +705,21 @@ export const Result = () => {
 
             {/* Risks Section */}
             <div
-              className="bg-[rgba(255,218,214,0.1)] border border-[#ba1a1a] rounded p-4 lg:p-\[33px\] flex flex-col gap-6 transition-all duration-300"
-              style={{ transition: 'box-shadow 0.3s ease' }}
+              className="bg-[rgba(255,218,214,0.1)] border border-[#ba1a1a] rounded-3xl p-6 lg:p-8 flex flex-col gap-6 transition-all duration-300"
+              style={{
+                boxShadow: '0 12px 40px -12px rgba(186,26,26,0.15), 0 8px 24px -8px rgba(186,26,26,0.1)',
+                transition: 'box-shadow 0.3s ease'
+              }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0px 0px 20px rgba(186, 26, 26, 0.3), 0px 0px 40px rgba(186, 26, 26, 0.2)';
+                e.currentTarget.style.boxShadow = '0 20px 60px -15px rgba(186,26,26,0.25), 0 12px 36px -12px rgba(186,26,26,0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '';
+                e.currentTarget.style.boxShadow = '0 12px 40px -12px rgba(186,26,26,0.15), 0 8px 24px -8px rgba(186,26,26,0.1)';
               }}
             >
-              <div className="flex gap-3 items-center mb-4">
+              <div className="flex gap-3 items-center">
                 <img src="/assets/icons/Risk.svg" alt="" className="w-5 h-5" />
-                <h4 className="font-space-grotesk font-bold text-[24px] leading-[32px] tracking-[-0.6px] text-[#ba1a1a] uppercase">
+                <h4 className="font-poppins font-bold text-[20px] lg:text-[22px] leading-tight tracking-tight text-[#ba1a1a] uppercase">
                   {t('result.risksTitle')}
                 </h4>
               </div>
@@ -759,7 +790,7 @@ export const Result = () => {
                   <img src="/assets/icons/Picto_Team.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
                   <h4
                     className="font-space-grotesk font-bold text-[24px] leading-[32px] tracking-[-0.6px] uppercase"
-                    style={{ color: impulseColor }}
+                    style={{ color: impulseColorText }}
                   >
                     {language === 'zh' ? '会议表现' : 'MEETING BEHAVIOR'}
                   </h4>
@@ -776,12 +807,12 @@ export const Result = () => {
             <div className="flex flex-col gap-8">
               <div className="flex gap-2 items-center">
                 <img src="/assets/icons/Library.svg" alt="" className="w-5 h-5" />
-                <h4 className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#a800aa] uppercase">
+                <h4 className="font-poppins font-bold text-[20px] lg:text-[22px] leading-tight tracking-tight text-[#a800aa] uppercase">
                   THE IMPULSE LIBRARY
                 </h4>
               </div>
 
-              <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded p-4 lg:p-\[33px\] shadow-[inset_0px_2px_4px_0px_rgba(0,0,0,0.05)]">
+              <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded-3xl p-6 lg:p-8 shadow-soft">
                 <div className="grid grid-cols-4 lg:grid-cols-8 gap-3 lg:gap-4">
                   {getAllResultKeys().map(key => {
                     const isUnlocked = key === result.key;
@@ -899,7 +930,7 @@ export const Result = () => {
               }}
             />
             <span className="relative z-10 text-[18px]">↗</span>
-            <span className="relative z-10">{isCapturing ? 'Capturing...' : 'SHARE RESULT'}</span>
+            <span className="relative z-10">{isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '分享结果' : 'SHARE RESULT')}</span>
           </button>
         </div>
       </div>
