@@ -33,6 +33,15 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
 
     const glitchColors = getGlitchColors(impulseColor);
 
+    // For yellow and cyan, use darker versions for better contrast
+    const getTextColor = (color: string) => {
+      if (color === '#FFC933') return '#D89700'; // Darker yellow
+      if (color === '#64EDD2') return '#00A896'; // Darker cyan
+      return color; // Keep magenta and purple as is
+    };
+
+    const textColor = getTextColor(impulseColor);
+
     return (
       <div
         ref={ref}
@@ -86,7 +95,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
           </h1>
           <h2
             className="font-72-brand font-medium text-[52px] leading-[64px] text-center"
-            style={{ color: impulseColor }}
+            style={{ color: textColor }}
           >
             {nameCN}
           </h2>
