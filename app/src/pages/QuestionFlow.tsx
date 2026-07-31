@@ -56,6 +56,24 @@ export const QuestionFlow = () => {
       <Header />
       <GlossaryPanel />
 
+      {/* Progress Bar - Mobile only, at top */}
+      <div className="sm:hidden bg-white border-b border-[#d8bfd1] px-4 py-3">
+        <div className="flex justify-between items-center mb-2">
+          <span className="font-jetbrains-mono font-medium text-[10px] leading-[16px] text-[#a800aa] uppercase">
+            SURVEY
+          </span>
+          <span className="font-jetbrains-mono font-medium text-[10px] leading-[16px] text-[#a800aa] uppercase">
+            STEP {String(currentQuestionIndex + 1).padStart(2, '0')} / {String(questions.length).padStart(2, '0')}
+          </span>
+        </div>
+        <div className="w-full bg-[#d8bfd1] h-2 rounded-full overflow-hidden">
+          <div
+            className="bg-gradient-to-r from-[#a800aa] to-[#f65af2] h-full transition-all duration-300 rounded-full"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+
       <main className="flex-1 py-8 sm:py-12 md:py-24 pb-24 sm:pb-24 px-4 sm:px-6 md:px-16">
         <div className="max-w-[1280px] mx-auto">
           {/* Survey Module Badge */}
@@ -150,26 +168,28 @@ export const QuestionFlow = () => {
       </main>
 
       {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#a800aa] px-4 py-4 z-50 shadow-[0px_-4px_8px_rgba(168,0,170,0.1)]">
-        <div className="flex gap-3">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#a800aa] px-4 py-3 z-50 shadow-[0px_-4px_8px_rgba(168,0,170,0.1)]">
+        <div className="flex gap-2 items-center justify-between mb-0">
           <button
             onClick={handlePrevious}
             disabled={currentQuestionIndex === 0}
-            className="flex-1 px-4 py-3 bg-[#f7e3ef] text-[#231821] font-72-brand text-[13px] border border-[#867181] rounded-lg hover:border-[#a800aa] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="flex-1 px-3 py-2.5 bg-white text-[#231821] font-space-grotesk font-bold text-[13px] border-2 border-[#a800aa] rounded-lg hover:bg-[#f7e3ef] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 uppercase"
           >
             <span>←</span>
-            {t('question.previousStep')}
+            PREVIOUS
           </button>
 
-          {canSubmit && (
-            <button
-              onClick={handleSubmit}
-              className="flex-1 px-4 py-3 bg-[#a800aa] text-white font-72-brand text-[13px] rounded-lg border-b-4 border-[#800082] shadow-soft hover:shadow-soft-lg transition-all flex items-center justify-center gap-2"
-            >
-              {t('question.submitTest')}
-              <span>✓</span>
-            </button>
-          )}
+          <button
+            onClick={() => {
+              const glossaryButton = document.querySelector('button[aria-label*="Glossary"], button[aria-label*="术语"]') as HTMLButtonElement;
+              if (glossaryButton) {
+                glossaryButton.click();
+              }
+            }}
+            className="px-3 py-2.5 text-[#5d38e3] font-space-grotesk font-medium text-[12px] flex items-center gap-1 whitespace-nowrap"
+          >
+            <span className="text-[16px]">?</span> View Terms
+          </button>
         </div>
       </div>
     </div>
