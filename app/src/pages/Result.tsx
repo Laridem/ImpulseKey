@@ -207,9 +207,7 @@ export const Result = () => {
                 <div
                   className="relative w-48 h-48 lg:w-64 lg:h-64 rounded-2xl border-[3px] p-2 flex items-center justify-center transition-all duration-500 hover:scale-105 cursor-pointer group overflow-hidden"
                   style={{
-                    background: `
-                      radial-gradient(circle at 30% 30%, ${hexToRgba(colorGroup.color, 0.95)} 0%, ${colorGroup.color} 100%)
-                    `,
+                    background: colorGroup.color,
                     borderColor: '#f65af2',
                     boxShadow: `
                       0 1px 2px 0 rgba(255,255,255,0.8) inset,
