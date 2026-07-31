@@ -65,10 +65,10 @@ export default {
         'fire': '#ba1a1a',     // Updated to error
       },
       fontFamily: {
-        sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
-        'space-grotesk': ['Space Grotesk', 'system-ui', 'sans-serif'],
-        '72-brand': ['72', '72 Brand', 'sans-serif'],
-        'hanken-grotesk': ['Hanken Grotesk', 'sans-serif'],
+        sans: ['Poppins', 'Noto Sans SC', 'system-ui', 'sans-serif'],
+        'poppins': ['Poppins', 'Noto Sans SC', 'sans-serif'],
+        'inter': ['Inter', 'Noto Sans SC', 'sans-serif'],
+        'noto-sans': ['Noto Sans SC', 'sans-serif'],
         'jetbrains-mono': ['JetBrains Mono', 'monospace'],
       },
       fontSize: {
@@ -91,16 +91,21 @@ export default {
         'container': '1280px',
       },
       borderRadius: {
-        DEFAULT: '8px',
+        DEFAULT: '16px',
         'none': '0',
-        'sm': '4px',
-        'md': '8px',
-        'lg': '12px',
+        'sm': '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '20px',
+        '2xl': '24px',
+        '3xl': '32px',
         'full': '9999px',
       },
       boxShadow: {
-        'soft': '0px 10px 15px -3px rgba(0,0,0,0.1), 0px 4px 6px -4px rgba(0,0,0,0.1)',
-        'soft-lg': '0px 20px 25px -5px rgba(0,0,0,0.1), 0px 8px 10px -6px rgba(0,0,0,0.1)',
+        'soft': '0 8px 32px -8px rgba(168,0,170,0.12), 0 4px 16px -4px rgba(168,0,170,0.08)',
+        'soft-lg': '0 16px 48px -12px rgba(168,0,170,0.18), 0 8px 24px -6px rgba(168,0,170,0.12)',
+        'neo': '0 8px 32px -8px rgba(168,0,170,0.15), 0 0 0 1px rgba(168,0,170,0.05)',
+        'neo-lg': '0 16px 64px -16px rgba(168,0,170,0.2), 0 8px 32px -8px rgba(168,0,170,0.15)',
       },
       textShadow: {
         'kinetic': '5px 5px 0px #00f5e1, 0px 4px 4px #f65af2',
