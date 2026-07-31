@@ -136,44 +136,105 @@ export const Result = () => {
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12">
           {/* Left Sidebar: Full width on mobile, 4 columns on desktop */}
           <div className="lg:col-span-4 flex flex-col gap-6">
-            {/* Character Card */}
-            <div className="bg-white border border-[#d8bfd1] rounded drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)] p-6 lg:p-4 lg:p-\[33px\] flex flex-col gap-6">
-              {/* Keycap with color background */}
+            {/* Character Card - Neo-Playful 3D Style */}
+            <div
+              className="relative bg-gradient-to-br from-white via-[#fffbfe] to-[#fef5fb] border-2 rounded-xl p-6 lg:p-4 lg:p-\[33px\] flex flex-col gap-6 transition-all duration-300 hover:translate-y-[-4px]"
+              style={{
+                borderColor: colorGroup.color,
+                boxShadow: `
+                  0 1px 0 0 rgba(255,255,255,0.5) inset,
+                  0 -1px 0 0 rgba(0,0,0,0.05) inset,
+                  0 4px 8px -2px rgba(168,0,170,0.2),
+                  0 8px 16px -4px rgba(168,0,170,0.15),
+                  0 16px 32px -8px rgba(168,0,170,0.1),
+                  0 0 40px -10px ${hexToRgba(colorGroup.color, 0.3)}
+                `,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `
+                  0 1px 0 0 rgba(255,255,255,0.6) inset,
+                  0 -1px 0 0 rgba(0,0,0,0.05) inset,
+                  0 8px 16px -2px rgba(168,0,170,0.25),
+                  0 16px 32px -4px rgba(168,0,170,0.2),
+                  0 24px 48px -8px rgba(168,0,170,0.15),
+                  0 0 60px -5px ${hexToRgba(colorGroup.color, 0.5)}
+                `;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = `
+                  0 1px 0 0 rgba(255,255,255,0.5) inset,
+                  0 -1px 0 0 rgba(0,0,0,0.05) inset,
+                  0 4px 8px -2px rgba(168,0,170,0.2),
+                  0 8px 16px -4px rgba(168,0,170,0.15),
+                  0 16px 32px -8px rgba(168,0,170,0.1),
+                  0 0 40px -10px ${hexToRgba(colorGroup.color, 0.3)}
+                `;
+              }}
+            >
+              {/* Keycap with 3D volumetric lighting */}
               <div className="flex justify-center">
                 <div
-                  className="w-48 h-48 lg:w-64 lg:h-64 rounded border-2 p-2 flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer group relative"
+                  className="relative w-48 h-48 lg:w-64 lg:h-64 rounded-2xl border-[3px] p-2 flex items-center justify-center transition-all duration-500 hover:scale-105 cursor-pointer group overflow-hidden"
                   style={{
-                    backgroundColor: colorGroup.color,
+                    background: `
+                      radial-gradient(circle at 30% 30%, ${hexToRgba(colorGroup.color, 0.95)} 0%, ${colorGroup.color} 100%)
+                    `,
                     borderColor: '#f65af2',
                     boxShadow: `
-                      0px 4px 0px 0px #d8bfd1,
-                      0px 8px 15px 0px rgba(0,0,0,0.1),
-                      -2px -2px 8px 0px ${glitchColors[0]}40,
-                      2px 2px 8px 0px ${glitchColors[1]}40,
-                      0px 0px 12px 0px ${glitchColors[2]}30
+                      0 1px 2px 0 rgba(255,255,255,0.8) inset,
+                      0 6px 0px 0px rgba(216,191,209,0.8),
+                      0 12px 20px -4px rgba(0,0,0,0.25),
+                      -3px -3px 12px 0px ${glitchColors[0]}50,
+                      3px 3px 12px 0px ${glitchColors[1]}50,
+                      0px 0px 30px 0px ${glitchColors[2]}40,
+                      0 0 80px -20px ${hexToRgba(colorGroup.color, 0.6)}
                     `
                   }}
                   onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05) rotateX(5deg) rotateY(5deg)';
                     e.currentTarget.style.boxShadow = `
-                      0px 6px 0px 0px #d8bfd1,
-                      0px 12px 20px 0px rgba(0,0,0,0.15),
-                      -4px -4px 12px 0px ${glitchColors[0]}60,
-                      4px 4px 12px 0px ${glitchColors[1]}60,
-                      0px 0px 20px 0px ${glitchColors[2]}50,
-                      -6px 0px 15px 0px ${glitchColors[0]}40,
-                      6px 0px 15px 0px ${glitchColors[1]}40
+                      0 2px 4px 0 rgba(255,255,255,0.9) inset,
+                      0 8px 0px 0px rgba(216,191,209,0.9),
+                      0 16px 32px -4px rgba(0,0,0,0.35),
+                      -5px -5px 20px 0px ${glitchColors[0]}70,
+                      5px 5px 20px 0px ${glitchColors[1]}70,
+                      0px 0px 50px 0px ${glitchColors[2]}60,
+                      -8px 0px 25px 0px ${glitchColors[0]}50,
+                      8px 0px 25px 0px ${glitchColors[1]}50,
+                      0 0 120px -10px ${hexToRgba(colorGroup.color, 0.8)}
                     `;
                   }}
                   onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
                     e.currentTarget.style.boxShadow = `
-                      0px 4px 0px 0px #d8bfd1,
-                      0px 8px 15px 0px rgba(0,0,0,0.1),
-                      -2px -2px 8px 0px ${glitchColors[0]}40,
-                      2px 2px 8px 0px ${glitchColors[1]}40,
-                      0px 0px 12px 0px ${glitchColors[2]}30
+                      0 1px 2px 0 rgba(255,255,255,0.8) inset,
+                      0 6px 0px 0px rgba(216,191,209,0.8),
+                      0 12px 20px -4px rgba(0,0,0,0.25),
+                      -3px -3px 12px 0px ${glitchColors[0]}50,
+                      3px 3px 12px 0px ${glitchColors[1]}50,
+                      0px 0px 30px 0px ${glitchColors[2]}40,
+                      0 0 80px -20px ${hexToRgba(colorGroup.color, 0.6)}
                     `;
                   }}
                 >
+                  {/* Volumetric light overlay */}
+                  <div
+                    className="absolute inset-0 rounded-2xl pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity duration-500"
+                    style={{
+                      background: `
+                        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, ${hexToRgba(colorGroup.color, 0.4)} 0%, transparent 60%)
+                      `
+                    }}
+                  />
+                  {/* Grain texture overlay */}
+                  <div
+                    className="absolute inset-0 rounded-2xl pointer-events-none opacity-[0.15] mix-blend-overlay"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundSize: '100px 100px'
+                    }}
+                  />
                   <img
                     src={getKeycapAsset(result.key)}
                     alt={result.name.en}
@@ -213,18 +274,39 @@ export const Result = () => {
                 </p>
               </div>
 
-              {/* Color Badge */}
+              {/* Color Badge - 3D Pill Style */}
               <div className="pt-2">
                 <div
-                  className="border rounded p-[9px] flex gap-4 items-center"
+                  className="relative border-2 rounded-full p-4 flex gap-4 items-center overflow-hidden transition-all duration-300 hover:scale-[1.02]"
                   style={{
-                    backgroundColor: hexToRgba(impulseColor, 0.08),
-                    borderColor: hexToRgba(impulseColor, 0.3)
+                    background: `linear-gradient(145deg, ${hexToRgba(impulseColor, 0.12)} 0%, ${hexToRgba(impulseColor, 0.06)} 100%)`,
+                    borderColor: hexToRgba(impulseColor, 0.4),
+                    boxShadow: `
+                      0 1px 0 0 rgba(255,255,255,0.6) inset,
+                      0 2px 8px -2px ${hexToRgba(impulseColor, 0.3)},
+                      0 4px 16px -4px ${hexToRgba(impulseColor, 0.2)}
+                    `
                   }}
                 >
+                  {/* Subtle highlight overlay */}
                   <div
-                    className="w-10 h-10 rounded-sm shadow-[inset_0px_2px_4px_0px_rgba(0,0,0,0.05)]"
-                    style={{ backgroundColor: colorGroup.color }}
+                    className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%)'
+                    }}
+                  />
+                  <div
+                    className="relative w-10 h-10 rounded-lg flex-shrink-0"
+                    style={{
+                      background: `
+                        radial-gradient(circle at 30% 30%, ${hexToRgba(colorGroup.color, 0.9)} 0%, ${colorGroup.color} 100%)
+                      `,
+                      boxShadow: `
+                        0 1px 2px 0 rgba(255,255,255,0.5) inset,
+                        0 2px 4px 0 rgba(0,0,0,0.15),
+                        0 0 12px -2px ${hexToRgba(colorGroup.color, 0.6)}
+                      `
+                    }}
                   />
                   <div className="flex flex-col gap-2.5">
                     <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
@@ -240,20 +322,75 @@ export const Result = () => {
                 </div>
               </div>
 
-              {/* Action Buttons - Hidden on mobile, visible on desktop */}
+              {/* Action Buttons - 3D Pill Style - Hidden on mobile, visible on desktop */}
               <div className="hidden lg:flex flex-col gap-4 pt-6">
                 <button
                   onClick={handleShare}
                   disabled={isCapturing}
-                  className="w-full bg-[#a800aa] text-white font-space-grotesk font-bold text-[16px] leading-[24px] uppercase py-4 rounded shadow-[0px_4px_0px_0px_#800082,0px_8px_15px_0px_rgba(168,0,170,0.2)] hover:translate-y-0.5 transition-transform disabled:opacity-50"
+                  className="relative w-full text-white font-space-grotesk font-bold text-[16px] leading-[24px] uppercase py-4 rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] disabled:opacity-50 disabled:cursor-not-allowed group"
+                  style={{
+                    background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+                    boxShadow: `
+                      0 1px 0 0 rgba(255,255,255,0.3) inset,
+                      0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                      0 6px 0 0 #800082,
+                      0 10px 20px -4px rgba(168,0,170,0.4),
+                      0 0 40px -10px rgba(246,90,242,0.5)
+                    `
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isCapturing) {
+                      e.currentTarget.style.boxShadow = `
+                        0 1px 0 0 rgba(255,255,255,0.4) inset,
+                        0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                        0 8px 0 0 #800082,
+                        0 14px 28px -4px rgba(168,0,170,0.5),
+                        0 0 60px -5px rgba(246,90,242,0.7)
+                      `;
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = `
+                      0 1px 0 0 rgba(255,255,255,0.3) inset,
+                      0 -1px 0 0 rgba(0,0,0,0.2) inset,
+                      0 6px 0 0 #800082,
+                      0 10px 20px -4px rgba(168,0,170,0.4),
+                      0 0 40px -10px rgba(246,90,242,0.5)
+                    `;
+                  }}
                 >
-                  {isCapturing ? 'Capturing...' : 'SHARE RESULT / 分享结果'}
+                  {/* Top highlight */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
+                    }}
+                  />
+                  <span className="relative z-10">
+                    {isCapturing ? 'Capturing...' : 'SHARE RESULT / 分享结果'}
+                  </span>
                 </button>
                 <button
                   onClick={handleRetake}
-                  className="w-full border-2 border-[#d8bfd1] text-[#534150] font-space-grotesk font-bold text-[16px] leading-[24px] uppercase py-4 px-0.5 rounded hover:border-[#a800aa] transition-colors"
+                  className="relative w-full border-3 text-[#534150] font-space-grotesk font-bold text-[16px] leading-[24px] uppercase py-4 px-0.5 rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] active:translate-y-[0px] overflow-hidden group"
+                  style={{
+                    borderWidth: '3px',
+                    borderColor: '#d8bfd1',
+                    background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+                    boxShadow: `
+                      0 1px 0 0 rgba(255,255,255,0.8) inset,
+                      0 2px 8px -2px rgba(168,0,170,0.15)
+                    `
+                  }}
                 >
-                  RETAKE TEST / 重新测试
+                  {/* Top highlight */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+                    }}
+                  />
+                  <span className="relative z-10">RETAKE TEST / 重新测试</span>
                 </button>
               </div>
             </div>
