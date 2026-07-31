@@ -561,7 +561,7 @@ export const Result = () => {
                     <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#f65af2]">
                       SIGNAL ({Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100)}%)
                     </span>
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#534150]">
+                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#00b5bd]">
                       SOLUTION ({Math.round((displayScores.Solution / (displayScores.Signal + displayScores.Solution)) * 100)}%)
                     </span>
                   </div>
@@ -579,7 +579,7 @@ export const Result = () => {
                     <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#00b5bd]">
                       HUMAN ({Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100)}%)
                     </span>
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#534150]">
+                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#8e5aff]">
                       MACHINE ({Math.round((displayScores.Machine / (displayScores.Human + displayScores.Machine)) * 100)}%)
                     </span>
                   </div>
@@ -597,7 +597,7 @@ export const Result = () => {
                     <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#8e5aff]">
                       EXPLORE ({Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100)}%)
                     </span>
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#534150]">
+                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#f4bf28]">
                       ALIGN ({Math.round((displayScores.Align / (displayScores.Explore + displayScores.Align)) * 100)}%)
                     </span>
                   </div>
@@ -615,7 +615,7 @@ export const Result = () => {
                     <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#f4bf28]">
                       SPARK ({Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100)}%)
                     </span>
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#534150]">
+                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#f65af2]">
                       STABILIZE ({Math.round((displayScores.Stabilize / (displayScores.Spark + displayScores.Stabilize)) * 100)}%)
                     </span>
                   </div>
