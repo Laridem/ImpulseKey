@@ -564,7 +564,7 @@ export const Result = () => {
 
             {/* Punchline Section - Gradient Card with dynamic color */}
             <div
-              className="relative rounded shadow-[6px_6px_12px_0px_rgba(255,201,51,0.4),5px_8px_10px_0px_rgba(100,237,210,0.3)] p-12 transition-all duration-300 hover:scale-[1.02]"
+              className="relative rounded shadow-[6px_6px_12px_0px_rgba(255,201,51,0.4),5px_8px_10px_0px_rgba(100,237,210,0.3)] p-6 lg:p-12 transition-all duration-300 hover:scale-[1.02]"
               style={{
                 background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%), ${impulseColor}`,
                 transition: 'box-shadow 0.3s ease, transform 0.3s ease'
@@ -583,13 +583,13 @@ export const Result = () => {
             >
               <div className="relative">
                 <p
-                  className="font-space-grotesk font-bold text-[24px] leading-[30px] tracking-[-0.6px] text-center uppercase mb-4"
+                  className="font-space-grotesk font-bold text-[16px] lg:text-[24px] leading-[24px] lg:leading-[30px] tracking-[-0.4px] lg:tracking-[-0.6px] text-center uppercase mb-3 lg:mb-4"
                   style={{ color: punchlineTextColor }}
                 >
                   {result.punchline[language]}
                 </p>
                 <p
-                  className="font-72-brand font-medium text-[24px] leading-[30px] text-center"
+                  className="font-72-brand font-medium text-[16px] lg:text-[24px] leading-[24px] lg:leading-[30px] text-center"
                   style={{ color: punchlineTextColor }}
                 >
                   {language === 'zh'
@@ -645,7 +645,7 @@ export const Result = () => {
               </div>
 
               <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded p-4 lg:p-\[33px\] shadow-[inset_0px_2px_4px_0px_rgba(0,0,0,0.05)]">
-                <div className="grid grid-cols-8 gap-4">
+                <div className="grid grid-cols-4 lg:grid-cols-8 gap-3 lg:gap-4">
                   {getAllResultKeys().map(key => {
                     const isUnlocked = key === result.key;
                     const isHovered = hoveredLockedKey === key;
