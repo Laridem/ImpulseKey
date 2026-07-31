@@ -12,7 +12,7 @@ export const Header = () => {
         {/* Logo */}
         <div className="flex items-center gap-2 sm:gap-4 cursor-pointer" onClick={() => navigate('/')}>
           <span className="font-space-grotesk font-bold text-[18px] sm:text-headline-md text-[#a800aa] tracking-tight">
-            IMPULSE KEYS
+            Impulse26 Key
           </span>
           <img
             src="/assets/anvils.png"

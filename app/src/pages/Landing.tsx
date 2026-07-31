@@ -221,7 +221,7 @@ export const Landing = () => {
             <div className="lg:col-span-7">
               <img
                 src="/assets/banner.png"
-                alt="Impulse Keys Banner"
+                alt="Impulse26 Key Banner"
                 className="w-full h-auto rounded-lg"
               />
             </div>
