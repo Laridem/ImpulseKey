@@ -7,11 +7,11 @@ export const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="bg-white border-b border-[#d8bfd1]">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#d8bfd1] shadow-sm">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2 sm:gap-4 cursor-pointer" onClick={() => navigate('/')}>
-          <span className="font-space-grotesk font-bold text-[18px] sm:text-headline-md text-[#a800aa] tracking-tight">
+          <span className="font-poppins font-bold text-[18px] sm:text-headline-md text-[#a800aa] tracking-tight">
             Impulse26 Key
           </span>
           <img

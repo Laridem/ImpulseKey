@@ -56,8 +56,8 @@ export const QuestionFlow = () => {
       <Header />
       <GlossaryPanel />
 
-      {/* Progress Bar - Mobile only, at top */}
-      <div className="sm:hidden bg-white border-b border-[#d8bfd1] px-4 py-3">
+      {/* Progress Bar - Mobile only, sticky below header */}
+      <div className="sm:hidden sticky top-[60px] z-40 bg-white/95 backdrop-blur-sm border-b border-[#d8bfd1] px-4 py-3 shadow-sm">
         <div className="flex justify-between items-center mb-2">
           <span className="font-jetbrains-mono font-medium text-[10px] leading-[16px] text-[#a800aa] uppercase">
             SURVEY
