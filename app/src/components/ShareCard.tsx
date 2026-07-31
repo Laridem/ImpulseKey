@@ -47,13 +47,18 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         ref={ref}
         className="relative w-[1080px] h-[1920px] overflow-hidden flex flex-col"
         style={{
-          background: 'linear-gradient(135deg, #fef5fb 0%, #f8e9f5 50%, #fef5fb 100%)',
+          background: `
+            linear-gradient(145deg, #f5f5f7 0%, #e8e8ea 50%, #f5f5f7 100%)
+          `,
           boxShadow: `
+            0 1px 0 0 rgba(255,255,255,0.8) inset,
+            0 -1px 0 0 rgba(0,0,0,0.08) inset,
             0px 0px 40px 0px ${glitchColors[0]}60,
             0px 0px 80px 0px ${glitchColors[1]}40,
             0px 0px 120px 0px ${glitchColors[2]}30,
             -20px -20px 60px 0px ${impulseColor}40,
-            20px 20px 60px 0px ${impulseColor}40
+            20px 20px 60px 0px ${impulseColor}40,
+            0 20px 60px -10px rgba(0,0,0,0.15)
           `
         }}
       >
@@ -71,7 +76,16 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         <div className="flex justify-center px-16 pb-12">
           <div
             className="rounded-[40px] p-12 flex items-center justify-center"
-            style={{ backgroundColor: impulseColor }}
+            style={{
+              backgroundColor: impulseColor,
+              boxShadow: `
+                0 2px 0 0 rgba(255,255,255,0.3) inset,
+                0 -2px 0 0 rgba(0,0,0,0.15) inset,
+                0 8px 0 0 rgba(0,0,0,0.12),
+                0 16px 32px -8px rgba(0,0,0,0.25),
+                0 0 60px -10px ${impulseColor}80
+              `
+            }}
           >
             <img
               src={getKeycapAsset(result.key)}
