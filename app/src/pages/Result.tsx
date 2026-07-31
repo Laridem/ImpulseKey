@@ -201,10 +201,10 @@ export const Result = () => {
 
               {/* Titles */}
               <div className="flex flex-col items-center gap-3">
-                <h2 className="font-space-grotesk font-normal text-[30px] leading-[36px] tracking-[-0.75px] text-[#231821] text-center uppercase">
+                <h2 className="font-space-grotesk font-normal text-[24px] leading-[30px] tracking-[-0.6px] text-[#231821] text-center uppercase">
                   {result.name.en}
                 </h2>
-                <h3 className="font-72-brand font-medium text-[20px] leading-[28px] text-[#a800aa] text-center">
+                <h3 className="font-72-brand font-medium text-[18px] leading-[24px] text-[#a800aa] text-center">
                   {result.name.zh}
                 </h3>
                 {/* Dynamic Most Likely to Say or fallback to motto */}
@@ -380,7 +380,7 @@ export const Result = () => {
             >
               <div className="flex gap-2 items-center">
                 <img src="/assets/icons/Dimension.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
-                <h4 className="font-space-grotesk font-bold text-[24px] leading-[32px] tracking-[-0.6px] uppercase" style={{ color: impulseColor }}>
+                <h4 className="font-space-grotesk font-bold text-[18px] leading-[26px] tracking-[-0.45px] uppercase" style={{ color: impulseColor }}>
                   CORE DIMENSIONS / 核心维度
                 </h4>
               </div>
@@ -479,7 +479,7 @@ export const Result = () => {
             >
               <div className="flex gap-3 items-center mb-4">
                 <img src="/assets/icons/Signal.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
-                <h4 className="font-space-grotesk font-bold text-[24px] leading-[32px] tracking-[-0.6px] text-[#231821] uppercase">
+                <h4 className="font-space-grotesk font-bold text-[18px] leading-[26px] tracking-[-0.45px] text-[#231821] uppercase">
                   {t('result.signalTitle')}
                 </h4>
               </div>
@@ -509,7 +509,7 @@ export const Result = () => {
             >
               <div className="flex gap-3 items-center mb-4">
                 <img src="/assets/icons/Impulse.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
-                <h4 className="font-space-grotesk font-bold text-[24px] leading-[32px] tracking-[-0.6px] text-[#231821] uppercase">
+                <h4 className="font-space-grotesk font-bold text-[18px] leading-[26px] tracking-[-0.45px] text-[#231821] uppercase">
                   {t('result.pulseTitle')}
                 </h4>
               </div>
