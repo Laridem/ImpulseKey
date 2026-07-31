@@ -53,10 +53,14 @@ export const Result = () => {
       console.log('Starting image capture...');
       await new Promise(resolve => setTimeout(resolve, 100));
 
+      // Use lower pixelRatio on mobile for faster generation
+      const isMobile = window.innerWidth < 1024;
+      const pixelRatio = isMobile ? 1 : 2;
+
       console.log('Converting to PNG...');
       const dataUrl = await toPng(shareCardRef.current, {
         cacheBust: true,
-        pixelRatio: 2, // Increased for better quality
+        pixelRatio, // Dynamic based on device
         backgroundColor: '#ffffff',
         width: 1080,
         height: 1920,
