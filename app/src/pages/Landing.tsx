@@ -87,9 +87,9 @@ export const Landing = () => {
           </div>
 
           {/* Right Column - Hero Visual */}
-          <div className="flex-shrink-0 flex flex-col items-start justify-start w-full lg:w-[452px] relative mt-8 lg:mt-0">
+          <div className="flex-shrink-0 flex flex-col items-start justify-start w-full lg:w-[360px] relative mt-8 lg:mt-0">
             {/* Key Visual Container */}
-            <div className="relative w-full max-w-[376px] aspect-[376/361] lg:w-[376px] lg:h-[361px]">
+            <div className="relative w-full max-w-[300px] aspect-[376/361] lg:w-[300px] lg:h-[288px]">
               {/* Main Container with Decorative Borders */}
               <div
                 className="absolute inset-0 bg-white border-2 border-[#a800aa] rounded-lg p-7 transition-all duration-500 hover:scale-105 cursor-pointer group overflow-hidden"
@@ -196,21 +196,21 @@ export const Landing = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left: About Text */}
             <div className="lg:col-span-5 space-y-6">
-              <h3 className="font-space-grotesk font-bold text-display-lg text-[#231821]">
+              <h3 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821]">
                 About the Project
               </h3>
               <div className="space-y-4">
-                <p className="font-hanken-grotesk text-body-lg text-[#534150] leading-[29.25px]">
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
                   This is a fun project powered by vibe coding—don't take it too seriously! Content planned and designed by larissa.deng@sap.com and its creation is supported by folks from Design Hub China.
                 </p>
-                <p className="font-hanken-grotesk text-body-lg text-[#534150] leading-[29.25px]">
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
                   You're welcome to join our future events and activities (SAP employees only):
                 </p>
                 <div className="space-y-2 pl-4">
-                  <p className="font-hanken-grotesk text-body-lg text-[#534150] leading-[29.25px]">
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
                     Internal Sharepoint: <a href="https://sap.sharepoint.com/sites/209182/SitePages/Design-Hub-China.aspx?isSPOFile=1&xsdata=MDV8MDJ8fDY3MTZmZDY0YmUyZjQwZGQ5MDhkMDhkZTlhYTJhMjkzfDQyZjc2NzZjZjQ1NTQyM2M4MmY2ZGMyZDk5NzkxYWY3fDB8MHw2MzkxMTgyMjA0MzYxNDgzNjV8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pReU56azNNRGMzT0RobVl6UXlPR0poWVdFd1lqSmxNV014TXpjMll6a3lRSFJvY21WaFpDNTJNaTl0WlhOellXZGxjeTh4TnpjMk1qSTFNalEzTmpRd3xiNWFhYzIyZTRjMjk0NTNlOTA4ZDA4ZGU5YWEyYTI5M3wwZGI1MDE0MjI2ZjE0ZjFjOTgxMzRlMzQ5NDFjN2NlNg%3D%3D&sdata=QUZDbWZHQXZQdFZpeFdXZkRhNXYrbGtsZ3RUZGxPSmh0V3hxeGtOU1NiST0%3D&ovuser=42f7676c-f455-423c-82f6-dc2d99791af7%2Clarissa.deng%40sap.com&OR=Teams-HL&CT=1776226560704&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNjAzMTIyMzAyMCJ9" target="_blank" rel="noopener noreferrer" className="text-[#a800aa] underline hover:text-[#800082]">Link</a>
                   </p>
-                  <p className="font-hanken-grotesk text-body-lg text-[#534150] leading-[29.25px]">
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
                     Join SAP Design Hub China Distribution List: <a href="https://profiles.wdf.sap.corp/groups/5c85d9385462d20285416a22/users" target="_blank" rel="noopener noreferrer" className="text-[#a800aa] underline hover:text-[#800082]">Link</a>
                   </p>
                 </div>
