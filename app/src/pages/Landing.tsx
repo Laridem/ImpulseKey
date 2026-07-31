@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
-import { useLanguage } from '../i18n';
 import { Header } from '../components/Header';
 import { useEffect } from 'react';
 
@@ -9,7 +8,6 @@ export const Landing = () => {
   const navigate = useNavigate();
   const { startTest } = useTest();
   const t = useTranslation();
-  const { language } = useLanguage();
 
   // Update page title for accessibility
   useEffect(() => {

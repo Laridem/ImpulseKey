@@ -1,6 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { useTest } from '../context/TestContext';
-import { useTranslation } from '../i18n';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 export const Header = () => {
