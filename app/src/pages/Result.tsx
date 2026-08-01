@@ -51,7 +51,9 @@ export const Result = () => {
 
     try {
       console.log('Starting image capture...');
-      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Wait longer to ensure all images are loaded
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       // Use lower pixelRatio on mobile for faster generation
       const isMobile = window.innerWidth < 1024;
@@ -64,7 +66,7 @@ export const Result = () => {
         backgroundColor: '#ffffff',
         width: 1080,
         height: 1920,
-        skipFonts: true, // Skip font embedding to avoid issues
+        skipFonts: false, // Re-enable fonts
         fetchRequestInit: {
           mode: 'cors',
           cache: 'no-cache'
