@@ -705,8 +705,8 @@ export const Result = () => {
                     style={{ color: quoteTextColor }}
                   >
                     {language === 'zh'
-                      ? `"${result.pulse.en}"`
-                      : `「${result.pulse.zh}」`
+                      ? `「${result.pulse.zh}」`
+                      : `"${result.pulse.en}"`
                     }
                   </p>
                 </div>
@@ -822,7 +822,7 @@ export const Result = () => {
                 </h4>
               </div>
 
-              <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded-3xl p-6 lg:p-8 shadow-soft">
+              <div className="bg-white border border-[#e5e2e8] rounded-3xl p-6 lg:p-8 shadow-soft">
                 <div className="grid grid-cols-4 gap-3 lg:gap-4">
                   {getAllResultKeys().map(key => {
                     const isUnlocked = key === result.key;
@@ -860,12 +860,20 @@ export const Result = () => {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <img
-                              key={`locked-${key}`}
-                              src={`/assets/result-cards-locked/${key}.png`}
-                              alt={`${key} Locked`}
-                              className="w-full h-full object-cover"
-                            />
+                            <div className="relative w-full h-full">
+                              <img
+                                key={`locked-${key}`}
+                                src={`/assets/result-cards-locked/${key}.png`}
+                                alt={`${key} Locked`}
+                                className="w-full h-full object-cover"
+                              />
+                              {/* Key text overlay for locked states */}
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <span className="font-jetbrains-mono font-bold text-[14px] lg:text-[16px] text-[#534150] bg-white/90 px-3 py-1 rounded shadow-sm">
+                                  {key}
+                                </span>
+                              </div>
+                            </div>
                           )}
                         </button>
 
