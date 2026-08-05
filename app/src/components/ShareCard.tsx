@@ -89,6 +89,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
               src={getKeycapAsset(result.key)}
               alt={nameEN}
               className="w-[640px] h-[640px] object-contain"
+              crossOrigin="anonymous"
             />
           </div>
         </div>
@@ -133,6 +134,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
               src="/assets/Anvils-1.png"
               alt="Anvils"
               className="h-20 w-auto opacity-60"
+              crossOrigin="anonymous"
             />
           </div>
 
@@ -142,6 +144,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
               src="/assets/qr-code.png"
               alt="Scan QR Code"
               className="w-[154px] h-[154px] object-contain"
+              crossOrigin="anonymous"
             />
             <p className="font-jetbrains-mono text-[16px] leading-[20px] text-[#949494] uppercase tracking-wider">
               Scan me

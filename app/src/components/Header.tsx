@@ -1,8 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { useLanguage } from '../i18n/LanguageContext';
 
-export const Header = () => {
+interface HeaderProps {
+  showRetakeButton?: boolean;
+  onRetake?: () => void;
+}
+
+export const Header = ({ showRetakeButton = false, onRetake }: HeaderProps) => {
   const navigate = useNavigate();
+  const { language } = useLanguage();
 
   return (
     <>
@@ -28,8 +35,16 @@ export const Header = () => {
             />
           </div>
 
-          {/* Right side: Language Switcher only */}
-          <div className="flex items-center">
+          {/* Right side: Retake button (optional) + Language Switcher */}
+          <div className="flex items-center gap-3">
+            {showRetakeButton && onRetake && (
+              <button
+                onClick={onRetake}
+                className="px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] uppercase rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95"
+              >
+                {language === 'zh' ? '重新测试' : 'RETAKE TEST'}
+              </button>
+            )}
             <LanguageSwitcher />
           </div>
         </div>

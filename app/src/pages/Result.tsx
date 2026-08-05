@@ -32,8 +32,14 @@ export const Result = () => {
   }, [key, goToResult]);
 
   const handleRetake = () => {
+    console.log('handleRetake called');
+    console.log('Resetting test and going to landing...');
     resetTest();
-    navigate('/');
+    // Use setTimeout to ensure state is cleared before navigation
+    setTimeout(() => {
+      // Force full page reload to ensure clean state
+      window.location.href = '/';
+    }, 100);
   };
 
   const handleShare = async () => {
@@ -52,10 +58,37 @@ export const Result = () => {
     try {
       console.log('Starting image capture...');
 
-      // Wait longer to ensure all images are loaded
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Pre-load all images before capture to ensure they're ready
+      const imagesToPreload = [
+        getKeycapAsset(result.key),
+        '/assets/Anvils-1.png',
+        '/assets/qr-code.png'
+      ];
 
-      // Use lower pixelRatio on mobile for faster generation
+      console.log('Pre-loading images...');
+      await Promise.all(
+        imagesToPreload.map(src => {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+              console.log('Loaded:', src);
+              resolve(src);
+            };
+            img.onerror = () => {
+              console.error('Failed to load:', src);
+              reject(new Error(`Failed to load image: ${src}`));
+            };
+            img.src = src;
+          });
+        })
+      );
+
+      console.log('All images pre-loaded successfully!');
+
+      // Additional wait to ensure images are painted
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // Use lower pixelRatio on mobile for faster generation and better reliability
       const isMobile = window.innerWidth < 1024;
       const pixelRatio = isMobile ? 1 : 2;
 
@@ -66,10 +99,15 @@ export const Result = () => {
         backgroundColor: '#ffffff',
         width: 1080,
         height: 1920,
-        skipFonts: false, // Re-enable fonts
+        skipFonts: false,
         fetchRequestInit: {
           mode: 'cors',
           cache: 'no-cache'
+        },
+        // Add filter to include all images
+        filter: (_node) => {
+          // Include all nodes by default
+          return true;
         }
       });
 
@@ -166,7 +204,7 @@ export const Result = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Header />
+      <Header showRetakeButton={true} onRetake={handleRetake} />
 
       <main ref={resultRef} className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-6 sm:py-8 md:py-12 pb-24 lg:pb-12 w-full">
         {/* Responsive Layout: Single column on mobile, 12-column grid on desktop */}
@@ -274,7 +312,7 @@ export const Result = () => {
                     key={result.key}
                     src={getKeycapAsset(result.key)}
                     alt={result.name.en}
-                    className="w-32 h-32 lg:w-48 lg:h-48 object-contain transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
               </div>
@@ -358,7 +396,7 @@ export const Result = () => {
                 </div>
               </div>
 
-              {/* Action Buttons - 3D Pill Style - Hidden on mobile, visible on desktop */}
+              {/* Action Button - Save as Image only */}
               <div className="hidden lg:flex flex-col gap-4 pt-6">
                 <button
                   onClick={handleShare}
@@ -405,28 +443,6 @@ export const Result = () => {
                   <span className="relative z-10">
                     {isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')}
                   </span>
-                </button>
-                <button
-                  onClick={handleRetake}
-                  className="relative w-full border-3 text-[#534150] font-space-grotesk font-bold text-[16px] leading-[24px] uppercase py-4 px-0.5 rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] active:translate-y-[0px] overflow-hidden group"
-                  style={{
-                    borderWidth: '3px',
-                    borderColor: '#d8bfd1',
-                    background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
-                    boxShadow: `
-                      0 1px 0 0 rgba(255,255,255,0.8) inset,
-                      0 2px 8px -2px rgba(168,0,170,0.15)
-                    `
-                  }}
-                >
-                  {/* Top highlight */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
-                    style={{
-                      background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
-                    }}
-                  />
-                  <span className="relative z-10">RETAKE TEST / 重新测试</span>
                 </button>
               </div>
             </div>
@@ -855,21 +871,24 @@ export const Result = () => {
                           {isUnlocked ? (
                             <img
                               key={`unlocked-${key}`}
-                              src={`/assets/result-cards/${key}.png`}
+                              src={`/assets/result-cards/${key}.png?v=20260805`}
                               alt={key}
                               className="w-full h-full object-cover"
+                              style={{
+                                filter: `drop-shadow(0 0 8px ${impulseColor}80) drop-shadow(0 0 16px ${impulseColor}60) drop-shadow(0 0 24px ${impulseColor}40)`
+                              }}
                             />
                           ) : (
                             <div className="relative w-full h-full">
                               <img
                                 key={`locked-${key}`}
-                                src={`/assets/result-cards-locked/${key}.png`}
+                                src={`/assets/result-cards-locked/${key}.png?v=20260805`}
                                 alt={`${key} Locked`}
                                 className="w-full h-full object-cover"
                               />
-                              {/* Key text overlay for locked states */}
+                              {/* Key text overlay for locked states - No background */}
                               <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="font-jetbrains-mono font-bold text-[14px] lg:text-[16px] text-[#534150] bg-white/90 px-3 py-1 rounded shadow-sm">
+                                <span className="font-jetbrains-mono font-bold text-[14px] lg:text-[16px] text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                                   {key}
                                 </span>
                               </div>
@@ -901,51 +920,30 @@ export const Result = () => {
         </div>
       </main>
 
-      {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
+      {/* Mobile Sticky Bottom Button - Save Image Only */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#fff7f9] border-t-2 border-[#a800aa] px-4 py-4 z-50 drop-shadow-[0px_-4px_2px_#f1ddea]">
-        <div className="flex gap-4 max-w-[1280px] mx-auto">
-          <button
-            onClick={handleRetake}
-            className="relative flex-1 text-[#a800aa] font-poppins font-semibold text-[16px] leading-[31.2px] uppercase py-2 px-0.5 rounded-full flex items-center justify-center gap-2 overflow-hidden"
+        <button
+          onClick={handleShare}
+          disabled={isCapturing}
+          className="relative w-full text-white font-poppins font-semibold text-[16px] leading-[31.2px] uppercase py-3 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 overflow-hidden"
+          style={{
+            background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+            boxShadow: `
+              0 1px 0 0 rgba(255,255,255,0.3) inset,
+              0 4px 0 0 #800082,
+              0 8px 16px -4px rgba(168,0,170,0.4)
+            `
+          }}
+        >
+          <div
+            className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
             style={{
-              borderWidth: '2px',
-              borderColor: '#a800aa',
-              background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
-              boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
             }}
-          >
-            <div
-              className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
-              }}
-            />
-            <span className="relative z-10 text-[16px]">⟲</span>
-            <span className="relative z-10">RETAKE TEST</span>
-          </button>
-          <button
-            onClick={handleShare}
-            disabled={isCapturing}
-            className="relative flex-1 text-white font-poppins font-semibold text-[16px] leading-[31.2px] uppercase py-2 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 overflow-hidden"
-            style={{
-              background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
-              boxShadow: `
-                0 1px 0 0 rgba(255,255,255,0.3) inset,
-                0 4px 0 0 #800082,
-                0 8px 16px -4px rgba(168,0,170,0.4)
-              `
-            }}
-          >
-            <div
-              className="absolute top-0 left-0 right-0 h-[30%] pointer-events-none opacity-40"
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
-              }}
-            />
-            <span className="relative z-10 text-[18px]">↗</span>
-            <span className="relative z-10">{isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')}</span>
-          </button>
-        </div>
+          />
+          <span className="relative z-10 text-[18px]">↗</span>
+          <span className="relative z-10">{isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')}</span>
+        </button>
       </div>
 
       <Footer />
