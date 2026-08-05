@@ -822,7 +822,7 @@ export const Result = () => {
               </div>
 
               <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded-3xl p-6 lg:p-8 shadow-soft">
-                <div className="grid grid-cols-4 lg:grid-cols-8 gap-3 lg:gap-4">
+                <div className="grid grid-cols-4 gap-3 lg:gap-4">
                   {getAllResultKeys().map(key => {
                     const isUnlocked = key === result.key;
                     const isHovered = hoveredLockedKey === key;
@@ -843,33 +843,26 @@ export const Result = () => {
                           }}
                           disabled={!isUnlocked}
                           className={`
-                            aspect-square w-full rounded-sm flex items-center justify-center transition-all relative
+                            aspect-square w-full rounded-lg overflow-hidden flex items-center justify-center transition-all relative
                             ${isUnlocked
-                              ? 'bg-[#a800aa] border border-[rgba(255,255,255,0.1)] shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0px_6px_8px_-1px_rgba(0,0,0,0.15)]'
-                              : 'bg-white border border-[rgba(216,191,209,0.5)] drop-shadow-[0px_2px_0px_#d8bfd1] hover:border-[#d8bfd1]'
+                              ? 'shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)] hover:shadow-[0px_6px_8px_-1px_rgba(0,0,0,0.15)] hover:scale-105'
+                              : 'opacity-60 hover:opacity-80'
                             }
                           `}
                           style={{ cursor: isUnlocked ? 'pointer' : 'not-allowed' }}
                         >
                           {isUnlocked ? (
-                            <span className="font-jetbrains-mono font-medium text-[14px] leading-[20px] text-white">
-                              {key}
-                            </span>
+                            <img
+                              src={`/assets/result-cards/${key}.png`}
+                              alt={key}
+                              className="w-full h-full object-cover"
+                            />
                           ) : (
-                            <>
-                              <span className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] opacity-40">
-                                {key}
-                              </span>
-                              {isHovered && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-white/95 rounded-sm z-20">
-                                  <img
-                                    src="/assets/icons/Locked.png"
-                                    alt="Locked"
-                                    className="w-10 h-10 object-contain"
-                                  />
-                                </div>
-                              )}
-                            </>
+                            <img
+                              src={`/assets/result-cards-locked/${key}.png`}
+                              alt={`${key} Locked`}
+                              className="w-full h-full object-cover"
+                            />
                           )}
                         </button>
 
