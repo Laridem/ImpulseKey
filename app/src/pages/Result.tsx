@@ -12,6 +12,7 @@ import { Footer } from '../components/Footer';
 import { ShareCard } from '../components/ShareCard';
 import { getAccessibleTextColor } from '../utils/contrast';
 import { getAllResultKeys } from '../data/results';
+import { RESULT_HASHTAGS } from '../data/hashtags';
 
 export const Result = () => {
   const { key } = useParams<{ key: string }>();
@@ -726,6 +727,22 @@ export const Result = () => {
                     }
                   </p>
                 </div>
+                {/* Hashtags - Twitter Style */}
+                <div className="flex flex-wrap gap-2 pt-4">
+                  {(RESULT_HASHTAGS[result.key]?.[language] || '').split(' ').map((tag, index) => (
+                    <span
+                      key={index}
+                      className="font-jetbrains-mono text-[12px] lg:text-[13px] px-3 py-1 rounded-full transition-all duration-200 hover:scale-105"
+                      style={{
+                        backgroundColor: hexToRgba(impulseColor, 0.15),
+                        color: impulseColorText,
+                        border: `1px solid ${hexToRgba(impulseColor, 0.3)}`
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -756,42 +773,31 @@ export const Result = () => {
               </div>
             </div>
 
-            {/* Punchline Section - Gradient Card with dynamic color */}
+            {/* Punchline Section - Consistent with AdminPreview */}
             <div
-              className="relative rounded shadow-[6px_6px_12px_0px_rgba(255,201,51,0.4),5px_8px_10px_0px_rgba(100,237,210,0.3)] p-6 lg:p-12 transition-all duration-300 hover:scale-[1.02]"
+              className="rounded-3xl p-6 lg:p-8 shadow-lg"
               style={{
-                background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%), ${impulseColor}`,
-                transition: 'box-shadow 0.3s ease, transform 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = `
-                  0px 0px 30px ${impulseColor}60,
-                  0px 0px 60px ${impulseColor}40,
-                  6px 6px 12px rgba(255,201,51,0.4),
-                  5px 8px 10px rgba(100,237,210,0.3)
-                `;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '6px 6px 12px rgba(255,201,51,0.4), 5px 8px 10px rgba(100,237,210,0.3)';
+                background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%), ${impulseColor}`
               }}
             >
-              <div className="relative">
-                <p
-                  className="font-space-grotesk font-bold text-[16px] lg:text-[24px] leading-[24px] lg:leading-[30px] tracking-[-0.4px] lg:tracking-[-0.6px] text-center uppercase mb-3 lg:mb-4"
-                  style={{ color: punchlineTextColor }}
-                >
-                  {result.punchline[language]}
-                </p>
-                <p
-                  className="font-72-brand font-medium text-[16px] lg:text-[24px] leading-[24px] lg:leading-[30px] text-center"
-                  style={{ color: punchlineTextColor }}
-                >
-                  {language === 'zh'
-                    ? `"${result.punchline.en}"`
-                    : `「${result.punchline.zh}」`
-                  }
-                </p>
-              </div>
+              <p
+                className="font-space-grotesk font-bold text-[18px] lg:text-[24px] leading-[24px] lg:leading-[30px] text-center mb-3 lg:mb-4"
+                style={{ color: punchlineTextColor }}
+              >
+                {result.punchline[language]}
+              </p>
+              <p
+                className="font-72-brand font-medium italic text-[16px] lg:text-[20px] leading-[24px] lg:leading-[28px] text-center"
+                style={{
+                  color: punchlineTextColor,
+                  opacity: punchlineTextColor === '#ffffff' ? 0.9 : 0.7
+                }}
+              >
+                {language === 'zh'
+                  ? `"${result.punchline.en}"`
+                  : `「${result.punchline.zh}」`
+                }
+              </p>
             </div>
 
             {/* Meeting Behavior Section */}

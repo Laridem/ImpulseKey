@@ -2,12 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
 import { Header } from '../components/Header';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const Landing = () => {
   const navigate = useNavigate();
   const { startTest } = useTest();
   const t = useTranslation();
+  const [flippedCard, setFlippedCard] = useState<string | null>(null);
 
   // Update page title for accessibility
   useEffect(() => {
@@ -22,13 +23,71 @@ export const Landing = () => {
   // Impulse colors for neon glitch effect
   const impulseColors = ['#A100C2', '#FFC933', '#64EDD2', '#7858FF'];
 
+  // Booth data
+  const booths = [
+    {
+      id: 'sensory',
+      name: 'Sensory Studio',
+      nameCN: '多感官体验',
+      tagline: 'Awaken your senses. Amplify your feelings.',
+      color: '#A100C2',
+      gradient: 'linear-gradient(135deg, #A100C2 0%, #c026d3 100%)',
+      textColor: '#ffffff'
+    },
+    {
+      id: 'maker',
+      name: 'Maker Studio',
+      nameCN: '手工创作体验',
+      tagline: 'The Texture of Life: Create, craft, and rediscover the beauty of making.',
+      color: '#FFC933',
+      gradient: 'linear-gradient(135deg, #FFC933 0%, #ffd666 100%)',
+      textColor: '#231821'
+    },
+    {
+      id: 'huddle',
+      name: 'Huddle Studio',
+      nameCN: '人类AI大作战！谁是卧底？',
+      tagline: 'Can you spot the AI before it spots you? A battle of intuition, deception, and human insight.',
+      color: '#64EDD2',
+      gradient: 'linear-gradient(135deg, #64EDD2 0%, #7ff5e0 100%)',
+      textColor: '#231821'
+    },
+    {
+      id: 'game',
+      name: 'Game Studio',
+      nameCN: '你画我猜+脑力碰撞大挑战',
+      tagline: 'Challenge Your Mind. Spark Your Creativity. Draw, guess, collaborate, and put both sides of your brain to the test.',
+      color: '#7858FF',
+      gradient: 'linear-gradient(135deg, #7858FF 0%, #9575ff 100%)',
+      textColor: '#ffffff'
+    },
+    {
+      id: 'figma',
+      name: 'Figma Booth',
+      nameCN: 'Figma 展位',
+      tagline: 'Connecting with experts from Figma. Learn, share, and explore the future of design.',
+      color: '#FF6730',
+      gradient: 'linear-gradient(135deg, #FF6730 0%, #ff8555 100%)',
+      textColor: '#ffffff'
+    },
+    {
+      id: 'networking',
+      name: 'Networking Corner',
+      nameCN: '链接与火花',
+      tagline: 'Meet. Connect. Complete the Board. Every square is a new connection waiting to happen.',
+      color: '#f65af2',
+      gradient: 'linear-gradient(135deg, #f65af2 0%, #ff7ef5 100%)',
+      textColor: '#ffffff'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
-      <main className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-32 sm:pb-24 w-full" id="main-content">
+      <main className="flex-1 px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-32 sm:pb-24 w-full" id="main-content">
         {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start">
+        <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start">
           {/* Left Column - Text Content */}
           <div className="flex-1 space-y-4 sm:space-y-6 md:space-y-8">
             {/* Tag Badge */}
@@ -246,8 +305,178 @@ export const Landing = () => {
           </div>
         </div>
 
+        {/* Networking Party Section */}
+        <div className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-16 pb-16">
+          <div className="">
+            {/* Title & Info */}
+            <div className="text-center mb-12">
+              <h2 className="font-space-grotesk font-bold text-[32px] sm:text-[48px] text-[#231821] mb-4">
+                🎉 Join Our Networking Party
+              </h2>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center font-space-grotesk text-[18px] sm:text-[20px] text-[#534150]">
+                <div className="flex items-center gap-2">
+                  <span>📅</span>
+                  <span className="font-bold text-[#a800aa]">Sep 3rd, 15:05</span>
+                </div>
+                <div className="hidden sm:block text-[#d8bfd1]">|</div>
+                <div className="flex items-center gap-2">
+                  <span>📍</span>
+                  <span>Pvg03 C1.1, AI Engineering Hub</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Booth Cards Grid - Flip on Click */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+              {booths.map((booth) => (
+                <div
+                  key={booth.id}
+                  className="perspective-1000 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setFlippedCard(flippedCard === booth.id ? null : booth.id);
+                  }}
+                >
+                  <div
+                    className={`relative aspect-[4/3] transition-all duration-700 ${
+                      flippedCard === booth.id ? '[transform:rotateY(180deg)]' : ''
+                    }`}
+                    style={{ transformStyle: 'preserve-3d' }}
+                  >
+                    {/* Front Side - Poster/Name */}
+                    <div
+                      className={`absolute inset-0 rounded-xl border-2 overflow-hidden transition-all duration-300 group ${
+                        flippedCard === booth.id ? '' : 'hover:scale-105 hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)] hover:-rotate-1'
+                      }`}
+                      style={{
+                        background: booth.gradient,
+                        borderColor: flippedCard === booth.id ? booth.color : '#e5e2e8',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden'
+                      }}
+                    >
+                      {/* Text placeholder */}
+                      <div className="absolute inset-0 flex items-center justify-center p-4">
+                        <div className="text-center">
+                          <div
+                            className="font-space-grotesk font-black text-[20px] sm:text-[28px] mb-2 uppercase tracking-tight"
+                            style={{ color: booth.textColor }}
+                          >
+                            {booth.name}
+                          </div>
+                          <div
+                            className="font-space-grotesk font-medium text-[12px] sm:text-[14px]"
+                            style={{ color: booth.textColor, opacity: 0.9 }}
+                          >
+                            {booth.nameCN}
+                          </div>
+                        </div>
+                      </div>
+                      {/* Future poster image */}
+                      <img
+                        src={`/assets/booths/${booth.id}.png`}
+                        alt={booth.name}
+                        className="w-full h-full object-cover opacity-0 transition-opacity duration-300"
+                        onLoad={(e) => {
+                          e.currentTarget.classList.remove('opacity-0');
+                          const prevElement = e.currentTarget.previousElementSibling as HTMLElement;
+                          if (prevElement) prevElement.style.opacity = '0';
+                        }}
+                        onError={(e) => e.currentTarget.style.display = 'none'}
+                      />
+                      {/* Cute corner indicator */}
+                      {flippedCard !== booth.id && (
+                        <div className="absolute bottom-2 right-2 bg-white/20 backdrop-blur-sm rounded-full p-2 animate-bounce">
+                          <span className="text-[12px]">👆</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Back Side - Tagline with Bubbles on Hover */}
+                    <div
+                      className="absolute inset-0 rounded-xl border-2 overflow-hidden flex items-center justify-center p-6 group/back"
+                      style={{
+                        background: booth.gradient,
+                        borderColor: booth.color,
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)'
+                      }}
+                    >
+                      {/* Floating bubbles on hover */}
+                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/back:opacity-100 transition-opacity duration-500">
+                        <div
+                          className="absolute top-[10%] left-[15%] w-8 h-8 rounded-full animate-float-slow"
+                          style={{ background: `${booth.textColor}20`, animationDelay: '0s' }}
+                        />
+                        <div
+                          className="absolute top-[60%] right-[20%] w-12 h-12 rounded-full animate-float-slower"
+                          style={{ background: `${booth.textColor}15`, animationDelay: '0.5s' }}
+                        />
+                        <div
+                          className="absolute bottom-[20%] left-[25%] w-6 h-6 rounded-full animate-float-slow"
+                          style={{ background: `${booth.textColor}25`, animationDelay: '1s' }}
+                        />
+                        <div
+                          className="absolute top-[30%] right-[10%] w-10 h-10 rounded-full animate-float-slower"
+                          style={{ background: `${booth.textColor}20`, animationDelay: '1.5s' }}
+                        />
+                      </div>
+
+                      <div className="text-center relative z-10">
+                        {/* Decorative quotes */}
+                        <div className="absolute -top-6 -left-4 text-[50px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
+                          "
+                        </div>
+                        <p
+                          className="font-space-grotesk font-bold text-[14px] sm:text-[16px] leading-relaxed relative"
+                          style={{ color: booth.textColor }}
+                        >
+                          {booth.tagline}
+                        </p>
+                        <div className="absolute -bottom-6 -right-4 text-[50px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
+                          "
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Message - 3D Pill Style */}
+            <div
+              className="relative text-center rounded-full p-6 sm:p-8 border-2 overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(168,0,170,0.3)]"
+              style={{
+                background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+                borderColor: '#a800aa',
+                boxShadow: `
+                  0 1px 0 0 rgba(255,255,255,0.8) inset,
+                  0 -1px 0 0 rgba(168,0,170,0.08) inset,
+                  0 6px 0 0 #d8bfd1,
+                  0 12px 30px -8px rgba(168,0,170,0.3)
+                `
+              }}
+            >
+              {/* Top highlight */}
+              <div
+                className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+                }}
+              />
+              <p className="font-space-grotesk font-bold text-[16px] sm:text-[18px] text-[#534150] mb-2 relative z-10">
+                ✨ Complete the <span className="text-[#a800aa]">Impulse Key Test</span> & Claim Your Reward!
+              </p>
+              <p className="font-space-grotesk text-[13px] sm:text-[14px] text-[#867181] relative z-10">
+                Show your result screenshot at the party to receive your prize
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* About the Project Section */}
-        <div className="border-t border-[#d8bfd1] pt-24">
+        <div className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left: About Text */}
             <div className="lg:col-span-5 space-y-6">

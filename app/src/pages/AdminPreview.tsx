@@ -1,12 +1,15 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { RESULTS, getAllResultKeys } from '../data/results';
 import { getColorGroupForResult } from '../data/colorGroups';
 import { useLanguage } from '../i18n/LanguageContext';
 import { getKeycapAsset, type KeycapType } from '../utils/assets';
 import type { ResultKey } from '../data/types';
-import { LanguageSwitcher } from '../components/LanguageSwitcher';
+import { Header } from '../components/Header';
+import { RESULT_HASHTAGS } from '../data/hashtags';
 
 export const AdminPreview = () => {
+  const navigate = useNavigate();
   const allKeys = getAllResultKeys();
   const [selectedKey, setSelectedKey] = useState(allKeys[0]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -62,38 +65,54 @@ export const AdminPreview = () => {
 
   return (
     <div className="min-h-screen bg-[#faf8fb] flex flex-col">
-      {/* Top Header with Language Switcher - Mobile Friendly */}
-      <div className="sticky top-0 z-50 bg-white border-b border-[#e5e2e8] shadow-sm">
-        <div className="px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="lg:hidden min-h-[44px] min-w-[44px] p-2 text-[#534150] hover:text-[#a800aa] transition-colors"
-            aria-label={isSidebarOpen ? 'Close menu' : 'Open menu'}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              strokeWidth={2}
-            >
-              {isSidebarOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+      {/* Use Header component */}
+      <Header />
 
-          {/* Title */}
+      {/* Secondary Bar with Back Button and Title */}
+      <div className="sticky top-[73px] z-40 bg-white border-b border-[#e5e2e8] shadow-sm">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3 sm:py-4 flex items-center justify-between">
+          {/* Left: Back Button + Mobile Menu */}
+          <div className="flex items-center gap-3">
+            {/* Back to Home Button */}
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] uppercase rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95"
+              aria-label={language === 'zh' ? '返回首页' : 'Back to Home'}
+            >
+              <span className="text-[18px]">←</span>
+              <span className="hidden sm:inline">{language === 'zh' ? '首页' : 'HOME'}</span>
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="lg:hidden min-h-[44px] min-w-[44px] p-2 text-[#534150] hover:text-[#a800aa] transition-colors"
+              aria-label={isSidebarOpen ? 'Close menu' : 'Open menu'}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                strokeWidth={2}
+              >
+                {isSidebarOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+
+          {/* Center: Title */}
           <h1 className="font-space-grotesk font-bold text-[16px] sm:text-[20px] text-[#231821]">
-            🔐 {language === 'zh' ? '管理员预览' : 'Admin Preview'}
+            🔐 {language === 'zh' ? '全部结果预览' : 'All Results Preview'}
           </h1>
 
-          {/* Language Switcher */}
-          <LanguageSwitcher />
+          {/* Right: Spacer for balance */}
+          <div className="w-[100px] sm:w-[120px]"></div>
         </div>
       </div>
 
@@ -109,48 +128,54 @@ export const AdminPreview = () => {
           `}
           style={{ top: 'auto' }}
         >
-          <div className="sticky top-0 bg-white border-b border-[#e5e2e8] p-4 sm:p-6 z-10">
-            <p className="font-72-brand text-[12px] text-[#534150]">
-              {language === 'zh' ? '检查所有 Result 的配色和文案' : 'Review all Result colors and content'}
+          {/* Sidebar Header */}
+          <div className="sticky top-0 bg-white border-b border-[#e5e2e8] px-6 py-4 z-10">
+            <h2 className="font-space-grotesk font-bold text-[14px] text-[#a800aa] uppercase mb-2">
+              {language === 'zh' ? '所有结果' : 'All Results'}
+            </h2>
+            <p className="font-72-brand text-[12px] text-[#867181]">
+              {language === 'zh' ? '点击查看详细信息' : 'Click to view details'}
             </p>
           </div>
 
-        <div className="p-4 space-y-2">
-          {allKeys.map((key) => {
-            const cg = getColorGroupForResult(key as ResultKey);
-            const isSelected = key === selectedKey;
+          {/* Results List */}
+          <div className="p-4 space-y-3">
+            {allKeys.map((key) => {
+              const cg = getColorGroupForResult(key as ResultKey);
+              const isSelected = key === selectedKey;
 
-            return (
-              <button
-                key={key}
-                onClick={() => {
-                  setSelectedKey(key);
-                  // Close sidebar on mobile after selection
-                  if (window.innerWidth < 1024) {
-                    setIsSidebarOpen(false);
-                  }
-                }}
-                className={`w-full p-4 rounded-lg border-2 text-left transition-all ${
-                  isSelected ? 'border-[#a800aa] bg-[#f7e3ef] shadow-sm' : 'border-[#e5e2e8] bg-white hover:border-[#d8bfd1]'
-                }`}
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div
-                    className="w-8 h-8 rounded-sm shadow-[inset_0px_2px_4px_0px_rgba(0,0,0,0.05)]"
-                    style={{ backgroundColor: cg.color }}
-                  />
-                  <div className="flex-1">
-                    <div className="font-space-grotesk font-bold text-[12px] uppercase text-[#231821]">{key}</div>
-                    <div className="font-jetbrains-mono text-[9px] text-[#867181]">{cg.color}</div>
+              return (
+                <button
+                  key={key}
+                  onClick={() => {
+                    setSelectedKey(key);
+                    // Close sidebar on mobile after selection
+                    if (window.innerWidth < 1024) {
+                      setIsSidebarOpen(false);
+                    }
+                  }}
+                  className={`w-full p-4 rounded-lg border-2 text-left transition-all ${
+                    isSelected ? 'border-[#a800aa] bg-[#f7e3ef] shadow-sm' : 'border-[#e5e2e8] bg-white hover:border-[#d8bfd1]'
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    {/* Color Square */}
+                    <div
+                      className="w-10 h-10 rounded flex-shrink-0 shadow-sm"
+                      style={{ backgroundColor: cg.color }}
+                    />
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="font-space-grotesk font-bold text-[14px] text-[#231821] mb-1">{key}</div>
+                      <div className="font-72-brand text-[12px] text-[#534150] leading-tight">
+                        {RESULTS[key].nameCN}
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="font-72-brand text-[11px] text-[#534150]">
-                  {RESULTS[key].nameCN}
-                </div>
-              </button>
-            );
-          })}
-        </div>
+                </button>
+              );
+            })}
+          </div>
       </div>
 
       {/* Overlay for mobile sidebar */}
@@ -299,7 +324,7 @@ export const AdminPreview = () => {
               {language === 'zh' ? result.pulseCN : result.pulseEN}
             </p>
             <div
-              className="pl-4 py-3 border-l-4"
+              className="pl-4 py-3 border-l-4 mb-4"
               style={{
                 backgroundColor: hexToRgba(colorGroup.color, 0.15),
                 borderColor: colorGroup.color
@@ -308,6 +333,22 @@ export const AdminPreview = () => {
               <p className="font-72-brand italic text-[13px] sm:text-[14px] leading-relaxed text-[#534150]">
                 "{language === 'zh' ? result.pulseEN : result.pulseCN}"
               </p>
+            </div>
+            {/* Hashtags - Twitter Style */}
+            <div className="flex flex-wrap gap-2">
+              {(RESULT_HASHTAGS[selectedKey]?.[language] || '').split(' ').map((tag, index) => (
+                <span
+                  key={index}
+                  className="font-jetbrains-mono text-[11px] px-2.5 py-1 rounded-full"
+                  style={{
+                    backgroundColor: hexToRgba(colorGroup.color, 0.15),
+                    color: colorGroup.color,
+                    border: `1px solid ${hexToRgba(colorGroup.color, 0.3)}`
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
