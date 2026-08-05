@@ -24,12 +24,12 @@ export const Result = () => {
   const [isCapturing, setIsCapturing] = useState(false);
   const [hoveredLockedKey, setHoveredLockedKey] = useState<string | null>(null);
 
-  // Load result if accessed directly via URL
+  // Load result if accessed directly via URL or when key changes
   useEffect(() => {
-    if (key && !result) {
+    if (key) {
       goToResult(key);
     }
-  }, [key, result, goToResult]);
+  }, [key, goToResult]);
 
   const handleRetake = () => {
     resetTest();
@@ -271,6 +271,7 @@ export const Result = () => {
                     }}
                   />
                   <img
+                    key={result.key}
                     src={getKeycapAsset(result.key)}
                     alt={result.name.en}
                     className="w-32 h-32 lg:w-48 lg:h-48 object-contain transition-transform duration-300 group-hover:scale-110"
@@ -853,12 +854,14 @@ export const Result = () => {
                         >
                           {isUnlocked ? (
                             <img
+                              key={`unlocked-${key}`}
                               src={`/assets/result-cards/${key}.png`}
                               alt={key}
                               className="w-full h-full object-cover"
                             />
                           ) : (
                             <img
+                              key={`locked-${key}`}
                               src={`/assets/result-cards-locked/${key}.png`}
                               alt={`${key} Locked`}
                               className="w-full h-full object-cover"
