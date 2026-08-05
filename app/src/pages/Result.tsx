@@ -502,8 +502,8 @@ export const Result = () => {
                   <span className="text-[#a800aa] font-bold">Congratulations!</span>
                 </h2>
                 <p className="font-space-grotesk font-normal text-[18px] leading-[28px] text-[#534150] text-center pt-4">
-                  You win a reward from Impulse26!<br />
-                  <span className="font-bold text-[#a800aa]">Claim Reward</span> at Impulse26 Networking Party
+                  You win a reward!<br />
+                  <span className="font-bold text-[#a800aa]">Claim Reward</span> at Impulse26 China Networking Party at 15:05
                 </p>
               </div>
 
