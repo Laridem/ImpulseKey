@@ -499,7 +499,7 @@ export const Result = () => {
                       Where?
                     </p>
                     <p className="font-jetbrains-mono font-bold text-[14px] leading-[20px] text-[#a800aa]">
-                      Pvg03 C1.1, Digital School
+                      Pvg03 C1.1, AI Engineering Hub
                     </p>
                   </div>
 
