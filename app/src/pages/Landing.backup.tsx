@@ -20,6 +20,9 @@ export const Landing = () => {
     navigate('/role');
   };
 
+  // Impulse colors for neon glitch effect
+  const impulseColors = ['#A100C2', '#FFC933', '#64EDD2', '#7858FF'];
+
   // Booth data
   const booths = [
     {
@@ -183,63 +186,120 @@ export const Landing = () => {
             </div>
           </div>
 
-          {/* Right Column - Hero Visual (Larger, closer to text) */}
-          <div className="flex-shrink-0 flex flex-col items-start justify-start w-full lg:w-[480px] relative mt-8 lg:mt-0 lg:ml-8">
-            {/* Key Visual Container - No colored border, simple white background */}
-            <div className="relative w-full">
-              {/* Simple white container */}
-              <div className="bg-white rounded-lg p-6 sm:p-8">
-                {/* Key Visual Image - Larger */}
-                <img
-                  src="/assets/impulse-key-visual.png"
-                  alt="Impulse Key Visual"
-                  className="w-full h-auto object-contain mb-4"
+          {/* Right Column - Hero Visual (Balanced size) */}
+          <div className="flex-shrink-0 flex flex-col items-center justify-center w-full lg:w-[400px] relative mt-8 lg:mt-0">
+            {/* Key Visual Container */}
+            <div className="relative w-full max-w-[360px] lg:max-w-[400px] aspect-square">
+              {/* Main Container with Decorative Borders */}
+              <div
+                className="absolute inset-0 bg-white border-2 border-[#a800aa] rounded-lg p-8 transition-all duration-500 hover:scale-[1.02] cursor-pointer group overflow-hidden"
+                style={{
+                  boxShadow: `
+                    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                    -3px -3px 10px 0px ${impulseColors[0]}40,
+                    3px 3px 10px 0px ${impulseColors[1]}40,
+                    0px 0px 15px 0px ${impulseColors[2]}30,
+                    0px -4px 12px 0px ${impulseColors[3]}25
+                  `
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+                    -5px -5px 15px 0px ${impulseColors[0]}60,
+                    5px 5px 15px 0px ${impulseColors[1]}60,
+                    0px 0px 25px 0px ${impulseColors[2]}50,
+                    0px -6px 18px 0px ${impulseColors[3]}45,
+                    -8px 0px 20px 0px ${impulseColors[0]}35,
+                    8px 0px 20px 0px ${impulseColors[1]}35
+                  `;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = `
+                    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                    -3px -3px 10px 0px ${impulseColors[0]}40,
+                    3px 3px 10px 0px ${impulseColors[1]}40,
+                    0px 0px 15px 0px ${impulseColors[2]}30,
+                    0px -4px 12px 0px ${impulseColors[3]}25
+                  `;
+                }}
+              >
+                {/* Rainbow gradient background - hidden by default, shown on hover */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"
+                  style={{
+                    background: `linear-gradient(135deg,
+                      ${impulseColors[0]} 0%,
+                      ${impulseColors[1]} 33%,
+                      ${impulseColors[2]} 66%,
+                      ${impulseColors[3]} 100%)`
+                  }}
                 />
 
-                {/* Motto SVG */}
-                <div className="w-full px-2">
+                {/* Animated shimmer overlay on hover */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-50 transition-opacity duration-500 z-0"
+                  style={{
+                    background: `linear-gradient(45deg,
+                      transparent 0%,
+                      rgba(255,255,255,0.2) 25%,
+                      transparent 50%,
+                      rgba(255,255,255,0.2) 75%,
+                      transparent 100%)`,
+                    backgroundSize: '400% 400%',
+                    animation: 'gradient 15s ease infinite'
+                  }}
+                />
+
+                {/* Corner Decorations */}
+                <div className="absolute -left-4 -top-4 w-12 h-12 border-l-4 border-t-4 border-[#00b098] transition-all duration-300 group-hover:border-[#64EDD2] group-hover:w-16 group-hover:h-16 z-20" />
+                <div className="absolute -right-4 -bottom-4 w-12 h-12 border-r-4 border-b-4 border-[#a800aa] transition-all duration-300 group-hover:border-[#f65af2] group-hover:w-16 group-hover:h-16 z-20" />
+
+                {/* Decorative Background Elements */}
+                <div className="absolute top-4 right-6 w-28 h-4 bg-white group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <div className="absolute bottom-4 left-6 w-36 h-4 bg-white group-hover:bg-transparent transition-colors duration-500 z-10" />
+
+                {/* Inner Frame */}
+                <div className="relative w-full h-full border border-[#d8bfd1] rounded flex flex-col items-center justify-center p-4 transition-all duration-300 group-hover:border-[#f65af2] z-10">
+                  {/* Key Visual Image */}
                   <img
-                    src="/assets/Impulse26_motto.svg"
-                    alt="The tool to follow your hands."
-                    className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]"
+                    src="/assets/impulse-key-visual.png"
+                    alt="Impulse Key Visual"
+                    className="w-full h-auto object-contain mb-4"
                   />
+
+                  {/* Motto SVG - Always visible, more prominent on hover */}
+                  <div className="w-full px-2 transition-all duration-500 group-hover:scale-105">
+                    <img
+                      src="/assets/Impulse26_motto.svg"
+                      alt="The tool to follow your hands."
+                      className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)] group-hover:drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+                    />
+                  </div>
                 </div>
+
+                {/* Gradient Overlay (decorative) */}
+                <div className="absolute inset-0 rounded-lg pointer-events-none opacity-20 group-hover:opacity-0 transition-opacity duration-500 z-10"
+                     style={{
+                       background: 'radial-gradient(circle at 50% 50%, rgba(246,90,242,1) 0%, rgba(246,90,242,0) 5%)'
+                     }}
+                />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Disclaimer Section - Add back */}
-        <div className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-8 sm:pt-12 pb-12 sm:pb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-            <div className="space-y-2">
-              <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase">
-                DISCLAIMER / 免责声明
-              </p>
-              <p className="font-72-brand text-[14px] sm:text-body-sm text-[#534150]">
-                {t('landing.description3')}
-              </p>
-            </div>
-            <div className="space-y-2">
-              <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase">
-                PRIVACY / 隐私声明
-              </p>
-              <p className="font-72-brand text-[14px] sm:text-body-sm text-[#534150]">
-                {t('landing.description4')}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Networking Party Section - Reduced sizes */}
-        <div className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-12 pb-12">
+        {/* Networking Party Section */}
+        <div className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-16 pb-16">
           <div className="">
             {/* Title & Info */}
-            <div className="text-center mb-8">
-              <h2 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821] mb-3">
+            <div className="text-center mb-12">
+              <h2 className="font-space-grotesk font-bold text-[32px] sm:text-[48px] text-[#231821] mb-4">
                 🎉 Join Our Networking Party
               </h2>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center font-space-grotesk text-[16px] sm:text-[18px] text-[#534150]">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center font-space-grotesk text-[18px] sm:text-[20px] text-[#534150]">
                 <div className="flex items-center gap-2">
                   <span>📅</span>
                   <span className="font-bold text-[#a800aa]">Sep 3rd, 15:05</span>
@@ -252,8 +312,8 @@ export const Landing = () => {
               </div>
             </div>
 
-            {/* Booth Cards Grid - Flip on Click - Smaller cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
+            {/* Booth Cards Grid - Flip on Click */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
               {booths.map((booth) => (
                 <div
                   key={booth.id}
@@ -271,8 +331,8 @@ export const Landing = () => {
                   >
                     {/* Front Side - Poster/Name */}
                     <div
-                      className={`absolute inset-0 rounded-lg border-2 overflow-hidden transition-all duration-300 group ${
-                        flippedCard === booth.id ? '' : 'hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:-rotate-1'
+                      className={`absolute inset-0 rounded-xl border-2 overflow-hidden transition-all duration-300 group ${
+                        flippedCard === booth.id ? '' : 'hover:scale-105 hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)] hover:-rotate-1'
                       }`}
                       style={{
                         background: booth.gradient,
@@ -281,24 +341,24 @@ export const Landing = () => {
                         WebkitBackfaceVisibility: 'hidden'
                       }}
                     >
-                      {/* Content with Icon and Text - Smaller sizes */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-3 gap-2">
-                        {/* Icon - Smaller */}
+                      {/* Content with Icon and Text */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-4 gap-3">
+                        {/* Icon */}
                         <img
                           src={booth.icon}
                           alt={`${booth.name} icon`}
-                          className="w-12 h-12 sm:w-16 sm:h-16 object-contain drop-shadow-lg"
+                          className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg"
                         />
-                        {/* Text - Smaller */}
+                        {/* Text */}
                         <div className="text-center">
                           <div
-                            className="font-space-grotesk font-black text-[14px] sm:text-[18px] mb-1 uppercase tracking-tight"
+                            className="font-space-grotesk font-black text-[18px] sm:text-[24px] mb-1 uppercase tracking-tight"
                             style={{ color: booth.textColor }}
                           >
                             {booth.name}
                           </div>
                           <div
-                            className="font-space-grotesk font-medium text-[10px] sm:text-[12px]"
+                            className="font-space-grotesk font-medium text-[11px] sm:text-[13px]"
                             style={{ color: booth.textColor, opacity: 0.9 }}
                           >
                             {booth.nameCN}
@@ -307,15 +367,15 @@ export const Landing = () => {
                       </div>
                       {/* Cute corner indicator */}
                       {flippedCard !== booth.id && (
-                        <div className="absolute bottom-1.5 right-1.5 bg-white/20 backdrop-blur-sm rounded-full p-1.5 animate-bounce">
-                          <span className="text-[10px]">👆</span>
+                        <div className="absolute bottom-2 right-2 bg-white/20 backdrop-blur-sm rounded-full p-2 animate-bounce">
+                          <span className="text-[12px]">👆</span>
                         </div>
                       )}
                     </div>
 
                     {/* Back Side - Tagline with Bubbles on Hover */}
                     <div
-                      className="absolute inset-0 rounded-lg border-2 overflow-hidden flex items-center justify-center p-4 group/back"
+                      className="absolute inset-0 rounded-xl border-2 overflow-hidden flex items-center justify-center p-6 group/back"
                       style={{
                         background: booth.gradient,
                         borderColor: booth.color,
@@ -345,17 +405,17 @@ export const Landing = () => {
                       </div>
 
                       <div className="text-center relative z-10">
-                        {/* Decorative quotes - Smaller */}
-                        <div className="absolute -top-4 -left-3 text-[40px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
+                        {/* Decorative quotes */}
+                        <div className="absolute -top-6 -left-4 text-[50px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
                           "
                         </div>
                         <p
-                          className="font-space-grotesk font-bold text-[12px] sm:text-[14px] leading-relaxed relative"
+                          className="font-space-grotesk font-bold text-[14px] sm:text-[16px] leading-relaxed relative"
                           style={{ color: booth.textColor }}
                         >
                           {booth.tagline}
                         </p>
-                        <div className="absolute -bottom-4 -right-3 text-[40px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
+                        <div className="absolute -bottom-6 -right-4 text-[50px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
                           "
                         </div>
                       </div>
@@ -365,9 +425,9 @@ export const Landing = () => {
               ))}
             </div>
 
-            {/* CTA Message - 3D Pill Style - Smaller */}
+            {/* CTA Message - 3D Pill Style */}
             <div
-              className="relative text-center rounded-full p-5 sm:p-6 border-2 overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_16px_48px_rgba(168,0,170,0.25)]"
+              className="relative text-center rounded-full p-6 sm:p-8 border-2 overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(168,0,170,0.3)]"
               style={{
                 background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
                 borderColor: '#a800aa',
