@@ -32,7 +32,8 @@ export const Landing = () => {
       tagline: 'Awaken your senses. Amplify your feelings.',
       color: '#A100C2',
       gradient: 'linear-gradient(135deg, #A100C2 0%, #c026d3 100%)',
-      textColor: '#ffffff'
+      textColor: '#ffffff',
+      icon: '/assets/booth-icons/Sensory Studio.png'
     },
     {
       id: 'maker',
@@ -41,7 +42,8 @@ export const Landing = () => {
       tagline: 'The Texture of Life: Create, craft, and rediscover the beauty of making.',
       color: '#FFC933',
       gradient: 'linear-gradient(135deg, #FFC933 0%, #ffd666 100%)',
-      textColor: '#231821'
+      textColor: '#231821',
+      icon: '/assets/booth-icons/Maker Studio.png'
     },
     {
       id: 'huddle',
@@ -50,7 +52,8 @@ export const Landing = () => {
       tagline: 'Can you spot the AI before it spots you? A battle of intuition, deception, and human insight.',
       color: '#64EDD2',
       gradient: 'linear-gradient(135deg, #64EDD2 0%, #7ff5e0 100%)',
-      textColor: '#231821'
+      textColor: '#231821',
+      icon: '/assets/booth-icons/Huddle Studio.png'
     },
     {
       id: 'game',
@@ -59,7 +62,8 @@ export const Landing = () => {
       tagline: 'Challenge Your Mind. Spark Your Creativity. Draw, guess, collaborate, and put both sides of your brain to the test.',
       color: '#7858FF',
       gradient: 'linear-gradient(135deg, #7858FF 0%, #9575ff 100%)',
-      textColor: '#ffffff'
+      textColor: '#ffffff',
+      icon: '/assets/booth-icons/Game Studio.png'
     },
     {
       id: 'figma',
@@ -68,7 +72,8 @@ export const Landing = () => {
       tagline: 'Connecting with experts from Figma. Learn, share, and explore the future of design.',
       color: '#FF6730',
       gradient: 'linear-gradient(135deg, #FF6730 0%, #ff8555 100%)',
-      textColor: '#ffffff'
+      textColor: '#ffffff',
+      icon: '/assets/booth-icons/Figma Booth.png'
     },
     {
       id: 'networking',
@@ -77,7 +82,8 @@ export const Landing = () => {
       tagline: 'Meet. Connect. Complete the Board. Every square is a new connection waiting to happen.',
       color: '#f65af2',
       gradient: 'linear-gradient(135deg, #f65af2 0%, #ff7ef5 100%)',
-      textColor: '#ffffff'
+      textColor: '#ffffff',
+      icon: '/assets/booth-icons/Networking Corner.png'
     }
   ];
 
@@ -335,35 +341,30 @@ export const Landing = () => {
                         WebkitBackfaceVisibility: 'hidden'
                       }}
                     >
-                      {/* Text placeholder */}
-                      <div className="absolute inset-0 flex items-center justify-center p-4">
+                      {/* Content with Icon and Text */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-4 gap-3">
+                        {/* Icon */}
+                        <img
+                          src={booth.icon}
+                          alt={`${booth.name} icon`}
+                          className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg"
+                        />
+                        {/* Text */}
                         <div className="text-center">
                           <div
-                            className="font-space-grotesk font-black text-[20px] sm:text-[28px] mb-2 uppercase tracking-tight"
+                            className="font-space-grotesk font-black text-[18px] sm:text-[24px] mb-1 uppercase tracking-tight"
                             style={{ color: booth.textColor }}
                           >
                             {booth.name}
                           </div>
                           <div
-                            className="font-space-grotesk font-medium text-[12px] sm:text-[14px]"
+                            className="font-space-grotesk font-medium text-[11px] sm:text-[13px]"
                             style={{ color: booth.textColor, opacity: 0.9 }}
                           >
                             {booth.nameCN}
                           </div>
                         </div>
                       </div>
-                      {/* Future poster image */}
-                      <img
-                        src={`/assets/booths/${booth.id}.png`}
-                        alt={booth.name}
-                        className="w-full h-full object-cover opacity-0 transition-opacity duration-300"
-                        onLoad={(e) => {
-                          e.currentTarget.classList.remove('opacity-0');
-                          const prevElement = e.currentTarget.previousElementSibling as HTMLElement;
-                          if (prevElement) prevElement.style.opacity = '0';
-                        }}
-                        onError={(e) => e.currentTarget.style.display = 'none'}
-                      />
                       {/* Cute corner indicator */}
                       {flippedCard !== booth.id && (
                         <div className="absolute bottom-2 right-2 bg-white/20 backdrop-blur-sm rounded-full p-2 animate-bounce">
