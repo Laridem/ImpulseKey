@@ -39,7 +39,19 @@
       "Bash(python3 -m json.tool zh.json)",
       "Bash(osascript -e 'tell application \"Safari\" to set URL of current tab of front window to \"http://localhost:5173/admin/preview\"')",
       "Bash(osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1')",
-      "Bash(git remote *)"
+      "Bash(git remote *)",
+      "Bash(gh repo *)",
+      "Bash(git fetch *)",
+      "Bash(cp *)",
+      "Bash(npx *)",
+      "Bash(git log *)",
+      "Bash(rm -f app/public/assets/result-cards/*.jpg)",
+      "Bash(cp assets/result-card-jpg/*.jpg app/public/assets/result-cards/)",
+      "Bash(cp assets/result-card-jpg-wb/*.jpg app/public/assets/result-cards/)",
+      "Bash(grep -E \"\\\\.\\(jpg|png\\)$\")",
+      "Read(//tmp/**)",
+      "Bash(git restore *)",
+      "Bash(grep -n \"^      </div>$\" app/src/pages/AdminPreview.tsx)"
     ]
   }
 }

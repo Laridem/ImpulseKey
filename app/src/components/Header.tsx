@@ -6,13 +6,14 @@ import { useState, useRef } from 'react';
 interface HeaderProps {
   showRetakeButton?: boolean;
   onRetake?: () => void;
+  showHomeButton?: boolean;
 }
 
-export const Header = ({ showRetakeButton = false, onRetake }: HeaderProps) => {
+export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = false }: HeaderProps) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [clickCount, setClickCount] = useState(0);
-  const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const clickTimeoutRef = useRef<number | null>(null);
 
   const handleLogoClick = (e: React.MouseEvent) => {
     // Prevent default navigation if we're tracking clicks
@@ -81,8 +82,18 @@ export const Header = ({ showRetakeButton = false, onRetake }: HeaderProps) => {
             />
           </div>
 
-          {/* Right side: Retake button (optional) + Language Switcher */}
+          {/* Right side: Home button (optional) + Retake button (optional) + Language Switcher */}
           <div className="flex items-center gap-3">
+            {showHomeButton && (
+              <button
+                onClick={() => navigate('/')}
+                className="px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95 flex items-center gap-2"
+                aria-label={language === 'zh' ? '回到首页' : 'Go to Home'}
+              >
+                <span className="text-[16px]">🏠</span>
+                <span className="hidden sm:inline">{language === 'zh' ? '首页' : 'HOME'}</span>
+              </button>
+            )}
             {showRetakeButton && onRetake && (
               <button
                 onClick={onRetake}

@@ -52,7 +52,7 @@ export const RoleSelection = () => {
 
   return (
     <div className="min-h-screen bg-[#faf8fb] flex flex-col">
-      <Header />
+      <Header showHomeButton={true} />
 
       <main className="flex-1 py-8 sm:py-16 md:py-24 pb-24 sm:pb-24 px-4 sm:px-8 md:px-16" id="main-content">
         <div className="max-w-[1280px] mx-auto">

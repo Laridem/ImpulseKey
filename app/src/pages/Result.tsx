@@ -205,7 +205,7 @@ export const Result = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Header showRetakeButton={true} onRetake={handleRetake} />
+      <Header showHomeButton={true} showRetakeButton={true} onRetake={handleRetake} />
 
       <main ref={resultRef} className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-6 sm:py-8 md:py-12 pb-24 lg:pb-12 w-full">
         {/* Responsive Layout: Single column on mobile, 12-column grid on desktop */}

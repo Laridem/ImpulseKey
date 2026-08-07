@@ -98,27 +98,27 @@ export const Landing = () => {
             </div>
 
             {/* Main Title with Text Shadow */}
-            <h1 className="font-space-grotesk font-bold text-[32px] sm:text-[56px] md:text-[80px] leading-[1.1] tracking-[-1.6px] sm:tracking-[-2.4px] md:tracking-[-3.2px] text-[#231821] text-shadow-kinetic">
+            <h1 className="font-space-grotesk font-bold text-[36px] sm:text-[56px] md:text-[72px] leading-[1.1] tracking-[-1.6px] sm:tracking-[-2.4px] md:tracking-[-3.0px] text-[#231821] text-shadow-kinetic">
               Impulse26.Key
             </h1>
 
             {/* Subtitle */}
-            <h2 className="font-72-brand text-[18px] sm:text-[32px] md:text-display-lg text-[#5d38e3] leading-[1.3]">
+            <h2 className="font-72-brand text-[20px] sm:text-[28px] md:text-[36px] text-[#5d38e3] leading-[1.3]">
               {t('landing.subtitle')}
             </h2>
 
-            {/* Description */}
-            <div className="max-w-full lg:max-w-[576px]">
-              <p className="font-72-brand text-[14px] sm:text-body-lg text-[#534150] leading-[1.6]">
+            {/* Description - Slightly smaller font */}
+            <div className="max-w-full lg:max-w-[600px]">
+              <p className="font-72-brand text-[15px] sm:text-[17px] text-[#534150] leading-[1.6]">
                 {t('landing.description1')}
               </p>
             </div>
 
-            {/* CTA Buttons - Hidden on mobile, visible on desktop */}
-            <div className="hidden sm:flex flex-col sm:flex-row gap-3 pt-2 sm:pt-4">
+            {/* CTA Buttons - Larger and more prominent */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-2 sm:pt-4">
               <button
                 onClick={handleStartTest}
-                className="relative w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 text-white font-72-brand text-[14px] sm:text-body-lg rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] group"
+                className="relative w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 text-white font-72-brand text-[15px] sm:text-[18px] font-bold rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] group"
                 style={{
                   background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
                   boxShadow: `
@@ -158,7 +158,7 @@ export const Landing = () => {
               </button>
               <button
                 onClick={() => navigate('/intro')}
-                className="relative w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 text-[#534150] font-72-brand text-[14px] sm:text-body-lg rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] active:translate-y-[0px] overflow-hidden group"
+                className="relative w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 text-[#534150] font-72-brand text-[15px] sm:text-[18px] font-bold rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] active:translate-y-[0px] overflow-hidden group"
                 style={{
                   borderWidth: '3px',
                   borderColor: '#d8bfd1',
@@ -178,35 +178,15 @@ export const Landing = () => {
                 <span className="relative z-10">{t('landing.howToPlayButton')}</span>
               </button>
             </div>
-
-            {/* Disclaimer Section */}
-            <div className="border-t border-[#d8bfd1] pt-8 sm:pt-12 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-full lg:max-w-[652px]">
-              <div className="space-y-2">
-                <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase">
-                  DISCLAIMER / 免责声明
-                </p>
-                <p className="font-72-brand text-[14px] sm:text-body-sm text-[#534150]">
-                  {t('landing.description3')}
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase">
-                  PRIVACY / 隐私提示
-                </p>
-                <p className="font-72-brand text-[14px] sm:text-body-sm text-[#534150]">
-                  {t('landing.privacy')}
-                </p>
-              </div>
-            </div>
           </div>
 
-          {/* Right Column - Hero Visual */}
-          <div className="flex-shrink-0 flex flex-col items-start justify-start w-full lg:w-[360px] relative mt-8 lg:mt-0">
+          {/* Right Column - Hero Visual (Balanced size) */}
+          <div className="flex-shrink-0 flex flex-col items-center justify-center w-full lg:w-[400px] relative mt-8 lg:mt-0">
             {/* Key Visual Container */}
-            <div className="relative w-full max-w-[300px] aspect-[376/361] lg:w-[300px] lg:h-[288px]">
+            <div className="relative w-full max-w-[360px] lg:max-w-[400px] aspect-square">
               {/* Main Container with Decorative Borders */}
               <div
-                className="absolute inset-0 bg-white border-2 border-[#a800aa] rounded-lg p-7 transition-all duration-500 hover:scale-105 cursor-pointer group overflow-hidden"
+                className="absolute inset-0 bg-white border-2 border-[#a800aa] rounded-lg p-8 transition-all duration-500 hover:scale-[1.02] cursor-pointer group overflow-hidden"
                 style={{
                   boxShadow: `
                     0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -276,20 +256,20 @@ export const Landing = () => {
                 <div className="absolute bottom-4 left-6 w-36 h-4 bg-white group-hover:bg-transparent transition-colors duration-500 z-10" />
 
                 {/* Inner Frame */}
-                <div className="relative w-full h-full border border-[#d8bfd1] rounded flex items-center justify-center p-4 transition-all duration-300 group-hover:border-[#f65af2] z-10">
+                <div className="relative w-full h-full border border-[#d8bfd1] rounded flex flex-col items-center justify-center p-4 transition-all duration-300 group-hover:border-[#f65af2] z-10">
                   {/* Key Visual Image */}
                   <img
                     src="/assets/impulse-key-visual.png"
                     alt="Impulse Key Visual"
-                    className="w-full h-full object-contain transition-all duration-500 group-hover:scale-90 group-hover:opacity-0 relative z-10"
+                    className="w-full h-auto object-contain mb-4"
                   />
 
-                  {/* Motto SVG - hidden by default, shown on hover */}
-                  <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 z-20">
+                  {/* Motto SVG - Always visible, more prominent on hover */}
+                  <div className="w-full px-2 transition-all duration-500 group-hover:scale-105">
                     <img
                       src="/assets/Impulse26_motto.svg"
                       alt="The tool to follow your hands."
-                      className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] scale-90 group-hover:scale-100 transition-transform duration-500"
+                      className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)] group-hover:drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                     />
                   </div>
                 </div>
