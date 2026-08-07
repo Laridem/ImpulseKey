@@ -117,11 +117,11 @@ export const Landing = () => {
               </p>
             </div>
 
-            {/* CTA Buttons - Larger and more prominent */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2 sm:pt-4">
+            {/* CTA Buttons - Hidden on mobile (sticky bottom buttons show instead), visible on tablet+ */}
+            <div className="hidden sm:flex flex-row gap-4 pt-2 sm:pt-4">
               <button
                 onClick={handleStartTest}
-                className="relative w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 text-white font-72-brand text-[15px] sm:text-[18px] font-bold rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] group"
+                className="relative w-auto px-6 sm:px-10 py-3 sm:py-5 text-white font-72-brand text-[15px] sm:text-[18px] font-bold rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] group"
                 style={{
                   background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
                   boxShadow: `
@@ -161,7 +161,7 @@ export const Landing = () => {
               </button>
               <button
                 onClick={() => navigate('/intro')}
-                className="relative w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 text-[#534150] font-72-brand text-[15px] sm:text-[18px] font-bold rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] active:translate-y-[0px] overflow-hidden group"
+                className="relative w-auto px-6 sm:px-10 py-3 sm:py-5 text-[#534150] font-72-brand text-[15px] sm:text-[18px] font-bold rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] active:translate-y-[0px] overflow-hidden group"
                 style={{
                   borderWidth: '3px',
                   borderColor: '#d8bfd1',
