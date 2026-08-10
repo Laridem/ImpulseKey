@@ -449,9 +449,10 @@ export const Result = () => {
                 <button
                   onClick={handleShare}
                   disabled={isCapturing}
-                  className="relative w-full text-white font-space-grotesk font-bold text-[16px] leading-[24px] uppercase py-4 rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] disabled:opacity-50 disabled:cursor-not-allowed group"
+                  className="relative w-full text-white font-space-grotesk font-bold text-[16px] leading-[24px] py-4 rounded-full overflow-hidden transition-all duration-300 hover:translate-y-[-2px] active:translate-y-[1px] disabled:opacity-50 disabled:cursor-not-allowed group"
                   style={{
                     background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+                    minHeight: '56px', // Fixed height to prevent jumping
                     boxShadow: `
                       0 1px 0 0 rgba(255,255,255,0.3) inset,
                       0 -1px 0 0 rgba(0,0,0,0.2) inset,
@@ -488,10 +489,10 @@ export const Result = () => {
                       background: 'linear-gradient(180deg, rgba(255,255,255,0.6) 0%, transparent 100%)'
                     }}
                   />
-                  <span className="relative z-10">
+                  <span className="relative z-10 transition-opacity duration-300">
                     {isCapturing
                       ? (language === 'zh' ? loadingMessages[loadingMessageIndex].zh : loadingMessages[loadingMessageIndex].en)
-                      : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')
+                      : (language === 'zh' ? '保存为图片' : 'Save as Image')
                     }
                   </span>
                 </button>
@@ -981,9 +982,10 @@ export const Result = () => {
         <button
           onClick={handleShare}
           disabled={isCapturing}
-          className="relative w-full text-white font-poppins font-semibold text-[16px] leading-[31.2px] uppercase py-3 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 overflow-hidden"
+          className="relative w-full text-white font-poppins font-semibold text-[15px] leading-[22px] py-3 rounded-full flex items-center justify-center gap-2 disabled:opacity-50 overflow-hidden"
           style={{
             background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
+            minHeight: '56px', // Fixed height to prevent jumping
             boxShadow: `
               0 1px 0 0 rgba(255,255,255,0.3) inset,
               0 4px 0 0 #800082,
@@ -998,10 +1000,10 @@ export const Result = () => {
             }}
           />
           <span className="relative z-10 text-[18px]">↗</span>
-          <span className="relative z-10">
+          <span className="relative z-10 transition-opacity duration-300">
             {isCapturing
               ? (language === 'zh' ? loadingMessages[loadingMessageIndex].zh : loadingMessages[loadingMessageIndex].en)
-              : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')
+              : (language === 'zh' ? '保存为图片' : 'Save as Image')
             }
           </span>
         </button>
