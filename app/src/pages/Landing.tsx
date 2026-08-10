@@ -9,10 +9,35 @@ export const Landing = () => {
   const { startTest } = useTest();
   const t = useTranslation();
   const [flippedCard, setFlippedCard] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState('impulse-test');
 
   // Update page title for accessibility
   useEffect(() => {
     document.title = 'Impulse26 Key - Impulse26 Design Festival';
+  }, []);
+
+  // Track active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['impulse-test', 'networking-party', 'about', 'agenda'];
+      const scrollPosition = window.scrollY + 200; // Offset for header + nav
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleStartTest = () => {
@@ -94,27 +119,47 @@ export const Landing = () => {
           <div className="flex items-center justify-center gap-6 sm:gap-8 overflow-x-auto">
             <a
               href="#impulse-test"
-              className="font-space-grotesk font-medium text-[13px] sm:text-[14px] text-[#534150] hover:text-[#a800aa] transition-colors whitespace-nowrap"
+              className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                activeSection === 'impulse-test' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+              }`}
             >
               ImpulseKey Test
+              {activeSection === 'impulse-test' && (
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+              )}
             </a>
             <a
               href="#networking-party"
-              className="font-space-grotesk font-medium text-[13px] sm:text-[14px] text-[#534150] hover:text-[#a800aa] transition-colors whitespace-nowrap"
+              className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                activeSection === 'networking-party' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+              }`}
             >
               Join Networking Party
+              {activeSection === 'networking-party' && (
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+              )}
             </a>
             <a
               href="#about"
-              className="font-space-grotesk font-medium text-[13px] sm:text-[14px] text-[#534150] hover:text-[#a800aa] transition-colors whitespace-nowrap"
+              className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                activeSection === 'about' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+              }`}
             >
               About the Project
+              {activeSection === 'about' && (
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+              )}
             </a>
             <a
               href="#agenda"
-              className="font-space-grotesk font-medium text-[13px] sm:text-[14px] text-[#534150] hover:text-[#a800aa] transition-colors whitespace-nowrap"
+              className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                activeSection === 'agenda' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+              }`}
             >
               Impulse26 CN Agenda
+              {activeSection === 'agenda' && (
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+              )}
             </a>
           </div>
         </div>
@@ -564,44 +609,56 @@ export const Landing = () => {
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                {/* Speaker 1 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Speaker 1 - Vera Jia */}
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
                   <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
                     Vera Jia
                   </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                  <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
                     SAP
+                  </p>
+                  <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
+                    From App-Centric to Intent-Centric: Next-Gen Enterprise AI Experience
                   </p>
                 </div>
 
-                {/* Speaker 2 */}
+                {/* Speaker 2 - Xiaofei Ma */}
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
                   <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
                     Xiaofei Ma
                   </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                  <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
                     Octave Living
+                  </p>
+                  <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
+                    Sustainability user experience design
                   </p>
                 </div>
 
-                {/* Speaker 3 */}
+                {/* Speaker 3 - Billie Zhao */}
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
                   <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
                     Billie Zhao
                   </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                  <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
                     SAP
+                  </p>
+                  <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
+                    From Transparency to Recommendation: Designing AI-Powered User Experiences
                   </p>
                 </div>
 
-                {/* Speaker 4 */}
+                {/* Speaker 4 - Ya Lin */}
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
                   <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
-                    Ya lin
+                    Ya Lin
                   </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                  <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
                     Microsoft
+                  </p>
+                  <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
+                    Designing Human-AI Collaboration
                   </p>
                 </div>
               </div>
@@ -652,6 +709,75 @@ export const Landing = () => {
                   <p className="font-hanken-grotesk text-[14px] text-white/80">
                     Xiaolei Ma, Octaveliving
                   </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Afternoon Session Card - After 15:00 */}
+            <div
+              className="relative rounded-2xl p-8 overflow-hidden md:col-span-2"
+              style={{
+                background: 'linear-gradient(135deg, #FFC933 0%, #f4a800 50%, #7858FF 100%)'
+              }}
+            >
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                <div className="mb-4 md:mb-0">
+                  <h3 className="font-space-grotesk font-bold text-[48px] md:text-[64px] text-[#5d38e3] leading-tight">
+                    Intuition is our original operating system
+                  </h3>
+                  <p className="font-space-grotesk font-medium text-[20px] text-[#5d38e3] mt-2">
+                    Register to join our booths after 15:00
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-1 gap-3 md:min-w-[240px]">
+                  {/* Figma */}
+                  <div className="bg-[#f065f3] rounded-lg p-4 flex items-center justify-between">
+                    <span className="font-space-grotesk font-bold text-[20px] text-black">Figma</span>
+                    <svg width="40" height="40" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9.5 47.5C14.7467 47.5 19 43.2467 19 38V28.5H9.5C4.25329 28.5 0 32.7533 0 38C0 43.2467 4.25329 47.5 9.5 47.5Z" fill="white"/>
+                      <path d="M0 19C0 13.7533 4.25329 9.5 9.5 9.5H19V28.5H9.5C4.25329 28.5 0 24.2467 0 19Z" fill="white"/>
+                      <path d="M0 9.5C0 4.25329 4.25329 0 9.5 0H19V19H9.5C4.25329 19 0 14.7467 0 9.5Z" fill="white"/>
+                      <path d="M19 0H28.5C33.7467 0 38 4.25329 38 9.5C38 14.7467 33.7467 19 28.5 19H19V0Z" fill="white"/>
+                      <path d="M38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5Z" fill="white"/>
+                    </svg>
+                  </div>
+
+                  {/* Maker Studio */}
+                  <div className="bg-[#FFC933] rounded-lg p-4 flex items-center justify-between">
+                    <div>
+                      <span className="font-space-grotesk font-bold text-[18px] text-black block">Maker</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-black block">Studio</span>
+                    </div>
+                    <span className="text-[32px]">✂️</span>
+                  </div>
+
+                  {/* Huddle Studio */}
+                  <div className="bg-[#7858FF] rounded-lg p-4 flex items-center justify-between">
+                    <div>
+                      <span className="font-space-grotesk font-bold text-[18px] text-white block">Huddle</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-white block">Studio</span>
+                    </div>
+                    <span className="text-[32px]">🔍</span>
+                  </div>
+
+                  {/* Sensory Studio */}
+                  <div className="bg-[#64EDD2] rounded-lg p-4 flex items-center justify-between">
+                    <div>
+                      <span className="font-space-grotesk font-bold text-[18px] text-black block">Sensory</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-black block">Studio</span>
+                    </div>
+                    <span className="text-[32px]">👁️</span>
+                  </div>
+
+                  {/* Game Studio */}
+                  <div className="bg-black rounded-lg p-4 flex items-center justify-between md:col-span-2">
+                    <div>
+                      <span className="font-space-grotesk font-bold text-[18px] text-white block">Game</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-white block">Studio</span>
+                    </div>
+                    <span className="text-[32px]">🎮</span>
+                  </div>
                 </div>
               </div>
             </div>
