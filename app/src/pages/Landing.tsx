@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
+import { useLanguage } from '../i18n/LanguageContext';
 import { Header } from '../components/Header';
 import { useEffect, useState } from 'react';
 
@@ -8,6 +9,7 @@ export const Landing = () => {
   const navigate = useNavigate();
   const { startTest } = useTest();
   const t = useTranslation();
+  const { language } = useLanguage();
   const [flippedCard, setFlippedCard] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState('impulse-test');
 
@@ -51,7 +53,8 @@ export const Landing = () => {
       id: 'sensory',
       name: 'Sensory Studio',
       nameCN: '调动感官，发现设计的另一面',
-      tagline: 'Experience design with all your senses.',
+      taglineEN: 'Experience design with all your senses.',
+      taglineCN: '调动感官，发现设计的另一面。',
       color: '#A100C2',
       gradient: 'linear-gradient(135deg, #A100C2 0%, #c026d3 100%)',
       textColor: '#ffffff',
@@ -61,7 +64,8 @@ export const Landing = () => {
       id: 'maker',
       name: 'Maker Studio',
       nameCN: '生活的纹理：用旧布料编织新的故事',
-      tagline: 'Texture of Life: Weaving new stories from old fabrics.',
+      taglineEN: 'Texture of Life: Weaving new stories from old fabrics.',
+      taglineCN: '生活的纹理：用旧布料编织新的故事。',
       color: '#FFC933',
       gradient: 'linear-gradient(135deg, #FFC933 0%, #ffd666 100%)',
       textColor: '#231821',
@@ -71,7 +75,8 @@ export const Landing = () => {
       id: 'huddle',
       name: 'Huddle Studio',
       nameCN: '设计师版《谁是卧底》，人类与 AI 同场较量',
-      tagline: 'Humans, AI, and a secret identity. Can you spot the imposter?',
+      taglineEN: 'Humans, AI, and a secret identity. Can you spot the imposter?',
+      taglineCN: '设计师版《谁是卧底》，人类与 AI 同场较量。',
       color: '#64EDD2',
       gradient: 'linear-gradient(135deg, #64EDD2 0%, #7ff5e0 100%)',
       textColor: '#231821',
@@ -81,7 +86,8 @@ export const Landing = () => {
       id: 'game',
       name: 'Game Studio',
       nameCN: '边玩边创作，在挑战中激发灵感',
-      tagline: 'Play, sketch, guess, and challenge your creativity.',
+      taglineEN: 'Play, sketch, guess, and challenge your creativity.',
+      taglineCN: '边玩边创作，在挑战中激发灵感。',
       color: '#7858FF',
       gradient: 'linear-gradient(135deg, #7858FF 0%, #9575ff 100%)',
       textColor: '#ffffff',
@@ -91,7 +97,8 @@ export const Landing = () => {
       id: 'figma',
       name: 'Figma Booth',
       nameCN: '探索设计工具，解锁高效协作',
-      tagline: 'Explore the tools behind great design.',
+      taglineEN: 'Explore the tools behind great design.',
+      taglineCN: '探索设计工具，解锁高效协作。',
       color: '#FF6730',
       gradient: 'linear-gradient(135deg, #FF6730 0%, #ff8555 100%)',
       textColor: '#ffffff',
@@ -101,7 +108,8 @@ export const Landing = () => {
       id: 'networking',
       name: 'Networking Corner',
       nameCN: '结识新伙伴，碰撞新想法，开启新合作',
-      tagline: 'Meet people. Share ideas. Spark collaborations.',
+      taglineEN: 'Meet people. Share ideas. Spark collaborations.',
+      taglineCN: '结识新伙伴，碰撞新想法，开启新合作。',
       color: '#f65af2',
       gradient: 'linear-gradient(135deg, #f65af2 0%, #ff7ef5 100%)',
       textColor: '#ffffff',
@@ -358,13 +366,13 @@ export const Landing = () => {
                         WebkitBackfaceVisibility: 'hidden'
                       }}
                     >
-                      {/* Content with Icon and Text - Larger icon */}
+                      {/* Content with Icon and Text - 2/3 of previous size */}
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-3 gap-2">
-                        {/* Icon - Double size */}
+                        {/* Icon - 2/3 size (was w-24/w-32, now w-16/w-20) */}
                         <img
                           src={booth.icon}
                           alt={`${booth.name} icon`}
-                          className="w-24 h-24 sm:w-32 sm:h-32 object-contain drop-shadow-lg"
+                          className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg"
                         />
                         {/* Text - Smaller */}
                         <div className="text-center">
@@ -430,7 +438,7 @@ export const Landing = () => {
                           className="font-space-grotesk font-bold text-[12px] sm:text-[14px] leading-relaxed relative"
                           style={{ color: booth.textColor }}
                         >
-                          {booth.tagline}
+                          {language === 'zh' ? booth.taglineCN : booth.taglineEN}
                         </p>
                         <div className="absolute -bottom-4 -right-3 text-[40px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
                           "
