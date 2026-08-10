@@ -50,8 +50,8 @@ export const Landing = () => {
     {
       id: 'sensory',
       name: 'Sensory Studio',
-      nameCN: '多感官体验',
-      tagline: 'Awaken your senses. Amplify your feelings.',
+      nameCN: '调动感官，发现设计的另一面',
+      tagline: 'Experience design with all your senses.',
       color: '#A100C2',
       gradient: 'linear-gradient(135deg, #A100C2 0%, #c026d3 100%)',
       textColor: '#ffffff',
@@ -60,8 +60,8 @@ export const Landing = () => {
     {
       id: 'maker',
       name: 'Maker Studio',
-      nameCN: '手工创作体验',
-      tagline: 'The Texture of Life: Create, craft, and rediscover the beauty of making.',
+      nameCN: '生活的纹理：用旧布料编织新的故事',
+      tagline: 'Texture of Life: Weaving new stories from old fabrics.',
       color: '#FFC933',
       gradient: 'linear-gradient(135deg, #FFC933 0%, #ffd666 100%)',
       textColor: '#231821',
@@ -70,8 +70,8 @@ export const Landing = () => {
     {
       id: 'huddle',
       name: 'Huddle Studio',
-      nameCN: '人类AI大作战！谁是卧底？',
-      tagline: 'Can you spot the AI before it spots you? A battle of intuition, deception, and human insight.',
+      nameCN: '设计师版《谁是卧底》，人类与 AI 同场较量',
+      tagline: 'Humans, AI, and a secret identity. Can you spot the imposter?',
       color: '#64EDD2',
       gradient: 'linear-gradient(135deg, #64EDD2 0%, #7ff5e0 100%)',
       textColor: '#231821',
@@ -80,8 +80,8 @@ export const Landing = () => {
     {
       id: 'game',
       name: 'Game Studio',
-      nameCN: '你画我猜+脑力碰撞大挑战',
-      tagline: 'Challenge Your Mind. Spark Your Creativity. Draw, guess, collaborate, and put both sides of your brain to the test.',
+      nameCN: '边玩边创作，在挑战中激发灵感',
+      tagline: 'Play, sketch, guess, and challenge your creativity.',
       color: '#7858FF',
       gradient: 'linear-gradient(135deg, #7858FF 0%, #9575ff 100%)',
       textColor: '#ffffff',
@@ -90,8 +90,8 @@ export const Landing = () => {
     {
       id: 'figma',
       name: 'Figma Booth',
-      nameCN: 'Figma 展位',
-      tagline: 'Connecting with experts from Figma. Learn, share, and explore the future of design.',
+      nameCN: '探索设计工具，解锁高效协作',
+      tagline: 'Explore the tools behind great design.',
       color: '#FF6730',
       gradient: 'linear-gradient(135deg, #FF6730 0%, #ff8555 100%)',
       textColor: '#ffffff',
@@ -100,8 +100,8 @@ export const Landing = () => {
     {
       id: 'networking',
       name: 'Networking Corner',
-      nameCN: '链接与火花',
-      tagline: 'Meet. Connect. Complete the Board. Every square is a new connection waiting to happen.',
+      nameCN: '结识新伙伴，碰撞新想法，开启新合作',
+      tagline: 'Meet people. Share ideas. Spark collaborations.',
       color: '#f65af2',
       gradient: 'linear-gradient(135deg, #f65af2 0%, #ff7ef5 100%)',
       textColor: '#ffffff',
@@ -123,7 +123,7 @@ export const Landing = () => {
                 activeSection === 'impulse-test' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
               }`}
             >
-              ImpulseKey Test
+              ImpulseKey
               {activeSection === 'impulse-test' && (
                 <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
               )}
@@ -134,7 +134,7 @@ export const Landing = () => {
                 activeSection === 'networking-party' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
               }`}
             >
-              Join Networking Party
+              Networking Party
               {activeSection === 'networking-party' && (
                 <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
               )}
@@ -145,7 +145,7 @@ export const Landing = () => {
                 activeSection === 'about' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
               }`}
             >
-              About the Project
+              About
               {activeSection === 'about' && (
                 <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
               )}
@@ -156,7 +156,7 @@ export const Landing = () => {
                 activeSection === 'agenda' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
               }`}
             >
-              Impulse26 CN Agenda
+              Agenda
               {activeSection === 'agenda' && (
                 <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
               )}
@@ -358,13 +358,13 @@ export const Landing = () => {
                         WebkitBackfaceVisibility: 'hidden'
                       }}
                     >
-                      {/* Content with Icon and Text - Smaller sizes */}
+                      {/* Content with Icon and Text - Larger icon */}
                       <div className="absolute inset-0 flex flex-col items-center justify-center p-3 gap-2">
-                        {/* Icon - Smaller */}
+                        {/* Icon - Double size */}
                         <img
                           src={booth.icon}
                           alt={`${booth.name} icon`}
-                          className="w-12 h-12 sm:w-16 sm:h-16 object-contain drop-shadow-lg"
+                          className="w-24 h-24 sm:w-32 sm:h-32 object-contain drop-shadow-lg"
                         />
                         {/* Text - Smaller */}
                         <div className="text-center">
@@ -616,7 +616,7 @@ export const Landing = () => {
                     Vera Jia
                   </p>
                   <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    SAP
+                    SAP Design Manager
                   </p>
                   <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
                     From App-Centric to Intent-Centric: Next-Gen Enterprise AI Experience
@@ -629,7 +629,7 @@ export const Landing = () => {
                     Xiaofei Ma
                   </p>
                   <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    Octave Living
+                    Octave Living Head of Sustainability CN
                   </p>
                   <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
                     Sustainability user experience design
@@ -642,7 +642,7 @@ export const Landing = () => {
                     Billie Zhao
                   </p>
                   <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    SAP
+                    SAP UX Designer
                   </p>
                   <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
                     From Transparency to Recommendation: Designing AI-Powered User Experiences
@@ -655,7 +655,7 @@ export const Landing = () => {
                     Ya Lin
                   </p>
                   <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    Microsoft
+                    Microsoft Sr. UX Designer
                   </p>
                   <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
                     Designing Human-AI Collaboration
@@ -720,63 +720,40 @@ export const Landing = () => {
                 background: 'linear-gradient(135deg, #FFC933 0%, #f4a800 50%, #7858FF 100%)'
               }}
             >
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                <div className="mb-4 md:mb-0">
-                  <h3 className="font-space-grotesk font-bold text-[48px] md:text-[64px] text-[#5d38e3] leading-tight">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                <div className="md:flex-1">
+                  <h3 className="font-space-grotesk font-bold text-[48px] md:text-[56px] text-[#5d38e3] leading-tight mb-2">
                     Intuition is our original operating system
                   </h3>
-                  <p className="font-space-grotesk font-medium text-[20px] text-[#5d38e3] mt-2">
+                  <p className="font-space-grotesk font-medium text-[18px] text-[#5d38e3]">
                     Register to join our booths after 15:00
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-1 gap-3 md:min-w-[240px]">
+                <div className="grid grid-cols-2 gap-3 md:w-[420px]">
                   {/* Figma */}
-                  <div className="bg-[#f065f3] rounded-lg p-4 flex items-center justify-between">
-                    <span className="font-space-grotesk font-bold text-[20px] text-black">Figma</span>
-                    <svg width="40" height="40" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M9.5 47.5C14.7467 47.5 19 43.2467 19 38V28.5H9.5C4.25329 28.5 0 32.7533 0 38C0 43.2467 4.25329 47.5 9.5 47.5Z" fill="white"/>
-                      <path d="M0 19C0 13.7533 4.25329 9.5 9.5 9.5H19V28.5H9.5C4.25329 28.5 0 24.2467 0 19Z" fill="white"/>
-                      <path d="M0 9.5C0 4.25329 4.25329 0 9.5 0H19V19H9.5C4.25329 19 0 14.7467 0 9.5Z" fill="white"/>
-                      <path d="M19 0H28.5C33.7467 0 38 4.25329 38 9.5C38 14.7467 33.7467 19 28.5 19H19V0Z" fill="white"/>
-                      <path d="M38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5Z" fill="white"/>
-                    </svg>
+                  <div className="bg-[#f065f3] rounded-lg p-5 flex flex-col items-center justify-center">
+                    <span className="font-space-grotesk font-bold text-[18px] text-black">Figma</span>
                   </div>
 
                   {/* Maker Studio */}
-                  <div className="bg-[#FFC933] rounded-lg p-4 flex items-center justify-between">
-                    <div>
-                      <span className="font-space-grotesk font-bold text-[18px] text-black block">Maker</span>
-                      <span className="font-space-grotesk font-bold text-[18px] text-black block">Studio</span>
-                    </div>
-                    <span className="text-[32px]">✂️</span>
+                  <div className="bg-[#FFC933] rounded-lg p-5 flex flex-col items-center justify-center">
+                    <span className="font-space-grotesk font-bold text-[18px] text-black text-center">Maker Studio</span>
                   </div>
 
                   {/* Huddle Studio */}
-                  <div className="bg-[#7858FF] rounded-lg p-4 flex items-center justify-between">
-                    <div>
-                      <span className="font-space-grotesk font-bold text-[18px] text-white block">Huddle</span>
-                      <span className="font-space-grotesk font-bold text-[18px] text-white block">Studio</span>
-                    </div>
-                    <span className="text-[32px]">🔍</span>
+                  <div className="bg-[#7858FF] rounded-lg p-5 flex flex-col items-center justify-center">
+                    <span className="font-space-grotesk font-bold text-[18px] text-white text-center">Huddle Studio</span>
                   </div>
 
                   {/* Sensory Studio */}
-                  <div className="bg-[#64EDD2] rounded-lg p-4 flex items-center justify-between">
-                    <div>
-                      <span className="font-space-grotesk font-bold text-[18px] text-black block">Sensory</span>
-                      <span className="font-space-grotesk font-bold text-[18px] text-black block">Studio</span>
-                    </div>
-                    <span className="text-[32px]">👁️</span>
+                  <div className="bg-[#64EDD2] rounded-lg p-5 flex flex-col items-center justify-center">
+                    <span className="font-space-grotesk font-bold text-[18px] text-black text-center">Sensory Studio</span>
                   </div>
 
-                  {/* Game Studio */}
-                  <div className="bg-black rounded-lg p-4 flex items-center justify-between md:col-span-2">
-                    <div>
-                      <span className="font-space-grotesk font-bold text-[18px] text-white block">Game</span>
-                      <span className="font-space-grotesk font-bold text-[18px] text-white block">Studio</span>
-                    </div>
-                    <span className="text-[32px]">🎮</span>
+                  {/* Game Studio - Full width */}
+                  <div className="bg-black rounded-lg p-5 flex items-center justify-center col-span-2">
+                    <span className="font-space-grotesk font-bold text-[18px] text-white">Game Studio</span>
                   </div>
                 </div>
               </div>

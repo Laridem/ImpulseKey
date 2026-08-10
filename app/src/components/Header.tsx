@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useState, useRef, useEffect } from 'react';
@@ -10,7 +9,6 @@ interface HeaderProps {
 }
 
 export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = false }: HeaderProps) => {
-  const navigate = useNavigate();
   const { language } = useLanguage();
   const [clickCount, setClickCount] = useState(0);
   const clickTimeoutRef = useRef<number | null>(null);

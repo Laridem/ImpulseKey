@@ -153,7 +153,6 @@ export const Result = () => {
 
         console.log('PNG conversion successful, data URL length:', dataUrl.length);
 
-        const downloadStart = performance.now();
         console.log('Creating download link...');
         const link = document.createElement('a');
         link.download = `IMPULSE-${result.key}.png`;
