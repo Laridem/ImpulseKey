@@ -406,10 +406,13 @@ export const Landing = () => {
               </h3>
               <div className="space-y-4">
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  This is a fun project powered by vibe coding—don't take it too seriously! Content planned and designed by larissa.deng@sap.com and its creation is supported by folks from Design Hub China.
+                  Built with vibe coding. Created for fun.
                 </p>
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  You're welcome to join our future events and activities (SAP employees only):
+                  This project was conceived and designed by Larissa Deng (SAP UX Designer), with AI-assisted illustrations created by Mark Wan (SAP UX Designer). It would not have been possible without the support of the wonderful people at SAP Design Hub China.
+                </p>
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                  SAP employees only: We'd love to see you at our future events and activities!
                 </p>
                 <div className="space-y-2 pl-4">
                   <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
