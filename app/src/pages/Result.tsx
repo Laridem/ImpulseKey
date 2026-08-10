@@ -24,6 +24,8 @@ export const Result = () => {
   const shareCardRef = useRef<HTMLDivElement>(null);
   const [isCapturing, setIsCapturing] = useState(false);
   const [hoveredLockedKey, setHoveredLockedKey] = useState<string | null>(null);
+  const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
+  const loadingIntervalRef = useRef<number | null>(null);
 
   // Load result if accessed directly via URL or when key changes
   useEffect(() => {
@@ -31,6 +33,41 @@ export const Result = () => {
       goToResult(key);
     }
   }, [key, goToResult]);
+
+  // Rotate loading messages
+  const loadingMessages = [
+    { en: 'Negotiating with stubborn pixels...', zh: '正在说服像素合作...' },
+    { en: 'Teaching AI what "fast" means...', zh: '正在教 AI 什么叫快...' },
+    { en: 'Loading... your coffee has time to cool...', zh: '生成中...你的咖啡都凉了...' },
+    { en: 'Exporting faster than your emails...', zh: '比你的邮件回复快多了...' },
+    { en: 'Converting chaos into beauty...', zh: '正在将混乱转化为艺术...' },
+    { en: 'Processing... like your Monday brain...', zh: '加载中...和周一的脑子一样慢...' },
+    { en: 'Still faster than meetings...', zh: '还是比开会快...' },
+    { en: 'Your result is worth the wait (we hope)...', zh: '你的结果值得等待（大概）...' },
+  ];
+
+  useEffect(() => {
+    if (isCapturing) {
+      // Start rotating messages every 1.5 seconds
+      loadingIntervalRef.current = window.setInterval(() => {
+        setLoadingMessageIndex((prev) => (prev + 1) % loadingMessages.length);
+      }, 1500);
+    } else {
+      // Clear interval when not capturing
+      if (loadingIntervalRef.current) {
+        clearInterval(loadingIntervalRef.current);
+        loadingIntervalRef.current = null;
+      }
+      // Reset to first message
+      setLoadingMessageIndex(0);
+    }
+
+    return () => {
+      if (loadingIntervalRef.current) {
+        clearInterval(loadingIntervalRef.current);
+      }
+    };
+  }, [isCapturing]);
 
   const handleRetake = () => {
     console.log('handleRetake called');
@@ -452,7 +489,10 @@ export const Result = () => {
                     }}
                   />
                   <span className="relative z-10">
-                    {isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')}
+                    {isCapturing
+                      ? (language === 'zh' ? loadingMessages[loadingMessageIndex].zh : loadingMessages[loadingMessageIndex].en)
+                      : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')
+                    }
                   </span>
                 </button>
               </div>
@@ -958,7 +998,12 @@ export const Result = () => {
             }}
           />
           <span className="relative z-10 text-[18px]">↗</span>
-          <span className="relative z-10">{isCapturing ? (language === 'zh' ? '生成中...' : 'Capturing...') : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')}</span>
+          <span className="relative z-10">
+            {isCapturing
+              ? (language === 'zh' ? loadingMessages[loadingMessageIndex].zh : loadingMessages[loadingMessageIndex].en)
+              : (language === 'zh' ? '保存为图片' : 'SAVE AS IMAGE')
+            }
+          </span>
         </button>
       </div>
 
