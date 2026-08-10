@@ -51,8 +51,8 @@ export const Landing = () => {
   const booths = [
     {
       id: 'sensory',
-      name: 'Sensory Studio',
-      nameCN: '调动感官，发现设计的另一面',
+      nameEN: 'Sensory Studio',
+      nameCN: '多感官体验工作室',
       taglineEN: 'Experience design with all your senses.',
       taglineCN: '调动感官，发现设计的另一面。',
       color: '#A100C2',
@@ -62,8 +62,8 @@ export const Landing = () => {
     },
     {
       id: 'maker',
-      name: 'Maker Studio',
-      nameCN: '生活的纹理：用旧布料编织新的故事',
+      nameEN: 'Maker Studio',
+      nameCN: '手工创作工作室',
       taglineEN: 'Texture of Life: Weaving new stories from old fabrics.',
       taglineCN: '生活的纹理：用旧布料编织新的故事。',
       color: '#FFC933',
@@ -73,8 +73,8 @@ export const Landing = () => {
     },
     {
       id: 'huddle',
-      name: 'Huddle Studio',
-      nameCN: '设计师版《谁是卧底》，人类与 AI 同场较量',
+      nameEN: 'Huddle Studio',
+      nameCN: '人类AI大作战工作室',
       taglineEN: 'Humans, AI, and a secret identity. Can you spot the imposter?',
       taglineCN: '设计师版《谁是卧底》，人类与 AI 同场较量。',
       color: '#64EDD2',
@@ -84,8 +84,8 @@ export const Landing = () => {
     },
     {
       id: 'game',
-      name: 'Game Studio',
-      nameCN: '边玩边创作，在挑战中激发灵感',
+      nameEN: 'Game Studio',
+      nameCN: '游戏创意工作室',
       taglineEN: 'Play, sketch, guess, and challenge your creativity.',
       taglineCN: '边玩边创作，在挑战中激发灵感。',
       color: '#7858FF',
@@ -95,8 +95,8 @@ export const Landing = () => {
     },
     {
       id: 'figma',
-      name: 'Figma Booth',
-      nameCN: '探索设计工具，解锁高效协作',
+      nameEN: 'Figma Booth',
+      nameCN: 'Figma 展位',
       taglineEN: 'Explore the tools behind great design.',
       taglineCN: '探索设计工具，解锁高效协作。',
       color: '#FF6730',
@@ -106,8 +106,8 @@ export const Landing = () => {
     },
     {
       id: 'networking',
-      name: 'Networking Corner',
-      nameCN: '结识新伙伴，碰撞新想法，开启新合作',
+      nameEN: 'Networking Corner',
+      nameCN: '社交连接角',
       taglineEN: 'Meet people. Share ideas. Spark collaborations.',
       taglineCN: '结识新伙伴，碰撞新想法，开启新合作。',
       color: '#f65af2',
@@ -371,7 +371,7 @@ export const Landing = () => {
                         {/* Icon - 2/3 size (was w-24/w-32, now w-16/w-20) */}
                         <img
                           src={booth.icon}
-                          alt={`${booth.name} icon`}
+                          alt={`${language === 'zh' ? booth.nameCN : booth.nameEN} icon`}
                           className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg"
                         />
                         {/* Text - Smaller */}
@@ -380,13 +380,7 @@ export const Landing = () => {
                             className="font-space-grotesk font-black text-[14px] sm:text-[18px] mb-1 uppercase tracking-tight"
                             style={{ color: booth.textColor }}
                           >
-                            {booth.name}
-                          </div>
-                          <div
-                            className="font-space-grotesk font-medium text-[10px] sm:text-[12px]"
-                            style={{ color: booth.textColor, opacity: 0.9 }}
-                          >
-                            {booth.nameCN}
+                            {language === 'zh' ? booth.nameCN : booth.nameEN}
                           </div>
                         </div>
                       </div>
