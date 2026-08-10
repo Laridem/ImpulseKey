@@ -51,8 +51,9 @@ export const Landing = () => {
   const booths = [
     {
       id: 'sensory',
-      nameEN: 'Sensory Studio',
-      nameCN: '多感官体验工作室',
+      name: 'Sensory Studio',
+      subtitleEN: 'Experience design with all your senses',
+      subtitleCN: '调动感官，发现设计的另一面',
       taglineEN: 'Experience design with all your senses.',
       taglineCN: '调动感官，发现设计的另一面。',
       color: '#A100C2',
@@ -62,8 +63,9 @@ export const Landing = () => {
     },
     {
       id: 'maker',
-      nameEN: 'Maker Studio',
-      nameCN: '手工创作工作室',
+      name: 'Maker Studio',
+      subtitleEN: 'Texture of Life',
+      subtitleCN: '生活的纹理',
       taglineEN: 'Texture of Life: Weaving new stories from old fabrics.',
       taglineCN: '生活的纹理：用旧布料编织新的故事。',
       color: '#FFC933',
@@ -73,8 +75,9 @@ export const Landing = () => {
     },
     {
       id: 'huddle',
-      nameEN: 'Huddle Studio',
-      nameCN: '人类AI大作战工作室',
+      name: 'Huddle Studio',
+      subtitleEN: 'Spot the AI imposter',
+      subtitleCN: '谁是卧底',
       taglineEN: 'Humans, AI, and a secret identity. Can you spot the imposter?',
       taglineCN: '设计师版《谁是卧底》，人类与 AI 同场较量。',
       color: '#64EDD2',
@@ -84,8 +87,9 @@ export const Landing = () => {
     },
     {
       id: 'game',
-      nameEN: 'Game Studio',
-      nameCN: '游戏创意工作室',
+      name: 'Game Studio',
+      subtitleEN: 'Play and create',
+      subtitleCN: '边玩边创作',
       taglineEN: 'Play, sketch, guess, and challenge your creativity.',
       taglineCN: '边玩边创作，在挑战中激发灵感。',
       color: '#7858FF',
@@ -95,8 +99,9 @@ export const Landing = () => {
     },
     {
       id: 'figma',
-      nameEN: 'Figma Booth',
-      nameCN: 'Figma 展位',
+      name: 'Figma Booth',
+      subtitleEN: 'Design tools and collaboration',
+      subtitleCN: '设计工具与协作',
       taglineEN: 'Explore the tools behind great design.',
       taglineCN: '探索设计工具，解锁高效协作。',
       color: '#FF6730',
@@ -106,8 +111,9 @@ export const Landing = () => {
     },
     {
       id: 'networking',
-      nameEN: 'Networking Corner',
-      nameCN: '社交连接角',
+      name: 'Networking Corner',
+      subtitleEN: 'Connect and collaborate',
+      subtitleCN: '连接与合作',
       taglineEN: 'Meet people. Share ideas. Spark collaborations.',
       taglineCN: '结识新伙伴，碰撞新想法，开启新合作。',
       color: '#f65af2',
@@ -371,7 +377,7 @@ export const Landing = () => {
                         {/* Icon - 2/3 size (was w-24/w-32, now w-16/w-20) */}
                         <img
                           src={booth.icon}
-                          alt={`${language === 'zh' ? booth.nameCN : booth.nameEN} icon`}
+                          alt={`${booth.name} icon`}
                           className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg"
                         />
                         {/* Text - Smaller */}
@@ -380,7 +386,13 @@ export const Landing = () => {
                             className="font-space-grotesk font-black text-[14px] sm:text-[18px] mb-1 uppercase tracking-tight"
                             style={{ color: booth.textColor }}
                           >
-                            {language === 'zh' ? booth.nameCN : booth.nameEN}
+                            {booth.name}
+                          </div>
+                          <div
+                            className="font-space-grotesk font-medium text-[10px] sm:text-[12px]"
+                            style={{ color: booth.textColor, opacity: 0.9 }}
+                          >
+                            {language === 'zh' ? booth.subtitleCN : booth.subtitleEN}
                           </div>
                         </div>
                       </div>
