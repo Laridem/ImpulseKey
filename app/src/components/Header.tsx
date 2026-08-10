@@ -140,7 +140,7 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
 
                 {/* Dropdown menu */}
                 {menuOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg border-2 border-[#a800aa] shadow-lg overflow-hidden z-50">
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg border-2 border-[#a800aa] shadow-lg overflow-hidden z-[100]">
                     {showHomeButton && (
                       <button
                         onClick={() => {
