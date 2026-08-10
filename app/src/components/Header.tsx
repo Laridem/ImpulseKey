@@ -104,7 +104,7 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
             <div className="hidden sm:flex items-center gap-3">
               {showHomeButton && (
                 <button
-                  onClick={() => navigate('/')}
+                  onClick={() => window.location.href = '/'}
                   className="px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95 flex items-center gap-2"
                   aria-label={language === 'zh' ? '回到首页' : 'Go to Home'}
                 >
@@ -144,8 +144,7 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
                     {showHomeButton && (
                       <button
                         onClick={() => {
-                          navigate('/');
-                          setMenuOpen(false);
+                          window.location.href = '/';
                         }}
                         className="w-full px-4 py-3 text-left text-[#a800aa] font-space-grotesk font-bold text-[14px] hover:bg-[#fef5fb] transition-colors flex items-center gap-2 border-b border-[#f1ddea]"
                       >
