@@ -57,6 +57,7 @@ export const Result = () => {
     setIsCapturing(true);
 
     try {
+      const startTime = performance.now();
       console.log('Starting image capture...');
 
       // Pre-load all images before capture to ensure they're ready
@@ -67,6 +68,7 @@ export const Result = () => {
       ];
 
       console.log('Pre-loading images...');
+      const preloadStart = performance.now();
       await Promise.all(
         imagesToPreload.map(src => {
           return new Promise((resolve, reject) => {
@@ -84,112 +86,37 @@ export const Result = () => {
         })
       );
 
-      console.log('All images pre-loaded successfully!');
+      const preloadEnd = performance.now();
+      console.log(`✅ All images pre-loaded in ${Math.round(preloadEnd - preloadStart)}ms`);
 
-      // Additional wait to ensure images are painted
-      await new Promise(resolve => setTimeout(resolve, 800));
+      // Reduced wait time - images are already preloaded
+      await new Promise(resolve => setTimeout(resolve, 100));
 
-      // Use lower pixelRatio on mobile for faster generation and better reliability
+      // Use lower pixelRatio on mobile for faster generation
       const isMobile = window.innerWidth < 1024;
       const pixelRatio = isMobile ? 1 : 2;
 
-      // ============ DIAGNOSTIC LOGGING FOR MOBILE ISSUE ============
-      const exportRoot = shareCardRef.current;
-      console.log('=== EXPORT DIAGNOSTICS ===');
-      console.log('Viewport:', {
-        innerWidth: window.innerWidth,
-        innerHeight: window.innerHeight,
-        dpr: window.devicePixelRatio,
-        isMobile
-      });
-
-      const rootRect = exportRoot.getBoundingClientRect();
-      console.log('Export container rect:', {
-        top: rootRect.top,
-        left: rootRect.left,
-        width: rootRect.width,
-        height: rootRect.height,
-        bottom: rootRect.bottom,
-        right: rootRect.right
-      });
-
-      // Check critical elements that might be missing on mobile
-      const keycapImg = exportRoot.querySelector('img[alt*="' + result.key + '"]') ||
-                        exportRoot.querySelector('img[src*="result-cards"]');
-      const anvilsImg = exportRoot.querySelector('img[alt="Anvils"]');
-      const qrImg = exportRoot.querySelector('img[alt="Scan QR Code"]');
-      const divider = exportRoot.querySelector('.h-\\[2px\\]');
-
-      [
-        { name: 'Keycap Image', el: keycapImg },
-        { name: 'Anvils Logo', el: anvilsImg },
-        { name: 'QR Code', el: qrImg },
-        { name: 'Divider', el: divider }
-      ].forEach(({ name, el }) => {
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          const style = getComputedStyle(el);
-          const info: any = {
-            rect: {
-              top: Math.round(rect.top),
-              left: Math.round(rect.left),
-              width: Math.round(rect.width),
-              height: Math.round(rect.height),
-              bottom: Math.round(rect.bottom)
-            },
-            display: style.display,
-            visibility: style.visibility,
-            opacity: style.opacity,
-            position: style.position,
-            transform: style.transform
-          };
-
-          if (el instanceof HTMLImageElement) {
-            info.complete = el.complete;
-            info.naturalWidth = el.naturalWidth;
-            info.naturalHeight = el.naturalHeight;
-            info.src = el.src;
-          }
-
-          // Check if element is outside canvas bounds (1920px height)
-          const outsideCanvas = rect.bottom > 1920 || rect.top < 0 || rect.left < 0 || rect.left > 1080;
-          if (outsideCanvas) {
-            info.WARNING = '⚠️ OUTSIDE CANVAS BOUNDS!';
-          }
-
-          console.log(`${name}:`, info);
-        } else {
-          console.error(`${name}: ❌ NOT FOUND IN DOM`);
-        }
-      });
-      console.log('=== END DIAGNOSTICS ===');
-      // ============ END DIAGNOSTIC LOGGING ============
-
-      console.log('Converting to PNG...');
+      console.log('Converting to PNG with pixelRatio:', pixelRatio);
 
       try {
+        const conversionStart = performance.now();
         const dataUrl = await toPng(shareCardRef.current, {
-          cacheBust: true,
-          pixelRatio, // Dynamic based on device
+          cacheBust: false, // Disable cache busting for speed (images already preloaded)
+          pixelRatio,
           backgroundColor: '#ffffff',
           width: 1080,
           height: 1920,
           skipFonts: false,
-          fetchRequestInit: {
-            mode: 'cors',
-            cache: 'no-cache'
-          },
-          // Add filter to include all images
-          filter: (_node) => {
-            // Include all nodes by default
-            return true;
-          }
+          preferredFontFormat: 'woff2', // Use modern font format for speed
         });
 
-        console.log('PNG conversion successful, data URL length:', dataUrl.length);
+        const conversionEnd = performance.now();
+        console.log(`✅ PNG conversion completed in ${Math.round(conversionEnd - conversionStart)}ms`);
+        console.log('PNG data URL length:', dataUrl.length);
 
         console.log('PNG conversion successful, data URL length:', dataUrl.length);
 
+        const downloadStart = performance.now();
         console.log('Creating download link...');
         const link = document.createElement('a');
         link.download = `IMPULSE-${result.key}.png`;
@@ -198,7 +125,8 @@ export const Result = () => {
         link.click();
         document.body.removeChild(link);
 
-        console.log('Image saved successfully!');
+        const totalTime = performance.now() - startTime;
+        console.log(`✅ Image saved successfully! Total time: ${Math.round(totalTime)}ms`);
       } catch (conversionError) {
         console.error('PNG conversion failed:', conversionError);
         throw new Error(`PNG conversion failed: ${conversionError instanceof Error ? conversionError.message : 'Unknown error'}`);
