@@ -88,9 +88,41 @@ export const Landing = () => {
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
+      {/* Anchor Navigation */}
+      <nav className="sticky top-[73px] z-40 bg-white/95 backdrop-blur-sm border-b border-[#d8bfd1] shadow-sm">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3">
+          <div className="flex items-center justify-center gap-6 sm:gap-8 overflow-x-auto">
+            <a
+              href="#impulse-test"
+              className="font-space-grotesk font-medium text-[13px] sm:text-[14px] text-[#534150] hover:text-[#a800aa] transition-colors whitespace-nowrap"
+            >
+              ImpulseKey Test
+            </a>
+            <a
+              href="#networking-party"
+              className="font-space-grotesk font-medium text-[13px] sm:text-[14px] text-[#534150] hover:text-[#a800aa] transition-colors whitespace-nowrap"
+            >
+              Join Networking Party
+            </a>
+            <a
+              href="#about"
+              className="font-space-grotesk font-medium text-[13px] sm:text-[14px] text-[#534150] hover:text-[#a800aa] transition-colors whitespace-nowrap"
+            >
+              About the Project
+            </a>
+            <a
+              href="#agenda"
+              className="font-space-grotesk font-medium text-[13px] sm:text-[14px] text-[#534150] hover:text-[#a800aa] transition-colors whitespace-nowrap"
+            >
+              Impulse26 CN Agenda
+            </a>
+          </div>
+        </div>
+      </nav>
+
       <main className="flex-1 px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-32 sm:pb-24 w-full" id="main-content">
         {/* Hero Section */}
-        <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start">
+        <div id="impulse-test" className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start scroll-mt-32">
           {/* Left Column - Text Content */}
           <div className="flex-1 space-y-4 sm:space-y-6 md:space-y-8">
             {/* Tag Badge */}
@@ -232,7 +264,7 @@ export const Landing = () => {
         </div>
 
         {/* Networking Party Section - Reduced sizes */}
-        <div className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-12 pb-12">
+        <div id="networking-party" className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-12 pb-12 scroll-mt-32">
           <div className="">
             {/* Title & Info */}
             <div className="text-center mb-8">
@@ -397,7 +429,7 @@ export const Landing = () => {
         </div>
 
         {/* About the Project Section */}
-        <div className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-24">
+        <div id="about" className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-24 scroll-mt-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left: About Text */}
             <div className="lg:col-span-5 space-y-6">
@@ -432,6 +464,196 @@ export const Landing = () => {
                 alt="Impulse26 Key Banner"
                 className="w-full h-auto rounded-lg"
               />
+            </div>
+          </div>
+        </div>
+
+        {/* Impulse26 CN Agenda Section */}
+        <div id="agenda" className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-24 pb-12 scroll-mt-32">
+          <h2 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821] mb-8 text-center">
+            Impulse26 CN Agenda
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Keynote Card */}
+            <div
+              className="relative rounded-2xl p-8 overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, #7858FF 0%, #5d38e3 100%)'
+              }}
+            >
+              <div className="flex justify-between items-start mb-6">
+                <h3 className="font-space-grotesk font-bold text-[32px] text-white">
+                  Keynote
+                </h3>
+                <span className="font-space-grotesk font-medium text-[18px] text-white/90">
+                  10:00-11:00
+                </span>
+              </div>
+
+              <div className="space-y-4">
+                {/* Opening */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="font-space-grotesk font-medium text-[16px] text-white">
+                      Opening
+                    </span>
+                    <span className="font-space-grotesk text-[14px] text-white/80">
+                      10:00
+                    </span>
+                  </div>
+                  <p className="font-hanken-grotesk text-[14px] text-white/90">
+                    Arin Bhowmick
+                  </p>
+                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                    SAP Chief Design Officer
+                  </p>
+                </div>
+
+                {/* Executive Talk */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="font-space-grotesk font-medium text-[16px] text-white">
+                      Executive Talk
+                    </span>
+                    <span className="font-space-grotesk text-[14px] text-white/80">
+                      10:05
+                    </span>
+                  </div>
+                  <p className="font-hanken-grotesk text-[14px] text-white/90">
+                    Sophia Levens
+                  </p>
+                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                    SAP Head of Design System
+                  </p>
+                </div>
+
+                {/* Be a Person Talk */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="font-space-grotesk font-medium text-[16px] text-white">
+                      Be a Person, Then Ship
+                    </span>
+                    <span className="font-space-grotesk text-[14px] text-white/80">
+                      10:30
+                    </span>
+                  </div>
+                  <p className="font-hanken-grotesk text-[14px] text-white/90">
+                    Laura Fehre
+                  </p>
+                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                    Figma Design Advocate
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Expert Talk Card */}
+            <div
+              className="relative rounded-2xl p-8 overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, #5d38e3 0%, #4527a0 100%)'
+              }}
+            >
+              <div className="flex justify-between items-start mb-6">
+                <h3 className="font-space-grotesk font-bold text-[32px] text-white">
+                  Expert Talk
+                </h3>
+                <span className="font-space-grotesk font-medium text-[18px] text-white/90">
+                  11:00-12:00
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {/* Speaker 1 */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
+                    Vera Jia
+                  </p>
+                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                    SAP
+                  </p>
+                </div>
+
+                {/* Speaker 2 */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
+                    Xiaofei Ma
+                  </p>
+                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                    Octave Living
+                  </p>
+                </div>
+
+                {/* Speaker 3 */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
+                    Billie Zhao
+                  </p>
+                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                    SAP
+                  </p>
+                </div>
+
+                {/* Speaker 4 */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
+                    Ya lin
+                  </p>
+                  <p className="font-hanken-grotesk text-[12px] text-white/70">
+                    Microsoft
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Workshop Card */}
+            <div
+              className="relative rounded-2xl p-8 overflow-hidden md:col-span-2"
+              style={{
+                background: 'linear-gradient(135deg, #4527a0 0%, #311b92 100%)'
+              }}
+            >
+              <div className="flex justify-between items-start mb-6">
+                <h3 className="font-space-grotesk font-bold text-[32px] text-white">
+                  Workshop
+                </h3>
+                <span className="font-space-grotesk font-medium text-[18px] text-white/90">
+                  13:00-15:00
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Workshop 1 */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                  <div className="mb-3">
+                    <span className="inline-block px-3 py-1 bg-white/20 rounded-full font-jetbrains-mono text-[11px] text-white mb-3">
+                      PVG03 D1.1
+                    </span>
+                  </div>
+                  <h4 className="font-space-grotesk font-bold text-[20px] text-white mb-2">
+                    BUILD FIGMA AROUND YOU
+                  </h4>
+                  <p className="font-hanken-grotesk text-[14px] text-white/80">
+                    Laura Fehre & Stefan Mehrer, Figma
+                  </p>
+                </div>
+
+                {/* Workshop 2 */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                  <div className="mb-3">
+                    <span className="inline-block px-3 py-1 bg-white/20 rounded-full font-jetbrains-mono text-[11px] text-white mb-3">
+                      PVG03 C5.2
+                    </span>
+                  </div>
+                  <h4 className="font-space-grotesk font-bold text-[20px] text-white mb-2">
+                    DESIGN FOR SUSTAINABILITY
+                  </h4>
+                  <p className="font-hanken-grotesk text-[14px] text-white/80">
+                    Xiaolei Ma, Octaveliving
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

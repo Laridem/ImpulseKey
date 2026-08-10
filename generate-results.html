@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate All Result PNGs</title>
+  <style>
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #fef5fb 0%, #ffffff 100%);
+    }
+    h1 {
+      color: #a800aa;
+      margin-bottom: 10px;
+    }
+    .instructions {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid #d8bfd1;
+      margin-bottom: 30px;
+    }
+    .instructions ol {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+    .instructions li {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .result-button {
+      background: linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%);
+      color: white;
+      border: none;
+      padding: 20px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(168, 0, 170, 0.3);
+    }
+    .result-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(168, 0, 170, 0.4);
+    }
+    .result-button.generated {
+      background: linear-gradient(145deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+    }
+    .batch-controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .batch-button {
+      flex: 1;
+      background: #a800aa;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .batch-button:hover {
+      background: #800082;
+      transform: translateY(-2px);
+    }
+    .status {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #a800aa;
+    }
+    .note {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      color: #856404;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 Generate All Result PNGs</h1>
+
+  <div class="instructions">
+    <h3>📋 Instructions:</h3>
+    <ol>
+      <li><strong>Open Dev Server:</strong> Make sure <code>npm run dev</code> is running at <code>http://localhost:5173</code></li>
+      <li><strong>Click "Start Auto Generation":</strong> Opens each result page automatically</li>
+      <li><strong>Wait 10 seconds per result:</strong> Click "Save as Image" when page loads</li>
+      <li><strong>Save each PNG:</strong> Browser will download to your Downloads folder</li>
+      <li><strong>Move files:</strong> Move downloaded PNGs to <code>/Users/I549685/Documents/SAPTI/generated-results/</code></li>
+    </ol>
+
+    <div class="note">
+      <strong>💡 Tip:</strong> Or click individual result buttons below to generate one at a time.
+    </div>
+  </div>
+
+  <div class="batch-controls">
+    <button class="batch-button" onclick="startAutoGeneration()">
+      🚀 Start Auto Generation
+    </button>
+    <button class="batch-button" onclick="resetProgress()">
+      🔄 Reset Progress
+    </button>
+  </div>
+
+  <div class="status" id="status">
+    Ready to generate 16 results
+  </div>
+
+  <div class="result-grid" id="resultGrid">
+    <!-- Buttons will be generated here -->
+  </div>
+
+  <script>
+    const RESULT_KEYS = [
+      'A11Y', 'AGENT', 'API', 'BTP', 'CORE', 'CTRL',
+      'FIORI', 'FIRE', 'JOULE', 'LOGS', 'OData', 'PIXEL',
+      'QAQ', 'SAFE', 'TRIO', 'VOC'
+    ];
+
+    const BASE_URL = 'http://localhost:5173';
+    let currentIndex = 0;
+    let isAutoGenerating = false;
+
+    // Load progress from localStorage
+    function loadProgress() {
+      const saved = localStorage.getItem('resultPNGProgress');
+      return saved ? JSON.parse(saved) : [];
+    }
+
+    function saveProgress(generated) {
+      localStorage.setItem('resultPNGProgress', JSON.stringify(generated));
+    }
+
+    function resetProgress() {
+      localStorage.removeItem('resultPNGProgress');
+      renderButtons();
+      updateStatus();
+    }
+
+    function markAsGenerated(key) {
+      const progress = loadProgress();
+      if (!progress.includes(key)) {
+        progress.push(key);
+        saveProgress(progress);
+      }
+      renderButtons();
+      updateStatus();
+    }
+
+    function updateStatus() {
+      const progress = loadProgress();
+      const total = RESULT_KEYS.length;
+      const done = progress.length;
+      const statusEl = document.getElementById('status');
+
+      if (done === total) {
+        statusEl.textContent = '✅ All 16 results generated!';
+        statusEl.style.color = '#22c55e';
+      } else {
+        statusEl.textContent = `Progress: ${done}/${total} generated`;
+        statusEl.style.color = '#a800aa';
+      }
+    }
+
+    function openResult(key) {
+      const url = `${BASE_URL}/result/${key}`;
+      window.open(url, '_blank');
+
+      // Mark as generated after 10 seconds (time to download)
+      setTimeout(() => {
+        if (confirm(`Did you successfully download ${key}.png?`)) {
+          markAsGenerated(key);
+        }
+      }, 10000);
+    }
+
+    function renderButtons() {
+      const grid = document.getElementById('resultGrid');
+      const progress = loadProgress();
+
+      grid.innerHTML = RESULT_KEYS.map(key => {
+        const isGenerated = progress.includes(key);
+        const className = isGenerated ? 'result-button generated' : 'result-button';
+        const icon = isGenerated ? '✅' : '📸';
+        return `
+          <button
+            class="${className}"
+            onclick="openResult('${key}')"
+          >
+            ${icon} ${key}
+          </button>
+        `;
+      }).join('');
+    }
+
+    async function startAutoGeneration() {
+      if (isAutoGenerating) return;
+
+      isAutoGenerating = true;
+      const progress = loadProgress();
+      const remaining = RESULT_KEYS.filter(key => !progress.includes(key));
+
+      if (remaining.length === 0) {
+        alert('All results already generated!');
+        isAutoGenerating = false;
+        return;
+      }
+
+      for (const key of remaining) {
+        const url = `${BASE_URL}/result/${key}`;
+        const statusEl = document.getElementById('status');
+        statusEl.textContent = `⏳ Opening ${key}... (${remaining.indexOf(key) + 1}/${remaining.length})`;
+
+        window.open(url, '_blank');
+
+        // Wait 15 seconds before next result
+        await new Promise(resolve => setTimeout(resolve, 15000));
+
+        if (confirm(`Did you successfully download ${key}.png?`)) {
+          markAsGenerated(key);
+        }
+      }
+
+      isAutoGenerating = false;
+      alert('✅ Auto generation complete! Check your Downloads folder.');
+    }
+
+    // Initialize
+    renderButtons();
+    updateStatus();
+  </script>
+</body>
+</html>

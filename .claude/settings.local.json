@@ -54,7 +54,8 @@
       "Bash(grep -n \"^      </div>$\" app/src/pages/AdminPreview.tsx)",
       "Bash(awk '{print $2}')",
       "Bash(ping *)",
-      "Bash(/usr/libexec/ApplicationFirewall/socketfilterfw *)"
+      "Bash(/usr/libexec/ApplicationFirewall/socketfilterfw *)",
+      "Bash(grep \"\\\\.png$\")"
     ]
   }
 }
