@@ -474,7 +474,7 @@ export const Landing = () => {
         </div>
 
         {/* About the Project Section */}
-        <div id="about" className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-24 scroll-mt-32">
+        <div id="about" className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-24 pb-16 scroll-mt-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left: About Text */}
             <div className="lg:col-span-5 space-y-6">
