@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import { Result } from '../data/types';
 import { getKeycapAsset } from '../utils/assets';
 import { getColorGroupForResult } from '../data/colorGroups';
+import './ShareCard.css';
 
 interface ShareCardProps {
   result: Result;
@@ -45,7 +46,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
     return (
       <div
         ref={ref}
-        className="relative w-[1080px] h-[1920px] overflow-hidden flex flex-col"
+        className="share-card-export-root relative w-[1080px] h-[1920px] overflow-hidden flex flex-col"
         style={{
           background: '#ffffff',
           boxShadow: `

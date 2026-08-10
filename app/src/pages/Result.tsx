@@ -93,6 +93,78 @@ export const Result = () => {
       const isMobile = window.innerWidth < 1024;
       const pixelRatio = isMobile ? 1 : 2;
 
+      // ============ DIAGNOSTIC LOGGING FOR MOBILE ISSUE ============
+      const exportRoot = shareCardRef.current;
+      console.log('=== EXPORT DIAGNOSTICS ===');
+      console.log('Viewport:', {
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+        dpr: window.devicePixelRatio,
+        isMobile
+      });
+
+      const rootRect = exportRoot.getBoundingClientRect();
+      console.log('Export container rect:', {
+        top: rootRect.top,
+        left: rootRect.left,
+        width: rootRect.width,
+        height: rootRect.height,
+        bottom: rootRect.bottom,
+        right: rootRect.right
+      });
+
+      // Check critical elements that might be missing on mobile
+      const keycapImg = exportRoot.querySelector('img[alt*="' + result.key + '"]') ||
+                        exportRoot.querySelector('img[src*="result-cards"]');
+      const anvilsImg = exportRoot.querySelector('img[alt="Anvils"]');
+      const qrImg = exportRoot.querySelector('img[alt="Scan QR Code"]');
+      const divider = exportRoot.querySelector('.h-\\[2px\\]');
+
+      [
+        { name: 'Keycap Image', el: keycapImg },
+        { name: 'Anvils Logo', el: anvilsImg },
+        { name: 'QR Code', el: qrImg },
+        { name: 'Divider', el: divider }
+      ].forEach(({ name, el }) => {
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const style = getComputedStyle(el);
+          const info: any = {
+            rect: {
+              top: Math.round(rect.top),
+              left: Math.round(rect.left),
+              width: Math.round(rect.width),
+              height: Math.round(rect.height),
+              bottom: Math.round(rect.bottom)
+            },
+            display: style.display,
+            visibility: style.visibility,
+            opacity: style.opacity,
+            position: style.position,
+            transform: style.transform
+          };
+
+          if (el instanceof HTMLImageElement) {
+            info.complete = el.complete;
+            info.naturalWidth = el.naturalWidth;
+            info.naturalHeight = el.naturalHeight;
+            info.src = el.src;
+          }
+
+          // Check if element is outside canvas bounds (1920px height)
+          const outsideCanvas = rect.bottom > 1920 || rect.top < 0 || rect.left < 0 || rect.left > 1080;
+          if (outsideCanvas) {
+            info.WARNING = '⚠️ OUTSIDE CANVAS BOUNDS!';
+          }
+
+          console.log(`${name}:`, info);
+        } else {
+          console.error(`${name}: ❌ NOT FOUND IN DOM`);
+        }
+      });
+      console.log('=== END DIAGNOSTICS ===');
+      // ============ END DIAGNOSTIC LOGGING ============
+
       console.log('Converting to PNG...');
       const dataUrl = await toPng(shareCardRef.current, {
         cacheBust: true,
