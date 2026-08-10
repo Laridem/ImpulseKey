@@ -166,33 +166,43 @@ export const Result = () => {
       // ============ END DIAGNOSTIC LOGGING ============
 
       console.log('Converting to PNG...');
-      const dataUrl = await toPng(shareCardRef.current, {
-        cacheBust: true,
-        pixelRatio, // Dynamic based on device
-        backgroundColor: '#ffffff',
-        width: 1080,
-        height: 1920,
-        skipFonts: false,
-        fetchRequestInit: {
-          mode: 'cors',
-          cache: 'no-cache'
-        },
-        // Add filter to include all images
-        filter: (_node) => {
-          // Include all nodes by default
-          return true;
-        }
-      });
 
-      console.log('Creating download link...');
-      const link = document.createElement('a');
-      link.download = `IMPULSE-${result.key}.png`;
-      link.href = dataUrl;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      try {
+        const dataUrl = await toPng(shareCardRef.current, {
+          cacheBust: true,
+          pixelRatio, // Dynamic based on device
+          backgroundColor: '#ffffff',
+          width: 1080,
+          height: 1920,
+          skipFonts: false,
+          fetchRequestInit: {
+            mode: 'cors',
+            cache: 'no-cache'
+          },
+          // Add filter to include all images
+          filter: (_node) => {
+            // Include all nodes by default
+            return true;
+          }
+        });
 
-      console.log('Image saved successfully!');
+        console.log('PNG conversion successful, data URL length:', dataUrl.length);
+
+        console.log('PNG conversion successful, data URL length:', dataUrl.length);
+
+        console.log('Creating download link...');
+        const link = document.createElement('a');
+        link.download = `IMPULSE-${result.key}.png`;
+        link.href = dataUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        console.log('Image saved successfully!');
+      } catch (conversionError) {
+        console.error('PNG conversion failed:', conversionError);
+        throw new Error(`PNG conversion failed: ${conversionError instanceof Error ? conversionError.message : 'Unknown error'}`);
+      }
     } catch (error) {
       console.error('Failed to capture image:', error);
       alert(`Failed to save image: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`);

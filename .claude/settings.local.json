@@ -51,7 +51,10 @@
       "Bash(grep -E \"\\\\.\\(jpg|png\\)$\")",
       "Read(//tmp/**)",
       "Bash(git restore *)",
-      "Bash(grep -n \"^      </div>$\" app/src/pages/AdminPreview.tsx)"
+      "Bash(grep -n \"^      </div>$\" app/src/pages/AdminPreview.tsx)",
+      "Bash(awk '{print $2}')",
+      "Bash(ping *)",
+      "Bash(/usr/libexec/ApplicationFirewall/socketfilterfw *)"
     ]
   }
 }

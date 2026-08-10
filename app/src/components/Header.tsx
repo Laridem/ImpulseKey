@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useLanguage } from '../i18n/LanguageContext';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface HeaderProps {
   showRetakeButton?: boolean;
@@ -14,6 +14,8 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
   const { language } = useLanguage();
   const [clickCount, setClickCount] = useState(0);
   const clickTimeoutRef = useRef<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const handleLogoClick = (e: React.MouseEvent) => {
     // Prevent default navigation if we're tracking clicks
@@ -51,6 +53,20 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
     }, 2000);
   };
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [menuOpen]);
+
   return (
     <>
       {/* Skip to main content link - Accessibility */}
@@ -82,27 +98,81 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
             />
           </div>
 
-          {/* Right side: Home button (optional) + Retake button (optional) + Language Switcher */}
-          <div className="flex items-center gap-3">
-            {showHomeButton && (
-              <button
-                onClick={() => navigate('/')}
-                className="px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95 flex items-center gap-2"
-                aria-label={language === 'zh' ? '回到首页' : 'Go to Home'}
-              >
-                <span className="text-[16px]">🏠</span>
-                <span className="hidden sm:inline">{language === 'zh' ? '首页' : 'HOME'}</span>
-              </button>
+          {/* Right side: Actions + Language Switcher */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Desktop: Show all buttons */}
+            <div className="hidden sm:flex items-center gap-3">
+              {showHomeButton && (
+                <button
+                  onClick={() => navigate('/')}
+                  className="px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95 flex items-center gap-2"
+                  aria-label={language === 'zh' ? '回到首页' : 'Go to Home'}
+                >
+                  <span className="text-[16px]">🏠</span>
+                  <span>{language === 'zh' ? '首页' : 'HOME'}</span>
+                </button>
+              )}
+              {showRetakeButton && onRetake && (
+                <button
+                  onClick={onRetake}
+                  className="px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] uppercase rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95"
+                >
+                  {language === 'zh' ? '重新测试' : 'RETAKE TEST'}
+                </button>
+              )}
+              <LanguageSwitcher />
+            </div>
+
+            {/* Mobile: Overflow menu */}
+            {(showHomeButton || showRetakeButton) && (
+              <div className="sm:hidden relative" ref={menuRef}>
+                <button
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="p-2 text-[#a800aa] rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95"
+                  aria-label="Menu"
+                >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="4" r="1.5" fill="currentColor"/>
+                    <circle cx="10" cy="10" r="1.5" fill="currentColor"/>
+                    <circle cx="10" cy="16" r="1.5" fill="currentColor"/>
+                  </svg>
+                </button>
+
+                {/* Dropdown menu */}
+                {menuOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg border-2 border-[#a800aa] shadow-lg overflow-hidden z-50">
+                    {showHomeButton && (
+                      <button
+                        onClick={() => {
+                          navigate('/');
+                          setMenuOpen(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-[#a800aa] font-space-grotesk font-bold text-[14px] hover:bg-[#fef5fb] transition-colors flex items-center gap-2 border-b border-[#f1ddea]"
+                      >
+                        <span className="text-[16px]">🏠</span>
+                        {language === 'zh' ? '首页' : 'HOME'}
+                      </button>
+                    )}
+                    {showRetakeButton && onRetake && (
+                      <button
+                        onClick={() => {
+                          onRetake();
+                          setMenuOpen(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-[#a800aa] font-space-grotesk font-bold text-[14px] hover:bg-[#fef5fb] transition-colors uppercase"
+                      >
+                        {language === 'zh' ? '重新测试' : 'RETAKE TEST'}
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
             )}
-            {showRetakeButton && onRetake && (
-              <button
-                onClick={onRetake}
-                className="px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] uppercase rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95"
-              >
-                {language === 'zh' ? '重新测试' : 'RETAKE TEST'}
-              </button>
-            )}
-            <LanguageSwitcher />
+
+            {/* Language switcher always visible */}
+            <div className="sm:hidden">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       </header>

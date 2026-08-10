@@ -6,66 +6,28 @@
 
 .share-card-export-root {
   /* Fixed dimensions - never responsive */
-  width: 1080px !important;
-  height: 1920px !important;
-  min-width: 1080px !important;
-  min-height: 1920px !important;
-  max-width: 1080px !important;
-  max-height: 1920px !important;
+  width: 1080px;
+  height: 1920px;
+  min-width: 1080px;
+  min-height: 1920px;
 
-  /* Prevent any layout shifts */
-  overflow: visible !important;
-  position: relative !important;
-  transform: none !important;
+  /* Prevent layout shifts */
+  overflow: visible;
+  position: relative;
 
   /* Ensure proper rendering context */
-  display: flex !important;
-  flex-direction: column !important;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Ensure all children ignore responsive constraints */
-.share-card-export-root * {
-  max-width: none !important;
-  max-height: none !important;
-}
-
-/* Force critical elements to always render */
-.share-card-export-root img {
+/* Force critical bottom images to always render */
+.share-card-export-root img[alt="Anvils"],
+.share-card-export-root img[alt="Scan QR Code"] {
   display: block !important;
   visibility: visible !important;
 }
 
-/* Preserve opacity for images that have specific opacity values */
-.share-card-export-root img[style*="opacity"] {
-  /* opacity will be preserved from inline style */
-}
-
-/* Ensure bottom elements are not clipped */
-.share-card-export-root > * {
-  flex-shrink: 0 !important;
-}
-
-/* Force images to maintain their specified dimensions */
-.share-card-export-root img[class*="w-"] {
-  width: var(--img-width, auto) !important;
-}
-
-.share-card-export-root img[class*="h-"] {
-  height: var(--img-height, auto) !important;
-}
-
-/* Ensure text elements render properly */
-.share-card-export-root [class*="font-"] {
-  display: block !important;
-  visibility: visible !important;
-}
-
-/* Prevent any transforms from mobile styles */
-.share-card-export-root * {
-  transform: none !important;
-}
-
-/* Allow individual elements to have their own transforms if specified inline */
-.share-card-export-root [style*="transform"] {
-  transform: revert !important;
+/* Prevent bottom container from being clipped */
+.share-card-export-root > div:last-child {
+  flex-shrink: 0;
 }
