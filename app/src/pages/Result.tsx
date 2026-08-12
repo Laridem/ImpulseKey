@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { toPng } from 'html-to-image';
+import { toJpeg } from 'html-to-image';
 import confetti from 'canvas-confetti';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
@@ -13,6 +13,7 @@ import { ShareCard } from '../components/ShareCard';
 import { getAccessibleTextColor } from '../utils/contrast';
 import { getAllResultKeys } from '../data/results';
 import { RESULT_HASHTAGS } from '../data/hashtags';
+import { getExportSettings, handleImageExport, formatFileSize } from '../utils/imageExport';
 
 export const Result = () => {
   const { key } = useParams<{ key: string }>();
@@ -97,6 +98,17 @@ export const Result = () => {
       const startTime = performance.now();
       console.log('Starting image capture...');
 
+      // Get optimal export settings based on device
+      const settings = getExportSettings();
+      console.log('📱 Device detection:', {
+        isMobile: settings.device.isMobile,
+        isWeChat: settings.device.isWeChat,
+        isIOS: settings.device.isIOS,
+        needsPreview: settings.device.needsPreview,
+        pixelRatio: settings.pixelRatio,
+        format: settings.format
+      });
+
       // Pre-load all images before capture to ensure they're ready
       const imagesToPreload = [
         getKeycapAsset(result.key),
@@ -129,48 +141,49 @@ export const Result = () => {
       // Reduced wait time - images are already preloaded
       await new Promise(resolve => setTimeout(resolve, 100));
 
-      // Use lower pixelRatio on mobile for faster generation
-      const isMobile = window.innerWidth < 1024;
-      const pixelRatio = isMobile ? 1 : 2;
-
-      console.log('Converting to PNG with pixelRatio:', pixelRatio);
+      console.log(`Converting to ${settings.format} with pixelRatio: ${settings.pixelRatio}, quality: ${settings.quality}`);
 
       try {
         const conversionStart = performance.now();
-        const dataUrl = await toPng(shareCardRef.current, {
+
+        // Use toJpeg instead of toPng for better compression
+        const dataUrl = await toJpeg(shareCardRef.current, {
           cacheBust: false, // Disable cache busting for speed (images already preloaded)
-          pixelRatio,
+          pixelRatio: settings.pixelRatio,
+          quality: settings.quality, // JPEG quality (0.9 = 90%)
           backgroundColor: '#ffffff',
-          width: 1080,
-          height: 1920,
+          width: settings.width,
+          height: settings.height,
           skipFonts: false,
           preferredFontFormat: 'woff2', // Use modern font format for speed
         });
 
         const conversionEnd = performance.now();
-        console.log(`✅ PNG conversion completed in ${Math.round(conversionEnd - conversionStart)}ms`);
-        console.log('PNG data URL length:', dataUrl.length);
+        const estimatedSize = dataUrl.length * 0.75; // Rough estimate of decoded size
+        console.log(`✅ JPEG conversion completed in ${Math.round(conversionEnd - conversionStart)}ms`);
+        console.log(`📦 Data URL length: ${formatFileSize(dataUrl.length)} (estimated decoded: ${formatFileSize(estimatedSize)})`);
 
-        console.log('PNG conversion successful, data URL length:', dataUrl.length);
-
-        console.log('Creating download link...');
-        const link = document.createElement('a');
-        link.download = `IMPULSE-${result.key}.png`;
-        link.href = dataUrl;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Use intelligent export strategy based on device
+        const filename = `IMPULSE-${result.key}.jpg`;
+        await handleImageExport(dataUrl, filename, language, () => {
+          setIsCapturing(false);
+        });
 
         const totalTime = performance.now() - startTime;
-        console.log(`✅ Image saved successfully! Total time: ${Math.round(totalTime)}ms`);
+        console.log(`✅ Export completed! Total time: ${Math.round(totalTime)}ms`);
+
+        // Don't reset isCapturing here if preview modal is shown
+        // The modal's onClose will handle it
+        if (!settings.device.needsPreview) {
+          setIsCapturing(false);
+        }
       } catch (conversionError) {
-        console.error('PNG conversion failed:', conversionError);
-        throw new Error(`PNG conversion failed: ${conversionError instanceof Error ? conversionError.message : 'Unknown error'}`);
+        console.error('JPEG conversion failed:', conversionError);
+        throw new Error(`Image conversion failed: ${conversionError instanceof Error ? conversionError.message : 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Failed to capture image:', error);
       alert(`Failed to save image: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`);
-    } finally {
       setIsCapturing(false);
     }
   };

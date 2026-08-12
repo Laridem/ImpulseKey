@@ -51,7 +51,7 @@ export const Landing = () => {
   const booths = [
     {
       id: 'sensory',
-      name: 'Sensory Studio',
+      name: 'Sensory Booth',
       subtitleEN: 'Experience design with all your senses',
       subtitleCN: '调动感官，发现设计的另一面',
       taglineEN: 'Experience design with all your senses.',
@@ -59,11 +59,11 @@ export const Landing = () => {
       color: '#A100C2',
       gradient: 'linear-gradient(135deg, #A100C2 0%, #c026d3 100%)',
       textColor: '#ffffff',
-      icon: '/assets/booth-icons/Sensory Studio.png'
+      icon: '/assets/booth-icons/Sensory Booth.png'
     },
     {
       id: 'maker',
-      name: 'Maker Studio',
+      name: 'Maker Booth',
       subtitleEN: 'Texture of Life',
       subtitleCN: '生活的纹理',
       taglineEN: 'Texture of Life: Weaving new stories from old fabrics.',
@@ -71,11 +71,11 @@ export const Landing = () => {
       color: '#FFC933',
       gradient: 'linear-gradient(135deg, #FFC933 0%, #ffd666 100%)',
       textColor: '#231821',
-      icon: '/assets/booth-icons/Maker Studio.png'
+      icon: '/assets/booth-icons/Maker Booth.png'
     },
     {
       id: 'huddle',
-      name: 'Huddle Studio',
+      name: 'Huddle Booth',
       subtitleEN: 'Spot the AI imposter',
       subtitleCN: '谁是卧底',
       taglineEN: 'Humans, AI, and a secret identity. Can you spot the imposter?',
@@ -83,11 +83,11 @@ export const Landing = () => {
       color: '#64EDD2',
       gradient: 'linear-gradient(135deg, #64EDD2 0%, #7ff5e0 100%)',
       textColor: '#231821',
-      icon: '/assets/booth-icons/Huddle Studio.png'
+      icon: '/assets/booth-icons/Huddle Booth.png'
     },
     {
       id: 'game',
-      name: 'Game Studio',
+      name: 'Game Booth',
       subtitleEN: 'Play and create',
       subtitleCN: '边玩边创作',
       taglineEN: 'Play, sketch, guess, and challenge your creativity.',
@@ -95,7 +95,7 @@ export const Landing = () => {
       color: '#7858FF',
       gradient: 'linear-gradient(135deg, #7858FF 0%, #9575ff 100%)',
       textColor: '#ffffff',
-      icon: '/assets/booth-icons/Game Studio.png'
+      icon: '/assets/booth-icons/Game Booth.png'
     },
     {
       id: 'figma',
@@ -750,24 +750,24 @@ export const Landing = () => {
                     <span className="font-space-grotesk font-bold text-[18px] text-black">Figma</span>
                   </div>
 
-                  {/* Maker Studio */}
+                  {/* Maker Booth */}
                   <div className="bg-[#FFC933] rounded-lg p-5 flex flex-col items-center justify-center">
-                    <span className="font-space-grotesk font-bold text-[18px] text-black text-center">Maker Studio</span>
+                    <span className="font-space-grotesk font-bold text-[18px] text-black text-center">Maker Booth</span>
                   </div>
 
-                  {/* Huddle Studio */}
+                  {/* Huddle Booth */}
                   <div className="bg-[#7858FF] rounded-lg p-5 flex flex-col items-center justify-center">
-                    <span className="font-space-grotesk font-bold text-[18px] text-white text-center">Huddle Studio</span>
+                    <span className="font-space-grotesk font-bold text-[18px] text-white text-center">Huddle Booth</span>
                   </div>
 
-                  {/* Sensory Studio */}
+                  {/* Sensory Booth */}
                   <div className="bg-[#64EDD2] rounded-lg p-5 flex flex-col items-center justify-center">
-                    <span className="font-space-grotesk font-bold text-[18px] text-black text-center">Sensory Studio</span>
+                    <span className="font-space-grotesk font-bold text-[18px] text-black text-center">Sensory Booth</span>
                   </div>
 
-                  {/* Game Studio - Full width */}
+                  {/* Game Booth - Full width */}
                   <div className="bg-black rounded-lg p-5 flex items-center justify-center col-span-2">
-                    <span className="font-space-grotesk font-bold text-[18px] text-white">Game Studio</span>
+                    <span className="font-space-grotesk font-bold text-[18px] text-white">Game Booth</span>
                   </div>
                 </div>
               </div>

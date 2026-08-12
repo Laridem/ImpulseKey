@@ -192,7 +192,7 @@ export const AdminPreview = () => {
         <div className="max-w-[1000px] mx-auto space-y-4 sm:space-y-6">
           {/* Header Card with Keycap */}
           <div className="bg-white rounded-lg border border-[#e5e2e8] shadow-sm p-4 sm:p-6 lg:p-8">
-            <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start">
+            <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-center sm:items-start">
               {/* Keycap Preview */}
               <div className="flex-shrink-0 mx-auto sm:mx-0">
                 <div
