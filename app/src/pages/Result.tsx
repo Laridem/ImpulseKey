@@ -433,65 +433,57 @@ export const Result = () => {
                     }}
                   />
 
-                  <div className="flex gap-4 items-center relative z-10">
-                    {/* Color swatch */}
-                    <div
-                      className="relative w-10 h-10 rounded-lg flex-shrink-0"
-                      style={{
-                        background: `
-                          radial-gradient(circle at 30% 30%, ${hexToRgba(colorGroup.color, 0.9)} 0%, ${colorGroup.color} 100%)
-                        `,
-                        boxShadow: `
-                          0 1px 2px 0 rgba(255,255,255,0.5) inset,
-                          0 2px 4px 0 rgba(0,0,0,0.15),
-                          0 0 12px -2px ${hexToRgba(colorGroup.color, 0.6)}
-                        `
-                      }}
-                    />
-
-                    {/* Text content - grouped */}
-                    <div className="flex-1 flex flex-col gap-3">
-                      {/* Your Impulse Color group */}
-                      <div className="flex flex-col gap-1">
-                        <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
-                          YOUR IMPULSE COLOR
-                        </p>
-                        <div className="flex items-baseline gap-3">
-                          <p
-                            className="font-jetbrains-mono font-medium text-[14px] leading-[20px]"
-                            style={{ color: impulseColorText }}
-                          >
-                            {colorGroup.color.toUpperCase()}
-                          </p>
-                          <p
-                            className="font-space-grotesk font-bold text-[16px] leading-[20px] uppercase"
-                            style={{ color: impulseColorText }}
-                          >
-                            {language === 'zh' ? colorGroup.nameCN : colorGroup.nameEN}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Divider line */}
+                  {/* 5-column grid layout */}
+                  <div className="grid grid-cols-5 gap-4 items-center relative z-10">
+                    {/* Column 1: Color swatch */}
+                    <div className="col-span-1 flex justify-center">
                       <div
-                        className="h-[1px] w-full"
+                        className="relative w-10 h-10 rounded-lg"
                         style={{
-                          background: `linear-gradient(90deg, ${hexToRgba(impulseColor, 0.3)} 0%, transparent 100%)`
+                          background: `
+                            radial-gradient(circle at 30% 30%, ${hexToRgba(colorGroup.color, 0.9)} 0%, ${colorGroup.color} 100%)
+                          `,
+                          boxShadow: `
+                            0 1px 2px 0 rgba(255,255,255,0.5) inset,
+                            0 2px 4px 0 rgba(0,0,0,0.15),
+                            0 0 12px -2px ${hexToRgba(colorGroup.color, 0.6)}
+                          `
                         }}
                       />
+                    </div>
 
-                      {/* Core Personality group */}
-                      <div className="flex flex-col gap-1">
-                        <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
-                          CORE PERSONALITY
-                        </p>
+                    {/* Columns 2-3: Your Impulse Color */}
+                    <div className="col-span-2 flex flex-col gap-1">
+                      <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
+                        YOUR IMPULSE COLOR
+                      </p>
+                      <div className="flex items-baseline gap-2">
                         <p
-                          className="font-space-grotesk font-semibold text-[14px] leading-[22px]"
+                          className="font-jetbrains-mono font-medium text-[13px] leading-[18px]"
                           style={{ color: impulseColorText }}
                         >
-                          {language === 'zh' ? colorGroup.descriptionCN : colorGroup.descriptionEN}
+                          {colorGroup.color.toUpperCase()}
+                        </p>
+                        <p
+                          className="font-space-grotesk font-bold text-[14px] leading-[18px] uppercase"
+                          style={{ color: impulseColorText }}
+                        >
+                          {language === 'zh' ? colorGroup.nameCN : colorGroup.nameEN}
                         </p>
                       </div>
+                    </div>
+
+                    {/* Columns 4-5: Core Personality */}
+                    <div className="col-span-2 flex flex-col gap-1">
+                      <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
+                        CORE PERSONALITY
+                      </p>
+                      <p
+                        className="font-space-grotesk font-semibold text-[13px] leading-[20px]"
+                        style={{ color: impulseColorText }}
+                      >
+                        {language === 'zh' ? colorGroup.descriptionCN : colorGroup.descriptionEN}
+                      </p>
                     </div>
                   </div>
                 </div>
