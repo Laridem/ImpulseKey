@@ -249,8 +249,6 @@ export const Result = () => {
   const impulseColorText = getDarkerImpulseColor(impulseColor); // Darker version for text on white
   const cardBg = hexToRgba(impulseColor, 0.08);
   const cardBorder = hexToRgba(impulseColor, 0.20);
-  const quoteBg = hexToRgba(impulseColor, 0.25); // Increased from 0.15 to 0.25
-  const quoteTextColor = getQuoteTextColor(impulseColor); // Smart text color based on luminance
   const punchlineTextColor = getPunchlineTextColor(impulseColor); // WCAG-compliant text for punchline
 
   // Get contrasting Impulse colors for neon glitch effect
