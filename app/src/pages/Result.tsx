@@ -412,62 +412,7 @@ export const Result = () => {
               </div>
 
               {/* Color Badge - 3D Pill Style with Core Personality */}
-              <div className="pt-2 flex flex-col gap-3">
-                {/* Color Badge */}
-                <div
-                  className="relative border-2 rounded-full p-4 flex gap-4 items-center overflow-hidden transition-all duration-300 hover:scale-[1.02]"
-                  style={{
-                    background: `linear-gradient(145deg, ${hexToRgba(impulseColor, 0.12)} 0%, ${hexToRgba(impulseColor, 0.06)} 100%)`,
-                    borderColor: hexToRgba(impulseColor, 0.4),
-                    boxShadow: `
-                      0 1px 0 0 rgba(255,255,255,0.6) inset,
-                      0 2px 8px -2px ${hexToRgba(impulseColor, 0.3)},
-                      0 4px 16px -4px ${hexToRgba(impulseColor, 0.2)}
-                    `
-                  }}
-                >
-                  {/* Subtle highlight overlay */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none"
-                    style={{
-                      background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%)'
-                    }}
-                  />
-                  <div
-                    className="relative w-10 h-10 rounded-lg flex-shrink-0"
-                    style={{
-                      background: `
-                        radial-gradient(circle at 30% 30%, ${hexToRgba(colorGroup.color, 0.9)} 0%, ${colorGroup.color} 100%)
-                      `,
-                      boxShadow: `
-                        0 1px 2px 0 rgba(255,255,255,0.5) inset,
-                        0 2px 4px 0 rgba(0,0,0,0.15),
-                        0 0 12px -2px ${hexToRgba(colorGroup.color, 0.6)}
-                      `
-                    }}
-                  />
-                  <div className="flex flex-col gap-2">
-                    <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
-                      YOUR IMPULSE COLOR
-                    </p>
-                    <div className="flex items-baseline gap-3">
-                      <p
-                        className="font-jetbrains-mono font-medium text-[14px] leading-[20px]"
-                        style={{ color: impulseColorText }}
-                      >
-                        {colorGroup.color.toUpperCase()}
-                      </p>
-                      <p
-                        className="font-space-grotesk font-bold text-[16px] leading-[20px] uppercase"
-                        style={{ color: impulseColorText }}
-                      >
-                        {language === 'zh' ? colorGroup.nameCN : colorGroup.nameEN}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Core Personality Badge */}
+              <div className="pt-2">
                 <div
                   className="relative border-2 rounded-full p-4 overflow-hidden transition-all duration-300 hover:scale-[1.02]"
                   style={{
@@ -487,16 +432,67 @@ export const Result = () => {
                       background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%)'
                     }}
                   />
-                  <div className="flex flex-col gap-2 relative z-10">
-                    <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
-                      CORE PERSONALITY
-                    </p>
-                    <p
-                      className="font-space-grotesk font-semibold text-[14px] leading-[22px]"
-                      style={{ color: impulseColorText }}
-                    >
-                      {language === 'zh' ? colorGroup.descriptionCN : colorGroup.descriptionEN}
-                    </p>
+
+                  <div className="flex gap-4 items-center relative z-10">
+                    {/* Color swatch */}
+                    <div
+                      className="relative w-10 h-10 rounded-lg flex-shrink-0"
+                      style={{
+                        background: `
+                          radial-gradient(circle at 30% 30%, ${hexToRgba(colorGroup.color, 0.9)} 0%, ${colorGroup.color} 100%)
+                        `,
+                        boxShadow: `
+                          0 1px 2px 0 rgba(255,255,255,0.5) inset,
+                          0 2px 4px 0 rgba(0,0,0,0.15),
+                          0 0 12px -2px ${hexToRgba(colorGroup.color, 0.6)}
+                        `
+                      }}
+                    />
+
+                    {/* Text content - grouped */}
+                    <div className="flex-1 flex flex-col gap-3">
+                      {/* Your Impulse Color group */}
+                      <div className="flex flex-col gap-1">
+                        <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
+                          YOUR IMPULSE COLOR
+                        </p>
+                        <div className="flex items-baseline gap-3">
+                          <p
+                            className="font-jetbrains-mono font-medium text-[14px] leading-[20px]"
+                            style={{ color: impulseColorText }}
+                          >
+                            {colorGroup.color.toUpperCase()}
+                          </p>
+                          <p
+                            className="font-space-grotesk font-bold text-[16px] leading-[20px] uppercase"
+                            style={{ color: impulseColorText }}
+                          >
+                            {language === 'zh' ? colorGroup.nameCN : colorGroup.nameEN}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Divider line */}
+                      <div
+                        className="h-[1px] w-full"
+                        style={{
+                          background: `linear-gradient(90deg, ${hexToRgba(impulseColor, 0.3)} 0%, transparent 100%)`
+                        }}
+                      />
+
+                      {/* Core Personality group */}
+                      <div className="flex flex-col gap-1">
+                        <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
+                          CORE PERSONALITY
+                        </p>
+                        <p
+                          className="font-space-grotesk font-semibold text-[14px] leading-[22px]"
+                          style={{ color: impulseColorText }}
+                        >
+                          {language === 'zh' ? colorGroup.descriptionCN : colorGroup.descriptionEN}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
