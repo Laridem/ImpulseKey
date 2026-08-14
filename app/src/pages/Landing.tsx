@@ -125,59 +125,62 @@ export const Landing = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Header />
+      {/* Combined sticky header with navigation */}
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <Header />
 
-      {/* Anchor Navigation */}
-      <nav className="sticky top-[73px] z-40 bg-white/95 backdrop-blur-sm border-b border-[#d8bfd1] shadow-sm">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3">
-          <div className="flex items-center justify-center gap-6 sm:gap-8 overflow-x-auto">
-            <a
-              href="#impulse-test"
-              className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
-                activeSection === 'impulse-test' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
-              }`}
-            >
-              ImpulseKey
-              {activeSection === 'impulse-test' && (
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
-              )}
-            </a>
-            <a
-              href="#networking-party"
-              className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
-                activeSection === 'networking-party' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
-              }`}
-            >
-              Networking Party
-              {activeSection === 'networking-party' && (
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
-              )}
-            </a>
-            <a
-              href="#about"
-              className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
-                activeSection === 'about' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
-              }`}
-            >
-              About
-              {activeSection === 'about' && (
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
-              )}
-            </a>
-            <a
-              href="#agenda"
-              className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
-                activeSection === 'agenda' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
-              }`}
-            >
-              Agenda
-              {activeSection === 'agenda' && (
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
-              )}
-            </a>
+        {/* Anchor Navigation */}
+        <nav className="border-t border-[#d8bfd1]">
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3">
+            <div className="flex items-center justify-center gap-6 sm:gap-8 overflow-x-auto">
+              <a
+                href="#impulse-test"
+                className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                  activeSection === 'impulse-test' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+                }`}
+              >
+                ImpulseKey
+                {activeSection === 'impulse-test' && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+                )}
+              </a>
+              <a
+                href="#networking-party"
+                className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                  activeSection === 'networking-party' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+                }`}
+              >
+                Networking Party
+                {activeSection === 'networking-party' && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+                )}
+              </a>
+              <a
+                href="#about"
+                className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                  activeSection === 'about' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+                }`}
+              >
+                About
+                {activeSection === 'about' && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+                )}
+              </a>
+              <a
+                href="#agenda"
+                className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                  activeSection === 'agenda' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+                }`}
+              >
+                Agenda
+                {activeSection === 'agenda' && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+                )}
+              </a>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       <main className="flex-1 px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-32 sm:pb-24 w-full" id="main-content">
         {/* Hero Section */}

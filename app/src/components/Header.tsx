@@ -75,7 +75,7 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
         Skip to main content
       </a>
 
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#d8bfd1] shadow-sm">
+      <header className="bg-white/95 backdrop-blur-sm border-b border-[#d8bfd1]">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3 sm:py-4 flex items-center justify-between">
           {/* Logo - Secret Entrance: Click 5 times */}
           <div
