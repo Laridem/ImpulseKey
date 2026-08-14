@@ -238,12 +238,6 @@ export const Result = () => {
     return getAccessibleTextColor(bgColor);
   };
 
-  // Helper function to determine text color for quote blocks (on semi-transparent bg)
-  const getQuoteTextColor = (bgColor: string): string => {
-    // For semi-transparent backgrounds over white, use WCAG-compliant color
-    return getAccessibleTextColor(bgColor);
-  };
-
   // Dynamic colors based on impulse color
   const impulseColor = colorGroup.color;
   const impulseColorText = getDarkerImpulseColor(impulseColor); // Darker version for text on white
