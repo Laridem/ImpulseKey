@@ -773,33 +773,17 @@ export const Result = () => {
                 <p className="font-72-brand font-medium text-[16px] leading-[26px] text-[#231821]">
                   {result.pulse[language]}
                 </p>
-                <div
-                  className="pl-5 pr-4 py-4"
-                  style={{
-                    backgroundColor: quoteBg,
-                    borderLeft: `4px solid ${impulseColor}`
-                  }}
-                >
-                  <p
-                    className="font-72-brand font-medium italic text-[16px] leading-[26px]"
-                    style={{ color: quoteTextColor }}
-                  >
-                    {language === 'zh'
-                      ? `「${result.pulse.zh}」`
-                      : `"${result.pulse.en}"`
-                    }
-                  </p>
-                </div>
                 {/* Hashtags - Twitter Style */}
                 <div className="flex flex-wrap gap-2 pt-4">
-                  {(RESULT_HASHTAGS[result.key]?.[language] || '').split(' ').map((tag, index) => (
+                  {(RESULT_HASHTAGS[result.key]?.[language] || '').split(' ').filter(tag => tag.trim()).map((tag, index) => (
                     <span
                       key={index}
-                      className="font-jetbrains-mono text-[12px] lg:text-[13px] px-3 py-1 rounded-full transition-all duration-200 hover:scale-105"
+                      className="font-jetbrains-mono text-[12px] lg:text-[13px] px-3 py-1.5 rounded-full transition-all duration-200 hover:scale-105"
                       style={{
-                        backgroundColor: hexToRgba(impulseColor, 0.15),
+                        backgroundColor: hexToRgba(impulseColor, 0.2),
                         color: impulseColorText,
-                        border: `1px solid ${hexToRgba(impulseColor, 0.3)}`
+                        border: `1.5px solid ${hexToRgba(impulseColor, 0.4)}`,
+                        fontWeight: '500'
                       }}
                     >
                       {tag}
@@ -836,24 +820,39 @@ export const Result = () => {
               </div>
             </div>
 
-            {/* Punchline Section - Consistent with AdminPreview */}
+            {/* Punchline Section - Better readability with gradient */}
             <div
-              className="rounded-3xl p-6 lg:p-8 shadow-lg"
+              className="rounded-3xl p-6 lg:p-8 shadow-lg relative overflow-hidden"
               style={{
-                background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%), ${impulseColor}`
+                background: `linear-gradient(135deg, ${impulseColor} 0%, ${hexToRgba(impulseColor, 0.85)} 100%)`
               }}
             >
+              {/* Add a subtle overlay for better text contrast */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 70%)'
+                }}
+              />
               <p
-                className="font-space-grotesk font-bold text-[18px] lg:text-[24px] leading-[24px] lg:leading-[30px] text-center mb-3 lg:mb-4"
-                style={{ color: punchlineTextColor }}
+                className="font-space-grotesk font-bold text-[18px] lg:text-[24px] leading-[24px] lg:leading-[30px] text-center mb-3 lg:mb-4 relative z-10"
+                style={{
+                  color: punchlineTextColor,
+                  textShadow: punchlineTextColor === '#ffffff'
+                    ? '0 2px 8px rgba(0,0,0,0.3)'
+                    : '0 1px 4px rgba(0,0,0,0.1)'
+                }}
               >
                 {result.punchline[language]}
               </p>
               <p
-                className="font-72-brand font-medium italic text-[16px] lg:text-[20px] leading-[24px] lg:leading-[28px] text-center"
+                className="font-72-brand font-medium italic text-[16px] lg:text-[20px] leading-[24px] lg:leading-[28px] text-center relative z-10"
                 style={{
                   color: punchlineTextColor,
-                  opacity: punchlineTextColor === '#ffffff' ? 0.9 : 0.7
+                  opacity: punchlineTextColor === '#ffffff' ? 0.95 : 0.8,
+                  textShadow: punchlineTextColor === '#ffffff'
+                    ? '0 1px 4px rgba(0,0,0,0.2)'
+                    : '0 1px 3px rgba(0,0,0,0.08)'
                 }}
               >
                 {language === 'zh'
