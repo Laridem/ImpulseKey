@@ -287,17 +287,8 @@ export const Landing = () => {
                 <img
                   src="/assets/key-cards.png"
                   alt="Impulse Key Cards"
-                  className="w-full h-auto object-contain mb-4"
+                  className="w-full h-auto object-contain"
                 />
-
-                {/* Motto SVG */}
-                <div className="w-full px-2">
-                  <img
-                    src="/assets/Impulse26_motto.svg"
-                    alt="The tool to follow your hands."
-                    className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.15)]"
-                  />
-                </div>
               </div>
             </div>
           </div>
