@@ -283,10 +283,10 @@ export const Landing = () => {
             <div className="relative w-full">
               {/* Simple white container */}
               <div className="bg-white rounded-lg p-6 sm:p-8">
-                {/* Key Visual Image - Larger */}
+                {/* Key Cards Image */}
                 <img
-                  src="/assets/impulse-key-visual.png"
-                  alt="Impulse Key Visual"
+                  src="/assets/key-cards.png"
+                  alt="Impulse Key Cards"
                   className="w-full h-auto object-contain mb-4"
                 />
 
