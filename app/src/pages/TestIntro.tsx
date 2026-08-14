@@ -23,7 +23,10 @@ export const TestIntro = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Header showHomeButton={true} />
+      {/* Sticky header */}
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <Header showHomeButton={true} />
+      </div>
 
       <main className="flex-1 flex items-center justify-center py-8 sm:py-16 md:py-24 pb-24 sm:pb-24 px-4 sm:px-8 md:px-16" id="main-content">
         <div className="max-w-3xl w-full bg-[#ffeff8] border border-[#d8bfd1] rounded-lg p-6 sm:p-8 md:p-12 shadow-soft-lg">

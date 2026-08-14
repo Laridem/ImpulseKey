@@ -58,7 +58,10 @@ export const QuestionFlow = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Header showHomeButton={true} />
+      {/* Sticky header */}
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <Header showHomeButton={true} />
+      </div>
       <GlossaryPanel />
 
       {/* Progress Bar - Mobile only, sticky below header */}
