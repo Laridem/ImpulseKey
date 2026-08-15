@@ -205,17 +205,96 @@ export const Result = () => {
 
   const colorGroup = getColorGroupForResult(result.key);
 
-  // Use actual dimension scores or fallback to default for demo purposes
-  const displayScores = dimensionScores || {
-    Signal: 80,
-    Solution: 20,
-    Human: 70,
-    Machine: 30,
-    Explore: 80,
-    Align: 20,
-    Spark: 60,
-    Stabilize: 40
+  // Generate appropriate demo scores based on result key's dimensions
+  // This is used when viewing results directly (admin preview, direct URL) without test data
+  const getDemoScores = (resultKey: string) => {
+    // Map each result to its dominant dimensions based on the official mapping
+    const dimensionMap: Record<string, [string, string, string, string]> = {
+      'VOC': ['Signal', 'Human', 'Explore', 'Spark'],
+      'QAQ': ['Signal', 'Human', 'Explore', 'Stabilize'],
+      'FIRE': ['Signal', 'Human', 'Align', 'Spark'],
+      'A11Y': ['Signal', 'Human', 'Align', 'Stabilize'],
+      'JOULE': ['Signal', 'Machine', 'Explore', 'Spark'],
+      'LOGS': ['Signal', 'Machine', 'Explore', 'Stabilize'],
+      'AGENT': ['Signal', 'Machine', 'Align', 'Spark'],
+      'SAFE': ['Signal', 'Machine', 'Align', 'Stabilize'],
+      'BTP': ['Solution', 'Human', 'Explore', 'Spark'],
+      'PIXEL': ['Solution', 'Human', 'Explore', 'Stabilize'],
+      'TRIO': ['Solution', 'Human', 'Align', 'Spark'],
+      'FIORI': ['Solution', 'Human', 'Align', 'Stabilize'],
+      'API': ['Solution', 'Machine', 'Explore', 'Spark'],
+      'OData': ['Solution', 'Machine', 'Explore', 'Stabilize'],
+      'CTRL': ['Solution', 'Machine', 'Align', 'Spark'],
+      'CORE': ['Solution', 'Machine', 'Align', 'Stabilize']
+    };
+
+    const dimensions = dimensionMap[resultKey];
+    if (!dimensions) {
+      // Fallback if result key not found
+      return {
+        Signal: 50, Solution: 50,
+        Human: 50, Machine: 50,
+        Explore: 50, Align: 50,
+        Spark: 50, Stabilize: 50
+      };
+    }
+
+    // Create scores where dominant poles are 70-80%, recessive poles are 20-30%
+    const scores = {
+      Signal: 20,
+      Solution: 20,
+      Human: 20,
+      Machine: 20,
+      Explore: 20,
+      Align: 20,
+      Spark: 20,
+      Stabilize: 20
+    };
+
+    // Set dominant dimensions
+    const [dimA, dimB, dimC, dimD] = dimensions;
+
+    // Dimension A (Signal vs Solution)
+    if (dimA === 'Signal') {
+      scores.Signal = 75;
+      scores.Solution = 25;
+    } else {
+      scores.Signal = 25;
+      scores.Solution = 75;
+    }
+
+    // Dimension B (Human vs Machine)
+    if (dimB === 'Human') {
+      scores.Human = 70;
+      scores.Machine = 30;
+    } else {
+      scores.Human = 30;
+      scores.Machine = 70;
+    }
+
+    // Dimension C (Explore vs Align)
+    if (dimC === 'Explore') {
+      scores.Explore = 80;
+      scores.Align = 20;
+    } else {
+      scores.Explore = 20;
+      scores.Align = 80;
+    }
+
+    // Dimension D (Spark vs Stabilize)
+    if (dimD === 'Spark') {
+      scores.Spark = 65;
+      scores.Stabilize = 35;
+    } else {
+      scores.Spark = 35;
+      scores.Stabilize = 65;
+    }
+
+    return scores;
   };
+
+  // Use actual dimension scores or generate appropriate demo scores
+  const displayScores = dimensionScores || getDemoScores(result.key);
 
   // Helper function to convert hex to rgba
   const hexToRgba = (hex: string, alpha: number): string => {
