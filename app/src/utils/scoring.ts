@@ -84,26 +84,31 @@ export function mapToResultKey(scores: DimensionScores): ResultKey {
       : (Math.random() < 0.5 ? 'Spark' : 'Stabilize')
 
   // Mapping table: [DimA, DimB, DimC, DimD] → ResultKey
+  // Based on docs/content/mapping-validation.md - THE OFFICIAL SOURCE OF TRUTH
   const mapping: Record<string, ResultKey> = {
-    'Signal-Human-Explore-Spark': 'VOC',
-    'Signal-Human-Explore-Stabilize': 'FIORI',
-    'Signal-Human-Align-Spark': 'PIXEL',
-    'Signal-Human-Align-Stabilize': 'A11Y',
+    // Signal + Human patterns
+    'Signal-Human-Explore-Spark': 'VOC',           // #1
+    'Signal-Human-Explore-Stabilize': 'QAQ',       // #2
+    'Signal-Human-Align-Spark': 'FIRE',            // #3
+    'Signal-Human-Align-Stabilize': 'A11Y',        // #4
 
-    'Signal-Machine-Explore-Spark': 'JOULE',
-    'Signal-Machine-Explore-Stabilize': 'CTRL',
-    'Signal-Machine-Align-Spark': 'AGENT',
-    'Signal-Machine-Align-Stabilize': 'SAFE',
+    // Signal + Machine patterns
+    'Signal-Machine-Explore-Spark': 'JOULE',       // #5
+    'Signal-Machine-Explore-Stabilize': 'LOGS',    // #6
+    'Signal-Machine-Align-Spark': 'AGENT',         // #7
+    'Signal-Machine-Align-Stabilize': 'SAFE',      // #8
 
-    'Solution-Human-Explore-Spark': 'OData',
-    'Solution-Human-Explore-Stabilize': 'BTP',
-    'Solution-Human-Align-Spark': 'CORE',
-    'Solution-Human-Align-Stabilize': 'API',
+    // Solution + Human patterns
+    'Solution-Human-Explore-Spark': 'BTP',         // #9
+    'Solution-Human-Explore-Stabilize': 'PIXEL',   // #10
+    'Solution-Human-Align-Spark': 'TRIO',          // #11
+    'Solution-Human-Align-Stabilize': 'FIORI',     // #12
 
-    'Solution-Machine-Explore-Spark': 'QAQ',
-    'Solution-Machine-Explore-Stabilize': 'LOGS',
-    'Solution-Machine-Align-Spark': 'TRIO',
-    'Solution-Machine-Align-Stabilize': 'FIRE'
+    // Solution + Machine patterns
+    'Solution-Machine-Explore-Spark': 'API',       // #13
+    'Solution-Machine-Explore-Stabilize': 'OData', // #14
+    'Solution-Machine-Align-Spark': 'CTRL',        // #15
+    'Solution-Machine-Align-Stabilize': 'CORE'     // #16
   }
 
   const key = `${dimA}-${dimB}-${dimC}-${dimD}`
