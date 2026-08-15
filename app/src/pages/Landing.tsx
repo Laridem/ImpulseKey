@@ -561,7 +561,7 @@ export const Landing = () => {
                 background: 'linear-gradient(135deg, #7858FF 0%, #5d38e3 100%)'
               }}
             >
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex flex-col items-center gap-2 mb-6">
                 <h3 className="font-space-grotesk font-bold text-[32px] text-white">
                   Keynote
                 </h3>
@@ -634,7 +634,7 @@ export const Landing = () => {
                 background: 'linear-gradient(135deg, #5d38e3 0%, #4527a0 100%)'
               }}
             >
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex flex-col items-center gap-2 mb-6">
                 <h3 className="font-space-grotesk font-bold text-[32px] text-white">
                   Expert Talk
                 </h3>
@@ -705,7 +705,7 @@ export const Landing = () => {
                 background: 'linear-gradient(135deg, #4527a0 0%, #311b92 100%)'
               }}
             >
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex flex-col items-center gap-2 mb-6">
                 <h3 className="font-space-grotesk font-bold text-[32px] text-white">
                   Workshop
                 </h3>
