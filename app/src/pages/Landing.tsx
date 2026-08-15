@@ -294,12 +294,12 @@ export const Landing = () => {
             </div>
           </div>
 
-          {/* Right Column - Hero Visual (Larger, closer to text) */}
-          <div className="flex-shrink-0 flex flex-col items-start justify-start w-full lg:w-[480px] relative mt-8 lg:mt-0 lg:ml-8">
-            {/* Key Visual Container - No colored border, simple white background */}
+          {/* Right Column - Hero Visual (Full width, bigger) */}
+          <div className="flex-shrink-0 flex flex-col items-start justify-start w-full lg:flex-1 relative mt-6 lg:mt-0 lg:ml-12">
+            {/* Key Visual Container */}
             <div className="relative w-full">
-              {/* Simple white container */}
-              <div className="bg-white rounded-lg p-6 sm:p-8">
+              {/* Simple white container with proper padding */}
+              <div className="bg-white rounded-lg p-4 sm:p-6 md:p-8">
                 {/* Key Cards Carousel */}
                 <div className="relative w-full h-auto overflow-hidden">
                   {carouselImages.map((image, index) => (
