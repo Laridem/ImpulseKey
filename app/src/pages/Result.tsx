@@ -138,8 +138,8 @@ export const Result = () => {
       const preloadEnd = performance.now();
       console.log(`✅ All images pre-loaded in ${Math.round(preloadEnd - preloadStart)}ms`);
 
-      // Reduced wait time - images are already preloaded
-      await new Promise(resolve => setTimeout(resolve, 100));
+      // Wait for images to be rendered in the DOM (increased from 100ms to 500ms)
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       console.log(`Converting to ${settings.format} with pixelRatio: ${settings.pixelRatio}, quality: ${settings.quality}`);
 

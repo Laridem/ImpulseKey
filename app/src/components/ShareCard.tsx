@@ -26,14 +26,6 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
     const colorGroup = getColorGroupForResult(result.key);
     const impulseColor = colorGroup.color;
 
-    // Get glitch shadow colors (other 3 Impulse colors)
-    const getGlitchColors = (currentColor: string) => {
-      const impulseColors = ['#A100C2', '#FFC933', '#64EDD2', '#7858FF'];
-      return impulseColors.filter(c => c !== currentColor);
-    };
-
-    const glitchColors = getGlitchColors(impulseColor);
-
     // For yellow and cyan, use darker versions for better contrast
     const getTextColor = (color: string) => {
       if (color === '#FFC933') return '#D89700'; // Darker yellow
@@ -48,17 +40,7 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
         ref={ref}
         className="share-card-export-root relative w-[1080px] h-[1920px] overflow-hidden flex flex-col"
         style={{
-          background: '#ffffff',
-          boxShadow: `
-            0 1px 0 0 rgba(255,255,255,0.8) inset,
-            0 -1px 0 0 rgba(168,0,170,0.08) inset,
-            0px 0px 40px 0px ${glitchColors[0]}60,
-            0px 0px 80px 0px ${glitchColors[1]}40,
-            0px 0px 120px 0px ${glitchColors[2]}30,
-            -20px -20px 60px 0px rgba(168,0,170,0.15),
-            20px 20px 60px 0px rgba(168,0,170,0.15),
-            0 20px 60px -10px rgba(168,0,170,0.2)
-          `
+          background: '#ffffff'
         }}
       >
         {/* Top: Key Abbreviation */}
@@ -90,7 +72,6 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
               src={getKeycapAsset(result.key)}
               alt={nameEN}
               className="w-[640px] h-[640px] object-contain"
-              crossOrigin="anonymous"
             />
           </div>
         </div>
@@ -135,7 +116,6 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
               src="/assets/Anvils-1.png"
               alt="Anvils"
               className="h-20 w-auto opacity-60"
-              crossOrigin="anonymous"
             />
           </div>
 
@@ -145,7 +125,6 @@ export const ShareCard = forwardRef<HTMLDivElement, ShareCardProps>(
               src="/assets/qr-code.png"
               alt="Scan QR Code"
               className="w-[154px] h-[154px] object-contain"
-              crossOrigin="anonymous"
             />
             <p className="font-jetbrains-mono text-[16px] leading-[20px] text-[#949494] uppercase tracking-wider">
               Scan me
