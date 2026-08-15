@@ -16,9 +16,9 @@ export const Landing = () => {
 
   // Carousel images - cycling through 3 different key card layouts
   const carouselImages = [
-    '/assets/Key Cards.png',
-    '/assets/Key Cards-1.png',
-    '/assets/Key Cards-2.png'
+    '/assets/Key Cards -1.png',
+    '/assets/Key Cards -2.png',
+    '/assets/Key Cards -3.png'
   ];
 
   // Update page title for accessibility
