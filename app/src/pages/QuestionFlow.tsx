@@ -69,16 +69,16 @@ export const QuestionFlow = () => {
       {/* Progress Bar - Mobile only, sticky below header */}
       <div className="sm:hidden sticky top-[60px] z-40 bg-white/95 backdrop-blur-sm border-b border-[#d8bfd1] px-4 py-3 shadow-sm">
         <div className="flex justify-between items-center mb-2">
-          <span className="font-jetbrains-mono font-medium text-[10px] leading-[16px] text-[#a800aa] uppercase">
+          <span className="font-jetbrains-mono font-medium text-[10px] leading-[16px] text-[#800082] uppercase">
             SURVEY
           </span>
-          <span className="font-jetbrains-mono font-medium text-[10px] leading-[16px] text-[#a800aa] uppercase">
+          <span className="font-jetbrains-mono font-medium text-[10px] leading-[16px] text-[#800082] uppercase">
             STEP {String(currentQuestionIndex + 1).padStart(2, '0')} / {String(questions.length).padStart(2, '0')}
           </span>
         </div>
         <div className="w-full bg-[#d8bfd1] h-2 rounded-full overflow-hidden">
           <div
-            className="bg-gradient-to-r from-[#a800aa] to-[#f65af2] h-full transition-all duration-300 rounded-full"
+            className="bg-gradient-to-r from-[#800082] to-[#a100c2] h-full transition-all duration-300 rounded-full"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -88,13 +88,13 @@ export const QuestionFlow = () => {
         <div className="max-w-[1280px] mx-auto">
           {/* Survey Module Badge */}
           <div className="mb-6 sm:mb-8 md:mb-12 flex justify-between items-center">
-            <div className="inline-block px-3 py-1 bg-[#f7e3ef] border border-[#a800aa] rounded-sm">
-              <span className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase">
+            <div className="inline-block px-3 py-1 bg-[#f7e3ef] border border-[#800082] rounded-sm">
+              <span className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#800082] uppercase">
                 {t('question.surveyModule')}
               </span>
             </div>
             {/* Desktop step counter - hidden on mobile */}
-            <span className="hidden sm:inline-block font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase tracking-normal">
+            <span className="hidden sm:inline-block font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#800082] uppercase tracking-normal">
               {currentQuestionIndex + 1} / {questions.length}
             </span>
           </div>
@@ -102,8 +102,8 @@ export const QuestionFlow = () => {
           {/* Question Card */}
           <div className="bg-[#ffeff8] border border-[#d8bfd1] rounded-lg p-5 sm:p-8 md:p-10 mb-6 sm:mb-8 md:mb-10 shadow-soft">
             {/* Question Text */}
-            <div className="mb-6 sm:mb-8 md:mb-10 border-l-4 border-[#a800aa] pl-4 sm:pl-6 md:pl-8">
-              <h2 className="font-space-grotesk font-bold text-[18px] sm:text-[24px] md:text-[32px] leading-[1.3] tracking-tight text-[#231821]">
+            <div className="mb-6 sm:mb-8 md:mb-10 border-l-4 border-[#800082] pl-4 sm:pl-6 md:pl-8">
+              <h2 id="question-text" className="font-space-grotesk font-bold text-[18px] sm:text-[24px] md:text-[32px] leading-[1.3] tracking-tight text-[#231821]">
                 {language === 'zh'
                   ? (currentQuestion.text?.zh || currentQuestion.textCN)
                   : (currentQuestion.text?.en || currentQuestion.textEN)}
@@ -111,17 +111,20 @@ export const QuestionFlow = () => {
             </div>
 
             {/* Options */}
-            <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-3 sm:space-y-4" role="radiogroup" aria-labelledby="question-text">
               {currentQuestion.options.map((option) => {
                 const isSelected = currentAnswer?.selectedOption === option.id;
                 return (
                   <button
                     key={option.id}
                     onClick={(e) => handleOptionClick(option.id, e)}
+                    role="radio"
+                    aria-checked={isSelected}
+                    aria-label={`Option ${option.id}: ${language === 'zh' ? (option.text?.zh || option.textCN) : (option.text?.en || option.textEN)}`}
                     className={`w-full p-4 sm:p-5 md:p-6 text-left border-2 rounded-lg transition-all duration-200
                       ${isSelected
-                        ? 'border-[#a800aa] bg-[#a800aa] text-white shadow-soft'
-                        : 'border-[#d8bfd1] hover:border-[#a800aa] bg-white focus:outline-none focus:ring-0'
+                        ? 'border-[#800082] bg-[#800082] text-white shadow-soft'
+                        : 'border-[#d8bfd1] hover:border-[#800082] active:border-[#800082] bg-white focus:outline-none focus:ring-0'
                       }
                     `}
                   >
@@ -141,7 +144,7 @@ export const QuestionFlow = () => {
             <button
               onClick={handlePrevious}
               disabled={currentQuestionIndex === 0}
-              className="relative flex-1 px-4 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-[#534150] font-72-brand text-[13px] sm:text-[15px] md:text-body-lg rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 flex items-center justify-center gap-2 overflow-hidden"
+              className="relative flex-1 px-4 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-[#534150] font-72-brand text-[13px] sm:text-[15px] md:text-body-lg rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#800082] hover:text-[#800082] active:border-[#800082] active:text-[#800082] disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 flex items-center justify-center gap-2 overflow-hidden"
               style={{
                 borderWidth: '3px',
                 borderColor: '#d8bfd1',
@@ -217,7 +220,7 @@ export const QuestionFlow = () => {
           {/* Progress Bar - Desktop only */}
           <div className="hidden sm:block w-full bg-[#d8bfd1] h-2 rounded-full overflow-hidden">
             <div
-              className="bg-gradient-to-r from-[#a800aa] to-[#f65af2] h-full transition-all duration-300 rounded-full"
+              className="bg-gradient-to-r from-[#800082] to-[#a100c2] h-full transition-all duration-300 rounded-full"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -225,7 +228,7 @@ export const QuestionFlow = () => {
       </main>
 
       {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#a800aa] px-4 py-3 z-50 shadow-[0px_-4px_8px_rgba(168,0,170,0.1)]">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#800082] px-4 py-3 z-50 shadow-[0px_-4px_8px_rgba(128,0,130,0.1)]">
         {canSubmit ? (
           /* Last question: Show Previous + Submit + View Terms */
           <div className="flex flex-col gap-2 mb-0">
@@ -235,7 +238,7 @@ export const QuestionFlow = () => {
                 className="relative flex-1 px-3 py-2.5 text-[#231821] font-poppins font-bold text-[13px] rounded-full transition-all flex items-center justify-center gap-1.5 uppercase overflow-hidden"
                 style={{
                   borderWidth: '2px',
-                  borderColor: '#a800aa',
+                  borderColor: '#800082',
                   background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
                   boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
                 }}

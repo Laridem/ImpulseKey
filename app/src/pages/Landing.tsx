@@ -155,45 +155,45 @@ export const Landing = () => {
               <a
                 href="#impulse-test"
                 className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
-                  activeSection === 'impulse-test' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+                  activeSection === 'impulse-test' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
                 ImpulseKey
                 {activeSection === 'impulse-test' && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800082] rounded-full" />
                 )}
               </a>
               <a
                 href="#networking-party"
                 className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
-                  activeSection === 'networking-party' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+                  activeSection === 'networking-party' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
                 Networking Party
                 {activeSection === 'networking-party' && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800082] rounded-full" />
                 )}
               </a>
               <a
                 href="#about"
                 className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
-                  activeSection === 'about' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+                  activeSection === 'about' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
                 About
                 {activeSection === 'about' && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800082] rounded-full" />
                 )}
               </a>
               <a
                 href="#agenda"
                 className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
-                  activeSection === 'agenda' ? 'text-[#a800aa]' : 'text-[#534150] hover:text-[#a800aa]'
+                  activeSection === 'agenda' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
                 Agenda
                 {activeSection === 'agenda' && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#a800aa] rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800082] rounded-full" />
                 )}
               </a>
             </div>
@@ -201,14 +201,14 @@ export const Landing = () => {
         </nav>
       </div>
 
-      <main className="flex-1 px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-32 sm:pb-24 w-full" id="main-content">
+      <main className="flex-1 px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-36 sm:pb-24 w-full" id="main-content">
         {/* Hero Section */}
         <div id="impulse-test" className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start scroll-mt-32">
           {/* Left Column - Text Content */}
           <div className="flex-1 space-y-4 sm:space-y-6 md:space-y-8">
             {/* Tag Badge */}
-            <div className="inline-block px-3 py-1 bg-[#f7e3ef] border border-[#a800aa] rounded-sm">
-              <span className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase">
+            <div className="inline-block px-3 py-1 bg-[#f7e3ef] border border-[#800082] rounded-sm">
+              <span className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#800082] uppercase">
                 FUN PROJECT by SAP Design Hub China
               </span>
             </div>
@@ -274,7 +274,7 @@ export const Landing = () => {
               </button>
               <button
                 onClick={() => navigate('/intro')}
-                className="relative w-auto px-6 sm:px-10 py-3 sm:py-5 text-[#534150] font-72-brand text-[15px] sm:text-[18px] font-bold rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#a800aa] hover:text-[#a800aa] active:translate-y-[0px] overflow-hidden group"
+                className="relative w-auto px-6 sm:px-10 py-3 sm:py-5 text-[#534150] font-72-brand text-[15px] sm:text-[18px] font-bold rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#800082] hover:text-[#800082] active:translate-y-[0px] active:border-[#800082] active:text-[#800082] overflow-hidden group"
                 style={{
                   borderWidth: '3px',
                   borderColor: '#d8bfd1',
@@ -324,7 +324,7 @@ export const Landing = () => {
         <div className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-8 sm:pt-12 pb-12 sm:pb-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
             <div className="space-y-2">
-              <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase">
+              <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#800082] uppercase">
                 DISCLAIMER / 免责声明
               </p>
               <p className="font-72-brand text-[14px] sm:text-body-sm text-[#534150]">
@@ -332,7 +332,7 @@ export const Landing = () => {
               </p>
             </div>
             <div className="space-y-2">
-              <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#a800aa] uppercase">
+              <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#800082] uppercase">
                 PRIVACY / 隐私声明
               </p>
               <p className="font-72-brand text-[14px] sm:text-body-sm text-[#534150]">
@@ -353,7 +353,7 @@ export const Landing = () => {
               <div className="flex flex-col sm:flex-row gap-3 justify-center items-center font-space-grotesk text-[16px] sm:text-[18px] text-[#534150]">
                 <div className="flex items-center gap-2">
                   <span>📅</span>
-                  <span className="font-bold text-[#a800aa]">Sep 3rd, 15:05</span>
+                  <span className="font-bold text-[#800082]">Sep 3rd, 15:05</span>
                 </div>
                 <div className="hidden sm:block text-[#d8bfd1]">|</div>
                 <div className="flex items-center gap-2">
@@ -481,7 +481,7 @@ export const Landing = () => {
               className="relative text-center rounded-full p-5 sm:p-6 border-2 overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_16px_48px_rgba(168,0,170,0.25)]"
               style={{
                 background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
-                borderColor: '#a800aa',
+                borderColor: '#800082',
                 boxShadow: `
                   0 1px 0 0 rgba(255,255,255,0.8) inset,
                   0 -1px 0 0 rgba(168,0,170,0.08) inset,
@@ -498,7 +498,7 @@ export const Landing = () => {
                 }}
               />
               <p className="font-space-grotesk font-bold text-[16px] sm:text-[18px] text-[#534150] mb-2 relative z-10">
-                ✨ Complete the <span className="text-[#a800aa]">Impulse Key Test</span> & Claim Your Prize!
+                ✨ Complete the <span className="text-[#800082]">Impulse Key Test</span> & Claim Your Prize!
               </p>
               <p className="font-space-grotesk text-[13px] sm:text-[14px] text-[#867181] relative z-10">
                 Show your result screenshot at the party to receive your prize
@@ -527,10 +527,10 @@ export const Landing = () => {
                 </p>
                 <div className="space-y-2 pl-4">
                   <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                    Internal Sharepoint: <a href="https://sap.sharepoint.com/sites/209182/SitePages/Design-Hub-China.aspx?isSPOFile=1&xsdata=MDV8MDJ8fDY3MTZmZDY0YmUyZjQwZGQ5MDhkMDhkZTlhYTJhMjkzfDQyZjc2NzZjZjQ1NTQyM2M4MmY2ZGMyZDk5NzkxYWY3fDB8MHw2MzkxMTgyMjA0MzYxNDgzNjV8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pReU56azNNRGMzT0RobVl6UXlPR0poWVdFd1lqSmxNV014TXpjMll6a3lRSFJvY21WaFpDNTJNaTl0WlhOellXZGxjeTh4TnpjMk1qSTFNalEzTmpRd3xiNWFhYzIyZTRjMjk0NTNlOTA4ZDA4ZGU5YWEyYTI5M3wwZGI1MDE0MjI2ZjE0ZjFjOTgxMzRlMzQ5NDFjN2NlNg%3D%3D&sdata=QUZDbWZHQXZQdFZpeFdXZkRhNXYrbGtsZ3RUZGxPSmh0V3hxeGtOU1NiST0%3D&ovuser=42f7676c-f455-423c-82f6-dc2d99791af7%2Clarissa.deng%40sap.com&OR=Teams-HL&CT=1776226560704&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNjAzMTIyMzAyMCJ9" target="_blank" rel="noopener noreferrer" className="text-[#a800aa] underline hover:text-[#800082]">Link</a>
+                    Internal Sharepoint: <a href="https://sap.sharepoint.com/sites/209182/SitePages/Design-Hub-China.aspx?isSPOFile=1&xsdata=MDV8MDJ8fDY3MTZmZDY0YmUyZjQwZGQ5MDhkMDhkZTlhYTJhMjkzfDQyZjc2NzZjZjQ1NTQyM2M4MmY2ZGMyZDk5NzkxYWY3fDB8MHw2MzkxMTgyMjA0MzYxNDgzNjV8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pReU56azNNRGMzT0RobVl6UXlPR0poWVdFd1lqSmxNV014TXpjMll6a3lRSFJvY21WaFpDNTJNaTl0WlhOellXZGxjeTh4TnpjMk1qSTFNalEzTmpRd3xiNWFhYzIyZTRjMjk0NTNlOTA4ZDA4ZGU5YWEyYTI5M3wwZGI1MDE0MjI2ZjE0ZjFjOTgxMzRlMzQ5NDFjN2NlNg%3D%3D&sdata=QUZDbWZHQXZQdFZpeFdXZkRhNXYrbGtsZ3RUZGxPSmh0V3hxeGtOU1NiST0%3D&ovuser=42f7676c-f455-423c-82f6-dc2d99791af7%2Clarissa.deng%40sap.com&OR=Teams-HL&CT=1776226560704&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNjAzMTIyMzAyMCJ9" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
                   </p>
                   <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                    Join SAP Design Hub China Distribution List: <a href="https://profiles.wdf.sap.corp/groups/5c85d9385462d20285416a22/users" target="_blank" rel="noopener noreferrer" className="text-[#a800aa] underline hover:text-[#800082]">Link</a>
+                    Join SAP Design Hub China Distribution List: <a href="https://profiles.wdf.sap.corp/groups/5c85d9385462d20285416a22/users" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
                   </p>
                 </div>
               </div>
@@ -797,7 +797,7 @@ export const Landing = () => {
       </main>
 
       {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#a800aa] px-4 py-4 z-50 shadow-[0px_-4px_8px_rgba(168,0,170,0.1)]">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#800082] px-4 py-4 z-50 shadow-[0px_-4px_8px_rgba(128,0,130,0.1)]">
         <div className="flex flex-col gap-3 max-w-[1280px] mx-auto">
           <button
             onClick={handleStartTest}

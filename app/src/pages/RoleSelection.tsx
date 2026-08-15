@@ -111,7 +111,7 @@ export const RoleSelection = () => {
                       {categoryName}
                     </h3>
                   </div>
-                  <p className="font-72-brand text-[13px] sm:text-[16px] text-[#534150] leading-[1.5] sm:leading-[24px]">
+                  <p className="font-72-brand text-[14px] sm:text-[16px] text-[#534150] leading-[1.5] sm:leading-[24px]">
                     {desc}
                   </p>
                 </div>
@@ -122,7 +122,7 @@ export const RoleSelection = () => {
           {/* Footer Text */}
           <div className="text-center mb-6 sm:mb-10">
             <div className="inline-block border border-[#d8bfd1] rounded-lg px-4 sm:px-6 py-3 sm:py-4">
-              <p className="font-72-brand text-[12px] sm:text-body-sm text-[#534150]">
+              <p className="font-72-brand text-[14px] sm:text-body-sm text-[#534150]">
                 {t('roleSelection.footer')}
               </p>
             </div>

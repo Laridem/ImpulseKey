@@ -25,6 +25,7 @@ export const Result = () => {
   const shareCardRef = useRef<HTMLDivElement>(null);
   const [isCapturing, setIsCapturing] = useState(false);
   const [hoveredLockedKey, setHoveredLockedKey] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<string | null>(null);
   const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
   const loadingIntervalRef = useRef<number | null>(null);
 
@@ -86,9 +87,11 @@ export const Result = () => {
     console.log('shareCardRef.current:', shareCardRef.current);
     console.log('result:', result);
 
+    setImageError(null); // Clear any previous errors
+
     if (!shareCardRef.current || !result) {
       console.error('Missing ref or result:', { ref: shareCardRef.current, result });
-      alert('Unable to capture image. Please refresh and try again.');
+      setImageError(language === 'zh' ? '无法生成图片，请刷新页面后重试。' : 'Unable to capture image. Please refresh and try again.');
       return;
     }
 
@@ -143,6 +146,10 @@ export const Result = () => {
         );
       } catch (preloadError) {
         console.error('Failed to preload images:', preloadError);
+        const errorMsg = language === 'zh'
+          ? '图片加载失败，请检查网络连接后重试。'
+          : 'Failed to load images. Please check your network and try again.';
+        setImageError(errorMsg);
         throw new Error(`Image preload failed: ${preloadError instanceof Error ? preloadError.message : 'Unknown error'}`);
       }
 
@@ -260,7 +267,11 @@ export const Result = () => {
       }
     } catch (error) {
       console.error('Failed to capture image:', error);
-      alert(`Failed to save image: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const userMessage = language === 'zh'
+        ? `图片生成失败：${errorMessage}。请重试。`
+        : `Failed to save image: ${errorMessage}. Please try again.`;
+      setImageError(userMessage);
       setIsCapturing(false);
     }
   };
@@ -693,6 +704,27 @@ export const Result = () => {
                     }
                   </span>
                 </button>
+
+                {/* Error Message */}
+                {imageError && (
+                  <div className="flex items-start gap-3 p-4 bg-[#fff5f5] border border-[#ff6b6b] rounded-lg">
+                    <span className="text-[20px] flex-shrink-0">⚠️</span>
+                    <div className="flex-1">
+                      <p className="font-72-brand text-[14px] text-[#d63031] leading-[1.5]">
+                        {imageError}
+                      </p>
+                      <button
+                        onClick={() => {
+                          setImageError(null);
+                          handleShare();
+                        }}
+                        className="mt-2 font-jetbrains-mono text-[12px] text-[#800082] hover:text-[#a100c2] active:text-[#a100c2] underline transition-colors"
+                      >
+                        {language === 'zh' ? '重试' : 'Retry'}
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
