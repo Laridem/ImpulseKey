@@ -121,7 +121,7 @@ export const QuestionFlow = () => {
                     className={`w-full p-4 sm:p-5 md:p-6 text-left border-2 rounded-lg transition-all duration-200
                       ${isSelected
                         ? 'border-[#a800aa] bg-[#a800aa] text-white shadow-soft'
-                        : 'border-[#d8bfd1] hover:border-[#a800aa] bg-white'
+                        : 'border-[#d8bfd1] hover:border-[#a800aa] bg-white focus:outline-none focus:ring-0'
                       }
                     `}
                   >

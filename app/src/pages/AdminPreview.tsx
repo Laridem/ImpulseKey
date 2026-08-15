@@ -65,11 +65,13 @@ export const AdminPreview = () => {
 
   return (
     <div className="min-h-screen bg-[#faf8fb] flex flex-col">
-      {/* Use Header component */}
-      <Header />
+      {/* Use Header component - make it sticky */}
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm">
+        <Header />
+      </div>
 
       {/* Secondary Bar with Back Button and Title */}
-      <div className="sticky top-[73px] z-40 bg-white border-b border-[#e5e2e8] shadow-sm">
+      <div className="sticky top-0 z-40 bg-white border-b border-[#e5e2e8] shadow-sm">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3 sm:py-4 flex items-center justify-between">
           {/* Left: Back Button + Mobile Menu */}
           <div className="flex items-center gap-3">

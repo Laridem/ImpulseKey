@@ -138,8 +138,13 @@ export const Result = () => {
       const preloadEnd = performance.now();
       console.log(`✅ All images pre-loaded in ${Math.round(preloadEnd - preloadStart)}ms`);
 
-      // Wait for images to be rendered in the DOM (increased from 100ms to 500ms)
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Force a reflow to ensure DOM is fully updated
+      if (shareCardRef.current) {
+        shareCardRef.current.getBoundingClientRect();
+      }
+
+      // Wait for images to be rendered in the DOM (increased for mobile reliability)
+      await new Promise(resolve => setTimeout(resolve, 800));
 
       console.log(`Converting to ${settings.format} with pixelRatio: ${settings.pixelRatio}, quality: ${settings.quality}`);
 
@@ -451,13 +456,13 @@ export const Result = () => {
                       </p>
                       <div className="flex flex-wrap items-baseline gap-2">
                         <p
-                          className="font-jetbrains-mono font-medium text-[13px] leading-[18px]"
+                          className="font-jetbrains-mono font-medium text-[13px] leading-[18px] break-all"
                           style={{ color: impulseColorText }}
                         >
                           {colorGroup.color.toUpperCase()}
                         </p>
                         <p
-                          className="font-space-grotesk font-bold text-[14px] leading-[18px] uppercase"
+                          className="font-space-grotesk font-bold text-[14px] leading-[18px] uppercase break-words"
                           style={{ color: impulseColorText }}
                         >
                           {language === 'zh' ? colorGroup.nameCN : colorGroup.nameEN}
@@ -471,7 +476,7 @@ export const Result = () => {
                         CORE PERSONALITY
                       </p>
                       <p
-                        className="font-space-grotesk font-semibold text-[13px] leading-[20px]"
+                        className="font-space-grotesk font-semibold text-[13px] leading-[20px] break-words"
                         style={{ color: impulseColorText }}
                       >
                         {language === 'zh' ? colorGroup.descriptionCN : colorGroup.descriptionEN}
