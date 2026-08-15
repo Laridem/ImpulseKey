@@ -130,7 +130,7 @@ export const Landing = () => {
     },
     {
       id: 'networking',
-      name: 'Networking Corner',
+      name: 'Networking Bingo',
       subtitleEN: 'Connect and collaborate',
       subtitleCN: '连接与合作',
       taglineEN: 'Meet people. Share ideas. Spark collaborations.',
