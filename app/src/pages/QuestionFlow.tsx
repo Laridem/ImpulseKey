@@ -44,8 +44,10 @@ export const QuestionFlow = () => {
 
   const canSubmit = isLastQuestion && answers.length === questions.length;
 
-  const handleOptionClick = (optionId: 'A' | 'B' | 'C') => {
+  const handleOptionClick = (optionId: 'A' | 'B' | 'C', event: React.MouseEvent<HTMLButtonElement>) => {
     answerQuestion(currentQuestion.id, optionId);
+    // Remove hover state by blurring the clicked element
+    event.currentTarget.blur();
   };
 
   const handlePrevious = () => {
@@ -115,7 +117,7 @@ export const QuestionFlow = () => {
                 return (
                   <button
                     key={option.id}
-                    onClick={() => handleOptionClick(option.id)}
+                    onClick={(e) => handleOptionClick(option.id, e)}
                     className={`w-full p-4 sm:p-5 md:p-6 text-left border-2 rounded-lg transition-all duration-200
                       ${isSelected
                         ? 'border-[#a800aa] bg-[#a800aa] text-white shadow-soft'

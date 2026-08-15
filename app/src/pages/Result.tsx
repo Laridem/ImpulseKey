@@ -268,7 +268,7 @@ export const Result = () => {
           <div className="lg:col-span-4 flex flex-col gap-6">
             {/* Character Card - Neo-Playful 3D Style */}
             <div
-              className="relative bg-gradient-to-br from-white via-[#fffbfe] to-[#fef5fb] border-2 rounded-xl p-6 lg:p-4 lg:p-\[33px\] flex flex-col gap-6 transition-all duration-300 hover:translate-y-[-4px]"
+              className="relative bg-gradient-to-br from-white via-[#fffbfe] to-[#fef5fb] border-2 rounded-xl p-4 lg:p-6 lg:p-\[33px\] flex flex-col gap-4 lg:gap-6 transition-all duration-300 hover:translate-y-[-4px]"
               style={{
                 borderColor: colorGroup.color,
                 boxShadow: `
@@ -425,12 +425,12 @@ export const Result = () => {
                     }}
                   />
 
-                  {/* 5-column grid layout */}
-                  <div className="grid grid-cols-5 gap-4 items-center relative z-10">
-                    {/* Column 1: Color swatch */}
-                    <div className="col-span-1 flex justify-center">
+                  {/* Responsive layout: vertical on mobile, 5-column grid on desktop */}
+                  <div className="flex flex-col gap-4 lg:grid lg:grid-cols-5 lg:gap-4 lg:items-center relative z-10">
+                    {/* Color swatch */}
+                    <div className="flex justify-start lg:col-span-1 lg:justify-center">
                       <div
-                        className="relative w-10 h-10 rounded-lg"
+                        className="relative w-10 h-10 rounded-lg flex-shrink-0"
                         style={{
                           background: `
                             radial-gradient(circle at 30% 30%, ${hexToRgba(colorGroup.color, 0.9)} 0%, ${colorGroup.color} 100%)
@@ -444,12 +444,12 @@ export const Result = () => {
                       />
                     </div>
 
-                    {/* Columns 2-3: Your Impulse Color */}
-                    <div className="col-span-2 flex flex-col gap-1">
+                    {/* Your Impulse Color */}
+                    <div className="flex flex-col gap-1 lg:col-span-2">
                       <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
                         YOUR IMPULSE COLOR
                       </p>
-                      <div className="flex items-baseline gap-2">
+                      <div className="flex flex-wrap items-baseline gap-2">
                         <p
                           className="font-jetbrains-mono font-medium text-[13px] leading-[18px]"
                           style={{ color: impulseColorText }}
@@ -465,8 +465,8 @@ export const Result = () => {
                       </div>
                     </div>
 
-                    {/* Columns 4-5: Core Personality */}
-                    <div className="col-span-2 flex flex-col gap-1">
+                    {/* Core Personality */}
+                    <div className="flex flex-col gap-1 lg:col-span-2">
                       <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
                         CORE PERSONALITY
                       </p>
@@ -591,8 +591,8 @@ export const Result = () => {
                   <span className="text-[#a800aa] font-bold">Congratulations!</span>
                 </h2>
                 <p className="font-space-grotesk font-normal text-[18px] leading-[28px] text-[#534150] text-center pt-4">
-                  You win a reward!<br />
-                  <span className="font-bold text-[#a800aa]">Claim Reward</span> at Impulse26 China Networking Party at 15:05
+                  You win a prize!<br />
+                  <span className="font-bold text-[#a800aa]">Claim Prize</span> at Impulse26 China Networking Party at 15:05
                 </p>
               </div>
 
@@ -605,7 +605,7 @@ export const Result = () => {
                       Where?
                     </p>
                     <p className="font-jetbrains-mono font-bold text-[14px] leading-[20px] text-[#a800aa]">
-                      Pvg03 C1.1, AI Engineering Hub
+                      Pvg03 C1.1, Lecturing Studio (aka Digital School)
                     </p>
                   </div>
 
@@ -677,8 +677,26 @@ export const Result = () => {
                   </div>
                   <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-1 bg-[#f65af2] rounded-md transition-all duration-300 group-hover:shadow-[0px_0px_12px_#f65af2]"
-                      style={{ width: `calc(${Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100)}% - 8px)` }}
+                      className="absolute top-1 bottom-1 rounded-md transition-all duration-300"
+                      style={{
+                        backgroundColor: displayScores.Signal >= displayScores.Solution ? '#f65af2' : '#00b5bd',
+                        left: displayScores.Signal >= displayScores.Solution ? '4px' : 'auto',
+                        right: displayScores.Solution > displayScores.Signal ? '4px' : 'auto',
+                        width: `calc(${Math.round((Math.max(displayScores.Signal, displayScores.Solution) / (displayScores.Signal + displayScores.Solution)) * 100)}% - 8px)`,
+                        boxShadow: displayScores.Signal >= displayScores.Solution
+                          ? '0px 0px 0px rgba(246,90,242,0)'
+                          : '0px 0px 0px rgba(0,181,189,0)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = displayScores.Signal >= displayScores.Solution
+                          ? '0px 0px 12px #f65af2'
+                          : '0px 0px 12px #00b5bd';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = displayScores.Signal >= displayScores.Solution
+                          ? '0px 0px 0px rgba(246,90,242,0)'
+                          : '0px 0px 0px rgba(0,181,189,0)';
+                      }}
                     />
                   </div>
                 </div>
@@ -695,8 +713,26 @@ export const Result = () => {
                   </div>
                   <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-1 bg-[#00b5bd] rounded-md transition-all duration-300 group-hover:shadow-[0px_0px_12px_#00b5bd]"
-                      style={{ width: `calc(${Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100)}% - 8px)` }}
+                      className="absolute top-1 bottom-1 rounded-md transition-all duration-300"
+                      style={{
+                        backgroundColor: displayScores.Human >= displayScores.Machine ? '#00b5bd' : '#8e5aff',
+                        left: displayScores.Human >= displayScores.Machine ? '4px' : 'auto',
+                        right: displayScores.Machine > displayScores.Human ? '4px' : 'auto',
+                        width: `calc(${Math.round((Math.max(displayScores.Human, displayScores.Machine) / (displayScores.Human + displayScores.Machine)) * 100)}% - 8px)`,
+                        boxShadow: displayScores.Human >= displayScores.Machine
+                          ? '0px 0px 0px rgba(0,181,189,0)'
+                          : '0px 0px 0px rgba(142,90,255,0)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = displayScores.Human >= displayScores.Machine
+                          ? '0px 0px 12px #00b5bd'
+                          : '0px 0px 12px #8e5aff';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = displayScores.Human >= displayScores.Machine
+                          ? '0px 0px 0px rgba(0,181,189,0)'
+                          : '0px 0px 0px rgba(142,90,255,0)';
+                      }}
                     />
                   </div>
                 </div>
@@ -713,8 +749,26 @@ export const Result = () => {
                   </div>
                   <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-1 bg-[#8e5aff] rounded-md transition-all duration-300 group-hover:shadow-[0px_0px_12px_#8e5aff]"
-                      style={{ width: `calc(${Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100)}% - 8px)` }}
+                      className="absolute top-1 bottom-1 rounded-md transition-all duration-300"
+                      style={{
+                        backgroundColor: displayScores.Explore >= displayScores.Align ? '#8e5aff' : '#f4bf28',
+                        left: displayScores.Explore >= displayScores.Align ? '4px' : 'auto',
+                        right: displayScores.Align > displayScores.Explore ? '4px' : 'auto',
+                        width: `calc(${Math.round((Math.max(displayScores.Explore, displayScores.Align) / (displayScores.Explore + displayScores.Align)) * 100)}% - 8px)`,
+                        boxShadow: displayScores.Explore >= displayScores.Align
+                          ? '0px 0px 0px rgba(142,90,255,0)'
+                          : '0px 0px 0px rgba(244,191,40,0)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = displayScores.Explore >= displayScores.Align
+                          ? '0px 0px 12px #8e5aff'
+                          : '0px 0px 12px #f4bf28';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = displayScores.Explore >= displayScores.Align
+                          ? '0px 0px 0px rgba(142,90,255,0)'
+                          : '0px 0px 0px rgba(244,191,40,0)';
+                      }}
                     />
                   </div>
                 </div>
@@ -731,8 +785,26 @@ export const Result = () => {
                   </div>
                   <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
                     <div
-                      className="absolute top-1 bottom-1 left-1 bg-[#f4bf28] rounded-md transition-all duration-300 group-hover:shadow-[0px_0px_12px_#f4bf28]"
-                      style={{ width: `calc(${Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100)}% - 8px)` }}
+                      className="absolute top-1 bottom-1 rounded-md transition-all duration-300"
+                      style={{
+                        backgroundColor: displayScores.Spark >= displayScores.Stabilize ? '#f4bf28' : '#f65af2',
+                        left: displayScores.Spark >= displayScores.Stabilize ? '4px' : 'auto',
+                        right: displayScores.Stabilize > displayScores.Spark ? '4px' : 'auto',
+                        width: `calc(${Math.round((Math.max(displayScores.Spark, displayScores.Stabilize) / (displayScores.Spark + displayScores.Stabilize)) * 100)}% - 8px)`,
+                        boxShadow: displayScores.Spark >= displayScores.Stabilize
+                          ? '0px 0px 0px rgba(244,191,40,0)'
+                          : '0px 0px 0px rgba(246,90,242,0)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = displayScores.Spark >= displayScores.Stabilize
+                          ? '0px 0px 12px #f4bf28'
+                          : '0px 0px 12px #f65af2';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = displayScores.Spark >= displayScores.Stabilize
+                          ? '0px 0px 0px rgba(244,191,40,0)'
+                          : '0px 0px 0px rgba(246,90,242,0)';
+                      }}
                     />
                   </div>
                 </div>

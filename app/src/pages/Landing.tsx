@@ -12,11 +12,28 @@ export const Landing = () => {
   const { language } = useLanguage();
   const [flippedCard, setFlippedCard] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState('impulse-test');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Carousel images - cycling through 3 different key card layouts
+  const carouselImages = [
+    '/assets/Key Cards.png',
+    '/assets/Key Cards-1.png',
+    '/assets/Key Cards-2.png'
+  ];
 
   // Update page title for accessibility
   useEffect(() => {
     document.title = 'Impulse26 Key - Impulse26 Design Festival';
   }, []);
+
+  // Auto-play carousel - switch image every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
+    }, 2000); // 2 seconds
+
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
 
   // Track active section on scroll
   useEffect(() => {
@@ -283,12 +300,19 @@ export const Landing = () => {
             <div className="relative w-full">
               {/* Simple white container */}
               <div className="bg-white rounded-lg p-6 sm:p-8">
-                {/* Key Cards Image */}
-                <img
-                  src="/assets/key-cards.png"
-                  alt="Impulse Key Cards"
-                  className="w-full h-auto object-contain"
-                />
+                {/* Key Cards Carousel */}
+                <div className="relative w-full h-auto overflow-hidden">
+                  {carouselImages.map((image, index) => (
+                    <img
+                      key={image}
+                      src={image}
+                      alt={`Impulse Key Cards ${index + 1}`}
+                      className={`w-full h-auto object-contain transition-opacity duration-500 ${
+                        index === currentImageIndex ? 'opacity-100' : 'opacity-0 absolute inset-0'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -332,7 +356,7 @@ export const Landing = () => {
                 <div className="hidden sm:block text-[#d8bfd1]">|</div>
                 <div className="flex items-center gap-2">
                   <span>📍</span>
-                  <span>Pvg03 C1.1, AI Engineering Hub</span>
+                  <span>Pvg03 C1.1, Lecturing Studio (aka Digital School)</span>
                 </div>
               </div>
             </div>
@@ -472,7 +496,7 @@ export const Landing = () => {
                 }}
               />
               <p className="font-space-grotesk font-bold text-[16px] sm:text-[18px] text-[#534150] mb-2 relative z-10">
-                ✨ Complete the <span className="text-[#a800aa]">Impulse Key Test</span> & Claim Your Reward!
+                ✨ Complete the <span className="text-[#a800aa]">Impulse Key Test</span> & Claim Your Prize!
               </p>
               <p className="font-space-grotesk text-[13px] sm:text-[14px] text-[#867181] relative z-10">
                 Show your result screenshot at the party to receive your prize
