@@ -109,42 +109,114 @@ export const Result = () => {
         format: settings.format
       });
 
-      // Pre-load all images before capture to ensure they're ready
+      // Step 1: Pre-load images to browser cache AND decode them
       const imagesToPreload = [
         getKeycapAsset(result.key),
         '/assets/Anvils-1.png',
         '/assets/qr-code.png'
       ];
 
-      console.log('Pre-loading images...');
+      console.log('Pre-loading and decoding images...');
       const preloadStart = performance.now();
-      await Promise.all(
-        imagesToPreload.map(src => {
-          return new Promise((resolve, reject) => {
+
+      try {
+        await Promise.all(
+          imagesToPreload.map(async (src) => {
             const img = new Image();
-            img.onload = () => {
-              console.log('Loaded:', src);
-              resolve(src);
-            };
-            img.onerror = () => {
-              console.error('Failed to load:', src);
-              reject(new Error(`Failed to load image: ${src}`));
-            };
             img.src = src;
-          });
-        })
-      );
+
+            // Wait for image to load
+            await new Promise((resolve, reject) => {
+              if (img.complete && img.naturalHeight !== 0) {
+                resolve(img);
+              } else {
+                img.onload = () => resolve(img);
+                img.onerror = () => reject(new Error(`Failed to load: ${src}`));
+              }
+            });
+
+            // Wait for image to decode (iOS Chrome optimization)
+            await img.decode();
+            console.log('Loaded + decoded:', src);
+            return img;
+          })
+        );
+      } catch (preloadError) {
+        console.error('Failed to preload images:', preloadError);
+        throw new Error(`Image preload failed: ${preloadError instanceof Error ? preloadError.message : 'Unknown error'}`);
+      }
 
       const preloadEnd = performance.now();
-      console.log(`✅ All images pre-loaded in ${Math.round(preloadEnd - preloadStart)}ms`);
+      console.log(`✅ All images pre-loaded and decoded in ${Math.round(preloadEnd - preloadStart)}ms`);
 
-      // Force a reflow to ensure DOM is fully updated
+      // Step 2: Force a reflow to ensure DOM is fully updated
       if (shareCardRef.current) {
         shareCardRef.current.getBoundingClientRect();
       }
 
-      // Wait for images to be rendered in the DOM (increased for mobile reliability)
-      await new Promise(resolve => setTimeout(resolve, 800));
+      // Step 3: Wait for images in ShareCard DOM to be ready
+      console.log('Waiting for ShareCard images to render...');
+      const cardImageStart = performance.now();
+
+      await new Promise<void>((resolve) => {
+        const checkImages = async () => {
+          const cardImages = shareCardRef.current?.querySelectorAll('img');
+          if (!cardImages || cardImages.length === 0) {
+            console.warn('No images found in ShareCard, retrying...');
+            setTimeout(checkImages, 100);
+            return;
+          }
+
+          console.log(`Found ${cardImages.length} images in ShareCard`);
+
+          try {
+            // Wait for all images in ShareCard to be complete and decoded
+            await Promise.all(
+              Array.from(cardImages).map(async (img, index) => {
+                // Check if image is already loaded
+                if (img.complete && img.naturalHeight > 0) {
+                  console.log(`Image ${index + 1} already loaded:`, img.src);
+                  // Still decode it to ensure it's ready for rendering
+                  await img.decode();
+                  return;
+                }
+
+                // Wait for image to load
+                console.log(`Waiting for image ${index + 1}:`, img.src);
+                await new Promise((resolveImg, rejectImg) => {
+                  img.onload = () => resolveImg(img);
+                  img.onerror = () => rejectImg(new Error(`Failed to load image in card: ${img.src}`));
+
+                  // Force reload if src is set but not loading
+                  if (img.src && !img.complete) {
+                    const currentSrc = img.src;
+                    img.src = '';
+                    img.src = currentSrc;
+                  }
+                });
+
+                // Wait for decode
+                await img.decode();
+                console.log(`Image ${index + 1} loaded + decoded`);
+              })
+            );
+
+            const cardImageEnd = performance.now();
+            console.log(`✅ ShareCard images ready in ${Math.round(cardImageEnd - cardImageStart)}ms`);
+            resolve();
+          } catch (error) {
+            console.error('Error waiting for ShareCard images:', error);
+            // Continue anyway after a small delay
+            setTimeout(resolve, 500);
+          }
+        };
+
+        checkImages();
+      });
+
+      // Step 4: Additional frame wait for iOS Chrome rendering
+      await new Promise(resolve => requestAnimationFrame(resolve));
+      await new Promise(resolve => requestAnimationFrame(resolve));
 
       console.log(`Converting to ${settings.format} with pixelRatio: ${settings.pixelRatio}, quality: ${settings.quality}`);
 
