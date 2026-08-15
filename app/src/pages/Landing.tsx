@@ -14,8 +14,9 @@ export const Landing = () => {
   const [activeSection, setActiveSection] = useState('impulse-test');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Carousel images - cycling through 3 different key card layouts
+  // Carousel images - cycling through 4 different key card layouts
   const carouselImages = [
+    '/assets/Key Cards -0.png',
     '/assets/Key Cards -1.png',
     '/assets/Key Cards -2.png',
     '/assets/Key Cards -3.png'
