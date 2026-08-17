@@ -159,7 +159,19 @@ export const Result = () => {
         }
       }
 
-      // DESKTOP FLOW: Continue with html-to-image (works fine on desktop)
+      // DESKTOP FLOW: Continue with html-to-image with 5s timeout fallback
+      console.log('📸 Desktop device - using html-to-image with 5s timeout fallback');
+
+      // Create timeout Promise (5 seconds)
+      const timeoutPromise = new Promise<'timeout'>((resolve) => {
+        setTimeout(() => {
+          console.warn('⏱️ Image generation timeout (5s) - falling back to pre-rendered image');
+          resolve('timeout');
+        }, 5000);
+      });
+
+      // Wrap entire html-to-image flow in a Promise
+      const htmlToImagePromise = (async () => {
 
       // Step 1: Pre-load images to browser cache AND decode them
       const imagesToPreload = [
@@ -396,6 +408,11 @@ export const Result = () => {
 
         // DIAGNOSTIC EXPERIMENT: Test toSvg vs toJpeg WITH FIX
         console.log('\n🔬 DIAGNOSTIC: Testing toSvg() with cacheBust=true...');
+
+        if (!shareCardRef.current) {
+          throw new Error('ShareCard ref is null');
+        }
+
         const svgDataUrl = await toSvg(shareCardRef.current, {
           cacheBust: true, // ⚠️ FIX: Force html-to-image to re-fetch images
           pixelRatio: settings.pixelRatio,
@@ -546,14 +563,70 @@ export const Result = () => {
         const totalTime = performance.now() - startTime;
         console.log(`✅ Export completed! Total time: ${Math.round(totalTime)}ms`);
 
+        return dataUrl; // Return dataUrl for Promise.race
+      } catch (conversionError) {
+        console.error('JPEG conversion failed:', conversionError);
+        throw new Error(`Image conversion failed: ${conversionError instanceof Error ? conversionError.message : 'Unknown error'}`);
+      }
+      })(); // End of htmlToImagePromise
+
+      // Race between html-to-image and timeout
+      const raceResult = await Promise.race([htmlToImagePromise, timeoutPromise]);
+
+      // Handle timeout - fallback to pre-rendered image
+      if (raceResult === 'timeout') {
+        console.log('⏱️ Timeout reached - using pre-rendered image');
+
+        const preRenderedUrl = `/assets/share-cards/${language}/${result.key}.jpg`;
+        console.log(`Fetching pre-rendered image: ${preRenderedUrl}`);
+
+        try {
+          const response = await fetch(preRenderedUrl);
+          if (!response.ok) {
+            throw new Error(`Pre-rendered image not found: ${preRenderedUrl}`);
+          }
+
+          const blob = await response.blob();
+          const dataUrl = await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+
+          console.log('✅ Pre-rendered image loaded (timeout fallback)');
+
+          const filename = `IMPULSE-${result.key}.jpg`;
+          await handleImageExport(dataUrl, filename, language, () => {
+            setIsCapturing(false);
+          });
+
+          const totalTime = performance.now() - startTime;
+          console.log(`✅ Export completed via timeout fallback! Total time: ${Math.round(totalTime)}ms`);
+
+          if (!settings.device.needsPreview) {
+            setIsCapturing(false);
+          }
+        } catch (fallbackError) {
+          console.error('❌ Timeout fallback also failed:', fallbackError);
+          throw fallbackError;
+        }
+      } else {
+        // html-to-image succeeded - use its result
+        console.log('✅ html-to-image completed before timeout');
+
+        const dataUrl = raceResult; // This is the dataUrl from htmlToImagePromise
+        const filename = `IMPULSE-${result.key}.jpg`;
+
+        await handleImageExport(dataUrl, filename, language, () => {
+          setIsCapturing(false);
+        });
+
         // Don't reset isCapturing here if preview modal is shown
         // The modal's onClose will handle it
         if (!settings.device.needsPreview) {
           setIsCapturing(false);
         }
-      } catch (conversionError) {
-        console.error('JPEG conversion failed:', conversionError);
-        throw new Error(`Image conversion failed: ${conversionError instanceof Error ? conversionError.message : 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Failed to capture image:', error);
