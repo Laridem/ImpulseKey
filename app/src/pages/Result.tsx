@@ -225,6 +225,13 @@ export const Result = () => {
       await new Promise(resolve => requestAnimationFrame(resolve));
       await new Promise(resolve => requestAnimationFrame(resolve));
 
+      // iOS FIX: Force browser to fully settle image decoding before html-to-image
+      // html-to-image clones DOM and re-fetches images internally
+      // On iOS Chrome first load, this races with our preload and fails
+      // Solution: Add aggressive settle time AFTER decode
+      console.log('⏳ iOS Fix: Waiting 500ms for browser image decode settlement...');
+      await new Promise(resolve => setTimeout(resolve, 500));
+
       // DIAGNOSTIC: Log all images in export DOM BEFORE html-to-image processing
       console.log('═══════════════════════════════════════════════════════');
       console.log('📸 EXPORT DOM IMAGE AUDIT - BEFORE html-to-image');
@@ -270,11 +277,15 @@ export const Result = () => {
       try {
         const conversionStart = performance.now();
 
-        // DIAGNOSTIC EXPERIMENT: Test toSvg vs toJpeg
-        // Step 1: Generate SVG to check if character is present in SVG stage
-        console.log('\n🔬 DIAGNOSTIC: Testing toSvg() first...');
+        // iOS FIX: Enable cacheBust to force html-to-image to re-fetch images
+        // This ensures it gets the fully loaded images from browser cache
+        // instead of racing with our preload logic
+        console.log('🔧 iOS Fix: Using cacheBust=true to force fresh image embedding');
+
+        // DIAGNOSTIC EXPERIMENT: Test toSvg vs toJpeg WITH FIX
+        console.log('\n🔬 DIAGNOSTIC: Testing toSvg() with cacheBust=true...');
         const svgDataUrl = await toSvg(shareCardRef.current, {
-          cacheBust: false,
+          cacheBust: true, // ⚠️ FIX: Force html-to-image to re-fetch images
           pixelRatio: settings.pixelRatio,
           backgroundColor: '#ffffff',
           width: settings.width,
@@ -286,12 +297,11 @@ export const Result = () => {
         console.log('✅ toSvg() completed');
         console.log(`SVG data URL length: ${formatFileSize(svgDataUrl.length)}`);
         console.log('⚠️ IMPORTANT: Manually inspect the preview - does the SVG show the character?');
-        console.log('SVG data URL (first 200 chars):', svgDataUrl.substring(0, 200));
 
         // Step 2: Also generate JPEG for comparison
-        console.log('\n🔬 DIAGNOSTIC: Now testing toJpeg()...');
+        console.log('\n🔬 DIAGNOSTIC: Now testing toJpeg() with cacheBust=true...');
         const dataUrl = await toJpeg(shareCardRef.current, {
-          cacheBust: false, // Disable cache busting for speed (images already preloaded)
+          cacheBust: true, // ⚠️ FIX: Force html-to-image to re-fetch images
           pixelRatio: settings.pixelRatio,
           quality: settings.quality, // JPEG quality (0.9 = 90%)
           backgroundColor: '#ffffff',
