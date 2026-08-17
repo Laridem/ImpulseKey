@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { toJpeg } from 'html-to-image';
+import { toJpeg, toSvg } from 'html-to-image';
 import confetti from 'canvas-confetti';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
@@ -225,12 +225,71 @@ export const Result = () => {
       await new Promise(resolve => requestAnimationFrame(resolve));
       await new Promise(resolve => requestAnimationFrame(resolve));
 
+      // DIAGNOSTIC: Log all images in export DOM BEFORE html-to-image processing
+      console.log('═══════════════════════════════════════════════════════');
+      console.log('📸 EXPORT DOM IMAGE AUDIT - BEFORE html-to-image');
+      console.log('═══════════════════════════════════════════════════════');
+
+      if (shareCardRef.current) {
+        const allImages = shareCardRef.current.querySelectorAll('img');
+        console.log(`Total images found in export DOM: ${allImages.length}`);
+
+        allImages.forEach((img, index) => {
+          const isCharacter = img.src.includes('result-cards/');
+          const label = isCharacter ? '👤 CHARACTER IMAGE' : `Image ${index + 1}`;
+
+          console.log(`\n${label}:`);
+          console.log({
+            src: img.src,
+            currentSrc: img.currentSrc,
+            complete: img.complete,
+            naturalWidth: img.naturalWidth,
+            naturalHeight: img.naturalHeight,
+            loading: img.loading,
+            alt: img.alt,
+            className: img.className,
+          });
+
+          // Critical readiness check
+          if (!img.complete) {
+            console.warn(`⚠️ ${label} NOT COMPLETE`);
+          }
+          if (img.naturalWidth === 0 || img.naturalHeight === 0) {
+            console.error(`❌ ${label} ZERO DIMENSIONS - NOT DECODED`);
+          }
+          if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+            console.log(`✅ ${label} READY (complete=${img.complete}, ${img.naturalWidth}×${img.naturalHeight})`);
+          }
+        });
+
+        console.log('\n═══════════════════════════════════════════════════════');
+      }
+
       console.log(`Converting to ${settings.format} with pixelRatio: ${settings.pixelRatio}, quality: ${settings.quality}`);
 
       try {
         const conversionStart = performance.now();
 
-        // Use toJpeg instead of toPng for better compression
+        // DIAGNOSTIC EXPERIMENT: Test toSvg vs toJpeg
+        // Step 1: Generate SVG to check if character is present in SVG stage
+        console.log('\n🔬 DIAGNOSTIC: Testing toSvg() first...');
+        const svgDataUrl = await toSvg(shareCardRef.current, {
+          cacheBust: false,
+          pixelRatio: settings.pixelRatio,
+          backgroundColor: '#ffffff',
+          width: settings.width,
+          height: settings.height,
+          skipFonts: false,
+          preferredFontFormat: 'woff2',
+        });
+
+        console.log('✅ toSvg() completed');
+        console.log(`SVG data URL length: ${formatFileSize(svgDataUrl.length)}`);
+        console.log('⚠️ IMPORTANT: Manually inspect the preview - does the SVG show the character?');
+        console.log('SVG data URL (first 200 chars):', svgDataUrl.substring(0, 200));
+
+        // Step 2: Also generate JPEG for comparison
+        console.log('\n🔬 DIAGNOSTIC: Now testing toJpeg()...');
         const dataUrl = await toJpeg(shareCardRef.current, {
           cacheBust: false, // Disable cache busting for speed (images already preloaded)
           pixelRatio: settings.pixelRatio,
@@ -247,11 +306,120 @@ export const Result = () => {
         console.log(`✅ JPEG conversion completed in ${Math.round(conversionEnd - conversionStart)}ms`);
         console.log(`📦 Data URL length: ${formatFileSize(dataUrl.length)} (estimated decoded: ${formatFileSize(estimatedSize)})`);
 
+        // DIAGNOSTIC: Show BOTH SVG and JPEG in preview for comparison
+        console.log('\n═══════════════════════════════════════════════════════');
+        console.log('🔍 DIAGNOSTIC RESULTS:');
+        console.log('1. Check the preview - do you see the character in the SVG version?');
+        console.log('2. Check the preview - do you see the character in the JPEG version?');
+        console.log('3. This will determine if the bug is in:');
+        console.log('   - Case A: SVG generation (clone/embed/fetch stage)');
+        console.log('   - Case B: SVG→Canvas→JPEG conversion (decode/canvas stage)');
+        console.log('═══════════════════════════════════════════════════════');
+
         // Use intelligent export strategy based on device
         const filename = `IMPULSE-${result.key}.jpg`;
-        await handleImageExport(dataUrl, filename, language, () => {
-          setIsCapturing(false);
-        });
+
+        // DIAGNOSTIC MODE: Show both SVG and JPEG in preview
+        if (settings.device.needsPreview) {
+          // Create custom diagnostic preview showing BOTH versions
+          const overlay = document.createElement('div');
+          overlay.id = 'diagnostic-preview-modal';
+          overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            overflow-y: auto;
+          `;
+
+          const title = document.createElement('div');
+          title.style.cssText = `
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+          `;
+          title.textContent = '🔬 DIAGNOSTIC MODE: Compare SVG vs JPEG';
+
+          // SVG Preview
+          const svgContainer = document.createElement('div');
+          svgContainer.style.cssText = `
+            margin-bottom: 20px;
+            text-align: center;
+          `;
+          const svgLabel = document.createElement('div');
+          svgLabel.style.cssText = 'color: #64EDD2; font-weight: bold; margin-bottom: 10px;';
+          svgLabel.textContent = '1️⃣ SVG Version (does it have the character?)';
+          const svgImg = document.createElement('img');
+          svgImg.src = svgDataUrl;
+          svgImg.style.cssText = `
+            max-width: 90%;
+            max-height: 40vh;
+            border: 2px solid #64EDD2;
+            border-radius: 8px;
+          `;
+
+          // JPEG Preview
+          const jpegContainer = document.createElement('div');
+          jpegContainer.style.cssText = `
+            margin-bottom: 20px;
+            text-align: center;
+          `;
+          const jpegLabel = document.createElement('div');
+          jpegLabel.style.cssText = 'color: #FFC933; font-weight: bold; margin-bottom: 10px;';
+          jpegLabel.textContent = '2️⃣ JPEG Version (does it have the character?)';
+          const jpegImg = document.createElement('img');
+          jpegImg.src = dataUrl;
+          jpegImg.style.cssText = `
+            max-width: 90%;
+            max-height: 40vh;
+            border: 2px solid #FFC933;
+            border-radius: 8px;
+          `;
+
+          // Close button
+          const closeBtn = document.createElement('button');
+          closeBtn.textContent = 'Close';
+          closeBtn.style.cssText = `
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 24px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+          `;
+          closeBtn.onclick = () => {
+            document.body.removeChild(overlay);
+            setIsCapturing(false);
+          };
+
+          svgContainer.appendChild(svgLabel);
+          svgContainer.appendChild(svgImg);
+          jpegContainer.appendChild(jpegLabel);
+          jpegContainer.appendChild(jpegImg);
+
+          overlay.appendChild(title);
+          overlay.appendChild(svgContainer);
+          overlay.appendChild(jpegContainer);
+          overlay.appendChild(closeBtn);
+
+          document.body.appendChild(overlay);
+        } else {
+          await handleImageExport(dataUrl, filename, language, () => {
+            setIsCapturing(false);
+          });
+        }
 
         const totalTime = performance.now() - startTime;
         console.log(`✅ Export completed! Total time: ${Math.round(totalTime)}ms`);
