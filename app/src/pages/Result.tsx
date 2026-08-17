@@ -156,6 +156,69 @@ export const Result = () => {
       const preloadEnd = performance.now();
       console.log(`✅ All images pre-loaded and decoded in ${Math.round(preloadEnd - preloadStart)}ms`);
 
+      // iOS FIX: Manually convert images to data URLs BEFORE html-to-image
+      // html-to-image's internal image embedding is failing on iOS
+      // Solution: Convert images to data URLs ourselves and inject them into DOM
+      console.log('🔧 iOS Fix: Manually converting images to data URLs...');
+      const imageConversionStart = performance.now();
+
+      const convertImageToDataUrl = async (src: string): Promise<string> => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              canvas.width = img.naturalWidth;
+              canvas.height = img.naturalHeight;
+              const ctx = canvas.getContext('2d');
+              if (!ctx) {
+                reject(new Error('Failed to get canvas context'));
+                return;
+              }
+              ctx.drawImage(img, 0, 0);
+              const dataUrl = canvas.toDataURL('image/png');
+              resolve(dataUrl);
+            } catch (error) {
+              reject(error);
+            }
+          };
+          img.onerror = () => reject(new Error(`Failed to load: ${src}`));
+          img.src = src;
+        });
+      };
+
+      try {
+        const imageDataUrls = await Promise.all(
+          imagesToPreload.map(src => convertImageToDataUrl(src))
+        );
+        console.log(`✅ Converted ${imageDataUrls.length} images to data URLs`);
+
+        // Now replace <img src="/assets/..."> with <img src="data:image/png;base64,...">
+        // in the ShareCard DOM before html-to-image processes it
+        if (shareCardRef.current) {
+          const cardImages = shareCardRef.current.querySelectorAll('img');
+          cardImages.forEach((img, index) => {
+            const originalSrc = img.src;
+            const matchingDataUrl = imageDataUrls.find((_, i) => {
+              const preloadSrc = imagesToPreload[i];
+              return originalSrc.includes(preloadSrc.replace(/^\//, ''));
+            });
+
+            if (matchingDataUrl) {
+              console.log(`Replacing image ${index + 1} src with data URL`);
+              img.src = matchingDataUrl;
+            }
+          });
+        }
+
+        const imageConversionEnd = performance.now();
+        console.log(`✅ Image conversion completed in ${Math.round(imageConversionEnd - imageConversionStart)}ms`);
+      } catch (conversionError) {
+        console.error('❌ Image conversion failed:', conversionError);
+        // Continue anyway - html-to-image will try its own embedding
+      }
+
       // Step 2: Force a reflow to ensure DOM is fully updated
       if (shareCardRef.current) {
         shareCardRef.current.getBoundingClientRect();
