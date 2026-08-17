@@ -882,13 +882,13 @@ export const Result = () => {
                     }}
                   />
 
-                  {/* Compact single-column for mobile, side-by-side for desktop */}
-                  <div className="flex flex-col gap-4 lg:flex-row lg:gap-12 lg:justify-center relative z-10">
-                    {/* Group 1: Color Info - Compact */}
-                    <div className="flex flex-col gap-2 items-center">
+                  {/* Compact single-column for mobile, side-by-side for desktop with 1:2 ratio */}
+                  <div className="flex flex-col gap-4 lg:flex-row lg:gap-6 lg:items-center relative z-10">
+                    {/* Group 1: Color Info - 1 part */}
+                    <div className="flex flex-col gap-2 items-center lg:flex-shrink-0">
                       {/* Color swatch - smaller */}
                       <div
-                        className="relative w-12 h-12 lg:w-16 lg:h-16 rounded-lg flex-shrink-0"
+                        className="relative w-12 h-12 lg:w-20 lg:h-20 rounded-lg flex-shrink-0"
                         style={{
                           background: `
                             radial-gradient(circle at 30% 30%, ${hexToRgba(colorGroup.color, 0.9)} 0%, ${colorGroup.color} 100%)
@@ -917,15 +917,15 @@ export const Result = () => {
                     </div>
 
                     {/* Divider - only on desktop */}
-                    <div className="hidden lg:block w-px bg-gradient-to-b from-transparent via-[#d8bfd1] to-transparent"></div>
+                    <div className="hidden lg:block w-px h-24 bg-gradient-to-b from-transparent via-[#d8bfd1] to-transparent flex-shrink-0"></div>
 
-                    {/* Group 2: Core Personality - Compact */}
-                    <div className="flex flex-col gap-2 items-center lg:max-w-[300px]">
-                      <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
+                    {/* Group 2: Core Personality - 2 parts (more space) */}
+                    <div className="flex flex-col gap-2 items-center lg:items-start lg:flex-1 lg:max-w-none">
+                      <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider lg:text-left">
                         CORE PERSONALITY
                       </p>
                       <p
-                        className="font-space-grotesk font-semibold text-[14px] lg:text-[15px] leading-[20px] lg:leading-[24px] text-center"
+                        className="font-space-grotesk font-semibold text-[14px] lg:text-[16px] leading-[20px] lg:leading-[26px] text-center lg:text-left"
                         style={{ color: impulseColorText }}
                       >
                         {language === 'zh' ? colorGroup.descriptionCN : colorGroup.descriptionEN}
