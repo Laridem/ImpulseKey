@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Question, Result, UserAnswer, DimensionScores } from '../data/types';
 import { QUESTIONS } from '../data/questions';
 import { RESULTS } from '../data/results';
-import { calculateResult, calculateScores, applyRoleWeights } from '../utils/scoring';
+import { calculateScores, applyRoleWeights, mapToResultKey } from '../utils/scoring';
 import { randomizeQuestions, randomizeOptions } from '../utils/randomize';
 import { transformResult } from '../utils/resultTransform';
 import { transformQuestions } from '../utils/questionTransform';
@@ -126,8 +126,8 @@ export const TestProvider: React.FC<TestProviderProps> = ({ children }) => {
         scores = applyRoleWeights(scores, selectedRole);
       }
 
-      // Calculate final result key
-      const calculatedResultKey = calculateResult(answers);
+      // Calculate final result key using weighted scores
+      const calculatedResultKey = mapToResultKey(scores);
       const resultType = RESULTS[calculatedResultKey];
       const calculatedResult = transformResult(resultType);
 

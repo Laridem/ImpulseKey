@@ -32,6 +32,8 @@ export interface Question {
   text?: BilingualText  // Optional for backward compatibility
   textEN: string
   textCN: string
+  hintEN?: string  // Question-level hint text
+  hintCN?: string
   options: QuestionOption[]
 }
 
@@ -40,6 +42,12 @@ export interface QuestionOption {
   text?: BilingualText  // Optional for backward compatibility
   textEN: string
   textCN: string
+  // Role-specific text variants
+  textByRole?: {
+    product_design?: BilingualText
+    tech_engineering?: BilingualText
+    business_strategy?: BilingualText
+  }
   humor?: BilingualText  // Optional for backward compatibility
   humorEN: string
   humorCN: string

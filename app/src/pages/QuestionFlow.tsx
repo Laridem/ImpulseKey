@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
@@ -8,9 +8,32 @@ import { GlossaryPanel } from '../components/GlossaryPanel';
 
 export const QuestionFlow = () => {
   const navigate = useNavigate();
-  const { questions, currentQuestionIndex, answers, resultKey, answerQuestion, goToPreviousQuestion, submitTest } = useTest();
+  const { questions, currentQuestionIndex, answers, resultKey, selectedRole, answerQuestion, goToPreviousQuestion, submitTest } = useTest();
   const t = useTranslation();
   const { language } = useLanguage();
+  const optionsContainerRef = useRef<HTMLDivElement>(null);
+
+  // Clear all hover states when question changes
+  useEffect(() => {
+    if (optionsContainerRef.current) {
+      const buttons = optionsContainerRef.current.querySelectorAll('button');
+      buttons.forEach((button) => {
+        // Force blur to remove focus
+        button.blur();
+        // Temporarily disable pointer events to clear hover state
+        button.style.pointerEvents = 'none';
+      });
+
+      // Re-enable pointer events after a brief delay
+      const timeout = setTimeout(() => {
+        buttons.forEach((button) => {
+          button.style.pointerEvents = '';
+        });
+      }, 50);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentQuestionIndex]);
 
   // Update page title for accessibility
   useEffect(() => {
@@ -23,6 +46,13 @@ export const QuestionFlow = () => {
       navigate('/loading');
     }
   }, [resultKey, navigate]);
+
+  // Redirect to role selection if no role selected
+  useEffect(() => {
+    if (!selectedRole) {
+      navigate('/role-selection');
+    }
+  }, [selectedRole, navigate]);
 
   // Redirect to home if no questions loaded
   useEffect(() => {
@@ -39,6 +69,20 @@ export const QuestionFlow = () => {
   const progress = ((answers.length) / questions.length) * 100;
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
+  // Helper function to get role-appropriate option text
+  const getOptionText = (option: any, role: string | null, language: string): string => {
+    // If user selected a role (not secret) and option has role-specific variant
+    if (role && role !== 'secret' && option.textByRole) {
+      const roleKey = role as 'product_design' | 'tech_engineering' | 'business_strategy';
+      const roleVariant = option.textByRole[roleKey];
+      if (roleVariant) {
+        return language === 'zh' ? roleVariant.zh : roleVariant.en;
+      }
+    }
+    // Otherwise use generic version
+    return language === 'zh' ? (option.text?.zh || option.textCN) : (option.text?.en || option.textEN);
+  };
+
   // Find current question's answer if it exists
   const currentAnswer = answers.find(a => a.questionId === currentQuestion.id);
 
@@ -46,12 +90,27 @@ export const QuestionFlow = () => {
 
   const handleOptionClick = (optionId: 'A' | 'B' | 'C', event: React.MouseEvent<HTMLButtonElement>) => {
     answerQuestion(currentQuestion.id, optionId);
+
     // Remove hover state by blurring the clicked element
     event.currentTarget.blur();
+
+    // Force remove hover state by adding pointer-events-none temporarily
+    const button = event.currentTarget;
+    button.style.pointerEvents = 'none';
+
+    // Re-enable pointer events after question transition
+    setTimeout(() => {
+      button.style.pointerEvents = '';
+    }, 50);
   };
 
   const handlePrevious = () => {
-    goToPreviousQuestion();
+    if (currentQuestionIndex === 0) {
+      // First question - go back to role selection
+      navigate('/role-selection');
+    } else {
+      goToPreviousQuestion();
+    }
   };
 
   const handleSubmit = () => {
@@ -111,7 +170,7 @@ export const QuestionFlow = () => {
             </div>
 
             {/* Options */}
-            <div className="space-y-3 sm:space-y-4" role="radiogroup" aria-labelledby="question-text">
+            <div ref={optionsContainerRef} className="space-y-3 sm:space-y-4" role="radiogroup" aria-labelledby="question-text">
               {currentQuestion.options.map((option) => {
                 const isSelected = currentAnswer?.selectedOption === option.id;
                 return (
@@ -120,7 +179,7 @@ export const QuestionFlow = () => {
                     onClick={(e) => handleOptionClick(option.id, e)}
                     role="radio"
                     aria-checked={isSelected}
-                    aria-label={`Option ${option.id}: ${language === 'zh' ? (option.text?.zh || option.textCN) : (option.text?.en || option.textEN)}`}
+                    aria-label={`Option ${option.id}: ${getOptionText(option, selectedRole, language)}`}
                     className={`w-full p-4 sm:p-5 md:p-6 text-left border-2 rounded-lg transition-all duration-200
                       ${isSelected
                         ? 'border-[#800082] bg-[#800082] text-white shadow-soft'
@@ -129,9 +188,7 @@ export const QuestionFlow = () => {
                     `}
                   >
                     <p className={`font-72-brand text-[13px] sm:text-[15px] md:text-body-lg leading-[1.6] ${isSelected ? 'font-bold' : 'font-normal'} ${isSelected ? 'text-white' : 'text-[#534150]'}`}>
-                      {language === 'zh'
-                        ? (option.text?.zh || option.textCN)
-                        : (option.text?.en || option.textEN)}
+                      {getOptionText(option, selectedRole, language)}
                     </p>
                   </button>
                 );
@@ -143,8 +200,7 @@ export const QuestionFlow = () => {
           <div className="hidden sm:flex gap-3 sm:gap-4 mb-6 sm:mb-8">
             <button
               onClick={handlePrevious}
-              disabled={currentQuestionIndex === 0}
-              className="relative flex-1 px-4 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-[#534150] font-72-brand text-[13px] sm:text-[15px] md:text-body-lg rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#800082] hover:text-[#800082] active:border-[#800082] active:text-[#800082] disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 flex items-center justify-center gap-2 overflow-hidden"
+              className="relative flex-1 px-4 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-[#534150] font-72-brand text-[13px] sm:text-[15px] md:text-body-lg rounded-full transition-all duration-300 hover:translate-y-[-1px] hover:border-[#800082] hover:text-[#800082] active:border-[#800082] active:text-[#800082] flex items-center justify-center gap-2 overflow-hidden"
               style={{
                 borderWidth: '3px',
                 borderColor: '#d8bfd1',
@@ -159,7 +215,9 @@ export const QuestionFlow = () => {
                 }}
               />
               <span className="relative z-10">←</span>
-              <span className="relative z-10">{t('question.previousStep')}</span>
+              <span className="relative z-10">
+                {currentQuestionIndex === 0 ? t('question.backToRoleSelection') : t('question.previousStep')}
+              </span>
             </button>
 
             {canSubmit && (
@@ -207,15 +265,19 @@ export const QuestionFlow = () => {
             )}
           </div>
 
-          {/* Help Text */}
-          <div className="mb-6 sm:mb-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-[#f7e3ef] border border-[#d8bfd1] rounded-lg px-4 sm:px-6 py-2 sm:py-3">
-              <span className="text-[#5d38e3]" role="img" aria-label={language === 'zh' ? '信息提示' : 'Information'}>ℹ️</span>
-              <p className="font-72-brand text-[12px] sm:text-body-sm text-[#534150]">
-                {t('question.helpText')}
-              </p>
+          {/* Think About It - Question-specific hint */}
+          {(currentQuestion.hintEN || currentQuestion.hintCN) && (
+            <div className="mb-6 sm:mb-8 text-center">
+              <div className="inline-flex flex-col items-center gap-2 bg-[#f7e3ef] border border-[#d8bfd1] rounded-lg px-4 sm:px-6 py-3 sm:py-4">
+                <span className="font-jetbrains-mono font-medium text-[10px] sm:text-[11px] text-[#800082] uppercase tracking-wide">
+                  {t('question.thinkAboutIt')}
+                </span>
+                <p className="font-72-brand text-[13px] sm:text-[15px] text-[#534150] leading-[1.5] text-center">
+                  {language === 'zh' ? currentQuestion.hintCN : currentQuestion.hintEN}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Progress Bar - Desktop only */}
           <div className="hidden sm:block w-full bg-[#d8bfd1] h-2 rounded-full overflow-hidden">
@@ -297,8 +359,7 @@ export const QuestionFlow = () => {
           <div className="flex gap-2 items-center justify-between mb-0">
             <button
               onClick={handlePrevious}
-              disabled={currentQuestionIndex === 0}
-              className="relative flex-1 px-3 py-2.5 text-[#231821] font-poppins font-bold text-[13px] rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 uppercase overflow-hidden"
+              className="relative flex-1 px-3 py-2.5 text-[#231821] font-poppins font-bold text-[13px] rounded-full transition-all flex items-center justify-center gap-1.5 uppercase overflow-hidden"
               style={{
                 borderWidth: '2px',
                 borderColor: '#a800aa',
@@ -313,7 +374,9 @@ export const QuestionFlow = () => {
                 }}
               />
               <span className="relative z-10">←</span>
-              <span className="relative z-10">PREVIOUS</span>
+              <span className="relative z-10">
+                {currentQuestionIndex === 0 ? (language === 'zh' ? '返回' : 'BACK') : 'PREVIOUS'}
+              </span>
             </button>
 
             <button

@@ -6,8 +6,8 @@
   },
   "roleSelection": {
     "title": "What's your role?",
-    "subtitle": "Choose the role that best matches your primary day-to-day work and professional identity. If you wear multiple hats, pick the one you spend the most time in or identify with most strongly.",
-    "footer": "Don't worry — this selection won't artificially limit or bias your final result. It simply helps us tailor the scenario questions to be more relevant and realistic for your work context, making the test experience more meaningful and relatable.",
+    "subtitle": "Pick the role closest to your day-to-day work.",
+    "footer": "This won't limit your result — it just makes the questions more relatable.",
     "continueButton": "Continue"
   },
   "landing": {
@@ -56,8 +56,9 @@
   "question": {
     "surveyModule": "SURVEY MODULE",
     "previousStep": "PREVIOUS STEP",
+    "backToRoleSelection": "Back to Role Selection",
     "submitTest": "Submit Test",
-    "helpText": "Trust your instincts — don't overthink it. Your immediate, intuitive reactions are usually the most revealing and authentic. Choose the option that genuinely resonates with how you would respond in the real scenario, not how you think you should respond."
+    "thinkAboutIt": "Think About It"
   },
   "loading": {
     "impulse": "IMPULSE",

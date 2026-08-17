@@ -84,7 +84,6 @@ export const RoleSelection = () => {
 
               const isSelected = selectedRoleId === roleId;
               const categoryName = language === 'zh' ? role.nameZH : role.nameEN;
-              const desc = language === 'zh' ? role.descZH : role.descEN;
 
               return (
                 <div
@@ -101,7 +100,7 @@ export const RoleSelection = () => {
                       : 'border-[#e5e2e8]'
                   }`}
                 >
-                  <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <div className={`flex-shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-lg flex items-center justify-center text-2xl sm:text-3xl ${
                       isSelected ? 'bg-[#f7e3ef]' : 'bg-[#f5f3f7]'
                     }`}>
@@ -111,9 +110,6 @@ export const RoleSelection = () => {
                       {categoryName}
                     </h3>
                   </div>
-                  <p className="font-72-brand text-[14px] sm:text-[16px] text-[#534150] leading-[1.5] sm:leading-[24px]">
-                    {desc}
-                  </p>
                 </div>
               );
             })}

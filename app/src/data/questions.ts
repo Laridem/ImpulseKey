@@ -13,6 +13,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'A',
     textEN: 'A customer says in Teams: "This feature is not very convenient to use."',
     textCN: '一个客户在 Teams 上说："这个功能用起来不太方便。"',
+    hintEN: '"Not convenient" tells you there\'s a problem. It politely refuses to tell you what the problem is.',
+    hintCN: '"不太方便"告诉你确实有问题。至于问题是什么，它礼貌地选择了不说。',
     options: [
       {
         id: 'A',
@@ -46,6 +48,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'A',
     textEN: 'Before Sprint Planning, the PM pulls 10 user stories from Aha!, but nobody knows how to prioritize them.',
     textCN: 'Sprint Planning 前，PM 从 Aha! 里拖出来 10 个用户故事，但没人知道优先级怎么定。',
+    hintEN: 'When everything is P0, congratulations: you no longer have priorities.',
+    hintCN: '当所有事情都是 P0，恭喜你：优先级已经不存在了。',
     options: [
       {
         id: 'A',
@@ -58,7 +62,7 @@ export const QUESTIONS: Question[] = [
       {
         id: 'B',
         textEN: 'First cluster pain points, then look at technical dependencies and effort.',
-        textCN: '先聚类痛点，再看技术依赖和工作量，综合排序。',
+        textCN: '先按用户痛点排序，再评估技术可行性和投入。',
         humorEN: 'Need to see both user urgency and whether the backend API can handle it.',
         humorCN: '既要看用户急不急，也要看 backend API 搞不搞得定。',
         scores: { Signal: 1, Solution: 1 }
@@ -79,11 +83,23 @@ export const QUESTIONS: Question[] = [
     dimension: 'A',
     textEN: 'Testing discovers an edge case: When a username exceeds 50 characters, the UI breaks.',
     textCN: '测试发现一个 Edge Case（边缘场景）：当用户名字超过 50 个字符时，UI 会错位。',
+    hintEN: 'An edge case is just a real user you haven\'t met yet.',
+    hintCN: '所谓 Edge Case，通常只是你还没遇到的真实用户。',
     options: [
       {
         id: 'A',
         textEN: 'First ask the PM: How many users have names over 50 characters? How many are affected?',
         textCN: '先问 PM：现实中有多少用户名字会超过 50 字符？影响多少人？',
+        textByRole: {
+          product_design: {
+            en: 'Check with the PM: How many users actually have names over 50 characters? What\'s the real impact?',
+            zh: '和 PM 确认：实际有多少用户名字超过 50 字符？真实影响面是多大？'
+          },
+          business_strategy: {
+            en: 'Ask the PM: What percentage of our user base has names over 50 characters? What\'s the business risk?',
+            zh: '问 PM：超过 50 字符的用户占比多少？业务风险多大？'
+          }
+        },
         humorEN: 'Edge cases are often a euphemism for "ignored users."',
         humorCN: 'Edge Case（边缘场景）往往是"被忽略的用户"的委婉说法。',
         scores: { Signal: 2 }
@@ -100,6 +116,16 @@ export const QUESTIONS: Question[] = [
         id: 'C',
         textEN: 'Check HANA logs to see if this case will cause system errors or data corruption.',
         textCN: '查 HANA（数据库）日志，看这个 Case 是否会导致 System Error 或 Data Corruption（数据损坏）。',
+        textByRole: {
+          product_design: {
+            en: 'Ask the dev team if this bug could crash the system or corrupt user data.',
+            zh: '问开发团队这个 bug 会不会导致系统崩溃或用户数据损坏。'
+          },
+          business_strategy: {
+            en: 'Request a technical risk assessment: Could this bug cause system failures or data loss?',
+            zh: '要求技术风险评估：这个 bug 可能导致系统故障或数据丢失吗？'
+          }
+        },
         humorEN: 'Small bugs grow fast in production. Especially ones found Friday afternoon.',
         humorCN: '小 bug 在生产环境长得很快。特别是周五下午发现的那种。',
         scores: { Solution: 2 }
@@ -112,6 +138,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'A',
     textEN: 'A stakeholder writes: "We need to optimize this dashboard."',
     textCN: 'Stakeholder 在 Outlook 会议邀请里写："我们需要优化这个 dashboard。"',
+    hintEN: '"Optimize" — the corporate word for "something feels wrong, you figure it out."',
+    hintCN: '"优化"——职场版的"反正哪里不对，你们自己研究一下"。',
     options: [
       {
         id: 'A',
@@ -131,8 +159,8 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'C',
-        textEN: 'Reply: "Which KPIs and filters do we need? Let me check if the OData API supports them."',
-        textCN: '回复："需要加哪些 KPI、Filter 功能？我看看 OData API（数据接口）支持不支持。"',
+        textEN: 'Reply: "Let me check what the OData API supports first, then we can design the dashboard accordingly."',
+        textCN: '回复："我先看看 OData API（数据接口）能支持什么，再据此设计 dashboard。"',
         humorEN: 'A dashboard without decision goals is just corporate wallpaper.',
         humorCN: '没有决策目标的 Dashboard 就是公司墙纸——好看但没用。',
         scores: { Solution: 2 }
@@ -146,11 +174,23 @@ export const QUESTIONS: Question[] = [
     dimension: 'B',
     textEN: 'API error message: "Error Code 400_INVALID_REQUEST". A developer asks: What does this mean?',
     textCN: 'API 返回："Error Code 400_INVALID_REQUEST"。开发在 Teams 里问：这到底啥意思？',
+    hintEN: 'If the error message needs a meeting to explain it, it\'s not really an error message.',
+    hintCN: '如果一条错误提示还需要开会解释，它大概不算什么错误提示。',
     options: [
       {
         id: 'A',
         textEN: 'Change it to: "Request is missing required field \'approver\', please check request body."',
         textCN: '改成人话："请求参数缺少必填字段 \'approver\'，请检查 request body。"',
+        textByRole: {
+          product_design: {
+            en: 'Rewrite it in plain language: "Missing required field \'approver\' in your request."',
+            zh: '改成人能看懂的话："你的请求里缺少必填字段 \'approver\'。"'
+          },
+          business_strategy: {
+            en: 'Request a clear error message: "The request is missing \'approver\'. Please add it and try again."',
+            zh: '要求清晰的错误提示："请求缺少 \'approver\' 字段，请补充后重试。"'
+          }
+        },
         humorEN: 'Developers are users too, they just take better screenshots.',
         humorCN: 'Developer 也是 user，只是他们更会截图发 Jira ticket。',
         scores: { Human: 2 }
@@ -167,6 +207,16 @@ export const QUESTIONS: Question[] = [
         id: 'C',
         textEN: 'Check API contract, OpenAPI spec, and documentation to ensure consistency.',
         textCN: '检查 API contract、OpenAPI spec、SAP Wiki 文档，确保三者一致。',
+        textByRole: {
+          product_design: {
+            en: 'Ask the team to verify the API docs, code examples, and error messages all match.',
+            zh: '让团队核对 API 文档、代码示例、错误提示是否都一致。'
+          },
+          business_strategy: {
+            en: 'Request a documentation audit: Are the API specs, examples, and error messages aligned?',
+            zh: '要求文档审查：API 规范、示例、错误提示是否对齐？'
+          }
+        },
         humorEN: '"400 Bad Request" isn\'t an error message, it\'s an emotional state.',
         humorCN: '"400 Bad Request" 不是 error message，是一种情绪状态。',
         scores: { Machine: 2 }
@@ -182,6 +232,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'B',
     textEN: 'Joule generates a workflow, but a PM says: "This doesn\'t match our actual approval process."',
     textCN: 'Joule（AI助手）生成了一个 Workflow，但 PM 说："这跟我们实际的审批流程不符合。"',
+    hintEN: 'AI can\'t read your mind. Your colleagues probably can\'t either.',
+    hintCN: 'AI 不会读心。顺便说一句，你的同事大概率也不会。',
     options: [
       {
         id: 'A',
@@ -215,6 +267,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'B',
     textEN: 'A user completes a form, but the system returns: "Validation failed."',
     textCN: '用户填完表单，系统返回："Validation Failed（数据校验失败）。"',
+    hintEN: 'Nothing says "user-friendly" like telling users they\'re wrong without telling them why.',
+    hintCN: '没有什么比"告诉用户你错了，但不告诉你错哪了"更体现用户友好了。',
     options: [
       {
         id: 'A',
@@ -248,6 +302,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'B',
     textEN: 'An AI agent auto-assigns tickets, but engineers complain: "These tickets don\'t belong to my module."',
     textCN: 'AI agent 自动分配 ticket，但工程师抱怨："这些 ticket 根本不属于我的模块。"',
+    hintEN: 'Automation is great. Especially when it automates the wrong thing faster.',
+    hintCN: '自动化当然很好。尤其是它能更快地把事情做错。',
     options: [
       {
         id: 'A',
@@ -282,6 +338,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'C',
     textEN: 'During a design review, someone suggests: "Why don\'t we try a completely different interaction pattern?"',
     textCN: '设计评审时，有人提议："我们要不要试试完全不同的交互模式？"',
+    hintEN: '"Different" is easy. "Better" is where the paperwork starts.',
+    hintCN: '"做得不一样"很容易。证明"这样更好"才是麻烦开始的地方。',
     options: [
       {
         id: 'A',
@@ -315,6 +373,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'C',
     textEN: 'You discover a workflow that could be simplified, but it would break existing user habits.',
     textCN: '你发现一个流程可以简化，但会打破用户现有习惯。',
+    hintEN: 'Every "better experience" starts with someone asking, "Why did you move that button?"',
+    hintCN: '几乎所有"更好的体验"，都会先迎来一句："你们为什么把那个按钮挪了？"',
     options: [
       {
         id: 'A',
@@ -348,11 +408,23 @@ export const QUESTIONS: Question[] = [
     dimension: 'C',
     textEN: 'A customer requests a feature that doesn\'t fit your product roadmap.',
     textCN: '客户提出一个需求，但不符合你的产品 roadmap。',
+    hintEN: 'Saying yes to every customer is one way to let customers design your product.',
+    hintCN: '对每个客户都说 Yes，是一种让客户替你做产品经理的方法。',
     options: [
       {
         id: 'A',
         textEN: 'Explore the underlying need and see if there\'s a creative solution.',
         textCN: '深挖底层需求，看能否找到创造性的解决方案。',
+        textByRole: {
+          product_design: {
+            en: 'Talk to the customer to understand their real need — maybe there\'s a better solution.',
+            zh: '和客户聊聊他们真正的需求 — 也许有更好的解决方案。'
+          },
+          business_strategy: {
+            en: 'Investigate the business case: What\'s the real problem driving this request?',
+            zh: '调查业务场景：这个需求背后的真实问题是什么？'
+          }
+        },
         humorEN: 'Behind every weird request is a real problem.',
         humorCN: '每个奇怪需求背后都有一个真实的问题。',
         scores: { Explore: 2 }
@@ -381,6 +453,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'C',
     textEN: 'Your team wants to try a new framework, but the rest of the org uses a different stack.',
     textCN: '你的团队想尝试新框架，但公司其他团队用的是不同的技术栈。',
+    hintEN: 'Every tech silo once introduced itself as "innovation."',
+    hintCN: '每一个技术孤岛，刚出生的时候都叫"创新"。',
     options: [
       {
         id: 'A',
@@ -415,6 +489,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'D',
     textEN: 'A critical bug is found in production. Do you fix it immediately or wait for the next sprint?',
     textCN: '生产环境发现严重 bug。你会立即修复还是等下个 sprint？',
+    hintEN: '"Critical" has a surprisingly flexible definition until the customer calls.',
+    hintCN: '"严重 Bug"的定义通常非常灵活。直到客户打电话过来。',
     options: [
       {
         id: 'A',
@@ -448,6 +524,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'D',
     textEN: 'A stakeholder wants a feature for a demo next week. The team says it needs 3 weeks.',
     textCN: 'Stakeholder 想要一个 feature 下周 demo。团队说需要 3 周。',
+    hintEN: 'There\'s always a faster version. The question is what you\'re quietly removing from it.',
+    hintCN: '永远都存在"更快的版本"。问题只是你偷偷从里面删掉了什么。',
     options: [
       {
         id: 'A',
@@ -481,6 +559,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'D',
     textEN: 'You discover an innovative solution, but it requires rewriting a core module.',
     textCN: '你发现了一个创新方案，但需要重写核心模块。',
+    hintEN: 'Rewriting the core is exciting. So is explaining it during an outage.',
+    hintCN: '重写核心模块确实很刺激。线上出事故时解释为什么重写，也很刺激。',
     options: [
       {
         id: 'A',
@@ -514,6 +594,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'D',
     textEN: 'Your team is behind schedule. Do you cut features or extend the deadline?',
     textCN: '你的团队进度落后。你会砍功能还是延长时间？',
+    hintEN: 'Scope, time, quality. Pick two. Then spend three meetings pretending you can keep all three.',
+    hintCN: '范围、时间、质量，三选二。然后再开三场会，讨论怎么三个都要。',
     options: [
       {
         id: 'A',
@@ -549,6 +631,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'A',
     textEN: 'During a sprint demo, a stakeholder says: "Can we add a feature to export this data to Excel?"',
     textCN: '在 Sprint Demo 时，stakeholder 说："能不能加个导出到 Excel 的功能？"',
+    hintEN: 'Sometimes "Export to Excel" is a feature request. Sometimes it\'s a cry for help.',
+    hintCN: '有时候"导出 Excel"是功能需求。有时候，它只是用户在求救。',
     options: [
       {
         id: 'A',
@@ -584,6 +668,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'B',
     textEN: 'A developer asks: "Should this confirmation message say \'Operation completed successfully\' or show the transaction ID?"',
     textCN: '开发问："确认消息应该显示\'操作成功\'还是显示 transaction ID？"',
+    hintEN: 'Humans want reassurance. Systems want receipts.',
+    hintCN: '人类需要安心。系统需要凭证。',
     options: [
       {
         id: 'A',
@@ -619,6 +705,8 @@ export const QUESTIONS: Question[] = [
     dimension: 'C',
     textEN: 'Your team prototyped a drag-and-drop workflow builder, but Fiori guidelines recommend a form-based approach.',
     textCN: '你的团队做了一个拖拽式流程构建器的 prototype，但 Fiori 指南推荐表单式的方式。',
+    hintEN: 'Guidelines prevent bad decisions. Unfortunately, they can also prevent interesting ones.',
+    hintCN: '规范可以阻止坏主意。偶尔也会顺手杀掉几个好主意。',
     options: [
       {
         id: 'A',
@@ -654,9 +742,11 @@ export const QUESTIONS: Question[] = [
     dimension: 'D',
     textEN: 'Your feature is ready for release, but there\'s no time to write end-to-end tests. The PM says "ship now, test later."',
     textCN: '你的功能可以发布了，但没时间写端到端测试。PM 说"先上线，后面再测。"',
+    hintEN: '"Test later" is one of the most popular synonyms for "test never."',
+    hintCN: '"后面再测"，是"永远不测"最常见的职场委婉语之一。',
     options: [
       {
-        id: 'C',
+        id: 'A',
         textEN: 'Ship with manual smoke testing. Real users will find issues faster than writing tests.',
         textCN: '手动冒烟测试后上线。真实用户会比写测试更快发现问题。',
         humorEN: 'Production is the best test environment. Users are unpaid QA.',

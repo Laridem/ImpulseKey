@@ -14,13 +14,17 @@ export const Landing = () => {
   const [activeSection, setActiveSection] = useState('impulse-test');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Carousel images - cycling through 5 different key card layouts
+  // Carousel images - cycling through 8 different key card layouts
   const carouselImages = [
     '/assets/Key Cards -0.png',
     '/assets/Key Cards -1.png',
     '/assets/Key Cards -2.png',
     '/assets/Key Cards -3.png',
-    '/assets/Key Cards -4.png'
+    '/assets/Key Cards -5.png',
+    '/assets/Key Cards -4.png',
+    '/assets/Key Cards -6.png',
+    '/assets/Key Cards -7.png',
+    '/assets/Key Cards -8.png'
   ];
 
   // Update page title for accessibility
@@ -28,11 +32,11 @@ export const Landing = () => {
     document.title = 'Impulse26 Key - Impulse26 Design Festival';
   }, []);
 
-  // Auto-play carousel - switch image every 2 seconds
+  // Auto-play carousel - switch image every 1.5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % carouselImages.length);
-    }, 2000); // 2 seconds
+    }, 1500); // 1.5 seconds
 
     return () => clearInterval(interval);
   }, [carouselImages.length]);

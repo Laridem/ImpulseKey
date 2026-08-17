@@ -6,8 +6,8 @@
   },
   "roleSelection": {
     "title": "你的职能角色是什么？",
-    "subtitle": "选择最符合你主要日常工作和职业身份的角色。如果你身兼多职，请选择你花费时间最多或最认同的那个。",
-    "footer": "别担心——这个选择不会人为地限制或偏向你的最终结果。它只是帮助我们定制场景问题，使其更贴合你的工作情境，让测试体验更有意义和共鸣。",
+    "subtitle": "选择最接近你日常工作的角色。",
+    "footer": "不影响结果 — 只是让问题更贴近你的工作场景。",
     "continueButton": "继续"
   },
   "landing": {
@@ -38,8 +38,9 @@
   "question": {
     "surveyModule": "SURVEY MODULE",
     "previousStep": "上一题",
+    "backToRoleSelection": "返回角色选择",
     "submitTest": "提交测试",
-    "helpText": "相信你的直觉——不要过度思考。你的即时、直觉反应通常是最具启发性和最真实的。选择真正与你在真实场景中会如何回应产生共鸣的选项，而不是你认为应该如何回应的选项。"
+    "thinkAboutIt": "扎心一句"
   },
   "loading": {
     "impulse": "IMPULSE",
