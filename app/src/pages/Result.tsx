@@ -112,6 +112,54 @@ export const Result = () => {
         format: settings.format
       });
 
+      // 🎯 MOBILE FIX: Use pre-rendered images on mobile devices
+      // html-to-image fails on iOS/mobile, so we use pre-generated share cards
+      if (settings.device.isMobile) {
+        console.log('🔧 Mobile device detected - using pre-rendered share card');
+
+        const preRenderedUrl = `/assets/share-cards/${result.key}.jpg`;
+        console.log(`Fetching pre-rendered image: ${preRenderedUrl}`);
+
+        try {
+          // Fetch the pre-rendered image
+          const response = await fetch(preRenderedUrl);
+          if (!response.ok) {
+            throw new Error(`Pre-rendered image not found: ${preRenderedUrl}`);
+          }
+
+          const blob = await response.blob();
+          const dataUrl = await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+
+          console.log('✅ Pre-rendered image loaded');
+
+          // Use intelligent export strategy based on device
+          const filename = `IMPULSE-${result.key}.jpg`;
+          await handleImageExport(dataUrl, filename, language, () => {
+            setIsCapturing(false);
+          });
+
+          const totalTime = performance.now() - startTime;
+          console.log(`✅ Export completed! Total time: ${Math.round(totalTime)}ms`);
+
+          if (!settings.device.needsPreview) {
+            setIsCapturing(false);
+          }
+
+          return; // Exit early - mobile flow complete
+        } catch (preRenderError) {
+          console.error('❌ Failed to load pre-rendered image:', preRenderError);
+          console.warn('⚠️ Falling back to html-to-image (may fail on mobile)');
+          // Fall through to html-to-image flow below
+        }
+      }
+
+      // DESKTOP FLOW: Continue with html-to-image (works fine on desktop)
+
       // Step 1: Pre-load images to browser cache AND decode them
       const imagesToPreload = [
         getKeycapAsset(result.key),
