@@ -117,8 +117,9 @@ export const Result = () => {
       if (settings.device.isMobile) {
         console.log('🔧 Mobile device detected - using pre-rendered share card');
 
-        const preRenderedUrl = `/assets/share-cards/${result.key}.jpg`;
-        console.log(`Fetching pre-rendered image: ${preRenderedUrl}`);
+        // Use language-specific pre-rendered image
+        const preRenderedUrl = `/assets/share-cards/${language}/${result.key}.jpg`;
+        console.log(`Fetching pre-rendered image: ${preRenderedUrl} (language: ${language})`);
 
         try {
           // Fetch the pre-rendered image

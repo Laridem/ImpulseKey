@@ -1,0 +1,16 @@
+http://localhost:5173/result/VOC
+http://localhost:5173/result/FIORI
+http://localhost:5173/result/PIXEL
+http://localhost:5173/result/A11Y
+http://localhost:5173/result/JOULE
+http://localhost:5173/result/CTRL
+http://localhost:5173/result/AGENT
+http://localhost:5173/result/SAFE
+http://localhost:5173/result/OData
+http://localhost:5173/result/BTP
+http://localhost:5173/result/CORE
+http://localhost:5173/result/API
+http://localhost:5173/result/QAQ
+http://localhost:5173/result/LOGS
+http://localhost:5173/result/TRIO
+http://localhost:5173/result/FIRE
