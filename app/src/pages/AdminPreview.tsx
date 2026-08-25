@@ -122,13 +122,17 @@ export const AdminPreview = () => {
         {/* Left Sidebar - Mobile: Drawer, Desktop: Fixed */}
         <div
           className={`
-            fixed lg:static inset-y-0 left-0 z-40
+            fixed lg:static left-0 z-40
             w-80 bg-white border-r border-[#e5e2e8]
             overflow-y-auto flex-shrink-0
             transform transition-transform duration-300 ease-in-out
             ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
           `}
-          style={{ top: 'auto' }}
+          style={{
+            top: isSidebarOpen ? '128px' : 'auto', // Offset by header + secondary bar height on mobile
+            bottom: 0,
+            height: isSidebarOpen ? 'calc(100vh - 128px)' : 'auto'
+          }}
         >
           {/* Sidebar Header */}
           <div className="sticky top-0 bg-white border-b border-[#e5e2e8] px-6 py-4 z-10">
@@ -141,7 +145,7 @@ export const AdminPreview = () => {
           </div>
 
           {/* Results List */}
-          <div className="p-4 space-y-3">
+          <div className="p-4 pb-8 space-y-3">
             {allKeys.map((key) => {
               const cg = getColorGroupForResult(key as ResultKey);
               const isSelected = key === selectedKey;
