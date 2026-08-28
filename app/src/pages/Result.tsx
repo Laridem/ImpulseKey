@@ -1143,41 +1143,6 @@ export const Result = () => {
                   <span className="font-bold text-[#a800aa]">Claim Prize</span> at Impulse26 China Networking Party at 15:05
                 </p>
               </div>
-
-              {/* Information Box */}
-              <div className="pt-2">
-                <div className="bg-gradient-to-br from-[#fbe3f4] to-[#f8d5f0] border-2 border-[#d8bfd1] rounded p-[9px] flex flex-col gap-4 shadow-inner">
-                  {/* Where */}
-                  <div className="flex flex-col gap-2.5">
-                    <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
-                      Where?
-                    </p>
-                    <p className="font-jetbrains-mono font-bold text-[14px] leading-[20px] text-[#a800aa]">
-                      Pvg03 C1.1, Lecturing Studio (aka Digital School)
-                    </p>
-                  </div>
-
-                  {/* When */}
-                  <div className="flex flex-col gap-2.5">
-                    <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
-                      When
-                    </p>
-                    <p className="font-jetbrains-mono font-bold text-[14px] leading-[20px] text-[#a800aa]">
-                      15:05, September 3rd, 2026
-                    </p>
-                  </div>
-
-                  {/* How */}
-                  <div className="flex flex-col gap-2.5">
-                    <p className="font-jetbrains-mono font-medium text-[10px] leading-[15px] text-[#534150] uppercase tracking-wider">
-                      How
-                    </p>
-                    <p className="font-jetbrains-mono font-bold text-[14px] leading-[20px] text-[#a800aa]">
-                      Show your screenshot of this result to Staffs
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
