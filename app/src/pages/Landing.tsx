@@ -44,7 +44,7 @@ export const Landing = () => {
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['impulse-test', 'networking-party', 'about', 'agenda'];
+      const sections = ['impulse-test', 'agenda', 'networking-party', 'about'];
       const scrollPosition = window.scrollY + 200; // Offset for header + nav
 
       for (const sectionId of sections) {
@@ -154,11 +154,11 @@ export const Landing = () => {
 
         {/* Anchor Navigation */}
         <nav className="border-t border-[#d8bfd1]">
-          <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-3">
             <div className="flex items-center justify-center gap-6 sm:gap-8 overflow-x-auto">
               <a
                 href="#impulse-test"
-                className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                className={`relative font-space-grotesk font-medium text-[17px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
                   activeSection === 'impulse-test' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
@@ -168,8 +168,19 @@ export const Landing = () => {
                 )}
               </a>
               <a
+                href="#agenda"
+                className={`relative font-space-grotesk font-medium text-[17px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
+                  activeSection === 'agenda' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
+                }`}
+              >
+                Agenda
+                {activeSection === 'agenda' && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800082] rounded-full" />
+                )}
+              </a>
+              <a
                 href="#networking-party"
-                className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                className={`relative font-space-grotesk font-medium text-[17px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
                   activeSection === 'networking-party' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
@@ -180,7 +191,7 @@ export const Landing = () => {
               </a>
               <a
                 href="#about"
-                className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
+                className={`relative font-space-grotesk font-medium text-[17px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
                   activeSection === 'about' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
@@ -189,25 +200,14 @@ export const Landing = () => {
                   <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800082] rounded-full" />
                 )}
               </a>
-              <a
-                href="#agenda"
-                className={`relative font-space-grotesk font-medium text-[13px] sm:text-[14px] transition-colors whitespace-nowrap pb-2 ${
-                  activeSection === 'agenda' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
-                }`}
-              >
-                Agenda
-                {activeSection === 'agenda' && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800082] rounded-full" />
-                )}
-              </a>
             </div>
           </div>
         </nav>
       </div>
 
-      <main className="flex-1 px-4 sm:px-8 md:px-16 py-8 sm:py-16 md:py-24 pb-36 sm:pb-24 w-full" id="main-content">
+      <main className="flex-1 px-4 sm:px-6 md:px-8 py-8 sm:py-16 md:py-24 pb-36 sm:pb-24 w-full" id="main-content">
         {/* Hero Section */}
-        <div id="impulse-test" className="max-w-[1280px] mx-auto flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start scroll-mt-32">
+        <div id="impulse-test" className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start scroll-mt-32">
           {/* Left Column - Text Content */}
           <div className="flex-1 space-y-4 sm:space-y-6 md:space-y-8">
             {/* Tag Badge */}
@@ -324,8 +324,8 @@ export const Landing = () => {
           </div>
         </div>
 
-        {/* Disclaimer Section - Add back */}
-        <div className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-8 sm:pt-12 pb-12 sm:pb-16">
+        {/* Disclaimer Section - For ImpulseKey Test */}
+        <div className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-8 sm:pt-12 pb-12 sm:pb-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
             <div className="space-y-2">
               <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#800082] uppercase">
@@ -346,213 +346,8 @@ export const Landing = () => {
           </div>
         </div>
 
-        {/* Networking Party Section - Reduced sizes */}
-        <div id="networking-party" className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-12 pb-12 scroll-mt-32">
-          <div className="">
-            {/* Title & Info */}
-            <div className="text-center mb-8">
-              <h2 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821] mb-3">
-                🎉 Join Our Networking Party
-              </h2>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center font-space-grotesk text-[16px] sm:text-[18px] text-[#534150]">
-                <div className="flex items-center gap-2">
-                  <span>📅</span>
-                  <span className="font-bold text-[#800082]">Sep 3rd, 15:05</span>
-                </div>
-                <div className="hidden sm:block text-[#d8bfd1]">|</div>
-                <div className="flex items-center gap-2">
-                  <span>📍</span>
-                  <span>Pvg03 C1.1, Lecturing Studio (aka Digital School)</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Booth Cards Grid - Flip on Click - Smaller cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
-              {booths.map((booth) => (
-                <div
-                  key={booth.id}
-                  className="perspective-1000 cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setFlippedCard(flippedCard === booth.id ? null : booth.id);
-                  }}
-                >
-                  <div
-                    className={`relative aspect-[4/3] transition-all duration-700 ${
-                      flippedCard === booth.id ? '[transform:rotateY(180deg)]' : ''
-                    }`}
-                    style={{ transformStyle: 'preserve-3d' }}
-                  >
-                    {/* Front Side - Poster/Name */}
-                    <div
-                      className={`absolute inset-0 rounded-lg border-2 overflow-hidden transition-all duration-300 group ${
-                        flippedCard === booth.id ? '' : 'hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:-rotate-1'
-                      }`}
-                      style={{
-                        background: booth.gradient,
-                        borderColor: flippedCard === booth.id ? booth.color : '#e5e2e8',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden'
-                      }}
-                    >
-                      {/* Content with Icon and Text - 2/3 of previous size */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-3 gap-2">
-                        {/* Icon - 2/3 size (was w-24/w-32, now w-16/w-20) */}
-                        <img
-                          src={booth.icon}
-                          alt={`${booth.name} icon`}
-                          className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg"
-                        />
-                        {/* Text - Smaller */}
-                        <div className="text-center">
-                          <div
-                            className="font-space-grotesk font-black text-[14px] sm:text-[18px] mb-1 uppercase tracking-tight"
-                            style={{ color: booth.textColor }}
-                          >
-                            {booth.name}
-                          </div>
-                          <div
-                            className="font-space-grotesk font-medium text-[10px] sm:text-[12px]"
-                            style={{ color: booth.textColor, opacity: 0.9 }}
-                          >
-                            {language === 'zh' ? booth.subtitleCN : booth.subtitleEN}
-                          </div>
-                        </div>
-                      </div>
-                      {/* Cute corner indicator */}
-                      {flippedCard !== booth.id && (
-                        <div className="absolute bottom-1.5 right-1.5 bg-white/20 backdrop-blur-sm rounded-full p-1.5 animate-bounce">
-                          <span className="text-[10px]">👆</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Back Side - Tagline with Bubbles on Hover */}
-                    <div
-                      className="absolute inset-0 rounded-lg border-2 overflow-hidden flex items-center justify-center p-4 group/back"
-                      style={{
-                        background: booth.gradient,
-                        borderColor: booth.color,
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)'
-                      }}
-                    >
-                      {/* Floating bubbles on hover */}
-                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/back:opacity-100 transition-opacity duration-500">
-                        <div
-                          className="absolute top-[10%] left-[15%] w-8 h-8 rounded-full animate-float-slow"
-                          style={{ background: `${booth.textColor}20`, animationDelay: '0s' }}
-                        />
-                        <div
-                          className="absolute top-[60%] right-[20%] w-12 h-12 rounded-full animate-float-slower"
-                          style={{ background: `${booth.textColor}15`, animationDelay: '0.5s' }}
-                        />
-                        <div
-                          className="absolute bottom-[20%] left-[25%] w-6 h-6 rounded-full animate-float-slow"
-                          style={{ background: `${booth.textColor}25`, animationDelay: '1s' }}
-                        />
-                        <div
-                          className="absolute top-[30%] right-[10%] w-10 h-10 rounded-full animate-float-slower"
-                          style={{ background: `${booth.textColor}20`, animationDelay: '1.5s' }}
-                        />
-                      </div>
-
-                      <div className="text-center relative z-10">
-                        {/* Decorative quotes - Smaller */}
-                        <div className="absolute -top-4 -left-3 text-[40px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
-                          "
-                        </div>
-                        <p
-                          className="font-space-grotesk font-bold text-[12px] sm:text-[14px] leading-relaxed relative"
-                          style={{ color: booth.textColor }}
-                        >
-                          {language === 'zh' ? booth.taglineCN : booth.taglineEN}
-                        </p>
-                        <div className="absolute -bottom-4 -right-3 text-[40px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
-                          "
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Message - 3D Pill Style - Smaller */}
-            <div
-              className="relative text-center rounded-full p-5 sm:p-6 border-2 overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_16px_48px_rgba(168,0,170,0.25)]"
-              style={{
-                background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
-                borderColor: '#800082',
-                boxShadow: `
-                  0 1px 0 0 rgba(255,255,255,0.8) inset,
-                  0 -1px 0 0 rgba(168,0,170,0.08) inset,
-                  0 6px 0 0 #d8bfd1,
-                  0 12px 30px -8px rgba(168,0,170,0.3)
-                `
-              }}
-            >
-              {/* Top highlight */}
-              <div
-                className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
-                }}
-              />
-              <p className="font-space-grotesk font-bold text-[16px] sm:text-[18px] text-[#534150] mb-2 relative z-10">
-                ✨ Complete the <span className="text-[#800082]">Impulse Key Test</span> & Claim Your Prize!
-              </p>
-              <p className="font-space-grotesk text-[13px] sm:text-[14px] text-[#867181] relative z-10">
-                Show your result screenshot at the party to receive your prize
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* About the Project Section */}
-        <div id="about" className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-24 pb-16 scroll-mt-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left: About Text */}
-            <div className="lg:col-span-5 space-y-6">
-              <h3 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821]">
-                About the Project
-              </h3>
-              <div className="space-y-4">
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  Built with vibe coding. Created for fun.
-                </p>
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  This project was conceived and designed by Larissa Deng (SAP UX Designer), with AI-assisted illustrations created by Mark Wan (SAP UX Designer). It would not have been possible without the support of the wonderful people at SAP Design Hub China.
-                </p>
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  SAP employees only: We'd love to see you at our future events and activities!
-                </p>
-                <div className="space-y-2 pl-4">
-                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                    Internal Sharepoint: <a href="https://sap.sharepoint.com/sites/209182/SitePages/Design-Hub-China.aspx?isSPOFile=1&xsdata=MDV8MDJ8fDY3MTZmZDY0YmUyZjQwZGQ5MDhkMDhkZTlhYTJhMjkzfDQyZjc2NzZjZjQ1NTQyM2M4MmY2ZGMyZDk5NzkxYWY3fDB8MHw2MzkxMTgyMjA0MzYxNDgzNjV8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pReU56azNNRGMzT0RobVl6UXlPR0poWVdFd1lqSmxNV014TXpjMll6a3lRSFJvY21WaFpDNTJNaTl0WlhOellXZGxjeTh4TnpjMk1qSTFNalEzTmpRd3xiNWFhYzIyZTRjMjk0NTNlOTA4ZDA4ZGU5YWEyYTI5M3wwZGI1MDE0MjI2ZjE0ZjFjOTgxMzRlMzQ5NDFjN2NlNg%3D%3D&sdata=QUZDbWZHQXZQdFZpeFdXZkRhNXYrbGtsZ3RUZGxPSmh0V3hxeGtOU1NiST0%3D&ovuser=42f7676c-f455-423c-82f6-dc2d99791af7%2Clarissa.deng%40sap.com&OR=Teams-HL&CT=1776226560704&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNjAzMTIyMzAyMCJ9" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
-                  </p>
-                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                    Join SAP Design Hub China Distribution List: <a href="https://profiles.wdf.sap.corp/groups/5c85d9385462d20285416a22/users" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Banner Image */}
-            <div className="lg:col-span-7">
-              <img
-                src="/assets/banner.png"
-                alt="Impulse26 Key Banner"
-                className="w-full h-auto rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-
         {/* Impulse26 CN Agenda Section */}
-        <div id="agenda" className="max-w-[1280px] mx-auto border-t border-[#d8bfd1] pt-24 pb-12 scroll-mt-32">
+        <div id="agenda" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-24 pb-12 scroll-mt-32">
           <h2 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821] mb-8 text-center">
             Impulse26 CN Agenda
           </h2>
@@ -750,51 +545,210 @@ export const Landing = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Afternoon Session Card - After 15:00 */}
-            <div
-              className="relative rounded-2xl p-8 overflow-hidden md:col-span-2"
-              style={{
-                background: 'linear-gradient(135deg, #FFC933 0%, #f4a800 50%, #7858FF 100%)'
-              }}
-            >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                <div className="md:flex-1">
-                  <h3 className="font-space-grotesk font-bold text-[48px] md:text-[56px] text-[#5d38e3] leading-tight mb-2">
-                    Intuition is our original operating system
-                  </h3>
-                  <p className="font-space-grotesk font-medium text-[18px] text-[#5d38e3]">
-                    Register to join our booths after 15:00
-                  </p>
+        {/* Networking Party Section */}
+        <div id="networking-party" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-12 pb-12 scroll-mt-32">
+          <div className="">
+            {/* Title & Info */}
+            <div className="text-center mb-8">
+              <h2 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821] mb-3">
+                🎉 Join Our Networking Party
+              </h2>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center font-space-grotesk text-[16px] sm:text-[18px] text-[#534150]">
+                <div className="flex items-center gap-2">
+                  <span>📅</span>
+                  <span className="font-bold text-[#800082]">Sep 3rd, 15:05</span>
                 </div>
-
-                <div className="grid grid-cols-2 gap-3 md:w-[420px]">
-                  {/* Figma */}
-                  <div className="bg-[#f065f3] rounded-lg p-5 flex flex-col items-center justify-center">
-                    <span className="font-space-grotesk font-bold text-[18px] text-black">Figma</span>
-                  </div>
-
-                  {/* Maker Booth */}
-                  <div className="bg-[#FFC933] rounded-lg p-5 flex flex-col items-center justify-center">
-                    <span className="font-space-grotesk font-bold text-[18px] text-black text-center">Maker Booth</span>
-                  </div>
-
-                  {/* Huddle Booth */}
-                  <div className="bg-[#7858FF] rounded-lg p-5 flex flex-col items-center justify-center">
-                    <span className="font-space-grotesk font-bold text-[18px] text-white text-center">Huddle Booth</span>
-                  </div>
-
-                  {/* Sensory Booth */}
-                  <div className="bg-[#64EDD2] rounded-lg p-5 flex flex-col items-center justify-center">
-                    <span className="font-space-grotesk font-bold text-[18px] text-black text-center">Sensory Booth</span>
-                  </div>
-
-                  {/* Game Booth - Full width */}
-                  <div className="bg-black rounded-lg p-5 flex items-center justify-center col-span-2">
-                    <span className="font-space-grotesk font-bold text-[18px] text-white">Game Booth</span>
-                  </div>
+                <div className="hidden sm:block text-[#d8bfd1]">|</div>
+                <div className="flex items-center gap-2">
+                  <span>📍</span>
+                  <span>Pvg03 C1.1, Lecturing Studio (aka Digital School)</span>
                 </div>
               </div>
+            </div>
+
+            {/* Booth Cards Grid - Flip on Click - Smaller cards */}
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
+              {booths.map((booth) => (
+                <div
+                  key={booth.id}
+                  className="perspective-1000 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setFlippedCard(flippedCard === booth.id ? null : booth.id);
+                  }}
+                >
+                  <div
+                    className={`relative aspect-[4/3] transition-all duration-700 ${
+                      flippedCard === booth.id ? '[transform:rotateY(180deg)]' : ''
+                    }`}
+                    style={{ transformStyle: 'preserve-3d' }}
+                  >
+                    {/* Front Side - Poster/Name */}
+                    <div
+                      className={`absolute inset-0 rounded-lg border-2 overflow-hidden transition-all duration-300 group ${
+                        flippedCard === booth.id ? '' : 'hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:-rotate-1'
+                      }`}
+                      style={{
+                        background: booth.gradient,
+                        borderColor: flippedCard === booth.id ? booth.color : '#e5e2e8',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden'
+                      }}
+                    >
+                      {/* Content with Icon and Text - 2/3 of previous size */}
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-3 gap-2">
+                        {/* Icon - 2/3 size (was w-24/w-32, now w-16/w-20) */}
+                        <img
+                          src={booth.icon}
+                          alt={`${booth.name} icon`}
+                          className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg"
+                        />
+                        {/* Text - Smaller */}
+                        <div className="text-center">
+                          <div
+                            className="font-space-grotesk font-black text-[14px] sm:text-[18px] mb-1 uppercase tracking-tight"
+                            style={{ color: booth.textColor }}
+                          >
+                            {booth.name}
+                          </div>
+                          <div
+                            className="font-space-grotesk font-medium text-[10px] sm:text-[12px]"
+                            style={{ color: booth.textColor, opacity: 0.9 }}
+                          >
+                            {language === 'zh' ? booth.subtitleCN : booth.subtitleEN}
+                          </div>
+                        </div>
+                      </div>
+                      {/* Cute corner indicator */}
+                      {flippedCard !== booth.id && (
+                        <div className="absolute bottom-1.5 right-1.5 bg-white/20 backdrop-blur-sm rounded-full p-1.5 animate-bounce">
+                          <span className="text-[10px]">👆</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Back Side - Tagline with Bubbles on Hover */}
+                    <div
+                      className="absolute inset-0 rounded-lg border-2 overflow-hidden flex items-center justify-center p-4 group/back"
+                      style={{
+                        background: booth.gradient,
+                        borderColor: booth.color,
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)'
+                      }}
+                    >
+                      {/* Floating bubbles on hover */}
+                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/back:opacity-100 transition-opacity duration-500">
+                        <div
+                          className="absolute top-[10%] left-[15%] w-8 h-8 rounded-full animate-float-slow"
+                          style={{ background: `${booth.textColor}20`, animationDelay: '0s' }}
+                        />
+                        <div
+                          className="absolute top-[60%] right-[20%] w-12 h-12 rounded-full animate-float-slower"
+                          style={{ background: `${booth.textColor}15`, animationDelay: '0.5s' }}
+                        />
+                        <div
+                          className="absolute bottom-[20%] left-[25%] w-6 h-6 rounded-full animate-float-slow"
+                          style={{ background: `${booth.textColor}25`, animationDelay: '1s' }}
+                        />
+                        <div
+                          className="absolute top-[30%] right-[10%] w-10 h-10 rounded-full animate-float-slower"
+                          style={{ background: `${booth.textColor}20`, animationDelay: '1.5s' }}
+                        />
+                      </div>
+
+                      <div className="text-center relative z-10">
+                        {/* Decorative quotes - Smaller */}
+                        <div className="absolute -top-4 -left-3 text-[40px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
+                          "
+                        </div>
+                        <p
+                          className="font-space-grotesk font-bold text-[12px] sm:text-[14px] leading-relaxed relative"
+                          style={{ color: booth.textColor }}
+                        >
+                          {language === 'zh' ? booth.taglineCN : booth.taglineEN}
+                        </p>
+                        <div className="absolute -bottom-4 -right-3 text-[40px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
+                          "
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Message - 3D Pill Style - Smaller */}
+            <div
+              className="relative text-center rounded-full p-5 sm:p-6 border-2 overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_16px_48px_rgba(168,0,170,0.25)]"
+              style={{
+                background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+                borderColor: '#800082',
+                boxShadow: `
+                  0 1px 0 0 rgba(255,255,255,0.8) inset,
+                  0 -1px 0 0 rgba(168,0,170,0.08) inset,
+                  0 6px 0 0 #d8bfd1,
+                  0 12px 30px -8px rgba(168,0,170,0.3)
+                `
+              }}
+            >
+              {/* Top highlight */}
+              <div
+                className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+                }}
+              />
+              <p className="font-space-grotesk font-bold text-[16px] sm:text-[18px] text-[#534150] mb-2 relative z-10">
+                ✨ Complete the Impulse Key Test & Claim Your Prize at the Party
+              </p>
+              <p className="font-space-grotesk text-[13px] sm:text-[14px] text-[#867181] relative z-10">
+                Show your result screenshot at the registration deck to receive your prize
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* About the Project Section */}
+        <div id="about" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-24 pb-16 scroll-mt-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Left: About Text */}
+            <div className="lg:col-span-5 space-y-6">
+              <h3 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821]">
+                About the Project
+              </h3>
+              <div className="space-y-4">
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                  Built with vibe coding. Created for fun.
+                </p>
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                  This project was conceived and designed by Larissa Deng (SAP UX Designer), with AI-assisted illustrations created by Mark Wan (SAP UX Designer). It would not have been possible without the support of the wonderful people at SAP Design Hub China.
+                </p>
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                  SAP employees only: We'd love to see you at our future events and activities!
+                </p>
+                <div className="space-y-2 pl-4">
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                    Internal Sharepoint: <a href="https://sap.sharepoint.com/sites/209182/SitePages/Design-Hub-China.aspx?isSPOFile=1&xsdata=MDV8MDJ8fDY3MTZmZDY0YmUyZjQwZGQ5MDhkMDhkZTlhYTJhMjkzfDQyZjc2NzZjZjQ1NTQyM2M4MmY2ZGMyZDk5NzkxYWY3fDB8MHw2MzkxMTgyMjA0MzYxNDgzNjV8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pReU56azNNRGMzT0RobVl6UXlPR0poWVdFd1lqSmxNV014TXpjMll6a3lRSFJvY21WaFpDNTJNaTl0WlhOellXZGxjeTh4TnpjMk1qSTFNalEzTmpRd3xiNWFhYzIyZTRjMjk0NTNlOTA4ZDA4ZGU5YWEyYTI5M3wwZGI1MDE0MjI2ZjE0ZjFjOTgxMzRlMzQ5NDFjN2NlNg%3D%3D&sdata=QUZDbWZHQXZQdFZpeFdXZkRhNXYrbGtsZ3RUZGxPSmh0V3hxeGtOU1NiST0%3D&ovuser=42f7676c-f455-423c-82f6-dc2d99791af7%2Clarissa.deng%40sap.com&OR=Teams-HL&CT=1776226560704&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNjAzMTIyMzAyMCJ9" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
+                  </p>
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                    Join SAP Design Hub China Distribution List: <a href="https://profiles.wdf.sap.corp/groups/5c85d9385462d20285416a22/users" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Banner Image */}
+            <div className="lg:col-span-7">
+              <img
+                src="/assets/banner.png"
+                alt="Impulse26 Key Banner"
+                className="w-full h-auto rounded-lg"
+              />
             </div>
           </div>
         </div>
@@ -802,7 +756,7 @@ export const Landing = () => {
 
       {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#800082] px-4 py-4 z-50 shadow-[0px_-4px_8px_rgba(128,0,130,0.1)]">
-        <div className="flex flex-col gap-3 max-w-[1280px] mx-auto">
+        <div className="flex flex-col gap-3 max-w-[1400px] mx-auto">
           <button
             onClick={handleStartTest}
             className="relative w-full px-6 py-3 text-white font-72-brand text-[14px] rounded-full overflow-hidden"

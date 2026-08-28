@@ -127,27 +127,27 @@ export const Loading = () => {
     <div className="min-h-screen bg-[#231821] flex flex-col relative overflow-hidden">
       {/* Header with Shell Bar - matching other pages */}
       <header className="bg-[#231821] border-b border-[#534150]">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-4 flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-4">
-            <span className="font-space-grotesk font-bold text-headline-md text-[#a800aa] tracking-tight">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span className="font-space-grotesk font-bold text-[16px] sm:text-[20px] text-[#a800aa] tracking-tight">
               Impulse26 Key
             </span>
             <img
               src="/assets/Anvils-1.png"
               alt="Anvils"
-              className="w-[59.2px] h-8 object-contain"
+              className="w-[40px] sm:w-[59.2px] h-[22px] sm:h-8 object-contain"
             />
           </div>
 
           {/* Right side: Retake Test Button */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={() => {
                 resetTest();
                 navigate('/');
               }}
-              className="px-6 py-2 bg-[#a800aa] text-white font-jetbrains-mono font-medium text-[12px] leading-[18px] uppercase rounded-full hover:bg-[#800082] transition-colors"
+              className="px-3 sm:px-6 py-1.5 sm:py-2 bg-[#a800aa] text-white font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] uppercase rounded-full hover:bg-[#800082] transition-colors"
             >
               {t('common.retakeTest')}
             </button>
@@ -156,29 +156,29 @@ export const Loading = () => {
       </header>
 
       {/* Main Content - centered with proper spacing */}
-      <div className="flex-1 flex items-center justify-center px-4 py-16">
+      <div className="flex-1 flex items-center justify-center px-4 py-8 sm:py-16">
         <div className="max-w-2xl w-full">
         {/* Center Frame with Key */}
-        <div className="relative mb-16">
+        <div className="relative mb-8 sm:mb-16">
           {/* Corner Brackets with Kinetic Colors */}
-          <div className="relative w-96 h-96 mx-auto">
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 mx-auto">
             {/* Top Left Corner - Teal */}
-            <div className="absolute -top-4 -left-4 w-16 h-16">
+            <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-10 h-10 sm:w-16 sm:h-16">
               <div className="absolute top-0 left-0 w-full h-1 bg-[#00b098]"></div>
               <div className="absolute top-0 left-0 w-1 h-full bg-[#00b098]"></div>
             </div>
             {/* Top Right Corner - Magenta */}
-            <div className="absolute -top-4 -right-4 w-16 h-16">
+            <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-16 sm:h-16">
               <div className="absolute top-0 right-0 w-full h-1 bg-[#f65af2]"></div>
               <div className="absolute top-0 right-0 w-1 h-full bg-[#f65af2]"></div>
             </div>
             {/* Bottom Left Corner - Teal */}
-            <div className="absolute -bottom-4 -left-4 w-16 h-16">
+            <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-10 h-10 sm:w-16 sm:h-16">
               <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00b098]"></div>
               <div className="absolute bottom-0 left-0 w-1 h-full bg-[#00b098]"></div>
             </div>
             {/* Bottom Right Corner - Magenta */}
-            <div className="absolute -bottom-4 -right-4 w-16 h-16">
+            <div className="absolute -bottom-2 -right-2 sm:-bottom-4 sm:-right-4 w-10 h-10 sm:w-16 sm:h-16">
               <div className="absolute bottom-0 right-0 w-full h-1 bg-[#f65af2]"></div>
               <div className="absolute bottom-0 right-0 w-1 h-full bg-[#f65af2]"></div>
             </div>
@@ -188,10 +188,10 @@ export const Loading = () => {
               {/* Center Key with Glow */}
               <div className="relative">
                 {/* Cyan + Magenta Glow Effect */}
-                <div className="absolute inset-0 blur-3xl bg-gradient-to-br from-[#00f5e1] to-[#f65af2] opacity-40 animate-pulse"></div>
+                <div className="absolute inset-0 blur-2xl sm:blur-3xl bg-gradient-to-br from-[#00f5e1] to-[#f65af2] opacity-40 animate-pulse"></div>
 
                 {/* Key Icon */}
-                <div className="relative z-10 w-40 h-40">
+                <div className="relative z-10 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40">
                   <img
                     src="/assets/impulse-key-visual.png"
                     alt="Key"
@@ -201,22 +201,22 @@ export const Loading = () => {
               </div>
 
               {/* System Analysis Label */}
-              <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2">
-                <p className="font-jetbrains-mono font-medium text-[12px] leading-[18px] text-[#00f5e1] uppercase text-center">
+              <div className="absolute bottom-16 sm:bottom-24 left-1/2 transform -translate-x-1/2 px-2">
+                <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[14px] sm:leading-[18px] text-[#00f5e1] uppercase text-center">
                   SYSTEM ANALYSIS IN PROGRESS
                 </p>
               </div>
 
               {/* Analyzing Text with Progress */}
-              <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center">
-                <p className="font-space-grotesk font-bold text-[18px] text-white">
+              <div className="absolute bottom-10 sm:bottom-16 left-1/2 transform -translate-x-1/2 text-center">
+                <p className="font-space-grotesk font-bold text-[14px] sm:text-[18px] text-white">
                   ANALYZING... {Math.round(progress)}%
                 </p>
               </div>
 
               {/* Progress Bar at Bottom of Frame */}
-              <div className="absolute bottom-8 left-8 right-8">
-                <div className="w-full h-2 bg-[#534150] rounded-full overflow-hidden">
+              <div className="absolute bottom-5 sm:bottom-8 left-4 right-4 sm:left-8 sm:right-8">
+                <div className="w-full h-1.5 sm:h-2 bg-[#534150] rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-[#a800aa] to-[#f65af2] transition-all duration-300 ease-linear rounded-full"
                     style={{ width: `${progress}%` }}
@@ -225,8 +225,8 @@ export const Loading = () => {
               </div>
 
               {/* Impulse 26 Logo Badge */}
-              <div className="absolute bottom-4 right-6">
-                <p className="font-jetbrains-mono font-medium text-[10px] text-[#00f5e1] uppercase">
+              <div className="absolute bottom-2 sm:bottom-4 right-4 sm:right-6">
+                <p className="font-jetbrains-mono font-medium text-[8px] sm:text-[10px] text-[#00f5e1] uppercase">
                   IMPULSE 26
                 </p>
               </div>
@@ -235,35 +235,35 @@ export const Loading = () => {
         </div>
 
         {/* Protocol Label */}
-        <div className="text-center mb-6">
-          <span className="font-jetbrains-mono font-medium text-[12px] leading-[18px] text-[#00f5e1] uppercase tracking-normal">
+        <div className="text-center mb-4 sm:mb-6">
+          <span className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[14px] sm:leading-[18px] text-[#00f5e1] uppercase tracking-normal">
             {t('loading.protocol')}
           </span>
         </div>
 
         {/* Main Title */}
-        <h1 className="font-space-grotesk font-bold text-[32px] leading-[40px] tracking-tight text-white text-center mb-12">
+        <h1 className="font-space-grotesk font-bold text-[24px] sm:text-[32px] leading-[32px] sm:leading-[40px] tracking-tight text-white text-center mb-8 sm:mb-12 px-4">
           {t('loading.title')}
         </h1>
 
         {/* Loading Steps Box */}
-        <div className="bg-[#2d2028] bg-opacity-80 rounded-lg p-8 backdrop-blur-sm border border-[#534150] mb-12">
-          <div className="space-y-4">
+        <div className="bg-[#2d2028] bg-opacity-80 rounded-lg p-4 sm:p-8 backdrop-blur-sm border border-[#534150] mb-8 sm:mb-12">
+          <div className="space-y-3 sm:space-y-4">
             {loadingSteps.map((step, index) => (
               <div
                 key={index}
-                className={`flex items-start gap-3 transition-all duration-500 ${
+                className={`flex items-start gap-2 sm:gap-3 transition-all duration-500 ${
                   index <= currentStep ? 'opacity-100' : 'opacity-30'
                 }`}
               >
                 {index < currentStep ? (
-                  <span className="text-[#00b098] text-sm flex-shrink-0 mt-0.5 font-bold">✓</span>
+                  <span className="text-[#00b098] text-xs sm:text-sm flex-shrink-0 mt-0.5 font-bold">✓</span>
                 ) : index === currentStep ? (
-                  <div className="w-4 h-4 border-2 border-[#f65af2] border-t-transparent rounded-full animate-spin flex-shrink-0 mt-0.5"></div>
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-[#f65af2] border-t-transparent rounded-full animate-spin flex-shrink-0 mt-0.5"></div>
                 ) : (
-                  <span className="text-[#534150] text-sm flex-shrink-0 mt-0.5">○</span>
+                  <span className="text-[#534150] text-xs sm:text-sm flex-shrink-0 mt-0.5">○</span>
                 )}
-                <span className={`font-72-brand text-body-sm ${index <= currentStep ? 'text-white' : 'text-[#534150]'}`}>
+                <span className={`font-72-brand text-[13px] sm:text-[16px] leading-relaxed ${index <= currentStep ? 'text-white' : 'text-[#534150]'}`}>
                   {step}
                 </span>
               </div>
@@ -272,28 +272,28 @@ export const Loading = () => {
         </div>
 
         {/* Bottom Status Bar */}
-        <div className="grid grid-cols-3 gap-6 text-center">
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 text-center">
           <div>
-            <div className="font-jetbrains-mono text-[10px] text-[#867181] mb-2 uppercase tracking-normal">
+            <div className="font-jetbrains-mono text-[9px] sm:text-[10px] text-[#867181] mb-1 sm:mb-2 uppercase tracking-normal">
               {t('loading.status.encryption')}
             </div>
-            <div className="font-72-brand text-body-sm text-white font-medium">
+            <div className="font-72-brand text-[12px] sm:text-[16px] text-white font-medium">
               {t('loading.status.encryptionValue')}
             </div>
           </div>
           <div>
-            <div className="font-jetbrains-mono text-[10px] text-[#867181] mb-2 uppercase tracking-normal">
+            <div className="font-jetbrains-mono text-[9px] sm:text-[10px] text-[#867181] mb-1 sm:mb-2 uppercase tracking-normal">
               {t('loading.status.status')}
             </div>
-            <div className="font-72-brand text-body-sm text-[#f65af2] font-bold">
+            <div className="font-72-brand text-[12px] sm:text-[16px] text-[#f65af2] font-bold">
               {t('loading.status.statusValue')}
             </div>
           </div>
           <div>
-            <div className="font-jetbrains-mono text-[10px] text-[#867181] mb-2 uppercase tracking-normal">
+            <div className="font-jetbrains-mono text-[9px] sm:text-[10px] text-[#867181] mb-1 sm:mb-2 uppercase tracking-normal">
               {t('loading.status.version')}
             </div>
-            <div className="font-72-brand text-body-sm text-white font-medium">
+            <div className="font-72-brand text-[12px] sm:text-[16px] text-white font-medium">
               {t('loading.status.versionValue')}
             </div>
           </div>
