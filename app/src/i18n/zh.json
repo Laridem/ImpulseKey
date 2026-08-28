@@ -19,7 +19,27 @@
     "description4": "请勿分享到公开社交媒体。这个测试只适合在内部快乐传播，外面的互联网已经够乱了。",
     "startButton": "开始测试",
     "howToPlayButton": "怎么玩",
-    "aboutTitle": "About the Project"
+    "aboutTitle": "About the Project",
+    "yourDayTitle": "你的 Impulse26 中国之旅",
+    "yourDay": {
+      "morning": {
+        "title": "上午主题演讲",
+        "time": "10:00-11:00",
+        "speakers": "Vera Jia, SAP Sr. Design Manager; Xiaofei Ma, OctaveLiving Sustainability Expert",
+        "description": "从设计领袖的精彩演讲开始你的一天"
+      },
+      "workshops": {
+        "title": "下午工作坊",
+        "time": "13:00-15:00",
+        "description": "参加 Figma 和可持续设计的实践工作坊"
+      },
+      "party": {
+        "title": "加入我们的社交派对",
+        "time": "15:05",
+        "location": "Pvg03 C1.1, Lecturing Studio (aka Digital School)",
+        "description": "在互动展台体验中与设计师同行交流"
+      }
+    }
   },
   "testIntro": {
     "tag": "系统访问 // IMPULSE26.KEY",

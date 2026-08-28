@@ -375,7 +375,7 @@ export const QuestionFlow = () => {
               />
               <span className="relative z-10">←</span>
               <span className="relative z-10">
-                {currentQuestionIndex === 0 ? (language === 'zh' ? '返回' : 'BACK') : 'PREVIOUS'}
+                {currentQuestionIndex === 0 ? t('question.backToRoleSelection') : t('question.previousStep')}
               </span>
             </button>
 

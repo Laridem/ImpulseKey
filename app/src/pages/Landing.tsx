@@ -158,7 +158,7 @@ export const Landing = () => {
             <div className="flex items-center justify-center gap-6 sm:gap-8 overflow-x-auto">
               <a
                 href="#impulse-test"
-                className={`relative font-space-grotesk font-medium text-[17px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
+                className={`relative font-space-grotesk font-medium text-[14px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
                   activeSection === 'impulse-test' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
@@ -169,7 +169,7 @@ export const Landing = () => {
               </a>
               <a
                 href="#agenda"
-                className={`relative font-space-grotesk font-medium text-[17px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
+                className={`relative font-space-grotesk font-medium text-[14px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
                   activeSection === 'agenda' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
@@ -180,7 +180,7 @@ export const Landing = () => {
               </a>
               <a
                 href="#networking-party"
-                className={`relative font-space-grotesk font-medium text-[17px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
+                className={`relative font-space-grotesk font-medium text-[14px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
                   activeSection === 'networking-party' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
@@ -191,7 +191,7 @@ export const Landing = () => {
               </a>
               <a
                 href="#about"
-                className={`relative font-space-grotesk font-medium text-[17px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
+                className={`relative font-space-grotesk font-medium text-[14px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
                   activeSection === 'about' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
                 }`}
               >
@@ -207,9 +207,9 @@ export const Landing = () => {
 
       <main className="flex-1 px-4 sm:px-6 md:px-8 py-8 sm:py-16 md:py-24 pb-36 sm:pb-24 w-full" id="main-content">
         {/* Hero Section */}
-        <div id="impulse-test" className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-24 lg:items-start scroll-mt-32">
+        <div id="impulse-test" className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 sm:gap-6 mb-8 sm:mb-12 md:mb-16 lg:items-start scroll-mt-32">
           {/* Left Column - Text Content */}
-          <div className="flex-1 space-y-4 sm:space-y-6 md:space-y-8">
+          <div className="flex-1 space-y-4 sm:space-y-6 md:space-y-8 lg:max-w-[600px]">
             {/* Tag Badge */}
             <div className="inline-block px-3 py-1 bg-[#f7e3ef] border border-[#800082] rounded-sm">
               <span className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[16px] sm:leading-[18px] text-[#800082] uppercase">
@@ -301,7 +301,7 @@ export const Landing = () => {
           </div>
 
           {/* Right Column - Hero Visual (Full width, bigger) */}
-          <div className="flex-shrink-0 flex flex-col items-start justify-start w-full lg:flex-1 relative mt-6 lg:mt-0 lg:ml-12">
+          <div className="flex-shrink-0 flex flex-col items-start justify-start w-full lg:flex-1 relative mt-6 lg:mt-0">
             {/* Key Visual Container */}
             <div className="relative w-full">
               {/* Simple white container with proper padding */}
@@ -347,8 +347,8 @@ export const Landing = () => {
         </div>
 
         {/* Impulse26 CN Agenda Section */}
-        <div id="agenda" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-24 pb-12 scroll-mt-32">
-          <h2 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821] mb-8 text-center">
+        <div id="agenda" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-12 scroll-mt-32">
+          <h2 className="font-space-grotesk font-bold text-[24px] sm:text-[40px] text-[#231821] mb-8 text-center">
             Impulse26 CN Agenda
           </h2>
 
@@ -360,8 +360,8 @@ export const Landing = () => {
                 background: 'linear-gradient(135deg, #7858FF 0%, #5d38e3 100%)'
               }}
             >
-              <div className="flex flex-col items-center gap-2 mb-6">
-                <h3 className="font-space-grotesk font-bold text-[32px] text-white">
+              <div className="flex flex-row items-center justify-center gap-3 mb-6">
+                <h3 className="font-space-grotesk font-bold text-[22px] sm:text-[32px] text-white">
                   Keynote
                 </h3>
                 <span className="font-space-grotesk font-medium text-[18px] text-white/90">
@@ -413,7 +413,7 @@ export const Landing = () => {
                       Be a Person, Then Ship
                     </span>
                     <span className="font-space-grotesk text-[14px] text-white/80">
-                      10:30
+                      10:35
                     </span>
                   </div>
                   <p className="font-hanken-grotesk text-[14px] text-white/90">
@@ -433,8 +433,8 @@ export const Landing = () => {
                 background: 'linear-gradient(135deg, #5d38e3 0%, #4527a0 100%)'
               }}
             >
-              <div className="flex flex-col items-center gap-2 mb-6">
-                <h3 className="font-space-grotesk font-bold text-[32px] text-white">
+              <div className="flex flex-row items-center justify-center gap-3 mb-6">
+                <h3 className="font-space-grotesk font-bold text-[22px] sm:text-[32px] text-white">
                   Expert Talk
                 </h3>
                 <span className="font-space-grotesk font-medium text-[18px] text-white/90">
@@ -449,7 +449,7 @@ export const Landing = () => {
                     Vera Jia
                   </p>
                   <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    SAP Design Manager
+                    SAP Sr. Design Manager
                   </p>
                   <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
                     From App-Centric to Intent-Centric: Next-Gen Enterprise AI Experience
@@ -504,8 +504,8 @@ export const Landing = () => {
                 background: 'linear-gradient(135deg, #4527a0 0%, #311b92 100%)'
               }}
             >
-              <div className="flex flex-col items-center gap-2 mb-6">
-                <h3 className="font-space-grotesk font-bold text-[32px] text-white">
+              <div className="flex flex-row items-center justify-center gap-3 mb-6">
+                <h3 className="font-space-grotesk font-bold text-[22px] sm:text-[32px] text-white">
                   Workshop
                 </h3>
                 <span className="font-space-grotesk font-medium text-[18px] text-white/90">
@@ -714,7 +714,7 @@ export const Landing = () => {
         </div>
 
         {/* About the Project Section */}
-        <div id="about" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-24 pb-16 scroll-mt-32">
+        <div id="about" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-16 scroll-mt-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left: About Text */}
             <div className="lg:col-span-5 space-y-6">
@@ -723,13 +723,16 @@ export const Landing = () => {
               </h3>
               <div className="space-y-4">
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  Built with vibe coding. Created for fun.
+                  Built with vibes, curiosity, and probably a little too much coffee. ☕✨
                 </p>
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  This project was conceived and designed by Larissa Deng (SAP UX Designer), with AI-assisted illustrations created by Mark Wan (SAP UX Designer). It would not have been possible without the support of the wonderful people at SAP Design Hub China.
+                  This project was dreamed up and designed by Larissa Deng (SAP UX Designer), with AI-powered illustrations crafted by Mark Wan (SAP UX Designer).
                 </p>
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  SAP employees only: We'd love to see you at our future events and activities!
+                  A huge shout-out to the amazing people at SAP Design Hub China. Your support, feedback, and enthusiasm helped bring this little project to life.
+                </p>
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                  SAP colleagues: Come say hi at our upcoming events and activities. We'd love to meet you, swap ideas, and create more fun things together! 🚀
                 </p>
                 <div className="space-y-2 pl-4">
                   <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
@@ -755,11 +758,29 @@ export const Landing = () => {
       </main>
 
       {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#800082] px-4 py-4 z-50 shadow-[0px_-4px_8px_rgba(128,0,130,0.1)]">
-        <div className="flex flex-col gap-3 max-w-[1400px] mx-auto">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t-2 border-[#800082] px-4 py-3 z-50 shadow-[0px_-4px_8px_rgba(128,0,130,0.1)]">
+        <div className="flex gap-3 max-w-[1400px] mx-auto">
+          <button
+            onClick={() => navigate('/intro')}
+            className="relative flex-1 px-4 py-2.5 text-[#534150] font-72-brand text-[13px] rounded-full overflow-hidden"
+            style={{
+              borderWidth: '2px',
+              borderColor: '#d8bfd1',
+              background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
+              boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
+            }}
+          >
+            <div
+              className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
+              style={{
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
+              }}
+            />
+            <span className="relative z-10">{t('landing.howToPlayButton')}</span>
+          </button>
           <button
             onClick={handleStartTest}
-            className="relative w-full px-6 py-3 text-white font-72-brand text-[14px] rounded-full overflow-hidden"
+            className="relative flex-1 px-4 py-2.5 text-white font-72-brand text-[13px] rounded-full overflow-hidden"
             style={{
               background: 'linear-gradient(145deg, #c026d3 0%, #a800aa 50%, #800082 100%)',
               boxShadow: `
@@ -776,24 +797,6 @@ export const Landing = () => {
               }}
             />
             <span className="relative z-10">{t('landing.startButton')}</span>
-          </button>
-          <button
-            onClick={() => navigate('/intro')}
-            className="relative w-full px-6 py-3 text-[#534150] font-72-brand text-[14px] rounded-full overflow-hidden"
-            style={{
-              borderWidth: '3px',
-              borderColor: '#d8bfd1',
-              background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
-              boxShadow: '0 1px 0 0 rgba(255,255,255,0.8) inset'
-            }}
-          >
-            <div
-              className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
-              style={{
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
-              }}
-            />
-            <span className="relative z-10">{t('landing.howToPlayButton')}</span>
           </button>
         </div>
       </div>

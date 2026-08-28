@@ -20,6 +20,26 @@
     "startButton": "Start Test",
     "howToPlayButton": "How to Play",
     "aboutTitle": "About the Project",
+    "yourDayTitle": "Your Day at Impulse26 China",
+    "yourDay": {
+      "morning": {
+        "title": "Morning Keynote",
+        "time": "10:00-11:00",
+        "speakers": "Vera Jia, SAP Sr. Design Manager; Xiaofei Ma, OctaveLiving Sustainability Expert",
+        "description": "Start your day with inspiring talks from design leaders"
+      },
+      "workshops": {
+        "title": "Afternoon Workshops",
+        "time": "13:00-15:00",
+        "description": "Join hands-on sessions on Figma and sustainability design"
+      },
+      "party": {
+        "title": "Join Our Networking Party",
+        "time": "15:05",
+        "location": "Pvg03 C1.1, Lecturing Studio (aka Digital School)",
+        "description": "Connect with fellow designers at our interactive booth experience"
+      }
+    },
     "aboutItems": {
       "distribution": {
         "title": "Join Our Distribution List",

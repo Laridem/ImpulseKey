@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
 import { useLanguage } from '../i18n';
 import { Header } from '../components/Header';
@@ -7,7 +6,6 @@ import { useEffect } from 'react';
 
 export const TestIntro = () => {
   const navigate = useNavigate();
-  const { startTest } = useTest();
   const t = useTranslation();
   const { language } = useLanguage();
 
@@ -17,8 +15,7 @@ export const TestIntro = () => {
   }, [t]);
 
   const handleStartTest = () => {
-    startTest();
-    navigate('/test');
+    navigate('/role');
   };
 
   return (

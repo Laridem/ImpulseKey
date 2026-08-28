@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { toJpeg, toSvg } from 'html-to-image';
 import confetti from 'canvas-confetti';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
@@ -13,7 +12,7 @@ import { ShareCard } from '../components/ShareCard';
 import { getAccessibleTextColor } from '../utils/contrast';
 import { getAllResultKeys } from '../data/results';
 import { RESULT_HASHTAGS } from '../data/hashtags';
-import { getExportSettings, handleImageExport, formatFileSize } from '../utils/imageExport';
+import { getExportSettings, handleImageExport } from '../utils/imageExport';
 
 export const Result = () => {
   const { key } = useParams<{ key: string }>();
@@ -112,521 +111,49 @@ export const Result = () => {
         format: settings.format
       });
 
-      // 🎯 MOBILE FIX: Use pre-rendered images on mobile devices
-      // html-to-image fails on iOS/mobile, so we use pre-generated share cards
-      if (settings.device.isMobile) {
-        console.log('🔧 Mobile device detected - using pre-rendered share card');
+      // 🎯 Use pre-rendered images for all devices
+      console.log('🔧 Using pre-rendered share card');
 
-        // Use language-specific pre-rendered image
-        const preRenderedUrl = `/assets/share-cards/${language}/${result.key}.jpg`;
-        console.log(`Fetching pre-rendered image: ${preRenderedUrl} (language: ${language})`);
-
-        try {
-          // Fetch the pre-rendered image
-          const response = await fetch(preRenderedUrl);
-          if (!response.ok) {
-            throw new Error(`Pre-rendered image not found: ${preRenderedUrl}`);
-          }
-
-          const blob = await response.blob();
-          const dataUrl = await new Promise<string>((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result as string);
-            reader.onerror = reject;
-            reader.readAsDataURL(blob);
-          });
-
-          console.log('✅ Pre-rendered image loaded');
-
-          // Use intelligent export strategy based on device
-          const filename = `IMPULSE-${result.key}.jpg`;
-          await handleImageExport(dataUrl, filename, language, () => {
-            setIsCapturing(false);
-          });
-
-          const totalTime = performance.now() - startTime;
-          console.log(`✅ Export completed! Total time: ${Math.round(totalTime)}ms`);
-
-          if (!settings.device.needsPreview) {
-            setIsCapturing(false);
-          }
-
-          return; // Exit early - mobile flow complete
-        } catch (preRenderError) {
-          console.error('❌ Failed to load pre-rendered image:', preRenderError);
-          console.warn('⚠️ Falling back to html-to-image (may fail on mobile)');
-          // Fall through to html-to-image flow below
-        }
-      }
-
-      // DESKTOP FLOW: Continue with html-to-image with 5s timeout fallback
-      console.log('📸 Desktop device - using html-to-image with 5s timeout fallback');
-
-      // Create timeout Promise (5 seconds)
-      const timeoutPromise = new Promise<'timeout'>((resolve) => {
-        setTimeout(() => {
-          console.warn('⏱️ Image generation timeout (5s) - falling back to pre-rendered image');
-          resolve('timeout');
-        }, 5000);
-      });
-
-      // Wrap entire html-to-image flow in a Promise
-      const htmlToImagePromise = (async () => {
-
-      // Step 1: Pre-load images to browser cache AND decode them
-      const imagesToPreload = [
-        getKeycapAsset(result.key),
-        '/assets/Anvils-1.png',
-        '/assets/qr-code.png'
-      ];
-
-      console.log('Pre-loading and decoding images...');
-      const preloadStart = performance.now();
+      // Use language-specific pre-rendered image
+      const preRenderedUrl = `/assets/share-cards/${language}/${result.key}.jpg`;
+      console.log(`Fetching pre-rendered image: ${preRenderedUrl} (language: ${language})`);
 
       try {
-        await Promise.all(
-          imagesToPreload.map(async (src) => {
-            const img = new Image();
-            img.src = src;
-
-            // Wait for image to load
-            await new Promise((resolve, reject) => {
-              if (img.complete && img.naturalHeight !== 0) {
-                resolve(img);
-              } else {
-                img.onload = () => resolve(img);
-                img.onerror = () => reject(new Error(`Failed to load: ${src}`));
-              }
-            });
-
-            // Wait for image to decode (iOS Chrome optimization)
-            await img.decode();
-            console.log('Loaded + decoded:', src);
-            return img;
-          })
-        );
-      } catch (preloadError) {
-        console.error('Failed to preload images:', preloadError);
-        const errorMsg = language === 'zh'
-          ? '图片加载失败，请检查网络连接后重试。'
-          : 'Failed to load images. Please check your network and try again.';
-        setImageError(errorMsg);
-        throw new Error(`Image preload failed: ${preloadError instanceof Error ? preloadError.message : 'Unknown error'}`);
-      }
-
-      const preloadEnd = performance.now();
-      console.log(`✅ All images pre-loaded and decoded in ${Math.round(preloadEnd - preloadStart)}ms`);
-
-      // iOS FIX: Manually convert images to data URLs BEFORE html-to-image
-      // html-to-image's internal image embedding is failing on iOS
-      // Solution: Convert images to data URLs ourselves and inject them into DOM
-      console.log('🔧 iOS Fix: Manually converting images to data URLs...');
-      const imageConversionStart = performance.now();
-
-      const convertImageToDataUrl = async (src: string): Promise<string> => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.crossOrigin = 'anonymous';
-          img.onload = () => {
-            try {
-              const canvas = document.createElement('canvas');
-              canvas.width = img.naturalWidth;
-              canvas.height = img.naturalHeight;
-              const ctx = canvas.getContext('2d');
-              if (!ctx) {
-                reject(new Error('Failed to get canvas context'));
-                return;
-              }
-              ctx.drawImage(img, 0, 0);
-              const dataUrl = canvas.toDataURL('image/png');
-              resolve(dataUrl);
-            } catch (error) {
-              reject(error);
-            }
-          };
-          img.onerror = () => reject(new Error(`Failed to load: ${src}`));
-          img.src = src;
-        });
-      };
-
-      try {
-        const imageDataUrls = await Promise.all(
-          imagesToPreload.map(src => convertImageToDataUrl(src))
-        );
-        console.log(`✅ Converted ${imageDataUrls.length} images to data URLs`);
-
-        // Now replace <img src="/assets/..."> with <img src="data:image/png;base64,...">
-        // in the ShareCard DOM before html-to-image processes it
-        if (shareCardRef.current) {
-          const cardImages = shareCardRef.current.querySelectorAll('img');
-          cardImages.forEach((img, index) => {
-            const originalSrc = img.src;
-            const matchingDataUrl = imageDataUrls.find((_, i) => {
-              const preloadSrc = imagesToPreload[i];
-              return originalSrc.includes(preloadSrc.replace(/^\//, ''));
-            });
-
-            if (matchingDataUrl) {
-              console.log(`Replacing image ${index + 1} src with data URL`);
-              img.src = matchingDataUrl;
-            }
-          });
+        // Fetch the pre-rendered image
+        const response = await fetch(preRenderedUrl);
+        if (!response.ok) {
+          throw new Error(`Pre-rendered image not found: ${preRenderedUrl}`);
         }
 
-        const imageConversionEnd = performance.now();
-        console.log(`✅ Image conversion completed in ${Math.round(imageConversionEnd - imageConversionStart)}ms`);
-      } catch (conversionError) {
-        console.error('❌ Image conversion failed:', conversionError);
-        // Continue anyway - html-to-image will try its own embedding
-      }
-
-      // Step 2: Force a reflow to ensure DOM is fully updated
-      if (shareCardRef.current) {
-        shareCardRef.current.getBoundingClientRect();
-      }
-
-      // Step 3: Wait for images in ShareCard DOM to be ready
-      console.log('Waiting for ShareCard images to render...');
-      const cardImageStart = performance.now();
-
-      await new Promise<void>((resolve) => {
-        const checkImages = async () => {
-          const cardImages = shareCardRef.current?.querySelectorAll('img');
-          if (!cardImages || cardImages.length === 0) {
-            console.warn('No images found in ShareCard, retrying...');
-            setTimeout(checkImages, 100);
-            return;
-          }
-
-          console.log(`Found ${cardImages.length} images in ShareCard`);
-
-          try {
-            // Wait for all images in ShareCard to be complete and decoded
-            await Promise.all(
-              Array.from(cardImages).map(async (img, index) => {
-                // Check if image is already loaded
-                if (img.complete && img.naturalHeight > 0) {
-                  console.log(`Image ${index + 1} already loaded:`, img.src);
-                  // Still decode it to ensure it's ready for rendering
-                  await img.decode();
-                  return;
-                }
-
-                // Wait for image to load
-                console.log(`Waiting for image ${index + 1}:`, img.src);
-                await new Promise((resolveImg, rejectImg) => {
-                  img.onload = () => resolveImg(img);
-                  img.onerror = () => rejectImg(new Error(`Failed to load image in card: ${img.src}`));
-
-                  // Force reload if src is set but not loading
-                  if (img.src && !img.complete) {
-                    const currentSrc = img.src;
-                    img.src = '';
-                    img.src = currentSrc;
-                  }
-                });
-
-                // Wait for decode
-                await img.decode();
-                console.log(`Image ${index + 1} loaded + decoded`);
-              })
-            );
-
-            const cardImageEnd = performance.now();
-            console.log(`✅ ShareCard images ready in ${Math.round(cardImageEnd - cardImageStart)}ms`);
-            resolve();
-          } catch (error) {
-            console.error('Error waiting for ShareCard images:', error);
-            // Continue anyway after a small delay
-            setTimeout(resolve, 500);
-          }
-        };
-
-        checkImages();
-      });
-
-      // Step 4: Additional frame wait for iOS Chrome rendering
-      await new Promise(resolve => requestAnimationFrame(resolve));
-      await new Promise(resolve => requestAnimationFrame(resolve));
-
-      // iOS FIX: Force browser to fully settle image decoding before html-to-image
-      // html-to-image clones DOM and re-fetches images internally
-      // On iOS Chrome first load, this races with our preload and fails
-      // Solution: Add aggressive settle time AFTER decode
-      console.log('⏳ iOS Fix: Waiting 500ms for browser image decode settlement...');
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      // DIAGNOSTIC: Log all images in export DOM BEFORE html-to-image processing
-      console.log('═══════════════════════════════════════════════════════');
-      console.log('📸 EXPORT DOM IMAGE AUDIT - BEFORE html-to-image');
-      console.log('═══════════════════════════════════════════════════════');
-
-      if (shareCardRef.current) {
-        const allImages = shareCardRef.current.querySelectorAll('img');
-        console.log(`Total images found in export DOM: ${allImages.length}`);
-
-        allImages.forEach((img, index) => {
-          const isCharacter = img.src.includes('result-cards/');
-          const label = isCharacter ? '👤 CHARACTER IMAGE' : `Image ${index + 1}`;
-
-          console.log(`\n${label}:`);
-          console.log({
-            src: img.src,
-            currentSrc: img.currentSrc,
-            complete: img.complete,
-            naturalWidth: img.naturalWidth,
-            naturalHeight: img.naturalHeight,
-            loading: img.loading,
-            alt: img.alt,
-            className: img.className,
-          });
-
-          // Critical readiness check
-          if (!img.complete) {
-            console.warn(`⚠️ ${label} NOT COMPLETE`);
-          }
-          if (img.naturalWidth === 0 || img.naturalHeight === 0) {
-            console.error(`❌ ${label} ZERO DIMENSIONS - NOT DECODED`);
-          }
-          if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
-            console.log(`✅ ${label} READY (complete=${img.complete}, ${img.naturalWidth}×${img.naturalHeight})`);
-          }
+        const blob = await response.blob();
+        const dataUrl = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
         });
 
-        console.log('\n═══════════════════════════════════════════════════════');
-      }
-
-      console.log(`Converting to ${settings.format} with pixelRatio: ${settings.pixelRatio}, quality: ${settings.quality}`);
-
-      try {
-        const conversionStart = performance.now();
-
-        // iOS FIX: Enable cacheBust to force html-to-image to re-fetch images
-        // This ensures it gets the fully loaded images from browser cache
-        // instead of racing with our preload logic
-        console.log('🔧 iOS Fix: Using cacheBust=true to force fresh image embedding');
-
-        // DIAGNOSTIC EXPERIMENT: Test toSvg vs toJpeg WITH FIX
-        console.log('\n🔬 DIAGNOSTIC: Testing toSvg() with cacheBust=true...');
-
-        if (!shareCardRef.current) {
-          throw new Error('ShareCard ref is null');
-        }
-
-        const svgDataUrl = await toSvg(shareCardRef.current, {
-          cacheBust: true, // ⚠️ FIX: Force html-to-image to re-fetch images
-          pixelRatio: settings.pixelRatio,
-          backgroundColor: '#ffffff',
-          width: settings.width,
-          height: settings.height,
-          skipFonts: false,
-          preferredFontFormat: 'woff2',
-        });
-
-        console.log('✅ toSvg() completed');
-        console.log(`SVG data URL length: ${formatFileSize(svgDataUrl.length)}`);
-        console.log('⚠️ IMPORTANT: Manually inspect the preview - does the SVG show the character?');
-
-        // Step 2: Also generate JPEG for comparison
-        console.log('\n🔬 DIAGNOSTIC: Now testing toJpeg() with cacheBust=true...');
-        const dataUrl = await toJpeg(shareCardRef.current, {
-          cacheBust: true, // ⚠️ FIX: Force html-to-image to re-fetch images
-          pixelRatio: settings.pixelRatio,
-          quality: settings.quality, // JPEG quality (0.9 = 90%)
-          backgroundColor: '#ffffff',
-          width: settings.width,
-          height: settings.height,
-          skipFonts: false,
-          preferredFontFormat: 'woff2', // Use modern font format for speed
-        });
-
-        const conversionEnd = performance.now();
-        const estimatedSize = dataUrl.length * 0.75; // Rough estimate of decoded size
-        console.log(`✅ JPEG conversion completed in ${Math.round(conversionEnd - conversionStart)}ms`);
-        console.log(`📦 Data URL length: ${formatFileSize(dataUrl.length)} (estimated decoded: ${formatFileSize(estimatedSize)})`);
-
-        // DIAGNOSTIC: Show BOTH SVG and JPEG in preview for comparison
-        console.log('\n═══════════════════════════════════════════════════════');
-        console.log('🔍 DIAGNOSTIC RESULTS:');
-        console.log('1. Check the preview - do you see the character in the SVG version?');
-        console.log('2. Check the preview - do you see the character in the JPEG version?');
-        console.log('3. This will determine if the bug is in:');
-        console.log('   - Case A: SVG generation (clone/embed/fetch stage)');
-        console.log('   - Case B: SVG→Canvas→JPEG conversion (decode/canvas stage)');
-        console.log('═══════════════════════════════════════════════════════');
+        console.log('✅ Pre-rendered image loaded');
 
         // Use intelligent export strategy based on device
         const filename = `IMPULSE-${result.key}.jpg`;
-
-        // DIAGNOSTIC MODE: Show both SVG and JPEG in preview
-        if (settings.device.needsPreview) {
-          // Create custom diagnostic preview showing BOTH versions
-          const overlay = document.createElement('div');
-          overlay.id = 'diagnostic-preview-modal';
-          overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 20px;
-            overflow-y: auto;
-          `;
-
-          const title = document.createElement('div');
-          title.style.cssText = `
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-          `;
-          title.textContent = '🔬 DIAGNOSTIC MODE: Compare SVG vs JPEG';
-
-          // SVG Preview
-          const svgContainer = document.createElement('div');
-          svgContainer.style.cssText = `
-            margin-bottom: 20px;
-            text-align: center;
-          `;
-          const svgLabel = document.createElement('div');
-          svgLabel.style.cssText = 'color: #64EDD2; font-weight: bold; margin-bottom: 10px;';
-          svgLabel.textContent = '1️⃣ SVG Version (does it have the character?)';
-          const svgImg = document.createElement('img');
-          svgImg.src = svgDataUrl;
-          svgImg.style.cssText = `
-            max-width: 90%;
-            max-height: 40vh;
-            border: 2px solid #64EDD2;
-            border-radius: 8px;
-          `;
-
-          // JPEG Preview
-          const jpegContainer = document.createElement('div');
-          jpegContainer.style.cssText = `
-            margin-bottom: 20px;
-            text-align: center;
-          `;
-          const jpegLabel = document.createElement('div');
-          jpegLabel.style.cssText = 'color: #FFC933; font-weight: bold; margin-bottom: 10px;';
-          jpegLabel.textContent = '2️⃣ JPEG Version (does it have the character?)';
-          const jpegImg = document.createElement('img');
-          jpegImg.src = dataUrl;
-          jpegImg.style.cssText = `
-            max-width: 90%;
-            max-height: 40vh;
-            border: 2px solid #FFC933;
-            border-radius: 8px;
-          `;
-
-          // Close button
-          const closeBtn = document.createElement('button');
-          closeBtn.textContent = 'Close';
-          closeBtn.style.cssText = `
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid white;
-            color: white;
-            padding: 12px 32px;
-            border-radius: 24px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-          `;
-          closeBtn.onclick = () => {
-            document.body.removeChild(overlay);
-            setIsCapturing(false);
-          };
-
-          svgContainer.appendChild(svgLabel);
-          svgContainer.appendChild(svgImg);
-          jpegContainer.appendChild(jpegLabel);
-          jpegContainer.appendChild(jpegImg);
-
-          overlay.appendChild(title);
-          overlay.appendChild(svgContainer);
-          overlay.appendChild(jpegContainer);
-          overlay.appendChild(closeBtn);
-
-          document.body.appendChild(overlay);
-        } else {
-          await handleImageExport(dataUrl, filename, language, () => {
-            setIsCapturing(false);
-          });
-        }
-
-        const totalTime = performance.now() - startTime;
-        console.log(`✅ Export completed! Total time: ${Math.round(totalTime)}ms`);
-
-        return dataUrl; // Return dataUrl for Promise.race
-      } catch (conversionError) {
-        console.error('JPEG conversion failed:', conversionError);
-        throw new Error(`Image conversion failed: ${conversionError instanceof Error ? conversionError.message : 'Unknown error'}`);
-      }
-      })(); // End of htmlToImagePromise
-
-      // Race between html-to-image and timeout
-      const raceResult = await Promise.race([htmlToImagePromise, timeoutPromise]);
-
-      // Handle timeout - fallback to pre-rendered image
-      if (raceResult === 'timeout') {
-        console.log('⏱️ Timeout reached - using pre-rendered image');
-
-        const preRenderedUrl = `/assets/share-cards/${language}/${result.key}.jpg`;
-        console.log(`Fetching pre-rendered image: ${preRenderedUrl}`);
-
-        try {
-          const response = await fetch(preRenderedUrl);
-          if (!response.ok) {
-            throw new Error(`Pre-rendered image not found: ${preRenderedUrl}`);
-          }
-
-          const blob = await response.blob();
-          const dataUrl = await new Promise<string>((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result as string);
-            reader.onerror = reject;
-            reader.readAsDataURL(blob);
-          });
-
-          console.log('✅ Pre-rendered image loaded (timeout fallback)');
-
-          const filename = `IMPULSE-${result.key}.jpg`;
-          await handleImageExport(dataUrl, filename, language, () => {
-            setIsCapturing(false);
-          });
-
-          const totalTime = performance.now() - startTime;
-          console.log(`✅ Export completed via timeout fallback! Total time: ${Math.round(totalTime)}ms`);
-
-          if (!settings.device.needsPreview) {
-            setIsCapturing(false);
-          }
-        } catch (fallbackError) {
-          console.error('❌ Timeout fallback also failed:', fallbackError);
-          throw fallbackError;
-        }
-      } else {
-        // html-to-image succeeded - use its result
-        console.log('✅ html-to-image completed before timeout');
-
-        const dataUrl = raceResult; // This is the dataUrl from htmlToImagePromise
-        const filename = `IMPULSE-${result.key}.jpg`;
-
         await handleImageExport(dataUrl, filename, language, () => {
           setIsCapturing(false);
         });
 
-        // Don't reset isCapturing here if preview modal is shown
-        // The modal's onClose will handle it
+        const totalTime = performance.now() - startTime;
+        console.log(`✅ Export completed! Total time: ${Math.round(totalTime)}ms`);
+
         if (!settings.device.needsPreview) {
           setIsCapturing(false);
         }
+      } catch (preRenderError) {
+        console.error('❌ Failed to load pre-rendered image:', preRenderError);
+        const errorMsg = language === 'zh'
+          ? '图片加载失败，请检查网络连接后重试。'
+          : 'Failed to load images. Please check your network and try again.';
+        setImageError(errorMsg);
+        setIsCapturing(false);
       }
     } catch (error) {
       console.error('Failed to capture image:', error);
@@ -793,12 +320,12 @@ export const Result = () => {
 
       <main ref={resultRef} className="flex-1 max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-6 sm:py-8 md:py-12 pb-24 lg:pb-12 w-full">
         {/* Responsive Layout: Single column on mobile, 12-column grid on desktop */}
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Left Sidebar: Full width on mobile, 4 columns on desktop */}
           <div className="lg:col-span-4 flex flex-col gap-6">
             {/* Character Card - Neo-Playful 3D Style */}
             <div
-              className="relative bg-gradient-to-br from-white via-[#fffbfe] to-[#fef5fb] border-2 rounded-xl p-4 lg:p-6 lg:p-\[33px\] flex flex-col gap-4 lg:gap-6 transition-all duration-300 hover:translate-y-[-4px]"
+              className="relative bg-gradient-to-br from-white via-[#fffbfe] to-[#fef5fb] border-2 rounded-xl p-4 flex flex-col gap-4 transition-all duration-300 hover:translate-y-[-4px]"
               style={{
                 borderColor: colorGroup.color,
                 boxShadow: `
@@ -834,7 +361,7 @@ export const Result = () => {
               {/* Keycap with 3D volumetric lighting */}
               <div className="flex justify-center">
                 <div
-                  className="relative w-48 h-48 lg:w-64 lg:h-64 rounded-2xl border-[3px] p-2 flex items-center justify-center transition-all duration-500 hover:scale-105 cursor-pointer group overflow-hidden"
+                  className="relative w-40 h-40 lg:w-48 lg:h-48 rounded-2xl border-[3px] p-2 flex items-center justify-center transition-all duration-500 hover:scale-105 cursor-pointer group overflow-hidden"
                   style={{
                     background: colorGroup.color,
                     borderColor: '#f65af2',
@@ -1139,8 +666,8 @@ export const Result = () => {
                   <span className="text-[#a800aa] font-bold">Congratulations!</span>
                 </h2>
                 <p className="font-space-grotesk font-normal text-[18px] leading-[28px] text-[#534150] text-center pt-4">
-                  You win a prize!<br />
-                  <span className="font-bold text-[#a800aa]">Claim Prize</span> at Impulse26 China Networking Party at 15:05
+                  You win a mini prize!<br />
+                  <span className="font-bold text-[#a800aa]">Claim it</span> at registration deck at 15:05.
                 </p>
               </div>
             </div>
@@ -1148,7 +675,7 @@ export const Result = () => {
 
           {/* Right Column: 8 columns */}
           {/* Right Content Area: Full width on mobile, 8 columns on desktop */}
-          <div className="lg:col-span-8 flex flex-col gap-6 lg:gap-12">
+          <div className="lg:col-span-8 flex flex-col gap-6 lg:gap-8">
             {/* Dimensions Section */}
             <div
               className="rounded-3xl p-6 lg:p-8 flex flex-col gap-8 transition-all duration-300"
@@ -1172,153 +699,225 @@ export const Result = () => {
             >
               <div className="flex gap-2 items-center">
                 <img src="/assets/icons/Dimension.svg" alt="" className="w-5 h-5" style={{ filter: `brightness(0) saturate(100%)`, opacity: 0.8 }} />
-                <h4 className="font-poppins font-bold text-[20px] lg:text-[22px] leading-tight tracking-tight uppercase" style={{ color: impulseColorText }}>
+                <h4 className="font-poppins font-bold text-[16px] lg:text-[18px] leading-tight tracking-tight uppercase" style={{ color: impulseColorText }}>
                   {t('result.dimensions')}
                 </h4>
               </div>
 
-              <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-x-12 lg:gap-y-8">
-                {/* Signal vs Solution */}
-                <div className="flex flex-col gap-3">
-                  <div className="flex justify-between items-center">
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#f65af2]">
-                      SIGNAL ({Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100)}%)
-                    </span>
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#00b5bd]">
-                      SOLUTION ({Math.round((displayScores.Solution / (displayScores.Signal + displayScores.Solution)) * 100)}%)
-                    </span>
+              <div className="flex flex-col gap-4">
+                {/* Signal vs Solution - Magenta */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex justify-between items-start">
+                    <div className="flex flex-col items-start">
+                      <span className="font-space-grotesk font-medium text-[12px] text-[#534150]">SIGNAL</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-[#231821]">
+                        {Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100)}%
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className="font-space-grotesk font-medium text-[12px] text-[#534150]">SOLUTION</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-[#231821]">
+                        {Math.round((displayScores.Solution / (displayScores.Signal + displayScores.Solution)) * 100)}%
+                      </span>
+                    </div>
                   </div>
-                  <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
-                    <div
-                      className="absolute top-1 bottom-1 rounded-md transition-all duration-300"
-                      style={{
-                        backgroundColor: displayScores.Signal >= displayScores.Solution ? '#f65af2' : '#00b5bd',
-                        left: displayScores.Signal >= displayScores.Solution ? '4px' : 'auto',
-                        right: displayScores.Solution > displayScores.Signal ? '4px' : 'auto',
-                        width: `calc(${Math.round((Math.max(displayScores.Signal, displayScores.Solution) / (displayScores.Signal + displayScores.Solution)) * 100)}% - 8px)`,
-                        boxShadow: displayScores.Signal >= displayScores.Solution
-                          ? '0px 0px 0px rgba(246,90,242,0)'
-                          : '0px 0px 0px rgba(0,181,189,0)'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = displayScores.Signal >= displayScores.Solution
-                          ? '0px 0px 12px #f65af2'
-                          : '0px 0px 12px #00b5bd';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = displayScores.Signal >= displayScores.Solution
-                          ? '0px 0px 0px rgba(246,90,242,0)'
-                          : '0px 0px 0px rgba(0,181,189,0)';
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Human vs Machine */}
-                <div className="flex flex-col gap-3">
-                  <div className="flex justify-between items-center">
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#00b5bd]">
-                      HUMAN ({Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100)}%)
-                    </span>
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#8e5aff]">
-                      MACHINE ({Math.round((displayScores.Machine / (displayScores.Human + displayScores.Machine)) * 100)}%)
-                    </span>
-                  </div>
-                  <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
-                    <div
-                      className="absolute top-1 bottom-1 rounded-md transition-all duration-300"
-                      style={{
-                        backgroundColor: displayScores.Human >= displayScores.Machine ? '#00b5bd' : '#8e5aff',
-                        left: displayScores.Human >= displayScores.Machine ? '4px' : 'auto',
-                        right: displayScores.Machine > displayScores.Human ? '4px' : 'auto',
-                        width: `calc(${Math.round((Math.max(displayScores.Human, displayScores.Machine) / (displayScores.Human + displayScores.Machine)) * 100)}% - 8px)`,
-                        boxShadow: displayScores.Human >= displayScores.Machine
-                          ? '0px 0px 0px rgba(0,181,189,0)'
-                          : '0px 0px 0px rgba(142,90,255,0)'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = displayScores.Human >= displayScores.Machine
-                          ? '0px 0px 12px #00b5bd'
-                          : '0px 0px 12px #8e5aff';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = displayScores.Human >= displayScores.Machine
-                          ? '0px 0px 0px rgba(0,181,189,0)'
-                          : '0px 0px 0px rgba(142,90,255,0)';
-                      }}
-                    />
+                  <div className="relative h-4 flex items-center">
+                    {/* Background bar with rounded corners */}
+                    <div className="absolute inset-0 rounded-full bg-[#f7e3f5] overflow-hidden">
+                      {/* Colored bar from center */}
+                      {(() => {
+                        const signalPercent = Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100);
+                        const isLeftDominant = signalPercent > 50;
+                        const barWidth = Math.abs(signalPercent - 50);
+                        return (
+                          <div
+                            className="absolute top-0 bottom-0 bg-[#A100C2] transition-all duration-300"
+                            style={{
+                              [isLeftDominant ? 'right' : 'left']: '50%',
+                              width: `${barWidth}%`
+                            }}
+                          />
+                        );
+                      })()}
+                    </div>
+                    {/* Center line */}
+                    <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/50 z-10" />
+                    {/* Slider knob - outside overflow */}
+                    {(() => {
+                      const signalPercent = Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100);
+                      const solutionPercent = 100 - signalPercent;
+                      return (
+                        <div
+                          className="absolute top-1/2 -translate-y-1/2 w-[19px] h-[19px] rounded-full transition-all duration-300 bg-[#A100C2] z-20 border-2 border-white"
+                          style={{
+                            left: `calc(${solutionPercent}% - 9.5px)`,
+                            boxShadow: '0 2px 8px rgba(161,0,194,0.6), 0 0 0 2px rgba(255,255,255,0.8)'
+                          }}
+                        />
+                      );
+                    })()}
                   </div>
                 </div>
 
-                {/* Explore vs Align */}
+                {/* Human vs Machine - Yellow */}
                 <div className="flex flex-col gap-3">
-                  <div className="flex justify-between items-center">
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#8e5aff]">
-                      EXPLORE ({Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100)}%)
-                    </span>
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#f4bf28]">
-                      ALIGN ({Math.round((displayScores.Align / (displayScores.Explore + displayScores.Align)) * 100)}%)
-                    </span>
+                  <div className="flex justify-between items-start">
+                    <div className="flex flex-col items-start">
+                      <span className="font-space-grotesk font-medium text-[12px] text-[#534150]">HUMAN</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-[#231821]">
+                        {Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100)}%
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className="font-space-grotesk font-medium text-[12px] text-[#534150]">MACHINE</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-[#231821]">
+                        {Math.round((displayScores.Machine / (displayScores.Human + displayScores.Machine)) * 100)}%
+                      </span>
+                    </div>
                   </div>
-                  <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
-                    <div
-                      className="absolute top-1 bottom-1 rounded-md transition-all duration-300"
-                      style={{
-                        backgroundColor: displayScores.Explore >= displayScores.Align ? '#8e5aff' : '#f4bf28',
-                        left: displayScores.Explore >= displayScores.Align ? '4px' : 'auto',
-                        right: displayScores.Align > displayScores.Explore ? '4px' : 'auto',
-                        width: `calc(${Math.round((Math.max(displayScores.Explore, displayScores.Align) / (displayScores.Explore + displayScores.Align)) * 100)}% - 8px)`,
-                        boxShadow: displayScores.Explore >= displayScores.Align
-                          ? '0px 0px 0px rgba(142,90,255,0)'
-                          : '0px 0px 0px rgba(244,191,40,0)'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = displayScores.Explore >= displayScores.Align
-                          ? '0px 0px 12px #8e5aff'
-                          : '0px 0px 12px #f4bf28';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = displayScores.Explore >= displayScores.Align
-                          ? '0px 0px 0px rgba(142,90,255,0)'
-                          : '0px 0px 0px rgba(244,191,40,0)';
-                      }}
-                    />
+                  <div className="relative h-4 flex items-center">
+                    {/* Background bar with rounded corners */}
+                    <div className="absolute inset-0 rounded-full bg-[#fff9e6] overflow-hidden">
+                      {/* Colored bar from center */}
+                      {(() => {
+                        const humanPercent = Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100);
+                        const isLeftDominant = humanPercent > 50;
+                        const barWidth = Math.abs(humanPercent - 50);
+                        return (
+                          <div
+                            className="absolute top-0 bottom-0 bg-[#FFC933] transition-all duration-300"
+                            style={{
+                              [isLeftDominant ? 'right' : 'left']: '50%',
+                              width: `${barWidth}%`
+                            }}
+                          />
+                        );
+                      })()}
+                    </div>
+                    {/* Center line */}
+                    <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/50 z-10" />
+                    {/* Slider knob - outside overflow */}
+                    {(() => {
+                      const humanPercent = Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100);
+                      const machinePercent = 100 - humanPercent;
+                      return (
+                        <div
+                          className="absolute top-1/2 -translate-y-1/2 w-[19px] h-[19px] rounded-full transition-all duration-300 bg-[#FFC933] z-20 border-2 border-white"
+                          style={{
+                            left: `calc(${machinePercent}% - 9.5px)`,
+                            boxShadow: '0 2px 8px rgba(255,201,51,0.6), 0 0 0 2px rgba(255,255,255,0.8)'
+                          }}
+                        />
+                      );
+                    })()}
                   </div>
                 </div>
 
-                {/* Spark vs Stabilize */}
+                {/* Explore vs Align - Cyan */}
                 <div className="flex flex-col gap-3">
-                  <div className="flex justify-between items-center">
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#f4bf28]">
-                      SPARK ({Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100)}%)
-                    </span>
-                    <span className="font-jetbrains-mono font-medium text-[12px] leading-[16px] text-[#f65af2]">
-                      STABILIZE ({Math.round((displayScores.Stabilize / (displayScores.Spark + displayScores.Stabilize)) * 100)}%)
-                    </span>
+                  <div className="flex justify-between items-start">
+                    <div className="flex flex-col items-start">
+                      <span className="font-space-grotesk font-medium text-[12px] text-[#534150]">EXPLORE</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-[#231821]">
+                        {Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100)}%
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className="font-space-grotesk font-medium text-[12px] text-[#534150]">ALIGN</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-[#231821]">
+                        {Math.round((displayScores.Align / (displayScores.Explore + displayScores.Align)) * 100)}%
+                      </span>
+                    </div>
                   </div>
-                  <div className="h-8 bg-white border border-[rgba(0,0,0,0.08)] rounded-lg relative group cursor-pointer">
-                    <div
-                      className="absolute top-1 bottom-1 rounded-md transition-all duration-300"
-                      style={{
-                        backgroundColor: displayScores.Spark >= displayScores.Stabilize ? '#f4bf28' : '#f65af2',
-                        left: displayScores.Spark >= displayScores.Stabilize ? '4px' : 'auto',
-                        right: displayScores.Stabilize > displayScores.Spark ? '4px' : 'auto',
-                        width: `calc(${Math.round((Math.max(displayScores.Spark, displayScores.Stabilize) / (displayScores.Spark + displayScores.Stabilize)) * 100)}% - 8px)`,
-                        boxShadow: displayScores.Spark >= displayScores.Stabilize
-                          ? '0px 0px 0px rgba(244,191,40,0)'
-                          : '0px 0px 0px rgba(246,90,242,0)'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = displayScores.Spark >= displayScores.Stabilize
-                          ? '0px 0px 12px #f4bf28'
-                          : '0px 0px 12px #f65af2';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = displayScores.Spark >= displayScores.Stabilize
-                          ? '0px 0px 0px rgba(244,191,40,0)'
-                          : '0px 0px 0px rgba(246,90,242,0)';
-                      }}
-                    />
+                  <div className="relative h-4 flex items-center">
+                    {/* Background bar with rounded corners */}
+                    <div className="absolute inset-0 rounded-full bg-[#e6faf7] overflow-hidden">
+                      {/* Colored bar from center */}
+                      {(() => {
+                        const explorePercent = Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100);
+                        const isLeftDominant = explorePercent > 50;
+                        const barWidth = Math.abs(explorePercent - 50);
+                        return (
+                          <div
+                            className="absolute top-0 bottom-0 bg-[#64EDD2] transition-all duration-300"
+                            style={{
+                              [isLeftDominant ? 'right' : 'left']: '50%',
+                              width: `${barWidth}%`
+                            }}
+                          />
+                        );
+                      })()}
+                    </div>
+                    {/* Center line */}
+                    <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/50 z-10" />
+                    {/* Slider knob - outside overflow */}
+                    {(() => {
+                      const explorePercent = Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100);
+                      const alignPercent = 100 - explorePercent;
+                      return (
+                        <div
+                          className="absolute top-1/2 -translate-y-1/2 w-[19px] h-[19px] rounded-full transition-all duration-300 bg-[#64EDD2] z-20 border-2 border-white"
+                          style={{
+                            left: `calc(${alignPercent}% - 9.5px)`,
+                            boxShadow: '0 2px 8px rgba(100,237,210,0.6), 0 0 0 2px rgba(255,255,255,0.8)'
+                          }}
+                        />
+                      );
+                    })()}
+                  </div>
+                </div>
+
+                {/* Spark vs Stabilize - Purple */}
+                <div className="flex flex-col gap-3">
+                  <div className="flex justify-between items-start">
+                    <div className="flex flex-col items-start">
+                      <span className="font-space-grotesk font-medium text-[12px] text-[#534150]">SPARK</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-[#231821]">
+                        {Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100)}%
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className="font-space-grotesk font-medium text-[12px] text-[#534150]">STABILIZE</span>
+                      <span className="font-space-grotesk font-bold text-[18px] text-[#231821]">
+                        {Math.round((displayScores.Stabilize / (displayScores.Spark + displayScores.Stabilize)) * 100)}%
+                      </span>
+                    </div>
+                  </div>
+                  <div className="relative h-4 flex items-center">
+                    {/* Background bar with rounded corners */}
+                    <div className="absolute inset-0 rounded-full bg-[#f3f0ff] overflow-hidden">
+                      {/* Colored bar from center */}
+                      {(() => {
+                        const sparkPercent = Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100);
+                        const isLeftDominant = sparkPercent > 50;
+                        const barWidth = Math.abs(sparkPercent - 50);
+                        return (
+                          <div
+                            className="absolute top-0 bottom-0 bg-[#7858FF] transition-all duration-300"
+                            style={{
+                              [isLeftDominant ? 'right' : 'left']: '50%',
+                              width: `${barWidth}%`
+                            }}
+                          />
+                        );
+                      })()}
+                    </div>
+                    {/* Center line */}
+                    <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/50 z-10" />
+                    {/* Slider knob - outside overflow */}
+                    {(() => {
+                      const sparkPercent = Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100);
+                      const stabilizePercent = 100 - sparkPercent;
+                      return (
+                        <div
+                          className="absolute top-1/2 -translate-y-1/2 w-[19px] h-[19px] rounded-full transition-all duration-300 bg-[#7858FF] z-20 border-2 border-white"
+                          style={{
+                            left: `calc(${stabilizePercent}% - 9.5px)`,
+                            boxShadow: '0 2px 8px rgba(120,88,255,0.6), 0 0 0 2px rgba(255,255,255,0.8)'
+                          }}
+                        />
+                      );
+                    })()}
                   </div>
                 </div>
               </div>

@@ -76,7 +76,7 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
       </a>
 
       <header className="bg-white/95 backdrop-blur-sm border-b border-[#d8bfd1]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-3 sm:py-4 flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 py-2 sm:py-4 flex items-center justify-between">
           {/* Logo - Secret Entrance: Click 5 times */}
           <div
             className="flex items-center gap-2 sm:gap-4 cursor-pointer transition-transform duration-200 active:scale-95"
@@ -86,13 +86,13 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
               filter: clickCount > 0 ? `hue-rotate(${clickCount * 30}deg)` : 'none'
             }}
           >
-            <span className="font-poppins font-bold text-[18px] sm:text-headline-md text-[#a800aa] tracking-tight">
+            <span className="font-poppins font-bold text-[14px] sm:text-headline-md text-[#a800aa] tracking-tight">
               Impulse26 Key
             </span>
             <img
               src="/assets/anvils.png"
               alt="Anvils"
-              className="w-[40px] sm:w-[59.2px] h-[22px] sm:h-8 object-contain"
+              className="w-[32px] sm:w-[59.2px] h-[18px] sm:h-8 object-contain"
             />
           </div>
 
