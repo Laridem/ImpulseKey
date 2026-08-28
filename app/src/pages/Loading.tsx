@@ -201,21 +201,21 @@ export const Loading = () => {
               </div>
 
               {/* System Analysis Label */}
-              <div className="absolute bottom-16 sm:bottom-24 left-1/2 transform -translate-x-1/2 px-2">
-                <p className="font-jetbrains-mono font-medium text-[10px] sm:text-[12px] leading-[14px] sm:leading-[18px] text-[#00f5e1] uppercase text-center">
+              <div className="absolute bottom-20 sm:bottom-24 left-1/2 transform -translate-x-1/2 px-2">
+                <p className="font-jetbrains-mono font-medium text-[9px] sm:text-[12px] leading-[12px] sm:leading-[18px] text-[#00f5e1] uppercase text-center">
                   SYSTEM ANALYSIS IN PROGRESS
                 </p>
               </div>
 
               {/* Analyzing Text with Progress */}
-              <div className="absolute bottom-10 sm:bottom-16 left-1/2 transform -translate-x-1/2 text-center">
-                <p className="font-space-grotesk font-bold text-[14px] sm:text-[18px] text-white">
+              <div className="absolute bottom-14 sm:bottom-16 left-1/2 transform -translate-x-1/2 text-center">
+                <p className="font-space-grotesk font-bold text-[13px] sm:text-[18px] text-white">
                   ANALYZING... {Math.round(progress)}%
                 </p>
               </div>
 
               {/* Progress Bar at Bottom of Frame */}
-              <div className="absolute bottom-5 sm:bottom-8 left-4 right-4 sm:left-8 sm:right-8">
+              <div className="absolute bottom-7 sm:bottom-8 left-4 right-4 sm:left-8 sm:right-8">
                 <div className="w-full h-1.5 sm:h-2 bg-[#534150] rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-[#a800aa] to-[#f65af2] transition-all duration-300 ease-linear rounded-full"
@@ -225,7 +225,7 @@ export const Loading = () => {
               </div>
 
               {/* Impulse 26 Logo Badge */}
-              <div className="absolute bottom-2 sm:bottom-4 right-4 sm:right-6">
+              <div className="absolute bottom-3 sm:bottom-4 right-4 sm:right-6">
                 <p className="font-jetbrains-mono font-medium text-[8px] sm:text-[10px] text-[#00f5e1] uppercase">
                   IMPULSE 26
                 </p>
