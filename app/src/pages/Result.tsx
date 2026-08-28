@@ -723,7 +723,7 @@ export const Result = () => {
                   </div>
                   <div className="relative h-4 flex items-center">
                     {/* Background bar with rounded corners */}
-                    <div className="absolute inset-0 rounded-full bg-[#f7e3f5] overflow-hidden">
+                    <div className="absolute inset-0 rounded-full bg-white overflow-hidden">
                       {/* Colored bar from center */}
                       {(() => {
                         const signalPercent = Math.round((displayScores.Signal / (displayScores.Signal + displayScores.Solution)) * 100);
@@ -777,7 +777,7 @@ export const Result = () => {
                   </div>
                   <div className="relative h-4 flex items-center">
                     {/* Background bar with rounded corners */}
-                    <div className="absolute inset-0 rounded-full bg-[#fff9e6] overflow-hidden">
+                    <div className="absolute inset-0 rounded-full bg-white overflow-hidden">
                       {/* Colored bar from center */}
                       {(() => {
                         const humanPercent = Math.round((displayScores.Human / (displayScores.Human + displayScores.Machine)) * 100);
@@ -831,7 +831,7 @@ export const Result = () => {
                   </div>
                   <div className="relative h-4 flex items-center">
                     {/* Background bar with rounded corners */}
-                    <div className="absolute inset-0 rounded-full bg-[#e6faf7] overflow-hidden">
+                    <div className="absolute inset-0 rounded-full bg-white overflow-hidden">
                       {/* Colored bar from center */}
                       {(() => {
                         const explorePercent = Math.round((displayScores.Explore / (displayScores.Explore + displayScores.Align)) * 100);
@@ -885,7 +885,7 @@ export const Result = () => {
                   </div>
                   <div className="relative h-4 flex items-center">
                     {/* Background bar with rounded corners */}
-                    <div className="absolute inset-0 rounded-full bg-[#f3f0ff] overflow-hidden">
+                    <div className="absolute inset-0 rounded-full bg-white overflow-hidden">
                       {/* Colored bar from center */}
                       {(() => {
                         const sparkPercent = Math.round((displayScores.Spark / (displayScores.Spark + displayScores.Stabilize)) * 100);
