@@ -184,6 +184,12 @@ export const Result = () => {
     );
   }
 
+  // Block rendering if no valid dimension scores (direct URL access without test)
+  // The useEffect will redirect, but we prevent any flash of content
+  if (!dimensionScores || Object.keys(dimensionScores).length === 0) {
+    return null;
+  }
+
   const colorGroup = getColorGroupForResult(result.key);
 
   // Generate appropriate demo scores based on result key's dimensions
