@@ -789,6 +789,151 @@ export const Landing = () => {
             </div>
           </div>
         </div>
+
+        {/* Event Team Section */}
+        <div className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-12 sm:pt-16 pb-16">
+          <div className="space-y-8">
+            <div className="text-center">
+              <h3 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821] mb-3">
+                Event Team
+              </h3>
+              <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150]">
+                Meet the team behind Impulse26 China
+              </p>
+            </div>
+
+            {/* Team Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 sm:gap-8">
+              {/* Row 1 */}
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍💼
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Yang, Debbie
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👨‍💻
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Wan, Mark
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍🎨
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Deng, Larissa
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍💼
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Bu, Heather
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍🎨
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Chen, Joy
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍💼
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Zhang, Xueer
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍💼
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Huang, Zoie
+                </p>
+              </div>
+
+              {/* Row 2 */}
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍🎨
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Fu, Shuang
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍💼
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Jin, Liqin
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👨‍💻
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Zhou, Rowan
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍💼
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Huang, Lijiao
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👨‍💼
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Wang, Zhicheng
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👩‍💼
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Wang, Wei
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                  👨‍🎨
+                </div>
+                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                  Wu, Yifan
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
 
       {/* Mobile Sticky Bottom Buttons - Only visible on mobile */}
