@@ -786,12 +786,12 @@ export const Landing = () => {
                 </div>
               </div>
 
-              {/* Right: Banner Image - Square aspect ratio */}
+              {/* Right: Banner Image - Maintain aspect ratio, max 1:1 width */}
               <div className="flex items-center justify-center">
                 <img
                   src="/assets/banner.png"
                   alt="Impulse26 Key Banner"
-                  className="w-full aspect-square object-cover rounded-lg"
+                  className="w-full max-w-[500px] h-auto object-contain rounded-lg"
                 />
               </div>
             </div>
