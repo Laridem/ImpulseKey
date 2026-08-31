@@ -599,23 +599,23 @@ export const Landing = () => {
                       }}
                     >
                       {/* Content with Icon and Text - 2/3 of previous size */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-3 gap-2">
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-2 sm:p-3 gap-1 sm:gap-2">
                         {/* Icon - 2/3 size (was w-24/w-32, now w-16/w-20) */}
                         <img
                           src={booth.icon}
                           alt={`${booth.name} icon`}
-                          className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg"
+                          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain drop-shadow-lg"
                         />
                         {/* Text - Smaller */}
-                        <div className="text-center">
+                        <div className="text-center w-full px-1">
                           <div
-                            className="font-space-grotesk font-black text-[14px] sm:text-[18px] mb-1 uppercase tracking-tight"
+                            className="font-space-grotesk font-black text-[11px] sm:text-[14px] md:text-[16px] mb-0.5 sm:mb-1 uppercase tracking-tight leading-tight break-words"
                             style={{ color: booth.textColor }}
                           >
                             {booth.name}
                           </div>
                           <div
-                            className="font-space-grotesk font-medium text-[10px] sm:text-[12px]"
+                            className="font-space-grotesk font-medium text-[9px] sm:text-[10px] md:text-[12px] leading-tight"
                             style={{ color: booth.textColor, opacity: 0.9 }}
                           >
                             {language === 'zh' ? booth.subtitleCN : booth.subtitleEN}
