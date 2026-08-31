@@ -805,10 +805,10 @@ export const Landing = () => {
                   Event Team
                 </h3>
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] mb-2">
-                  Meet the team behind Impulse26 China and their ImpulseKey results!
+                  Meet the team behind Impulse26 China and our ImpulseKey results!
                 </p>
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150]">
-                  Is your key the same or different from theirs? Find us at Impulse26 — we'd love to exchange thoughts and hear about your result!
+                  Is your key the same or different from ours? Find us at Impulse26 — we'd love to exchange thoughts and hear about your result!
                   <span className="inline-block ml-1">✨</span>
                 </p>
               </div>
