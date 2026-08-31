@@ -756,9 +756,9 @@ export const Landing = () => {
 
           {/* Subsection 2: About the Impulse26 Key Fun Test */}
           <div className="mb-12 sm:mb-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               {/* Left: About Text */}
-              <div className="lg:col-span-5 space-y-6">
+              <div className="space-y-6">
                 <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821]">
                   About the Impulse26 Key Fun Test
                 </h3>
@@ -786,12 +786,12 @@ export const Landing = () => {
                 </div>
               </div>
 
-              {/* Right: Banner Image */}
-              <div className="lg:col-span-7">
+              {/* Right: Banner Image - Square aspect ratio */}
+              <div className="flex items-center justify-center">
                 <img
                   src="/assets/banner.png"
                   alt="Impulse26 Key Banner"
-                  className="w-full h-auto rounded-lg"
+                  className="w-full aspect-square object-cover rounded-lg"
                 />
               </div>
             </div>
