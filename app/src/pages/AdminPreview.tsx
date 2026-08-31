@@ -250,23 +250,50 @@ export const AdminPreview = () => {
                   {result.nameCN}
                 </h3>
 
-                {/* Color Info */}
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-4 justify-center sm:justify-start">
-                  <div>
-                    <div className="font-jetbrains-mono text-[10px] text-[#867181] uppercase mb-1">
-                      {language === 'zh' ? '颜色' : 'Color'}
+                {/* Color Info and Save Button */}
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-4 justify-center sm:justify-between">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+                    <div>
+                      <div className="font-jetbrains-mono text-[10px] text-[#867181] uppercase mb-1">
+                        {language === 'zh' ? '颜色' : 'Color'}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-5 h-5 rounded shadow-[inset_0px_2px_4px_0px_rgba(0,0,0,0.05)]" style={{ backgroundColor: colorGroup.color }} />
+                        <span className="font-jetbrains-mono text-[12px] text-[#231821]">{colorGroup.color}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded shadow-[inset_0px_2px_4px_0px_rgba(0,0,0,0.05)]" style={{ backgroundColor: colorGroup.color }} />
-                      <span className="font-jetbrains-mono text-[12px] text-[#231821]">{colorGroup.color}</span>
+                    <div>
+                      <div className="font-jetbrains-mono text-[10px] text-[#867181] uppercase mb-1">
+                        {language === 'zh' ? '色系分组' : 'Color Group'}
+                      </div>
+                      <div className="font-jetbrains-mono text-[12px] text-[#231821] capitalize">{result.colorGroup}</div>
                     </div>
                   </div>
-                  <div>
-                    <div className="font-jetbrains-mono text-[10px] text-[#867181] uppercase mb-1">
-                      {language === 'zh' ? '色系分组' : 'Color Group'}
-                    </div>
-                    <div className="font-jetbrains-mono text-[12px] text-[#231821] capitalize">{result.colorGroup}</div>
-                  </div>
+
+                  {/* Save as Image Button */}
+                  <button
+                    onClick={async () => {
+                      const preRenderedUrl = `/assets/share-cards/${language}/${selectedKey}.jpg`;
+                      try {
+                        const response = await fetch(preRenderedUrl);
+                        if (!response.ok) throw new Error('Image not found');
+                        const blob = await response.blob();
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `impulsekey-${selectedKey}.jpg`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                      } catch (error) {
+                        console.error('Failed to download image:', error);
+                      }
+                    }}
+                    className="px-4 py-2 font-space-grotesk font-medium text-[14px] text-[#a800aa] hover:text-white border-2 border-[#a800aa] hover:bg-[#a800aa] rounded-full transition-all duration-300 active:scale-95"
+                  >
+                    {language === 'zh' ? '💾 保存图片' : '💾 Save Image'}
+                  </button>
                 </div>
 
                 {/* Most Likely to Say */}
