@@ -754,13 +754,13 @@ export const Landing = () => {
             </div>
           </div>
 
-          {/* Subsection 2: About the Impulse26 Key Fun Test */}
+          {/* Subsection 2: Impulse26.Key Fun Test */}
           <div className="mb-12 sm:mb-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               {/* Left: About Text */}
               <div className="space-y-6">
                 <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821]">
-                  About the Impulse26 Key Fun Test
+                  Impulse26.Key Fun Test
                 </h3>
                 <div className="space-y-4">
                   <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
