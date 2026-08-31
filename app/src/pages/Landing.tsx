@@ -804,8 +804,12 @@ export const Landing = () => {
                 <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821] mb-3">
                   Event Team
                 </h3>
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] mb-2">
+                  Meet the team behind Impulse26 China and their ImpulseKey results!
+                </p>
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150]">
-                  Meet the team behind Impulse26 China (the emojis are randomly chosen by Claude)
+                  Is your key the same or different from theirs? Find us at Impulse26 — we'd love to exchange thoughts and hear about your result!
+                  <span className="inline-block ml-1">✨</span>
                 </p>
               </div>
 
