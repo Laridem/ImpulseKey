@@ -70,21 +70,11 @@ export const AdminPreview = () => {
         <Header />
       </div>
 
-      {/* Secondary Bar with Back Button and Title - sticky below header */}
+      {/* Secondary Bar with Title and Back Button - sticky below header */}
       <div className="sticky top-[60px] sm:top-[68px] z-40 bg-white border-b border-[#e5e2e8] shadow-sm">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3 sm:py-4 flex items-center justify-between">
-          {/* Left: Back Button + Mobile Menu */}
+          {/* Left: Title + Mobile Menu */}
           <div className="flex items-center gap-3">
-            {/* Back to Home Button */}
-            <button
-              onClick={() => navigate('/')}
-              className="flex items-center gap-2 px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] uppercase rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95"
-              aria-label={language === 'zh' ? '返回首页' : 'Back to Home'}
-            >
-              <span className="text-[18px]">←</span>
-              <span className="hidden sm:inline">{language === 'zh' ? '首页' : 'HOME'}</span>
-            </button>
-
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -106,15 +96,23 @@ export const AdminPreview = () => {
                 )}
               </svg>
             </button>
+
+            {/* Title - Desktop */}
+            <h1 className="hidden sm:flex items-center gap-2 font-space-grotesk font-bold text-[18px] sm:text-[22px] text-[#231821]">
+              <span className="text-[24px]">📋</span>
+              {language === 'zh' ? '全部结果预览' : 'All Results Preview'}
+            </h1>
           </div>
 
-          {/* Center: Title */}
-          <h1 className="font-space-grotesk font-bold text-[16px] sm:text-[20px] text-[#231821]">
-            🔐 {language === 'zh' ? '全部结果预览' : 'All Results Preview'}
-          </h1>
-
-          {/* Right: Spacer for balance */}
-          <div className="w-[100px] sm:w-[120px]"></div>
+          {/* Right: Back to Home Button */}
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] uppercase rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95"
+            aria-label={language === 'zh' ? '返回首页' : 'Back to Home'}
+          >
+            <span className="text-[18px]">←</span>
+            <span className="hidden sm:inline">{language === 'zh' ? '首页' : 'HOME'}</span>
+          </button>
         </div>
       </div>
 
