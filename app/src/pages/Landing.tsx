@@ -205,7 +205,7 @@ export const Landing = () => {
         </nav>
       </div>
 
-      <main className="flex-1 px-4 sm:px-6 md:px-8 py-8 sm:py-16 md:py-24 pb-36 sm:pb-24 w-full" id="main-content">
+      <main className="flex-1 px-6 sm:px-10 md:px-16 lg:px-20 py-8 sm:py-16 md:py-24 pb-36 sm:pb-24 w-full" id="main-content">
         {/* Hero Section */}
         <div id="impulse-test" className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-6 sm:gap-6 mb-8 sm:mb-12 md:mb-16 lg:items-start scroll-mt-32">
           {/* Left Column - Text Content */}
@@ -716,18 +716,18 @@ export const Landing = () => {
         {/* About Section - Unified */}
         <div id="about" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-16 scroll-mt-32">
           {/* Main About Title */}
-          <h2 className="font-space-grotesk font-bold text-[36px] sm:text-[48px] text-[#231821] text-center mb-12 sm:mb-16">
+          <h2 className="font-space-grotesk font-bold text-[36px] sm:text-[48px] text-[#231821] mb-12 sm:mb-16">
             About
           </h2>
 
           {/* Subsection 1: What's SAP Impulse26? */}
           <div className="mb-12 sm:mb-20">
             <div className="space-y-8">
-              <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821] text-center">
+              <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821]">
                 What's SAP Impulse26?
               </h3>
 
-              <div className="max-w-[900px] mx-auto space-y-6">
+              <div className="space-y-6">
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
                   Impulse is SAP's annual design festival. This year, Impulse 26 explores the theme <span className="font-bold text-[#800082]">"The Human Spark"</span>, celebrating creativity, innovation, and what makes us uniquely human in the age of AI.
                 </p>
@@ -800,7 +800,7 @@ export const Landing = () => {
           {/* Subsection 3: Event Team */}
           <div>
             <div className="space-y-8">
-              <div className="text-center">
+              <div>
                 <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821] mb-3">
                   Event Team
                 </h3>
@@ -814,7 +814,7 @@ export const Landing = () => {
                 {/* Row 1 */}
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍💼
+                    🦋
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Yang, Debbie
@@ -823,7 +823,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👨‍💻
+                    🦊
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Wan, Mark
@@ -832,7 +832,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍🎨
+                    🌸
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Deng, Larissa
@@ -841,7 +841,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍💼
+                    🐨
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Bu, Heather
@@ -850,7 +850,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍🎨
+                    🌻
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Chen, Joy
@@ -859,7 +859,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍💼
+                    🦄
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Zhang, Xueer
@@ -868,7 +868,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍💼
+                    🌵
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Huang, Zoie
@@ -878,7 +878,7 @@ export const Landing = () => {
                 {/* Row 2 */}
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍🎨
+                    🐳
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Fu, Shuang
@@ -887,7 +887,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍💼
+                    🌺
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Jin, Liqin
@@ -896,7 +896,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👨‍💻
+                    🦁
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Zhou, Rowan
@@ -905,7 +905,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍💼
+                    🌷
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Huang, Lijiao
@@ -914,7 +914,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👨‍💼
+                    🐼
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Wang, Zhicheng
@@ -923,7 +923,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👩‍💼
+                    🌹
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Wang, Wei
@@ -932,7 +932,7 @@ export const Landing = () => {
 
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    👨‍🎨
+                    🦉
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Wu, Yifan
