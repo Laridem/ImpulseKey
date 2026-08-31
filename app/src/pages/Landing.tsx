@@ -805,7 +805,7 @@ export const Landing = () => {
                   Event Team
                 </h3>
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150]">
-                  Meet the team behind Impulse26 China
+                  Meet the team behind Impulse26 China (the emojis are randomly chosen by Claude)
                 </p>
               </div>
 
