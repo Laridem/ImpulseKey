@@ -197,8 +197,8 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'B',
-        textEN: 'Improve the message while ensuring status codes, API docs, and examples align.',
-        textCN: '改善 message 的同时，确保 status code、API doc、Postman example 都对得上。',
+        textEN: 'Improve the error message and update all related documentation (API docs, examples) to stay consistent.',
+        textCN: '改善错误提示，同时更新所有相关文档（API文档、示例代码）保持一致。',
         humorEN: 'Good DX needs empathy + contract precision. Can\'t miss either.',
         humorCN: '好的 DX 需要同理心 + 契约精确度。两个都不能少。',
         scores: { Human: 1, Machine: 1 }
