@@ -280,8 +280,8 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'B',
-        textEN: 'Improve error messages and add frontend validation to catch errors earlier.',
-        textCN: '改进错误提示，并加前端校验让用户更早发现问题。',
+        textEN: 'Add real-time frontend validation that highlights errors as users type, preventing submission failures.',
+        textCN: '增加前端实时校验，用户输入时就高亮错误，避免提交后才报错。',
         humorEN: 'Good UX prevents errors before they happen.',
         humorCN: '好的 UX 在错误发生之前就阻止它。',
         scores: { Human: 1, Machine: 1 }
