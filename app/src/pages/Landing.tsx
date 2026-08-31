@@ -713,223 +713,231 @@ export const Landing = () => {
           </div>
         </div>
 
-        {/* What's SAP Impulse26? Section */}
-        <div id="about" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-12 scroll-mt-32">
-          <div className="space-y-8">
-            <h3 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821] text-center">
-              What's SAP Impulse26?
-            </h3>
+        {/* About Section - Unified */}
+        <div id="about" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-16 scroll-mt-32">
+          {/* Main About Title */}
+          <h2 className="font-space-grotesk font-bold text-[36px] sm:text-[48px] text-[#231821] text-center mb-12 sm:mb-16">
+            About
+          </h2>
 
-            <div className="max-w-[900px] mx-auto space-y-6">
-              <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                Impulse is SAP's annual design festival. This year, Impulse 26 explores the theme <span className="font-bold text-[#800082]">"The Human Spark"</span>, celebrating creativity, innovation, and what makes us uniquely human in the age of AI.
-              </p>
-
-              <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                We're excited to bring Impulse 26 to Shanghai for the first time, marking the festival's debut in China.
-              </p>
-
-              <div className="bg-[#f7e3ef] border-l-4 border-[#800082] rounded-r-lg p-6 sm:p-8">
-                <h4 className="font-space-grotesk font-bold text-[20px] sm:text-[24px] text-[#800082] mb-4">
-                  The Human Spark
-                </h4>
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6] mb-4">
-                  AI can generate fast, polished output, but the soul of design remains uniquely human. Intuition, lived experience, and sensory perception are what transform ideas into meaningful experiences.
-                </p>
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6] mb-4">
-                  At Impulse 26, you'll embark on a multi-sensory UX journey featuring inspiring speakers, hands-on workshops, collaborative design jams, and unexpected opportunities to connect with fellow designers and innovators.
-                </p>
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  Join us to discover new perspectives, ignite fresh ideas, and leave feeling energized, inspired, and creatively recharged, ready to shape the future through your own human spark.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* About the Project Section */}
-        <div className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-12 sm:pt-16 pb-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left: About Text */}
-            <div className="lg:col-span-5 space-y-6">
-              <h3 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821]">
-                About the Project
+          {/* Subsection 1: What's SAP Impulse26? */}
+          <div className="mb-12 sm:mb-20">
+            <div className="space-y-8">
+              <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821] text-center">
+                What's SAP Impulse26?
               </h3>
-              <div className="space-y-4">
+
+              <div className="max-w-[900px] mx-auto space-y-6">
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  Built with vibes, curiosity, and probably a little too much coffee. ☕✨
+                  Impulse is SAP's annual design festival. This year, Impulse 26 explores the theme <span className="font-bold text-[#800082]">"The Human Spark"</span>, celebrating creativity, innovation, and what makes us uniquely human in the age of AI.
                 </p>
+
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  This project was dreamed up and designed by Larissa Deng (SAP UX Designer), with AI-powered illustrations crafted by Mark Wan (SAP UX Designer).
+                  We're excited to bring Impulse 26 to Shanghai for the first time, marking the festival's debut in China.
                 </p>
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  A huge shout-out to the amazing people at SAP Design Hub China. Your support, feedback, and enthusiasm helped bring this little project to life.
-                </p>
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  SAP colleagues: Come say hi at our upcoming events and activities. We'd love to meet you, swap ideas, and create more fun things together! 🚀
-                </p>
-                <div className="space-y-2 pl-4">
-                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                    Internal Sharepoint: <a href="https://sap.sharepoint.com/sites/209182/SitePages/Design-Hub-China.aspx?isSPOFile=1&xsdata=MDV8MDJ8fDY3MTZmZDY0YmUyZjQwZGQ5MDhkMDhkZTlhYTJhMjkzfDQyZjc2NzZjZjQ1NTQyM2M4MmY2ZGMyZDk5NzkxYWY3fDB8MHw2MzkxMTgyMjA0MzYxNDgzNjV8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pReU56azNNRGMzT0RobVl6UXlPR0poWVdFd1lqSmxNV014TXpjMll6a3lRSFJvY21WaFpDNTJNaTl0WlhOellXZGxjeTh4TnpjMk1qSTFNalEzTmpRd3xiNWFhYzIyZTRjMjk0NTNlOTA4ZDA4ZGU5YWEyYTI5M3wwZGI1MDE0MjI2ZjE0ZjFjOTgxMzRlMzQ5NDFjN2NlNg%3D%3D&sdata=QUZDbWZHQXZQdFZpeFdXZkRhNXYrbGtsZ3RUZGxPSmh0V3hxeGtOU1NiST0%3D&ovuser=42f7676c-f455-423c-82f6-dc2d99791af7%2Clarissa.deng%40sap.com&OR=Teams-HL&CT=1776226560704&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNjAzMTIyMzAyMCJ9" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
+
+                <div className="bg-[#f7e3ef] border-l-4 border-[#800082] rounded-r-lg p-6 sm:p-8">
+                  <h4 className="font-space-grotesk font-bold text-[20px] sm:text-[24px] text-[#800082] mb-4">
+                    The Human Spark
+                  </h4>
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6] mb-4">
+                    AI can generate fast, polished output, but the soul of design remains uniquely human. Intuition, lived experience, and sensory perception are what transform ideas into meaningful experiences.
+                  </p>
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6] mb-4">
+                    At Impulse 26, you'll embark on a multi-sensory UX journey featuring inspiring speakers, hands-on workshops, collaborative design jams, and unexpected opportunities to connect with fellow designers and innovators.
                   </p>
                   <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                    Join SAP Design Hub China Distribution List: <a href="https://profiles.wdf.sap.corp/groups/5c85d9385462d20285416a22/users" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
+                    Join us to discover new perspectives, ignite fresh ideas, and leave feeling energized, inspired, and creatively recharged, ready to shape the future through your own human spark.
                   </p>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Right: Banner Image */}
-            <div className="lg:col-span-7">
-              <img
-                src="/assets/banner.png"
-                alt="Impulse26 Key Banner"
-                className="w-full h-auto rounded-lg"
-              />
+          {/* Subsection 2: About the Impulse26 Key Fun Test */}
+          <div className="mb-12 sm:mb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+              {/* Left: About Text */}
+              <div className="lg:col-span-5 space-y-6">
+                <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821]">
+                  About the Impulse26 Key Fun Test
+                </h3>
+                <div className="space-y-4">
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                    Built with vibes, curiosity, and probably a little too much coffee. ☕✨
+                  </p>
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                    This project was dreamed up and designed by Larissa Deng (SAP UX Designer), with AI-powered illustrations crafted by Mark Wan (SAP UX Designer).
+                  </p>
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                    A huge shout-out to the amazing people at SAP Design Hub China. Your support, feedback, and enthusiasm helped bring this little project to life.
+                  </p>
+                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                    SAP colleagues: Come say hi at our upcoming events and activities. We'd love to meet you, swap ideas, and create more fun things together! 🚀
+                  </p>
+                  <div className="space-y-2 pl-4">
+                    <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                      Internal Sharepoint: <a href="https://sap.sharepoint.com/sites/209182/SitePages/Design-Hub-China.aspx?isSPOFile=1&xsdata=MDV8MDJ8fDY3MTZmZDY0YmUyZjQwZGQ5MDhkMDhkZTlhYTJhMjkzfDQyZjc2NzZjZjQ1NTQyM2M4MmY2ZGMyZDk5NzkxYWY3fDB8MHw2MzkxMTgyMjA0MzYxNDgzNjV8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pReU56azNNRGMzT0RobVl6UXlPR0poWVdFd1lqSmxNV014TXpjMll6a3lRSFJvY21WaFpDNTJNaTl0WlhOellXZGxjeTh4TnpjMk1qSTFNalEzTmpRd3xiNWFhYzIyZTRjMjk0NTNlOTA4ZDA4ZGU5YWEyYTI5M3wwZGI1MDE0MjI2ZjE0ZjFjOTgxMzRlMzQ5NDFjN2NlNg%3D%3D&sdata=QUZDbWZHQXZQdFZpeFdXZkRhNXYrbGtsZ3RUZGxPSmh0V3hxeGtOU1NiST0%3D&ovuser=42f7676c-f455-423c-82f6-dc2d99791af7%2Clarissa.deng%40sap.com&OR=Teams-HL&CT=1776226560704&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNjAzMTIyMzAyMCJ9" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
+                    </p>
+                    <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                      Join SAP Design Hub China Distribution List: <a href="https://profiles.wdf.sap.corp/groups/5c85d9385462d20285416a22/users" target="_blank" rel="noopener noreferrer" className="text-[#800082] underline hover:text-[#a100c2] active:text-[#a100c2]">Link</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Banner Image */}
+              <div className="lg:col-span-7">
+                <img
+                  src="/assets/banner.png"
+                  alt="Impulse26 Key Banner"
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Event Team Section */}
-        <div className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-12 sm:pt-16 pb-16">
-          <div className="space-y-8">
-            <div className="text-center">
-              <h3 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821] mb-3">
-                Event Team
-              </h3>
-              <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150]">
-                Meet the team behind Impulse26 China
-              </p>
-            </div>
-
-            {/* Team Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 sm:gap-8">
-              {/* Row 1 */}
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍💼
-                </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Yang, Debbie
+          {/* Subsection 3: Event Team */}
+          <div>
+            <div className="space-y-8">
+              <div className="text-center">
+                <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821] mb-3">
+                  Event Team
+                </h3>
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150]">
+                  Meet the team behind Impulse26 China
                 </p>
               </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👨‍💻
+              {/* Team Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 sm:gap-8">
+                {/* Row 1 */}
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍💼
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Yang, Debbie
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Wan, Mark
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍🎨
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👨‍💻
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Wan, Mark
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Deng, Larissa
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍💼
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍🎨
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Deng, Larissa
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Bu, Heather
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍🎨
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍💼
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Bu, Heather
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Chen, Joy
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍💼
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍🎨
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Chen, Joy
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Zhang, Xueer
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍💼
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍💼
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Zhang, Xueer
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Huang, Zoie
-                </p>
-              </div>
 
-              {/* Row 2 */}
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍🎨
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍💼
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Huang, Zoie
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Fu, Shuang
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍💼
+                {/* Row 2 */}
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍🎨
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Fu, Shuang
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Jin, Liqin
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👨‍💻
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍💼
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Jin, Liqin
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Zhou, Rowan
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍💼
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👨‍💻
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Zhou, Rowan
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Huang, Lijiao
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👨‍💼
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍💼
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Huang, Lijiao
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Wang, Zhicheng
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👩‍💼
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👨‍💼
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Wang, Zhicheng
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Wang, Wei
-                </p>
-              </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                  👨‍🎨
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👩‍💼
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Wang, Wei
+                  </p>
                 </div>
-                <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
-                  Wu, Yifan
-                </p>
+
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
+                    👨‍🎨
+                  </div>
+                  <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
+                    Wu, Yifan
+                  </p>
+                </div>
               </div>
             </div>
           </div>
