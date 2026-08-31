@@ -557,34 +557,34 @@ export const QUESTIONS: Question[] = [
   {
     id: 'D3',
     dimension: 'D',
-    textEN: 'You discover an innovative solution, but it requires rewriting a core module.',
-    textCN: '你发现了一个创新方案，但需要重写核心模块。',
+    textEN: 'You discover a new UI framework could cut code by 40%, but it requires rewriting the core rendering layer.',
+    textCN: '你发现新的 UI 框架能减少 40% 代码量，但需要重写核心渲染层。',
     hintEN: 'Rewriting the core is exciting. So is explaining it during an outage.',
     hintCN: '重写核心模块确实很刺激。线上出事故时解释为什么重写，也很刺激。',
     options: [
       {
         id: 'A',
-        textEN: 'Start the rewrite. Innovation requires bold moves.',
-        textCN: '开始重写。创新需要大胆的举动。',
-        humorEN: 'Sometimes you have to tear down to build better.',
-        humorCN: '有时候要拆掉旧的才能建更好的。',
+        textEN: 'Start the rewrite with incremental migration. Innovation requires bold moves.',
+        textCN: '增量式重构，同时添加新功能。',
+        humorEN: 'The best time to refactor was last year. The second best time is now.',
+        humorCN: '重构的最佳时机是去年。第二好的时机是现在。',
         scores: { Spark: 2 }
       },
       {
         id: 'B',
-        textEN: 'Incrementally refactor while adding the new feature.',
-        textCN: '增量式重构，同时添加新功能。',
-        humorEN: 'The best time to refactor was last year. The second best time is now.',
-        humorCN: '重构的最佳时机是去年。第二好的时机是现在。',
-        scores: { Spark: 1, Stabilize: 1 }
-      },
-      {
-        id: 'C',
-        textEN: 'Keep the existing module stable. Rewrites are risky.',
+        textEN: 'Keep the existing module stable. The rewrite risk is too high.',
         textCN: '保持现有模块稳定。重写风险太大。',
         humorEN: 'Never rewrite a working system unless you want to discover why it was built that way.',
         humorCN: '永远不要重写能用的系统，除非你想知道为什么它当初要这么设计。',
         scores: { Stabilize: 2 }
+      },
+      {
+        id: 'C',
+        textEN: 'Test the new framework in a pilot project first. Innovation needs proof of concept.',
+        textCN: '在试点项目中先测试新框架。创新需要概念验证。',
+        humorEN: 'Pilot projects: where you discover all the problems before they become production incidents.',
+        humorCN: '试点项目：在问题变成生产事故之前发现它们的地方。',
+        scores: { Spark: 1, Stabilize: 1 }
       }
     ]
   },
