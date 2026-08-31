@@ -15,70 +15,72 @@ export const IMPULSE_COLORS = {
 } as const
 
 // Color group definitions
+// Based on dimension A (Signal/Solution) + dimension D (Spark/Stabilize)
 export const COLOR_GROUPS: Record<ColorGroup, ColorGroupInfo> = {
   magenta: {
     key: 'magenta',
     nameEN: 'Magenta',
     nameCN: '紫红系',
     color: IMPULSE_COLORS.magenta,
-    descriptionEN: 'Proactively discovering user needs, human-centered',
-    descriptionCN: '主动发现用户需求，以人为本',
-    dimensionTraits: 'Signal + Human'
+    descriptionEN: 'Signal-driven with stabilizing execution',
+    descriptionCN: '信号驱动，稳定执行',
+    dimensionTraits: 'Signal + Stabilize'
   },
   yellow: {
     key: 'yellow',
     nameEN: 'Yellow',
     nameCN: '亮黄系',
     color: IMPULSE_COLORS.yellow,
-    descriptionEN: 'Innovative technology, AI-driven experiences',
-    descriptionCN: '技术创新，智能驱动',
-    dimensionTraits: 'Signal + Machine'
+    descriptionEN: 'Signal-driven with rapid response',
+    descriptionCN: '信号驱动，快速响应',
+    dimensionTraits: 'Signal + Spark'
   },
   cyan: {
     key: 'cyan',
     nameEN: 'Cyan',
     nameCN: '青绿系',
     color: IMPULSE_COLORS.cyan,
-    descriptionEN: 'Stable and reliable, humanized solutions',
-    descriptionCN: '稳定可靠，人性化解决',
-    dimensionTraits: 'Solution + Human'
+    descriptionEN: 'Solution-focused with rapid response',
+    descriptionCN: '方案聚焦，快速响应',
+    dimensionTraits: 'Solution + Spark'
   },
   purple: {
     key: 'purple',
     nameEN: 'Purple',
     nameCN: '蓝紫系',
     color: IMPULSE_COLORS.purple,
-    descriptionEN: 'System architecture, technical integration',
-    descriptionCN: '系统架构，技术集成',
-    dimensionTraits: 'Solution + Machine'
+    descriptionEN: 'Solution-focused with stabilizing execution',
+    descriptionCN: '方案聚焦，稳定执行',
+    dimensionTraits: 'Solution + Stabilize'
   }
 }
 
 // Mapping: ResultKey → ColorGroup
+// Based on dimension A (Signal/Solution) + dimension D (Spark/Stabilize)
 export const RESULT_COLOR_MAPPING: Record<ResultKey, ColorGroup> = {
-  // Magenta Group: Signal + Human
-  VOC: 'magenta',
-  FIORI: 'magenta',
-  A11Y: 'magenta',
-  CTRL: 'magenta',
+  // Magenta Group: Signal-driven + Stabilize (A=S dominant, D=H dominant)
+  VOC: 'magenta',    // SSSS
+  FIORI: 'magenta',  // SSSH
+  A11Y: 'magenta',   // SSHH
+  CTRL: 'magenta',   // SHSH
 
-  // Yellow Group: Signal + Machine
-  PIXEL: 'yellow',
-  JOULE: 'yellow',
-  AGENT: 'yellow',
-  BTP: 'yellow',
+  // Yellow Group: Signal-driven + Spark (A=S, D=S)
+  PIXEL: 'yellow',   // SSHS
+  JOULE: 'yellow',   // SHSS
+  AGENT: 'yellow',   // SHHS
+  BTP: 'yellow',     // HSSH
 
-  // Cyan Group: Solution + Human
-  CORE: 'cyan',
-  QAQ: 'cyan',
-  SAFE: 'cyan',
-  TRIO: 'cyan',
+  // Cyan Group: Solution-focused + Spark (A=H, D=S)
+  SAFE: 'cyan',      // SHHH
+  CORE: 'cyan',      // HSHS
+  QAQ: 'cyan',       // HHSS
+  TRIO: 'cyan',      // HHHS
 
-  // Purple Group: Solution + Machine
-  OData: 'purple',
-  API: 'purple',
-  LOGS: 'purple',
-  FIRE: 'purple'
+  // Purple Group: Solution-focused + Stabilize (A=H dominant, D=H dominant)
+  OData: 'purple',   // HSSS
+  API: 'purple',     // HSHH
+  LOGS: 'purple',    // HHSH
+  FIRE: 'purple'     // HHHH
 }
 
 // Helper function: Get color group info by result key
