@@ -812,43 +812,84 @@ export const Landing = () => {
               {/* Team Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 sm:gap-8">
                 {/* Row 1 */}
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    🦋
+                <div className="flex flex-col items-center group">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-3">
+                    {/* Floating particles on hover */}
+                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-0 left-0 w-2 h-2 rounded-full bg-[#A100C2] animate-float-slow" style={{ animationDelay: '0s' }} />
+                      <div className="absolute top-2 right-0 w-1.5 h-1.5 rounded-full bg-[#FFC933] animate-float-slower" style={{ animationDelay: '0.3s' }} />
+                      <div className="absolute bottom-0 left-2 w-1 h-1 rounded-full bg-[#64EDD2] animate-float-slow" style={{ animationDelay: '0.6s' }} />
+                      <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-[#7858FF] animate-float-slower" style={{ animationDelay: '0.9s' }} />
+                      <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
+                      <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#A100C2] animate-float-slower" style={{ animationDelay: '0.5s' }} />
+                    </div>
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                      🦋
+                    </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Yang, Debbie
                   </p>
                 </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    🦊
+                <div className="flex flex-col items-center group">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-3">
+                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-0 left-0 w-2 h-2 rounded-full bg-[#FFC933] animate-float-slow" style={{ animationDelay: '0s' }} />
+                      <div className="absolute top-2 right-0 w-1.5 h-1.5 rounded-full bg-[#64EDD2] animate-float-slower" style={{ animationDelay: '0.3s' }} />
+                      <div className="absolute bottom-0 left-2 w-1 h-1 rounded-full bg-[#7858FF] animate-float-slow" style={{ animationDelay: '0.6s' }} />
+                      <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-[#A100C2] animate-float-slower" style={{ animationDelay: '0.9s' }} />
+                      <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
+                      <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#FFC933] animate-float-slower" style={{ animationDelay: '0.5s' }} />
+                    </div>
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                      🦊
+                    </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Wan, Mark
                   </p>
                 </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    🌸
+                <div className="flex flex-col items-center group">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-3">
+                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-0 left-0 w-2 h-2 rounded-full bg-[#64EDD2] animate-float-slow" style={{ animationDelay: '0s' }} />
+                      <div className="absolute top-2 right-0 w-1.5 h-1.5 rounded-full bg-[#7858FF] animate-float-slower" style={{ animationDelay: '0.3s' }} />
+                      <div className="absolute bottom-0 left-2 w-1 h-1 rounded-full bg-[#A100C2] animate-float-slow" style={{ animationDelay: '0.6s' }} />
+                      <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-[#FFC933] animate-float-slower" style={{ animationDelay: '0.9s' }} />
+                      <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
+                      <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#64EDD2] animate-float-slower" style={{ animationDelay: '0.5s' }} />
+                    </div>
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                      🌸
+                    </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Deng, Larissa
                   </p>
                 </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    🐨
+                <div className="flex flex-col items-center group">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-3">
+                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-0 left-0 w-2 h-2 rounded-full bg-[#7858FF] animate-float-slow" style={{ animationDelay: '0s' }} />
+                      <div className="absolute top-2 right-0 w-1.5 h-1.5 rounded-full bg-[#A100C2] animate-float-slower" style={{ animationDelay: '0.3s' }} />
+                      <div className="absolute bottom-0 left-2 w-1 h-1 rounded-full bg-[#FFC933] animate-float-slow" style={{ animationDelay: '0.6s' }} />
+                      <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-[#64EDD2] animate-float-slower" style={{ animationDelay: '0.9s' }} />
+                      <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
+                      <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#7858FF] animate-float-slower" style={{ animationDelay: '0.5s' }} />
+                    </div>
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                      🐨
+                    </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Bu, Heather
                   </p>
                 </div>
 
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center group">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
                     🌻
                   </div>
@@ -857,18 +898,38 @@ export const Landing = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    🦄
+                <div className="flex flex-col items-center group">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-3">
+                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-0 left-0 w-2 h-2 rounded-full bg-[#FFC933] animate-float-slow" style={{ animationDelay: '0s' }} />
+                      <div className="absolute top-2 right-0 w-1.5 h-1.5 rounded-full bg-[#64EDD2] animate-float-slower" style={{ animationDelay: '0.3s' }} />
+                      <div className="absolute bottom-0 left-2 w-1 h-1 rounded-full bg-[#7858FF] animate-float-slow" style={{ animationDelay: '0.6s' }} />
+                      <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-[#A100C2] animate-float-slower" style={{ animationDelay: '0.9s' }} />
+                      <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
+                      <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#FFC933] animate-float-slower" style={{ animationDelay: '0.5s' }} />
+                    </div>
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                      🦄
+                    </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Zhang, Xueer
                   </p>
                 </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    🌵
+                <div className="flex flex-col items-center group">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-3">
+                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-0 left-0 w-2 h-2 rounded-full bg-[#64EDD2] animate-float-slow" style={{ animationDelay: '0s' }} />
+                      <div className="absolute top-2 right-0 w-1.5 h-1.5 rounded-full bg-[#7858FF] animate-float-slower" style={{ animationDelay: '0.3s' }} />
+                      <div className="absolute bottom-0 left-2 w-1 h-1 rounded-full bg-[#A100C2] animate-float-slow" style={{ animationDelay: '0.6s' }} />
+                      <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-[#FFC933] animate-float-slower" style={{ animationDelay: '0.9s' }} />
+                      <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
+                      <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#64EDD2] animate-float-slower" style={{ animationDelay: '0.5s' }} />
+                    </div>
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                      🌵
+                    </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Huang, Zoie
@@ -876,16 +937,26 @@ export const Landing = () => {
                 </div>
 
                 {/* Row 2 */}
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
-                    🐳
+                <div className="flex flex-col items-center group">
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-3">
+                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute top-0 left-0 w-2 h-2 rounded-full bg-[#7858FF] animate-float-slow" style={{ animationDelay: '0s' }} />
+                      <div className="absolute top-2 right-0 w-1.5 h-1.5 rounded-full bg-[#A100C2] animate-float-slower" style={{ animationDelay: '0.3s' }} />
+                      <div className="absolute bottom-0 left-2 w-1 h-1 rounded-full bg-[#FFC933] animate-float-slow" style={{ animationDelay: '0.6s' }} />
+                      <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-[#64EDD2] animate-float-slower" style={{ animationDelay: '0.9s' }} />
+                      <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
+                      <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#7858FF] animate-float-slower" style={{ animationDelay: '0.5s' }} />
+                    </div>
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                      🐳
+                    </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Fu, Shuang
                   </p>
                 </div>
 
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center group">
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl mb-3 border-2 border-[#d8bfd1]">
                     🌺
                   </div>
