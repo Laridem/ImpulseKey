@@ -67,7 +67,7 @@ export const Landing = () => {
 
   const handleStartTest = () => {
     startTest();
-    navigate('/role');
+    navigate('/role-selection');
   };
 
   // Booth data
@@ -540,7 +540,7 @@ export const Landing = () => {
                     DESIGN FOR SUSTAINABILITY
                   </h4>
                   <p className="font-hanken-grotesk text-[14px] text-white/80">
-                    Xiaolei Ma, Octaveliving
+                    Xiaofei Ma, Octaveliving
                   </p>
                 </div>
               </div>

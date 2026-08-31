@@ -19,9 +19,8 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Landing />} />
-              <Route path="/role" element={<RoleSelection />} />
+              <Route path="/role-selection" element={<RoleSelection />} />
               <Route path="/intro" element={<TestIntro />} />
-              <Route path="/test" element={<QuestionFlow />} />
               <Route path="/questions" element={<QuestionFlow />} />
               <Route path="/loading" element={<Loading />} />
               <Route path="/result/:key" element={<Result />} />

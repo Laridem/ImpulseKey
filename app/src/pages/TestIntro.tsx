@@ -15,7 +15,7 @@ export const TestIntro = () => {
   }, [t]);
 
   const handleStartTest = () => {
-    navigate('/role');
+    navigate('/role-selection');
   };
 
   return (
