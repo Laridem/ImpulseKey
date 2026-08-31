@@ -713,8 +713,42 @@ export const Landing = () => {
           </div>
         </div>
 
+        {/* What's SAP Impulse26? Section */}
+        <div id="about" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-12 scroll-mt-32">
+          <div className="space-y-8">
+            <h3 className="font-space-grotesk font-bold text-[32px] sm:text-[40px] text-[#231821] text-center">
+              What's SAP Impulse26?
+            </h3>
+
+            <div className="max-w-[900px] mx-auto space-y-6">
+              <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                Impulse is SAP's annual design festival. This year, Impulse 26 explores the theme <span className="font-bold text-[#800082]">"The Human Spark"</span>, celebrating creativity, innovation, and what makes us uniquely human in the age of AI.
+              </p>
+
+              <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                We're excited to bring Impulse 26 to Shanghai for the first time, marking the festival's debut in China.
+              </p>
+
+              <div className="bg-[#f7e3ef] border-l-4 border-[#800082] rounded-r-lg p-6 sm:p-8">
+                <h4 className="font-space-grotesk font-bold text-[20px] sm:text-[24px] text-[#800082] mb-4">
+                  The Human Spark
+                </h4>
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6] mb-4">
+                  AI can generate fast, polished output, but the soul of design remains uniquely human. Intuition, lived experience, and sensory perception are what transform ideas into meaningful experiences.
+                </p>
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6] mb-4">
+                  At Impulse 26, you'll embark on a multi-sensory UX journey featuring inspiring speakers, hands-on workshops, collaborative design jams, and unexpected opportunities to connect with fellow designers and innovators.
+                </p>
+                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
+                  Join us to discover new perspectives, ignite fresh ideas, and leave feeling energized, inspired, and creatively recharged, ready to shape the future through your own human spark.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* About the Project Section */}
-        <div id="about" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-16 scroll-mt-32">
+        <div className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-12 sm:pt-16 pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left: About Text */}
             <div className="lg:col-span-5 space-y-6">
