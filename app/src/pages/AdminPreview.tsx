@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { RESULTS, getAllResultKeys } from '../data/results';
 import { getColorGroupForResult } from '../data/colorGroups';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -9,7 +8,6 @@ import { Header } from '../components/Header';
 import { RESULT_HASHTAGS } from '../data/hashtags';
 
 export const AdminPreview = () => {
-  const navigate = useNavigate();
   const allKeys = getAllResultKeys();
   const [selectedKey, setSelectedKey] = useState(allKeys[0]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -67,53 +65,34 @@ export const AdminPreview = () => {
     <div className="min-h-screen bg-[#faf8fb] flex flex-col">
       {/* Use Header component - make it sticky */}
       <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#d8bfd1]">
-        <Header />
+        <Header showHomeButton={true} />
       </div>
 
-      {/* Secondary Bar with Title and Back Button - sticky below header */}
-      <div className="sticky top-[60px] sm:top-[68px] z-40 bg-white border-b border-[#e5e2e8] shadow-sm">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-8 md:px-16 py-3 sm:py-4 flex items-center justify-between">
-          {/* Left: Title + Mobile Menu */}
-          <div className="flex items-center gap-3">
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="lg:hidden min-h-[44px] min-w-[44px] p-2 text-[#534150] hover:text-[#a800aa] transition-colors"
-              aria-label={isSidebarOpen ? 'Close menu' : 'Open menu'}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                strokeWidth={2}
-              >
-                {isSidebarOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-
-            {/* Title - Desktop */}
-            <h1 className="hidden sm:flex items-center gap-2 font-space-grotesk font-bold text-[18px] sm:text-[22px] text-[#231821]">
-              <span className="text-[24px]">📋</span>
-              {language === 'zh' ? '全部结果预览' : 'All Results Preview'}
-            </h1>
-          </div>
-
-          {/* Right: Back to Home Button */}
-          <button
-            onClick={() => navigate('/')}
-            className="flex items-center gap-2 px-4 py-2 text-[#a800aa] font-space-grotesk font-bold text-[14px] leading-[20px] uppercase rounded-full border-2 border-[#a800aa] transition-all duration-300 hover:bg-[#a800aa] hover:text-white active:scale-95"
-            aria-label={language === 'zh' ? '返回首页' : 'Back to Home'}
+      {/* Mobile Menu Button - Only visible on mobile */}
+      <div className="lg:hidden sticky top-[60px] sm:top-[68px] z-40 bg-white border-b border-[#e5e2e8] px-4 py-2">
+        <button
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          className="flex items-center gap-2 min-h-[44px] px-3 py-2 text-[#534150] hover:text-[#a800aa] transition-colors"
+          aria-label={isSidebarOpen ? 'Close menu' : 'Open menu'}
+        >
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            strokeWidth={2}
           >
-            <span className="text-[18px]">←</span>
-            <span className="hidden sm:inline">{language === 'zh' ? '首页' : 'HOME'}</span>
-          </button>
-        </div>
+            {isSidebarOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+          <span className="font-space-grotesk font-medium text-[14px]">
+            {language === 'zh' ? '所有结果' : 'All Results'}
+          </span>
+        </button>
       </div>
 
       <div className="flex flex-1 overflow-hidden">
@@ -127,9 +106,9 @@ export const AdminPreview = () => {
             ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
           `}
           style={{
-            top: isSidebarOpen ? '128px' : 'auto', // Offset by header + secondary bar height on mobile
+            top: isSidebarOpen ? '116px' : 'auto', // Offset by header (60-68px) + mobile menu button (48px) on mobile
             bottom: 0,
-            height: isSidebarOpen ? 'calc(100vh - 128px)' : 'auto'
+            height: isSidebarOpen ? 'calc(100vh - 116px)' : 'auto'
           }}
         >
           {/* Sidebar Header */}
