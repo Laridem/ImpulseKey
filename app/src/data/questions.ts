@@ -34,10 +34,10 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'C',
-        textEN: 'Open Fiori Design Guidelines and check if the current design meets standards.',
-        textCN: '打开 Fiori Design Guidelines（SAP设计规范），检查当前设计是否符合标准。',
-        humorEN: 'You discover this isn\'t a bug, it\'s "ancestral design" sitting in backlog for three years.',
-        humorCN: '你发现这不是 Bug，这是"祖传设计"。已经在 Jira Backlog（待办列表）里躺了三年。',
+        textEN: 'Check the feature\'s historical feedback records and known issue list first.',
+        textCN: '先查看这个功能的历史反馈记录和已知问题列表。',
+        humorEN: 'You find 5 similar feedbacks all saying "not convenient"—describing completely different problems.',
+        humorCN: '你发现已经有5条类似反馈，都说"不方便"——描述的问题完全不同。',
         scores: { Solution: 2 }
       }
     ]
@@ -69,10 +69,10 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'C',
-        textEN: 'Directly check which can reuse existing APIs and prioritize by technical risk.',
-        textCN: '直接看哪些能复用现有 API，按技术风险排优先级。',
-        humorEN: 'Insights without owners eventually become decorations in SharePoint.',
-        humorCN: '没 owner 的 insight 最后都变成 SharePoint 里的装饰品。',
+        textEN: 'Evaluate which stories can reuse existing APIs and components, then prioritize by technical feasibility and risk.',
+        textCN: '直接评估哪些能复用现有 API 和组件，按技术可行性和风险排序。',
+        humorEN: 'Technical risk assessment is fast—assuming someone already did user research. Usually they haven\'t.',
+        humorCN: '技术风险评估很快。前提是有人已经做过用户研究——通常没有。',
         scores: { Solution: 2 }
       }
     ]
@@ -114,8 +114,8 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'C',
-        textEN: 'Check HANA logs to see if this case will cause system errors or data corruption.',
-        textCN: '查 HANA（数据库）日志，看这个 Case 是否会导致 System Error 或 Data Corruption（数据损坏）。',
+        textEN: 'First assess the technical risk level: Could this bug cause data corruption or system crashes?',
+        textCN: '先评估这个 bug 的技术风险等级：是否会导致数据损坏或系统崩溃。',
         textByRole: {
           product_design: {
             en: 'Ask the dev team if this bug could crash the system or corrupt user data.',
@@ -126,8 +126,8 @@ export const QUESTIONS: Question[] = [
             zh: '要求技术风险评估：这个 bug 可能导致系统故障或数据丢失吗？'
           }
         },
-        humorEN: 'Small bugs grow fast in production. Especially ones found Friday afternoon.',
-        humorCN: '小 bug 在生产环境长得很快。特别是周五下午发现的那种。',
+        humorEN: 'UI misalignment can wait. Data loss becomes a P0 incident.',
+        humorCN: 'UI 错位可以慢慢修。数据丢了就是 P0 事故。',
         scores: { Solution: 2 }
       }
     ]
@@ -159,10 +159,10 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'C',
-        textEN: 'Reply: "Let me check what the OData API supports first, then we can design the dashboard accordingly."',
-        textCN: '回复："我先看看 OData API（数据接口）能支持什么，再据此设计 dashboard。"',
-        humorEN: 'A dashboard without decision goals is just corporate wallpaper.',
-        humorCN: '没有决策目标的 Dashboard 就是公司墙纸——好看但没用。',
+        textEN: 'Reply: "Let me assess the OData API and data model capabilities first, then design the presentation approach."',
+        textCN: '回复："让我先评估 OData API（数据接口）和数据模型的能力边界，再设计展示方案。"',
+        humorEN: 'Starting from data capabilities is efficient. Sometimes you discover the data users want doesn\'t exist yet.',
+        humorCN: '从数据能力出发很高效。有时你会发现，用户想要的数据根本不存在。',
         scores: { Solution: 2 }
       }
     ]
@@ -205,8 +205,8 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'C',
-        textEN: 'Check API contract, OpenAPI spec, and documentation to ensure consistency.',
-        textCN: '检查 API contract、OpenAPI spec、SAP Wiki 文档，确保三者一致。',
+        textEN: 'Verify API contract, OpenAPI spec, and documentation consistency across all error code definitions.',
+        textCN: '检查 API contract、OpenAPI spec、文档，确保错误码定义在所有文档中保持一致。',
         textByRole: {
           product_design: {
             en: 'Ask the team to verify the API docs, code examples, and error messages all match.',
@@ -217,8 +217,8 @@ export const QUESTIONS: Question[] = [
             zh: '要求文档审查：API 规范、示例、错误提示是否对齐？'
           }
         },
-        humorEN: '"400 Bad Request" isn\'t an error message, it\'s an emotional state.',
-        humorCN: '"400 Bad Request" 不是 error message，是一种情绪状态。',
+        humorEN: 'When three docs say different things, developers only trust code—which might also be wrong.',
+        humorCN: '当三个地方的文档说法不一样时，开发者只会相信代码——代码也可能是错的。',
         scores: { Machine: 2 }
       }
     ]
@@ -253,10 +253,10 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'C',
-        textEN: 'Check if workflow data model and API schema support Joule integration.',
-        textCN: '检查 Workflow 数据模型和 API Schema 是否支持 Joule（AI助手）对接。',
-        humorEN: 'Without structured data, AI is just chatting with you.',
-        humorCN: '没有结构化数据，AI 只是在跟你聊天。',
+        textEN: 'Check if Joule can be connected to the internal workflow engine API to generate based on real system data.',
+        textCN: '检查能否让 Joule（AI助手）接入内部流程引擎的 API，基于真实系统数据生成。',
+        humorEN: 'Without structured data, AI can only guess—and it guesses quite creatively.',
+        humorCN: '没有结构化数据，AI 只能靠猜——猜得还挺有创意。',
         scores: { Machine: 2 }
       }
     ]
@@ -288,10 +288,10 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'C',
-        textEN: 'Check validation rule definitions and ensure frontend/backend schemas match.',
-        textCN: '检查 Validation Rule（校验规则）定义，确保前后端 Schema 一致。',
-        humorEN: 'Frontend validation without backend validation is theater security.',
-        humorCN: '只有前端校验没有后端校验的系统，是安全剧场。',
+        textEN: 'Verify validation rule definitions and ensure frontend/backend schemas and error code mappings are fully aligned.',
+        textCN: '检查 Validation Rule（校验规则）定义，确保前后端 Schema 和错误码映射表完全一致。',
+        humorEN: 'Frontend says "email error," backend logs "field_03 invalid"—three months later nobody knows it\'s the same issue.',
+        humorCN: '前端显示"邮箱错误"，后端日志写"field_03 invalid"——三个月后没人知道是同一个问题。',
         scores: { Machine: 2 }
       }
     ]
@@ -394,10 +394,10 @@ export const QUESTIONS: Question[] = [
       },
       {
         id: 'C',
-        textEN: 'Keep the existing flow to maintain consistency and avoid user complaints.',
-        textCN: '保持现有流程，维护一致性，避免用户抱怨。',
-        humorEN: '"If it ain\'t broke, don\'t fix it" - until it becomes legacy debt.',
-        humorCN: '"能用就别动"——直到它变成技术债。',
+        textEN: 'Keep the existing flow—unless users actively report pain points, don\'t break familiarity for "better."',
+        textCN: '保持现有流程——除非用户主动反馈痛点，不要为了"更好"打破熟悉感。',
+        humorEN: '"Better experience" is what you think. Users just ask: "Where did my button go?"',
+        humorCN: '"更好的体验"是你觉得。用户只会问："我的按钮去哪了？"',
         scores: { Align: 2 }
       }
     ]
