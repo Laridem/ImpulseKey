@@ -59,7 +59,8 @@
       "Bash(mv \"Game Studio.png\" \"Game Booth.png\")",
       "Bash(mv \"Huddle Studio.png\" \"Huddle Booth.png\")",
       "Bash(mv \"Maker Studio.png\" \"Maker Booth.png\")",
-      "Bash(mv \"Sensory Studio.png\" \"Sensory Booth.png\")"
+      "Bash(mv \"Sensory Studio.png\" \"Sensory Booth.png\")",
+      "Bash(identify *)"
     ]
   }
 }

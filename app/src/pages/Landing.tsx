@@ -392,7 +392,7 @@ export const Landing = () => {
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
                   <div className="flex justify-between items-start mb-2">
                     <span className="font-space-grotesk font-medium text-[16px] text-white">
-                      Executive Talk
+                      Keeping the Spark: Humanity in an Intelligent Age
                     </span>
                     <span className="font-space-grotesk text-[14px] text-white/80">
                       10:05
