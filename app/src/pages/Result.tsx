@@ -35,6 +35,14 @@ export const Result = () => {
     }
   }, [key, goToResult]);
 
+  // Redirect to home if no valid dimensionScores (direct URL access without completing test)
+  useEffect(() => {
+    if (!dimensionScores || Object.keys(dimensionScores).length === 0) {
+      console.log('No valid dimension scores found, redirecting to home');
+      navigate('/');
+    }
+  }, [dimensionScores, navigate]);
+
   // Rotate loading messages
   const loadingMessages = [
     { en: 'Negotiating with stubborn pixels...', zh: '正在说服像素合作...' },
