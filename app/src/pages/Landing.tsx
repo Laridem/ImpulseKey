@@ -348,9 +348,13 @@ export const Landing = () => {
 
         {/* Impulse26 CN Agenda Section */}
         <div id="agenda" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-12 scroll-mt-32">
-          <h2 className="font-space-grotesk font-bold text-[24px] sm:text-[40px] text-[#231821] mb-8 text-center">
+          <h2 className="font-space-grotesk font-bold text-[24px] sm:text-[40px] text-[#231821] mb-4 text-center">
             Impulse26 CN Agenda
           </h2>
+
+          <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] text-center mb-8 max-w-[900px] mx-auto leading-relaxed">
+            Registration opens at 9:30 AM. Arrive early to collect your welcome kit (while supplies last), capture memories at our photo stations, and enjoy a freshly brewed coffee before the event begins.
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Keynote Card */}
