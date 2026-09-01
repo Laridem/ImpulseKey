@@ -495,7 +495,7 @@ export const Landing = () => {
                     Microsoft Sr. UX Designer
                   </p>
                   <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
-                    Designing Human-AI Collaboration
+                    Designing Human-AI Collaboration: The Human-in-the-Loop Designer in the Age of Agents
                   </p>
                 </div>
               </div>
