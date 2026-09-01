@@ -529,7 +529,7 @@ export const Landing = () => {
                     BUILD FIGMA AROUND YOU
                   </h4>
                   <p className="font-hanken-grotesk text-[14px] text-white/80">
-                    Laura Fehre & Stefan Mehrer, Figma
+                    Laura Fehre & Stefan Mehner, Figma
                   </p>
                 </div>
 
@@ -897,12 +897,15 @@ export const Landing = () => {
                       <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
                       <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#7858FF] animate-float-slower" style={{ animationDelay: '0.5s' }} />
                     </div>
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#7858FF] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#7858FF] transition-all duration-300 group-hover:scale-110 group-hover:border-[#7858FF]">
                       🐨
                     </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Bu, Heather
+                  </p>
+                  <p className="font-hanken-grotesk text-[11px] sm:text-[12px] text-[#7858FF] font-semibold italic text-center mt-1">
+                    LOGS
                   </p>
                 </div>
 
@@ -916,12 +919,15 @@ export const Landing = () => {
                       <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
                       <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#A100C2] animate-float-slower" style={{ animationDelay: '0.5s' }} />
                     </div>
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#A100C2] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#A100C2] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
                       🌻
                     </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Chen, Joy
+                  </p>
+                  <p className="font-hanken-grotesk text-[11px] sm:text-[12px] text-[#A100C2] font-semibold italic text-center mt-1">
+                    VOC
                   </p>
                 </div>
 
@@ -1056,14 +1062,14 @@ export const Landing = () => {
                       <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
                       <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#64EDD2] animate-float-slower" style={{ animationDelay: '0.5s' }} />
                     </div>
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#64EDD2] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#64EDD2] transition-all duration-300 group-hover:scale-110 group-hover:border-[#64EDD2]">
                       🐼
                     </div>
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Wang, Zhicheng
                   </p>
-                  <p className="font-hanken-grotesk text-[11px] sm:text-[12px] text-[#A100C2] font-semibold italic text-center mt-1">
+                  <p className="font-hanken-grotesk text-[11px] sm:text-[12px] text-[#64EDD2] font-semibold italic text-center mt-1">
                     QAQ
                   </p>
                 </div>
@@ -1078,7 +1084,7 @@ export const Landing = () => {
                       <div className="absolute top-1/2 left-0 w-1.5 h-1.5 rounded-full bg-[#f65af2] animate-float-slow" style={{ animationDelay: '0.2s' }} />
                       <div className="absolute top-1/2 right-0 w-1 h-1 rounded-full bg-[#7858FF] animate-float-slower" style={{ animationDelay: '0.5s' }} />
                     </div>
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-[#f7e3ef] to-[#e5d4f0] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#d8bfd1] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#A100C2] flex items-center justify-center text-3xl sm:text-4xl border-2 border-[#A100C2] transition-all duration-300 group-hover:scale-110 group-hover:border-[#A100C2]">
                       🌹
                     </div>
                   </div>
