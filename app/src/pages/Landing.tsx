@@ -462,7 +462,7 @@ export const Landing = () => {
                     Xiaofei Ma
                   </p>
                   <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    Octave Living Head of Sustainability CN
+                    OCTAVE Living Senior Manager Sustainability
                   </p>
                   <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
                     Sustainability user experience design
@@ -1059,6 +1059,9 @@ export const Landing = () => {
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Wang, Zhicheng
                   </p>
+                  <p className="font-hanken-grotesk text-[11px] sm:text-[12px] text-[#A100C2] font-semibold italic text-center mt-1">
+                    QAQ
+                  </p>
                 </div>
 
                 <div className="flex flex-col items-center group">
@@ -1077,6 +1080,9 @@ export const Landing = () => {
                   </div>
                   <p className="font-hanken-grotesk font-medium text-[13px] sm:text-[14px] text-[#231821] text-center">
                     Wang, Wei
+                  </p>
+                  <p className="font-hanken-grotesk text-[11px] sm:text-[12px] text-[#A100C2] font-semibold italic text-center mt-1">
+                    VOC
                   </p>
                 </div>
 
