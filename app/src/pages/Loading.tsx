@@ -131,7 +131,7 @@ export const Loading = () => {
           {/* Logo */}
           <div className="flex items-center gap-2 sm:gap-4">
             <span className="font-space-grotesk font-bold text-[16px] sm:text-[20px] text-[#a800aa] tracking-tight">
-              Impulse26 Key
+              Impulse Key
             </span>
             <img
               src="/assets/Anvils-1.png"

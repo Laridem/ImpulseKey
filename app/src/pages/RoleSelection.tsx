@@ -17,7 +17,7 @@ export const RoleSelection = () => {
 
   // Update page title for accessibility
   useEffect(() => {
-    document.title = `${t('roleSelection.title')} - Impulse26 Key`;
+    document.title = `${t('roleSelection.title')} - Impulse Key`;
   }, [t]);
 
   const handleRoleClick = (roleId: string) => {

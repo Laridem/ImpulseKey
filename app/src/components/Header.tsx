@@ -87,7 +87,7 @@ export const Header = ({ showRetakeButton = false, onRetake, showHomeButton = fa
             }}
           >
             <span className="font-poppins font-bold text-[14px] sm:text-headline-md text-[#a800aa] tracking-tight">
-              Impulse26 Key
+              Impulse Key
             </span>
             <img
               src="/assets/anvils.png"

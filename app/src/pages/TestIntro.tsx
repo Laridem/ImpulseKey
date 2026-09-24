@@ -11,7 +11,7 @@ export const TestIntro = () => {
 
   // Update page title for accessibility
   useEffect(() => {
-    document.title = `${t('testIntro.title')} - Impulse26 Key`;
+    document.title = `${t('testIntro.title')} - Impulse Key`;
   }, [t]);
 
   const handleStartTest = () => {

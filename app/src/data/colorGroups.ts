@@ -2,11 +2,11 @@ import { ColorGroup, ColorGroupInfo, ResultKey } from './types'
 
 /**
  * IMPULSE KEYS - Color Grouping System
- * Official Impulse26 Design Festival colors
+ * Official Impulse Design Festival colors
  * Maps 16 personalities into 4 color groups based on dimensional characteristics
  */
 
-// Official Impulse26 colors
+// Official Impulse colors
 export const IMPULSE_COLORS = {
   magenta: '#A100C2',
   yellow: '#FFC933',

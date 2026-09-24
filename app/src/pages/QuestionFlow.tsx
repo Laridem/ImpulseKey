@@ -37,7 +37,7 @@ export const QuestionFlow = () => {
 
   // Update page title for accessibility
   useEffect(() => {
-    document.title = `${t('question.surveyModule')} - Step ${currentQuestionIndex + 1}/${questions.length} - Impulse26 Key`;
+    document.title = `${t('question.surveyModule')} - Step ${currentQuestionIndex + 1}/${questions.length} - Impulse Key`;
   }, [currentQuestionIndex, questions.length, t]);
 
   // Redirect to loading page when test is submitted

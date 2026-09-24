@@ -29,7 +29,7 @@ export const Landing = () => {
 
   // Update page title for accessibility
   useEffect(() => {
-    document.title = 'Impulse26 Key - Impulse26 Design Festival';
+    document.title = 'Impulse Key - Impulse Design Festival';
   }, []);
 
   // Auto-play carousel - switch image every 1.5 seconds
@@ -44,7 +44,7 @@ export const Landing = () => {
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['impulse-test', 'agenda', 'networking-party', 'about'];
+      const sections = ['impulse-test', 'about'];
       const scrollPosition = window.scrollY + 200; // Offset for header + nav
 
       for (const sectionId of sections) {
@@ -168,28 +168,6 @@ export const Landing = () => {
                 )}
               </a>
               <a
-                href="#agenda"
-                className={`relative font-space-grotesk font-medium text-[14px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
-                  activeSection === 'agenda' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
-                }`}
-              >
-                Agenda
-                {activeSection === 'agenda' && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800082] rounded-full" />
-                )}
-              </a>
-              <a
-                href="#networking-party"
-                className={`relative font-space-grotesk font-medium text-[14px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
-                  activeSection === 'networking-party' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
-                }`}
-              >
-                Networking Party
-                {activeSection === 'networking-party' && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#800082] rounded-full" />
-                )}
-              </a>
-              <a
                 href="#about"
                 className={`relative font-space-grotesk font-medium text-[14px] sm:text-[18px] transition-colors whitespace-nowrap pb-2 ${
                   activeSection === 'about' ? 'text-[#800082]' : 'text-[#534150] hover:text-[#800082] active:text-[#800082]'
@@ -219,7 +197,7 @@ export const Landing = () => {
 
             {/* Main Title with Text Shadow */}
             <h1 className="font-space-grotesk font-bold text-[36px] sm:text-[56px] md:text-[72px] leading-[1.1] tracking-[-1.6px] sm:tracking-[-2.4px] md:tracking-[-3.0px] text-[#231821] text-shadow-kinetic">
-              Impulse26.Key
+              Impulse.Key
             </h1>
 
             {/* Subtitle */}
@@ -346,377 +324,6 @@ export const Landing = () => {
           </div>
         </div>
 
-        {/* Impulse26 CN Agenda Section */}
-        <div id="agenda" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-12 scroll-mt-32">
-          <h2 className="font-space-grotesk font-bold text-[24px] sm:text-[40px] text-[#231821] mb-4 text-center">
-            Impulse26 CN Agenda
-          </h2>
-
-          <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] text-center mb-8 max-w-[900px] mx-auto leading-relaxed">
-            Registration opens at 9:30 AM. Arrive early to collect your welcome kit (while supplies last), capture memories at our photo stations, and enjoy a freshly brewed coffee before the event begins.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Keynote Card */}
-            <div
-              className="relative rounded-2xl p-8 overflow-hidden"
-              style={{
-                background: 'linear-gradient(135deg, #7858FF 0%, #5d38e3 100%)'
-              }}
-            >
-              <div className="flex flex-row items-center justify-center gap-3 mb-6">
-                <h3 className="font-space-grotesk font-bold text-[22px] sm:text-[32px] text-white">
-                  Keynote
-                </h3>
-                <span className="font-space-grotesk font-medium text-[18px] text-white/90">
-                  10:00-11:00
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                {/* Opening */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="font-space-grotesk font-medium text-[16px] text-white">
-                      Opening
-                    </span>
-                    <span className="font-space-grotesk text-[14px] text-white/80">
-                      10:00
-                    </span>
-                  </div>
-                  <p className="font-hanken-grotesk text-[14px] text-white/90">
-                    Arin Bhowmick
-                  </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70">
-                    SAP Chief Design Officer
-                  </p>
-                </div>
-
-                {/* Executive Talk */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="font-space-grotesk font-medium text-[16px] text-white">
-                      Keeping the Spark: Humanity in an Intelligent Age
-                    </span>
-                    <span className="font-space-grotesk text-[14px] text-white/80">
-                      10:05
-                    </span>
-                  </div>
-                  <p className="font-hanken-grotesk text-[14px] text-white/90">
-                    Sophia Levens
-                  </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70">
-                    SAP Head of Design System
-                  </p>
-                </div>
-
-                {/* Be a Person Talk */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="font-space-grotesk font-medium text-[16px] text-white">
-                      Be a Person, Then Ship
-                    </span>
-                    <span className="font-space-grotesk text-[14px] text-white/80">
-                      10:35
-                    </span>
-                  </div>
-                  <p className="font-hanken-grotesk text-[14px] text-white/90">
-                    Laura Fehre
-                  </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70">
-                    Figma Design Advocate
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Expert Talk Card */}
-            <div
-              className="relative rounded-2xl p-8 overflow-hidden"
-              style={{
-                background: 'linear-gradient(135deg, #5d38e3 0%, #4527a0 100%)'
-              }}
-            >
-              <div className="flex flex-row items-center justify-center gap-3 mb-6">
-                <h3 className="font-space-grotesk font-bold text-[22px] sm:text-[32px] text-white">
-                  Expert Talk
-                </h3>
-                <span className="font-space-grotesk font-medium text-[18px] text-white/90">
-                  11:00-12:00
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Speaker 1 - Vera Jia */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
-                    Vera Jia
-                  </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    SAP Sr. Design Manager
-                  </p>
-                  <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
-                    From App-Centric to Intent-Centric: Next-Gen Enterprise AI Experience
-                  </p>
-                </div>
-
-                {/* Speaker 2 - Xiaofei Ma */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
-                    Xiaofei Ma
-                  </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    OCTAVE Living Senior Manager Sustainability
-                  </p>
-                  <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
-                    Sustainability user experience design
-                  </p>
-                </div>
-
-                {/* Speaker 3 - Billie Zhao */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
-                    Billie Zhao
-                  </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    SAP UX Designer
-                  </p>
-                  <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
-                    From Transparency to Recommendation: Designing AI-Powered User Experiences
-                  </p>
-                </div>
-
-                {/* Speaker 4 - Ya Lin */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <p className="font-space-grotesk font-medium text-[16px] text-white mb-1">
-                    Ya Lin
-                  </p>
-                  <p className="font-hanken-grotesk text-[12px] text-white/70 mb-2">
-                    Microsoft Sr. UX Designer
-                  </p>
-                  <p className="font-hanken-grotesk text-[13px] text-white/90 leading-relaxed">
-                    Designing Human-AI Collaboration: The Human-in-the-Loop Designer in the Age of Agents
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Workshop Card */}
-            <div
-              className="relative rounded-2xl p-8 overflow-hidden md:col-span-2"
-              style={{
-                background: 'linear-gradient(135deg, #4527a0 0%, #311b92 100%)'
-              }}
-            >
-              <div className="flex flex-row items-center justify-center gap-3 mb-6">
-                <h3 className="font-space-grotesk font-bold text-[22px] sm:text-[32px] text-white">
-                  Workshop
-                </h3>
-                <span className="font-space-grotesk font-medium text-[18px] text-white/90">
-                  13:00-15:00
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Workshop 1 */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                  <div className="mb-3">
-                    <span className="inline-block px-3 py-1 bg-white/20 rounded-full font-jetbrains-mono text-[11px] text-white mb-3">
-                      PVG03 D1.1
-                    </span>
-                  </div>
-                  <h4 className="font-space-grotesk font-bold text-[20px] text-white mb-2">
-                    BUILD FIGMA AROUND YOU
-                  </h4>
-                  <p className="font-hanken-grotesk text-[14px] text-white/80">
-                    Laura Fehre & Stefan Mehner, Figma
-                  </p>
-                </div>
-
-                {/* Workshop 2 */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                  <div className="mb-3">
-                    <span className="inline-block px-3 py-1 bg-white/20 rounded-full font-jetbrains-mono text-[11px] text-white mb-3">
-                      PVG03 C5.2
-                    </span>
-                  </div>
-                  <h4 className="font-space-grotesk font-bold text-[20px] text-white mb-2">
-                    DESIGN FOR SUSTAINABILITY
-                  </h4>
-                  <p className="font-hanken-grotesk text-[14px] text-white/80">
-                    Xiaofei Ma, Octaveliving
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Networking Party Section */}
-        <div id="networking-party" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-12 pb-12 scroll-mt-32">
-          <div className="">
-            {/* Title & Info */}
-            <div className="text-center mb-8">
-              <h2 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821] mb-3">
-                🎉 Join Our Networking Party
-              </h2>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center font-space-grotesk text-[16px] sm:text-[18px] text-[#534150]">
-                <div className="flex items-center gap-2">
-                  <span>📅</span>
-                  <span className="font-bold text-[#800082]">Sep 3rd, 15:05</span>
-                </div>
-                <div className="hidden sm:block text-[#d8bfd1]">|</div>
-                <div className="flex items-center gap-2">
-                  <span>📍</span>
-                  <span>Pvg03 C1.1, Lecturing Studio (aka Digital School)</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Booth Cards Grid - Flip on Click - Smaller cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
-              {booths.map((booth) => (
-                <div
-                  key={booth.id}
-                  className="perspective-1000 cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setFlippedCard(flippedCard === booth.id ? null : booth.id);
-                  }}
-                >
-                  <div
-                    className={`relative aspect-[4/3] transition-all duration-700 ${
-                      flippedCard === booth.id ? '[transform:rotateY(180deg)]' : ''
-                    }`}
-                    style={{ transformStyle: 'preserve-3d' }}
-                  >
-                    {/* Front Side - Poster/Name */}
-                    <div
-                      className={`absolute inset-0 rounded-lg border-2 overflow-hidden transition-all duration-300 group ${
-                        flippedCard === booth.id ? '' : 'hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:-rotate-1'
-                      }`}
-                      style={{
-                        background: booth.gradient,
-                        borderColor: flippedCard === booth.id ? booth.color : '#e5e2e8',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden'
-                      }}
-                    >
-                      {/* Content with Icon and Text - 2/3 of previous size */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-2 sm:p-3 gap-1 sm:gap-2">
-                        {/* Icon - 2/3 size (was w-24/w-32, now w-16/w-20) */}
-                        <img
-                          src={booth.icon}
-                          alt={`${booth.name} icon`}
-                          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain drop-shadow-lg"
-                        />
-                        {/* Text - Smaller */}
-                        <div className="text-center w-full px-1">
-                          <div
-                            className="font-space-grotesk font-black text-[11px] sm:text-[14px] md:text-[16px] mb-0.5 sm:mb-1 uppercase tracking-tight leading-tight break-words"
-                            style={{ color: booth.textColor }}
-                          >
-                            {booth.name}
-                          </div>
-                          <div
-                            className="font-space-grotesk font-medium text-[9px] sm:text-[10px] md:text-[12px] leading-tight"
-                            style={{ color: booth.textColor, opacity: 0.9 }}
-                          >
-                            {language === 'zh' ? booth.subtitleCN : booth.subtitleEN}
-                          </div>
-                        </div>
-                      </div>
-                      {/* Cute corner indicator */}
-                      {flippedCard !== booth.id && (
-                        <div className="absolute bottom-1.5 right-1.5 bg-white/20 backdrop-blur-sm rounded-full p-1.5 animate-bounce">
-                          <span className="text-[10px]">👆</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Back Side - Tagline with Bubbles on Hover */}
-                    <div
-                      className="absolute inset-0 rounded-lg border-2 overflow-hidden flex items-center justify-center p-4 group/back"
-                      style={{
-                        background: booth.gradient,
-                        borderColor: booth.color,
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)'
-                      }}
-                    >
-                      {/* Floating bubbles on hover */}
-                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/back:opacity-100 transition-opacity duration-500">
-                        <div
-                          className="absolute top-[10%] left-[15%] w-8 h-8 rounded-full animate-float-slow"
-                          style={{ background: `${booth.textColor}20`, animationDelay: '0s' }}
-                        />
-                        <div
-                          className="absolute top-[60%] right-[20%] w-12 h-12 rounded-full animate-float-slower"
-                          style={{ background: `${booth.textColor}15`, animationDelay: '0.5s' }}
-                        />
-                        <div
-                          className="absolute bottom-[20%] left-[25%] w-6 h-6 rounded-full animate-float-slow"
-                          style={{ background: `${booth.textColor}25`, animationDelay: '1s' }}
-                        />
-                        <div
-                          className="absolute top-[30%] right-[10%] w-10 h-10 rounded-full animate-float-slower"
-                          style={{ background: `${booth.textColor}20`, animationDelay: '1.5s' }}
-                        />
-                      </div>
-
-                      <div className="text-center relative z-10">
-                        {/* Decorative quotes - Smaller */}
-                        <div className="absolute -top-4 -left-3 text-[40px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
-                          "
-                        </div>
-                        <p
-                          className="font-space-grotesk font-bold text-[12px] sm:text-[14px] leading-relaxed relative"
-                          style={{ color: booth.textColor }}
-                        >
-                          {language === 'zh' ? booth.taglineCN : booth.taglineEN}
-                        </p>
-                        <div className="absolute -bottom-4 -right-3 text-[40px] font-space-grotesk font-black opacity-20" style={{ color: booth.textColor }}>
-                          "
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Message - 3D Pill Style - Smaller */}
-            <div
-              className="relative text-center rounded-full p-5 sm:p-6 border-2 overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_16px_48px_rgba(168,0,170,0.25)]"
-              style={{
-                background: 'linear-gradient(145deg, #ffffff 0%, #fef5fb 100%)',
-                borderColor: '#800082',
-                boxShadow: `
-                  0 1px 0 0 rgba(255,255,255,0.8) inset,
-                  0 -1px 0 0 rgba(168,0,170,0.08) inset,
-                  0 6px 0 0 #d8bfd1,
-                  0 12px 30px -8px rgba(168,0,170,0.3)
-                `
-              }}
-            >
-              {/* Top highlight */}
-              <div
-                className="absolute top-0 left-0 right-0 h-[40%] pointer-events-none opacity-30"
-                style={{
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 100%)'
-                }}
-              />
-              <p className="font-space-grotesk font-bold text-[16px] sm:text-[18px] text-[#534150] mb-2 relative z-10">
-                ✨ Complete the Impulse Key Test & Claim Your Prize at the Party
-              </p>
-              <p className="font-space-grotesk text-[13px] sm:text-[14px] text-[#867181] relative z-10">
-                Show your result screenshot at the registration deck to receive your prize
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* About Section - Unified */}
         <div id="about" className="max-w-[1400px] mx-auto border-t border-[#d8bfd1] pt-6 sm:pt-24 pb-16 scroll-mt-32">
           {/* Main About Title */}
@@ -724,47 +331,13 @@ export const Landing = () => {
             About
           </h2>
 
-          {/* Subsection 1: What's SAP Impulse26? */}
-          <div className="mb-12 sm:mb-20">
-            <div className="space-y-8">
-              <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821]">
-                What's SAP Impulse26?
-              </h3>
-
-              <div className="space-y-6">
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  Impulse is SAP's annual design festival. This year, Impulse 26 explores the theme <span className="font-bold text-[#800082]">"The Human Spark"</span>, celebrating creativity, innovation, and what makes us uniquely human in the age of AI.
-                </p>
-
-                <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                  We're excited to bring Impulse 26 to Shanghai for the first time, marking the festival's debut in China.
-                </p>
-
-                <div className="bg-[#f7e3ef] border-l-4 border-[#800082] rounded-r-lg p-6 sm:p-8">
-                  <h4 className="font-space-grotesk font-bold text-[20px] sm:text-[24px] text-[#800082] mb-4">
-                    The Human Spark
-                  </h4>
-                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6] mb-4">
-                    AI can generate fast, polished output, but the soul of design remains uniquely human. Intuition, lived experience, and sensory perception are what transform ideas into meaningful experiences.
-                  </p>
-                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6] mb-4">
-                    At Impulse 26, you'll embark on a multi-sensory UX journey featuring inspiring speakers, hands-on workshops, collaborative design jams, and unexpected opportunities to connect with fellow designers and innovators.
-                  </p>
-                  <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
-                    Join us to discover new perspectives, ignite fresh ideas, and leave feeling energized, inspired, and creatively recharged, ready to shape the future through your own human spark.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Subsection 2: Impulse26.Key Fun Test */}
+          {/* Subsection 1: Impulse.Key Fun Test */}
           <div className="mb-12 sm:mb-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
               {/* Left: About Text */}
               <div className="space-y-6">
                 <h3 className="font-space-grotesk font-bold text-[28px] sm:text-[36px] text-[#231821]">
-                  Impulse26.Key Fun Test
+                  Impulse.Key Fun Test
                 </h3>
                 <div className="space-y-4">
                   <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] leading-[1.6]">
@@ -794,7 +367,7 @@ export const Landing = () => {
               <div className="flex items-center justify-center">
                 <img
                   src="/assets/banner.png"
-                  alt="Impulse26 Key Banner"
+                  alt="Impulse Key Banner"
                   className="w-full max-w-[500px] h-auto object-contain rounded-lg"
                 />
               </div>
@@ -809,10 +382,10 @@ export const Landing = () => {
                   Event Team
                 </h3>
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150] mb-2">
-                  Meet the team behind Impulse26 China and our ImpulseKey results!
+                  Meet the team behind Impulse China and our ImpulseKey results!
                 </p>
                 <p className="font-hanken-grotesk text-[14px] sm:text-[16px] text-[#534150]">
-                  Is your key the same or different from ours? Find us at Impulse26 — we'd love to exchange thoughts and hear about your result!
+                  Is your key the same or different from ours? Find us at Impulse — we'd love to exchange thoughts and hear about your result!
                   <span className="inline-block ml-1">✨</span>
                 </p>
               </div>
