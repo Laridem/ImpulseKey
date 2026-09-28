@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useTest } from '../context/TestContext';
 import { useTranslation } from '../i18n';
-import { useLanguage } from '../i18n/LanguageContext';
 import { Header } from '../components/Header';
 import { useEffect, useState } from 'react';
 
@@ -9,8 +8,6 @@ export const Landing = () => {
   const navigate = useNavigate();
   const { startTest } = useTest();
   const t = useTranslation();
-  const { language } = useLanguage();
-  const [flippedCard, setFlippedCard] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState('impulse-test');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -69,82 +66,6 @@ export const Landing = () => {
     startTest();
     navigate('/role-selection');
   };
-
-  // Booth data
-  const booths = [
-    {
-      id: 'sensory',
-      name: 'Sensory Booth',
-      subtitleEN: 'Experience design with all your senses',
-      subtitleCN: '调动感官，发现设计的另一面',
-      taglineEN: 'Experience design with all your senses.',
-      taglineCN: '调动感官，发现设计的另一面。',
-      color: '#A100C2',
-      gradient: 'linear-gradient(135deg, #A100C2 0%, #c026d3 100%)',
-      textColor: '#ffffff',
-      icon: '/assets/booth-icons/Sensory Booth.png'
-    },
-    {
-      id: 'maker',
-      name: 'Maker Booth',
-      subtitleEN: 'Texture of Life',
-      subtitleCN: '生活的纹理',
-      taglineEN: 'Texture of Life: Weaving new stories from old fabrics.',
-      taglineCN: '生活的纹理：用旧布料编织新的故事。',
-      color: '#FFC933',
-      gradient: 'linear-gradient(135deg, #FFC933 0%, #ffd666 100%)',
-      textColor: '#231821',
-      icon: '/assets/booth-icons/Maker Booth.png'
-    },
-    {
-      id: 'huddle',
-      name: 'Huddle Booth',
-      subtitleEN: 'Spot the AI imposter',
-      subtitleCN: '谁是卧底',
-      taglineEN: 'Humans, AI, and a secret identity. Can you spot the imposter?',
-      taglineCN: '设计师版《谁是卧底》，人类与 AI 同场较量。',
-      color: '#64EDD2',
-      gradient: 'linear-gradient(135deg, #64EDD2 0%, #7ff5e0 100%)',
-      textColor: '#231821',
-      icon: '/assets/booth-icons/Huddle Booth.png'
-    },
-    {
-      id: 'game',
-      name: 'Game Booth',
-      subtitleEN: 'Play and create',
-      subtitleCN: '边玩边创作',
-      taglineEN: 'Play, sketch, guess, and challenge your creativity.',
-      taglineCN: '边玩边创作，在挑战中激发灵感。',
-      color: '#7858FF',
-      gradient: 'linear-gradient(135deg, #7858FF 0%, #9575ff 100%)',
-      textColor: '#ffffff',
-      icon: '/assets/booth-icons/Game Booth.png'
-    },
-    {
-      id: 'figma',
-      name: 'Figma Booth',
-      subtitleEN: 'Design tools and collaboration',
-      subtitleCN: '设计工具与协作',
-      taglineEN: 'Explore the tools behind great design.',
-      taglineCN: '探索设计工具，解锁高效协作。',
-      color: '#FF6730',
-      gradient: 'linear-gradient(135deg, #FF6730 0%, #ff8555 100%)',
-      textColor: '#ffffff',
-      icon: '/assets/booth-icons/Figma Booth.png'
-    },
-    {
-      id: 'networking',
-      name: 'Networking Bingo',
-      subtitleEN: 'Connect and collaborate',
-      subtitleCN: '连接与合作',
-      taglineEN: 'Meet people. Share ideas. Spark collaborations.',
-      taglineCN: '结识新伙伴，碰撞新想法，开启新合作。',
-      color: '#f65af2',
-      gradient: 'linear-gradient(135deg, #f65af2 0%, #ff7ef5 100%)',
-      textColor: '#ffffff',
-      icon: '/assets/booth-icons/Networking Corner.png'
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
